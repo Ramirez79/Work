@@ -1,0 +1,196 @@
+<html>
+<head>
+  <title>NetScaler Gateway</title>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="noindex,nofollow,noarchive" name="robots">
+    <link href="/vpn/images/styles.css" type=text/css rel=STYLESHEET>
+  <LINK href="/vpn/images/caxtonstyle.css" type=text/css rel=STYLESHEET>
+  <script type="text/javascript" src="/vpn/resources.js"></script>
+  <script type="text/javascript" language="javascript">
+  var Resources = new ResourceManager("/vpn/resources/{lang}", "f_services");
+  </script>
+  <style type="text/css">
+  body
+  {
+    visibility: hidden;
+  }
+  </style>
+  <script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+function isXpOrHigher() {
+	
+	var userAgentParts = navigator.userAgent.split("Windows NT ")
+	if(userAgentParts.length < 2)		// userAgent doesn't have "Windows NT "
+		return false
+
+	return (parseFloat(userAgentParts[1]) > 5.0 ) 	// XP's vesrion number is 5.1. So allow XP or any OS higher than XP
+}
+
+var nsloc=document.location.href;
+var cookie=document.cookie;
+var ns_aaac="";
+var NameOfCookie="NSC_AAAC";
+var timerID=0;
+var probeErrors=0;
+var agentPort=3148;
+var image;
+
+if(cookie.length > 0) {
+   begin=cookie.indexOf(NameOfCookie+"=");
+   if(begin!=-1) {
+        begin+=NameOfCookie.length+1;
+        end=cookie.indexOf(";", begin);
+        if(end==-1) end=cookie.length;
+        ns_aaac=decodeURIComponent(cookie.substring(begin, end));
+   }
+}
+
+function UnsetCookie(cookieName) {
+document.cookie=cookieName+"=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+}
+
+function loginSuccess(evt){
+	if(timerID) 
+		window.clearTimeout(timerID);
+		
+        window.location = "/vpns/services.html";
+}
+
+function nextAgentPort() {
+        agentPort = agentPort + 1;
+        if( agentPort > 3150 )
+            agentPort = 3148;
+}       
+
+function probeAgent() {
+	if(isXpOrHigher()) {
+		// auto redirect to f_ndisagent.html so that user doesn't need to click twice
+		window.location = "/vpns/f_ndisagent.html";		
+	}
+
+	if(navigator.userAgent.indexOf("PPC")==-1)
+		return;
+		
+	if(ns_aaac=="") 
+		return;
+	
+	if(timerID) 
+		window.clearTimeout(timerID);
+
+        image = new Image();
+        image.onload = loginSuccess;
+        image.onerror = probeError;
+        image.src = "http://localhost:"+agentPort+"/svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion=10,5,61,11&nstrace=DEBUG&nsvip=255.255.255.255&nstdi=ON";
+        timerID = window.setTimeout( "probeTimeout()", 3000 );
+}
+
+function probeError() {
+        if(timerID) window.clearTimeout(timerID);
+        probeErrors++;
+        if( probeErrors > 20 ) {
+            window.location.reload(true);
+            return;
+        }
+        nextAgentPort();
+        window.setTimeout( "probeAgent()", 500 );
+}
+
+function probeTimeout() {
+        if(timerID) {
+                window.clearTimeout(timerID);
+		if(navigator.userAgent.indexOf("Opera") > 0) 
+			window.location.reload (true);
+        }
+        nextAgentPort();
+        probeAgent();
+}
+
+function nsexit(){
+}
+</SCRIPT>
+
+</head>
+<body onload="javascript:probeAgent();" onunload="javascript:nsexit();">
+
+<!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+
+<script language="javascript" type="text/javascript">
+	CreateMainTable();
+    AddHeaderAndBar();
+</script>
+
+<!-- Main row -->
+<tr>
+	<td>
+	<table class="CTXMSAM_ContentFont full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+		<tr>
+		<td>
+<!-- wrapper begin -->
+<table class="mainPane CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <!-- content begin -->
+                                    <p style="MARGIN: 0px auto" class="messageTitle"><span id="NetScaler Gateway"></span></p>
+                                    <br>
+<SCRIPT language="javascript" >
+if( isXpOrHigher() ) { 
+		document.write('<p>' + _('waitingmsg') + '</p>');
+		document.write('<p>' + _('If a proxy server is configured') + '<BR>' + _('For more information contact your help desk or system administrator.') + '</p>');
+}
+else {
+document.write('<p>' + _('The Access Gateway Plug-in is not supported on your operating system.') + '</p><p>' + _('For help or information, contact your help desk or system administrator.') + '</p>');
+}
+
+</SCRIPT>
+<br>
+                                    
+                              <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+			</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+
+<!-- Footer -->
+<script language="javascript" type="text/javascript">
+AddFooter();
+</script>
+</table>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</body>
+</html>

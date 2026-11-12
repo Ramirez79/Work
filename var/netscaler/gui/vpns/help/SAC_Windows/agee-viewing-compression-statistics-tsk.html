@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Viewing Compression Statistics"/>
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-tshoot-wrapper-con.html"/>
+<meta name="prodname" content="ag"/>
+<meta name="version" content="9.1"/>
+<meta name="version" content="9.2"/>
+<meta name="DC.Date.Created" content=""/>
+<meta name="DC.Date.Modified" content="off"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="agee-viewing-compression-statistics-tsk"/>
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Viewing Compression Statistics</title>
+</head>
+<body id="agee-viewing-compression-statistics-tsk"><a name="agee-viewing-compression-statistics-tsk"><!-- --></a>
+
+<h1 class="topictitle1">Viewing Compression Statistics</h1>
+<div><div class="section"><p>The <span class="uicontrol">Compression</span> tab displays statistics about the  TCP traffic compression rates in the current Access Gateway session, broken down by individual connections. The columns on this tab include the following statistics.</p>
+<ul><li><span class="uicontrol">Port.</span> The port number on which the connection is communicating.</li>
+<li><span class="uicontrol">Uncompressed Data.</span> The size of the data before compression is applied.</li>
+<li><span class="uicontrol">Compressed Data.</span> The data size after compression is applied.</li>
+<li><span class="uicontrol">Bandwidth Saving.</span> The approximate bandwidth savings when compression is used, expressed as a percentage. This statistic is calculated by the compressed data size subtracted from the actual size, divided by the actual data size.</li>
+<li><span class="uicontrol">Compression Ratio.</span> The compression ratio based on actual data size versus the compressed data size.</li>
+</ul>
+<div class="p"><div class="note"><span class="notetitle">Note:</span> Bandwidth savings can occasionally show as a negative value. This happens with applications where transmitted data is sent in very small pieces and with other applications where data is compressed before it is sent.</div>
+</div>
+</div>
+<ol><li><span>In the notification area, right-click the Access Gateway icon and then click <span class="uicontrol">Configure Access Gateway</span>.</span></li>
+<li><span>Click the <span class="uicontrol">Compression</span> tab.</span></li>
+</ol>
+</div>
+
+
+</body>
+</html>

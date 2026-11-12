@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="［詳細オプション］ショートカットメニューを使用した設定変更" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-change-settings-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-change-settings-in-advanced-options-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>［詳細オプション］ショートカットメニューを使用した設定変更</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-change-settings-in-advanced-options-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Access Gateway Plug-inでの設定変更\n［詳細オプション］ショートカットメニューを使用した設定変更");
+addButton("show",BTN_TEXT,"表示","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&gt;", "ホーム", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-change-settings-wrapper-con.html\">Access Gateway Plug-inでの設定変更<\/a> &gt; ［詳細オプション］ショートカットメニューを使用した設定変更<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-change-settings-in-advanced-options-tsk" id="agee-plugin-change-settings-in-advanced-options-tsk"><!-- --></a>
+<h1 class="topictitle1">［詳細オプション］ショートカットメニューを使用した設定変更</h1>
+<div>
+<div class="section">
+<p>Access Gateway Plug-inのダイアログボックスでは、次の設定を変更できます。</p>
+<ul>
+<li>Access GatewayのIPアドレスまたはWebアドレス</li>
+<li>プロキシサーバーの設定</li>
+<li>セキュリティ証明書の警告</li>
+</ul>
+<div class="p">
+<div class="note"><span class="notetitle">注：</span> これらの設定は、Webブラウザーではなく<span class="uicontrol">［Citrix Access Gateway］</span>ダイアログボックスを使用してログオンするようにAccess Gateway Plug-inを構成した場合にのみ変更できます。 詳しくは、「<a href="agee-plug-in-creating-connections-tsk.html">Access Gateway Plug-inによる接続の作成</a>」を参照してください。</div>
+</div>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-set-web-address"><a name="agee-plugin-set-web-address" id="agee-plugin-set-web-address"><!-- --></a>
+<h2 class="topictitle2">Access GatewayのWebアドレスの設定</h2>
+<div>
+<div class="section">
+<p>Access Gateway Plug-inを構成するとき、ユーザーはあらかじめ構成されたAccess GatewayのIPアドレスを使用して接続します。 別のアプライアンスに接続するようにプラグインを構成することもできます。</p>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［ログオン］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［Citrix Access Gateway］</span>ダイアログボックス内の任意の場所を右クリックし、<span class="uicontrol">［詳細オプション］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［Citrix Access Gateway設定］</span>の<span class="uicontrol">［Webアドレス］</span>ボックスにWebアドレスを入力して、<span class="uicontrol">［OK］</span>をクリックします。</span>
+<p>［Webアドレス］ボックスには、192.168.1.2のようなIPアドレスまたはhttps://ag1.mycompany.comのようなWebアドレスを指定できます。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-proxy-server-config"><a name="agee-plugin-proxy-server-config" id="agee-plugin-proxy-server-config"><!-- --></a>
+<h2 class="topictitle2">Access Gateway Plug-in用のプロキシサーバーの構成</h2>
+<div>
+<div class="section">
+<p>プロキシサーバーは、デバイスと内部ネットワーク内のサーバーの間に位置するコンピューターです。 プロキシサーバーはWebブラウザーから内部ネットワーク内のサーバーへの要求を傍受し、要求されたWebページを処理できるかどうかを確認します。 プロキシサーバーで要求を満たせない場合は、セキュリティが保護されたネットワーク内のサーバーに要求が送られます。</p>
+<p>プロキシサーバーを手作業で構成する場合は、プロキシ設定の自動検出は無効になります。</p>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［ログオン］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［Citrix Access Gateway］</span>ダイアログボックス内の任意の場所を右クリックし、<span class="uicontrol">［詳細オプション］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［プロキシ設定］</span>の<span class="uicontrol">［プロキシサーバーを手動で設定する］</span>チェックボックスをオンにします。</span></li>
+<li><span><span class="uicontrol">［IPアドレス］</span>ボックスと<span class="uicontrol">［ポート］</span>ボックスに、IPアドレスとポート番号を入力します。</span></li>
+</ol>
+<div class="section">
+<div class="p">
+<div class="note"><span class="notetitle">注：</span> ログオンダイアログボックスを開き<span class="uicontrol">［詳細オプション］</span>を選択してプロキシを構成するには、Access Gatewayからログオフする必要があります。</div>
+</div>
+</div>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-secondary-password"><a name="agee-plugin-secondary-password" id="agee-plugin-secondary-password"><!-- --></a>
+<h2 class="topictitle2">セカンダリパスワードを使用したログオン</h2>
+<div>
+<div class="section">
+<p>2種類の認証を使用してログオンする必要があるAccess Gatewayアプライアンスを使用する場合があります。 その場合は、ユーザー名、パスワード、およびRSA SecurIDのトークン番号のようなトークン生成の数値を付加した個人識別番号（PIN）を入力する可能性があります。</p>
+<p>デフォルトでは、<span class="uicontrol">［Citrix Access Gateway］</span>ダイアログボックスにはユーザー名とパスワードを入力するボックスが表示されます。 セカンダリパスワードのボックスを表示するように、Access Gateway Plug-inを構成することができます。</p>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［ログオン］</span>を選択します。</span></li>
+<li><span>ダイアログボックス内の任意の場所を右クリックし、<span class="uicontrol">［セカンダリパスワードを表示］</span>を選択します。</span></li>
+</ol>
+<div class="section">
+<div class="p">
+<div class="note"><span class="notetitle">注：</span> ［セカンダリパスワード］ボックスを表示する必要がない場合は、<span class="uicontrol">［Citrix Access Gateway］</span>ダイアログボックス内の任意の場所を右クリックし、<span class="uicontrol">［セカンダリパスワードを非表示］</span>を選択します。</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

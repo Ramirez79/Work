@@ -1,0 +1,16 @@
+ns.branding_ocb = new function()
+{
+    this.BRANDING = ns.branding.OCB;
+
+    this.get_app_links = function()
+    {
+       var app_links = [];
+       app_links.push({title: "Home", url: "/menu/cb?standalone=no"});
+       app_links.push({title: "Dashboard", url: "/menu/st"});
+       app_links.push({title: "Configuration", url: "/menu/neo"});
+       app_links.push({title: "Reporting", url: "/menu/rep"});
+       return app_links;
+    };
+};
+
+$.extend(ns.branding, ns.branding_ocb);

@@ -1,0 +1,12 @@
+[% META title='Loading Plugin' 
+ 		script='/js/f_services.js'
+ 		id='services'
+ 		onload='ns_loadsessionwindow();'
+%]
+[% WRAPPER wrapper.tmpl %]
+      <div id="content">
+        <strong>Downloading NetScaler Plugin ... </strong>
+      <ul><li>If you cannot see the pop up SSL VPN session window, e.g. blocked by popup blocker software, please <A HREF="/vpns/vpn.html" onclick="ns_loadsessionwindow(); return false;">click once here</A> to continue.
+      </li></ul>
+      </div>
+[% END %]

@@ -1,0 +1,19 @@
+[% META title='Customize Your Stylesheet' 
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+<div id="selector" style="padding:10px;">
+<h2>Select Themes Available for Users</h2>
+<form action="[% env.adminLoc %]admin-themes-for-users.pl" method="post" name="admintheme">
+[% FOREACH theme = themes %]
+
+<input type="checkbox" name="theme" value="[% theme.key %]"[% IF theme.value.status == "selected" %] checked="Y" [% END %]/>[% theme.key %]<br> 
+[%- END -%]
+
+<input type="submit" name="select" value="Submit" />
+<input type="button" value="Cancel" onclick="history.go(-1)" class="button">
+  
+</form>
+</div>
+[% END %]

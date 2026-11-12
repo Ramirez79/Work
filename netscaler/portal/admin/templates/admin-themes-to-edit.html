@@ -1,0 +1,24 @@
+[% META title='Customize Your Stylesheet' 
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+<div id="selector" style="padding:10px; clear: both;">
+
+[% FOREACH theme = themes %]
+<form action="[% env.adminLoc %]admin-edit-themes.pl" method="post">
+<h2>[% theme.key %]</h2>
+<table border="1">
+<tr><td>
+<input type="hidden" name="theme" value="[% theme.key %]"/>
+<input type="checkbox" name="enabled" value="enabled"[% IF theme.value.status == "selected" %] checked="Y" [% END %]/>Enable for Users<br>
+<input type="checkbox" name="default" value="default"[% IF theme.value.default %] checked="Y" [% END %]/>Make default theme replacing [% default %].<br>
+<a href="[% env.adminLoc %]admin-savecolorprefs.pl?theme=[% theme.key %]">Colors and Fonts</a><br>
+<a href="[% env.adminLoc %]admin-logo.pl?theme=[% theme.key %]">Logo</a></td></tr>
+</table>
+[%- END -%]
+<input type="submit" name="Ok" value="Ok"/>
+<input type="button" value="Cancel" onclick="window.location='[% env.adminLoc %]admin-themes.pl'" class="button"/>
+</form>
+</div>
+[% END %]

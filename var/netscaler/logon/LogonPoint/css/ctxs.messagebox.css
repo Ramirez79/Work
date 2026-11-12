@@ -1,0 +1,173 @@
+﻿
+.messagepane
+{
+    margin-top: 222px;
+}
+
+.ctxsui-messagebox
+{
+    height: 142px;
+    min-width: 388px;
+	max-height: 300px;
+	width: 474px;
+    display: table;
+	color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.high-contrast .ctxsui-messagebox 
+{
+    background: black; /* Colors do not matter as they inherit high contrast mode system values */
+    border: 1px solid white;  
+}
+
+#javascriptmessagepane {
+    display: block;
+}
+
+.ctxsui-messagebox>.messagebox-middle
+{
+    display: table-row;
+}
+
+.ctxsui-messagebox .messagebox-middle>div
+{
+    display: table-cell;
+}
+
+.ctxsui-messagebox, .ctxsui-messagebox .messagebox-middlebody {
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+    .ctxsui-messagebox .messagebox-middlebody {
+        background: url("../media/messagebox/middlebody.png") repeat;
+        position: relative;
+        border: solid 1px #778e8a;
+        padding: 22px 23px 24px 22px;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, .05);
+    }
+
+.with-background-solid {
+    background-color: #1e4137;
+    background-color: rgba(30, 65, 55, 0.95);
+}
+
+.ctxsui-messagebox .messagebox-title
+{
+    font-size: 16px;
+    margin: 30px auto 22px auto;
+    text-align: center;
+}
+
+.ctxsui-messagebox .messagebox-body
+{
+    text-align: center;
+	margin-bottom: 30px;
+}
+
+.ctxsui-messagebox .messagebox-buttons
+{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.ctxsui-messagebox .ctxsAlert
+{
+	height: 100%;
+    padding: 5px 15px;
+}
+.ctxsui-messagebox .ctxsAlert>.messagebox-title
+{
+    margin: 0 auto 22px;
+}
+
+.ctxsui-messagebox .ctxsAlert>.messagebox-buttons .button
+{
+	margin-right: 4px;
+}
+
+.dialogBoxOverlay
+{
+	position: fixed;
+    z-index: 105;
+}
+
+.dialogBoxOverlay .ctxsui-messagebox
+{
+	z-index: 12000;
+}
+
+.mask
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+	left: 0;
+    z-index: 10000;  /* Higher than the context menu, which specifies z-index 9999 */
+}
+
+.ctxsWorkflowNotification #workflowDetails .jspTrackBg {
+	background: url('../media/Scroll_gradientBar_green_transparent.png');
+    background-repeat: repeat-y;
+}
+
+.ctxsui-messagebox .ctxsAlert .ctxsWorkflowNotification .detailsLink:focus {
+	outline: 1px dotted #CCC;
+}
+
+.ctxsui-messagebox .ctxsAlert .ctxsWorkflowNotification .detailsLink {
+    color: white;
+    margin-left: 150px;
+}
+
+#workflowDetails .jspTrackBg {
+	background: transparent;
+}
+
+#workflowDetails {
+    display:none;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.notificationRequestMessageContainer {
+    margin: 0 auto;
+}
+
+.requestNotificationImage {
+    height:42px;
+    width:42px;
+    float: left;
+    clear: left;
+}
+
+.notificationRequestMessage {
+    padding-left: 8px;
+    padding-top: 9px;
+}
+
+.appContainingDiv {
+    height: 22px;
+}
+.workflowAppDetailsIcon {
+    height:20px;
+    width:20px;
+    float: left;
+    clear: left;
+}
+
+.workflowAppDetailsText {
+    padding-left:30px;
+    padding-top:2px;
+    margin:0px;
+    white-space: nowrap;
+}
+
+#deniedApps {
+    padding-top:5px;
+}

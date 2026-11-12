@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Access Gatewayメニューを使用した設定変更" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-change-settings-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-changing-settings-from-the-access-gateway-menu-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Access Gatewayメニューを使用した設定変更</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-changing-settings-from-the-access-gateway-menu-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Access Gateway Plug-inでの設定変更\nAccess Gatewayメニューを使用した設定変更");
+addButton("show",BTN_TEXT,"表示","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&gt;", "ホーム", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-change-settings-wrapper-con.html\">Access Gateway Plug-inでの設定変更<\/a> &gt; Access Gatewayメニューを使用した設定変更<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-changing-settings-from-the-access-gateway-menu-tsk" id="agee-changing-settings-from-the-access-gateway-menu-tsk"><!-- --></a>
+<h1 class="topictitle1">Access Gatewayメニューを使用した設定変更</h1>
+<div>
+<div class="section">
+<p>ログオンした後は、通知領域のAccess Gatewayアイコンを右クリックすると表示されるAccess Gatewayメニューから項目を選択することで設定を変更できます。 このメニューからできる操作は次のとおりです。</p>
+<ul>
+<li>アクセスインターフェイスまたはシステム管理者が構成したホームページへのアクセス</li>
+<li>ファイル転送ユーティリティの開始</li>
+<li>構成の変更</li>
+<li>接続ログの表示</li>
+<li>Access Gateway Plug-inの現在のメッセージの表示</li>
+<li>オンラインヘルプへのアクセス</li>
+<li>Access Gateway Plug-inからのログオフと終了</li>
+</ul>
+<p>管理者はAccess Gateway Plug-inを設定して、ユーザーがアクセスインターフェイス、ファイル転送ユーティリティ、または構成設定を使用できないようにすることができます。 管理者がそのようにAccess Gateway Plug-inを構成した場合は、それらの項目はメニューに表示されません。</p>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-open-navui"><a name="agee-plugin-open-navui" id="agee-plugin-open-navui"><!-- --></a>
+<h2 class="topictitle2">アクセスインターフェイスへのアクセス</h2>
+<div>
+<div class="section">
+<p>Citrixが提供するアクセスインターフェイスを使用すると、ほかのコンピューターへの接続をテストし、ブックマークを構成し、ファイルを転送し、Outlook Web AccessのようなWebベースの電子メールに接続することができます。 ホームページについて詳しくは、「<a href="agee-plugin-working-with-access-interface-wrapper-con.html">アクセスインターフェイスの使用方法</a>」を参照してください。</p>
+<p>システム管理者はアクセスインターフェイスを無効にして、ホームページとして別のWebページを使用することがあります。 この節では、アクセスインターフェイスの使用方法について説明します。</p>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［ホーム］</span>を選択します。</span></li>
+</ol>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-view-change-settings"><a name="agee-plugin-view-change-settings" id="agee-plugin-view-change-settings"><!-- --></a>
+<h2 class="topictitle2">Access Gateway Plug-inの情報と設定の表示と変更</h2>
+<div>
+<div class="section">
+<p>通知領域のAccess Gatewayアイコンからアクセスするメニューから、<span class="uicontrol">［Citrix Access Gateway設定］</span>ダイアログボックスを開くことができます。 Access Gateway接続の情報を表示したり、接続の設定を構成したりできます。</p>
+<div class="p">
+<div class="note"><span class="notetitle">注：</span> このダイアログボックスを開くには、ログオンしている必要があります。</div>
+</div>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［Access Gatewayを設定］</span>を選択します。</span></li>
+</ol>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-view-connection-stats"><a name="agee-plugin-view-connection-stats" id="agee-plugin-view-connection-stats"><!-- --></a>
+<h2 class="topictitle2">接続の統計情報の表示</h2>
+<div>
+<div class="section">
+<p><span class="uicontrol">［Citrix Access Gateway設定］</span>ダイアログボックスでは次の操作を行えます。</p>
+<ul>
+<li>接続の統計情報の表示</li>
+<li>プロファイルの表示。プロファイルには、接続先のAccess Gatewayアプライアンスとネットワークや、そのほかの構成情報が含まれます。</li>
+<li>Access Gateway接続のログ情報の構成</li>
+<li>接続の圧縮率の表示</li>
+</ul>
+<p><span class="uicontrol">［一般情報］</span>タブには接続の情報が表示されます。 この情報は、接続に問題が発生したときにテクニカルサポート担当者が参照します。</p>
+<div class="p">
+<div class="note"><span class="notetitle">注：</span> 接続の統計情報にアクセスできないように、管理者がAccess Gatewayを構成している可能性があります。</div>
+</div>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［Access Gatewayを設定］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［一般情報］</span>タブをクリックします。</span></li>
+</ol>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-change-settings"><a name="agee-plugin-change-settings" id="agee-plugin-change-settings"><!-- --></a>
+<h2 class="topictitle2">［プロファイル］タブでの設定変更</h2>
+<div>
+<div class="section">
+<p><span class="uicontrol">［Citrix Access Gateway設定］</span>ダイアログボックスの<span class="uicontrol">［プロファイル］</span>タブで、次の接続設定を変更できます。</p>
+<ul>
+<li>分割トンネリング、分割DNS、およびローカルエリアネットワークアクセス</li>
+<li>内部ネットワークの特定のリソースに接続するための、ドメインとIPアドレスの設定</li>
+<li>アクセスを有効または無効にするネットワーク</li>
+<li>ログオン時にWebブラウザーを使用せず、毎回Access Gateway Plug-inを使用するようにするコンピューターの設定</li>
+<li>セキュリティ証明書の警告</li>
+</ul>
+</div>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+  html, body, #contents {
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * The "height" above is a hack for IE5+/Win.  Below we adjust
+ * it using the child selector to hide from IE5+/Win
+ */
+
+html>body, html>body #contents {
+  height: auto;
+}
+
+/*
+ * Without this, Moz1.0 adds a vertical scrollbar
+ */
+
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  background: white;
+}
+
+#contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  font-family: MS San Serif;
+  width: 100%;
+/*  text-align: center;*/
+}
+
+#main {
+  margin-bottom: .5em
+  height: auto;
+}
+#header{
+  border: 1px solid black;
+  background: black;
+  color: red;
+  margin: 0px;
+}
+#logo{
+  background-image: url(logo.gif);
+  height: 47px;
+  width: 204px;
+}
+#toolbar{
+  float: right;
+  width: 280px;
+  padding-top: .5em;
+  padding-right: 1em;
+}
+#content{
+  padding-top: .5em;
+  padding-left: 1em;
+  margin-right: 310px;
+}
+#bmoptions{
+  display: inline;
+  float: right;
+  font-size: .8em;
+}
+#footer{
+  clear: both;
+  background: black;
+  color: white;
+  font-size: 12px;
+  font-family: MS Sans Serif;
+  width: 100%;
+}
+#tipiframe{
+  width: 270px;
+}
+#tip{
+  font-size: .8em;
+  padding-left: 1em;
+  padding-top: .5em;
+}
+#nexttip{
+  font-size: .6em;
+  float: right;
+}
+/* Begin: Navigation element styles*/
+#navcontainer{
+ 	background-image: url(redbar.gif);
+ 	font-size: smaller;
+}
+ul#navlist {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 0;
+  white-space: nowrap;
+  margin-bottom: 0;
+  text-align: right;
+}
+#navlist li{
+  display: inline;
+  list-style-type: none;
+  padding: .03em;
+  padding-right: .3em;
+  padding-left: .3em;
+}
+#navlist a { 
+  padding: 0px; 
+}
+#navlist a:link, #navlist a:visited{
+  color: #fff;
+  text-decoration: none;
+}
+#navlist a:hover{
+  color: #fff;
+  background-color: #333;
+  text-decoration: none;
+}
+/* End: Navigation element styles*/
+
+.block{
+  border: 1px solid #ababab;
+  margin-bottom: .8em;
+
+}
+.block h2{
+  background-color: #ababab;
+  padding: .2em;
+  margin: 0;
+  font-size: 1em;	
+}
+.block h3{
+  background-color: #dbdbdb;
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;   
+  margin-bottom: .2em;
+}
+.block .item{
+  padding: 0;
+  padding-left: 1em;
+  padding-bottom: .2em;
+  font-size: .8em;
+}
+/* Begin: Form element styles*/
+#newbm .labelbr{
+  display: none;
+}
+#newbm fieldset {
+  border: 0px solid white;
+}
+#newbm fieldset legend{
+  display: none;
+}
+#newbm fieldset .inlinelabel {
+  text-align:right;
+  width:70px;
+  float:left;
+  padding:0.2em;
+  margin:0;
+  margin-top:0.3em; 
+  font-size: .8em;
+}
+#newbm fieldset .textfield {
+  margin:3px;
+  height:20px;
+  width: 13em;
+}
+#newbm .button {
+  font: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin-right: 1em;
+}
+#newbm .buttonrow{
+  width: 20em;
+  text-align: center;
+}
+/* End: Form element styles*/
+/* Begin: Ping Form element styles*/
+#pingform label{
+  font-size: .7em;
+}
+#pingform input{
+/* Below is a fix for NS6.2 */
+/*  float: left; */
+}
+#pingform fieldset{
+  border: 0px solid white;
+margin-bottom: 2px;
+padding-bottom: 0px;
+margin: 0;
+padding: 0;
+}
+#pingform .labelbr{
+  display: inline;
+  width: 0px;
+  float: none;
+}
+#ping #response{
+font-size: .7em;
+}
+
+#ping form{
+margin: 0px;
+padding: 0px;
+
+}
+#pingiframe{
+ height: 65px;
+ width: 258px; 
+ border: 0px;
+margin-left: 12px;
+}
+/* End: Ping Form element styles*/
+/* Login page styles */
+#login-logo{
+  background-image: url(netscaler_logo.gif);
+  height: 88px;
+  width: 349px;
+  margin-left: 260px;
+  margin-top: 20px;
+}
+#login-image{
+  background-image: url(login-image.gif);
+  height: 205px;
+  width: 296px;
+  position: absolute;
+  top: 120px;
+}
+
+#loginForm{
+  position: absolute;
+  top: 170px;
+  left: 390px;
+}
+#loginPage{
+  min-width: 620px; 
+}
+#loginPage #contents {
+  background-image: url(login-background.gif);
+  background-repeat: repeat-x;
+}
+#loginPage #main {
+  height: 340px;
+}
+#loginForm fieldset{
+  border: 0px solid white;
+}
+#loginForm fieldset legend{
+  display: none;
+}
+#loginForm .inlinelabel{
+  color:white;
+  font-size: .7em;
+}
+#loginForm fieldset .textfield {
+  margin-right:3px;
+  width: 10em;
+  font-family: monospace;
+  border: 1px solid grey;
+}
+#login-button{
+  color: black;
+  border: 1px solid grey;
+}

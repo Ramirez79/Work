@@ -1,0 +1,1167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<HTML><HEAD id=headElement>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<TITLE>NetScaler Gateway</TITLE>
+<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<META content=noindex,nofollow,noarchive name=robots>
+<link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+<link href="/logon/themes/Default/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+<link href="/logon/themes/Default/css/custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/vpn/js/rdx.js"></script>
+<script type="text/javascript" src="/vpn/js/views.js"></script>
+<script type="text/javascript" src="/vpn/js/epa_view.js"></script>
+<script type="text/javascript" src="/vpn/js/gateway_login_view.js"></script>
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" src="/vpn/nsshare.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "epa");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+<script>
+
+var nsversion="11,1,47,14";
+var nstrace="DEBUG";
+var nsvip="255.255.255.255";
+var epaActiveX;
+var epaPlugin;
+var timerID=0;
+var require64bitPlugin = false;
+
+var winPluginPath;
+
+function ns_getepacookie(NameOfCookie)
+{
+   var cookie=document.cookie;
+   if(cookie.length > 0)
+   {
+        begin=cookie.indexOf(NameOfCookie);
+        if(begin!=-1)
+		{
+                begin+=NameOfCookie.length+1;
+                end=cookie.indexOf(";", begin);
+                if(end==-1) end=cookie.length;
+                return decodeURIComponent(cookie.substring(begin, end));
+        }
+   }
+   return null;
+}
+
+function UnsetCookie(cookieName)
+{
+	document.cookie=cookieName+"=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+}
+
+function displayBrowserTypeError()
+{
+  var d = document.getElementById("nsepadiv");
+  if(!d)
+  {
+        alert(_('Internal Error'));
+        return;
+  }
+
+  d.innerHTML =
+    '<div class="field CredentialTypenone"><div class="error" id="feedbackStyle">' +
+	'<span id="errorMessageLabel">' +
+	'<B>3006: ' + _('Err3006') + '</B>' +
+	'</span>' +
+	'</div></div>' ;
+
+}
+
+
+function ns_skipepa()
+{
+	SetErrMsg(_('postepa::The user skipped the scan'));
+	window.location.replace('/epa/errorpage.html')
+}
+
+function SetErrMsg(errmsg)
+{
+	var today = new Date();
+	var expire = new Date();
+	expire.setTime(today.getTime() + 3600000*24);
+	document.cookie = "NSC_ERRM="+encodeURIComponent(errmsg)+";path=/;expires="+expire.toGMTString();
+}
+
+var bIsUserAdmin = 0;
+
+function isUpgradeRequired(pluginVersion)
+{
+	// we should do force upgrade for older plugin
+	if(util.compareVersion(pluginVersion, "11,0,0,0") < 0)
+	{
+		return true;
+	}
+
+	var pluginInfo = util.getPluginInfo("WIN", "EPA");
+	if(pluginInfo.upgradeType == "Never")
+	{
+		return false;
+	}
+	else if(pluginInfo.upgradeType == "Essential")
+	{
+		// Most of the time "compatibleTill" will not be defined. So compare it only when it is defined
+		if(pluginInfo.compatibleTill && pluginInfo.compatibleTill !== "")
+		{
+			if(util.compareVersion(pluginVersion, pluginInfo.compatibleTill) > 0)
+				return true;
+		}
+
+		return (util.compareVersion(pluginVersion, pluginInfo.compatibleFrom) < 0)
+	}
+	else
+	{
+		//this is always case. return true if there is version mismatch
+		return (util.compareVersion(pluginInfo.version, pluginVersion) != 0);
+	}
+}
+
+function versionMismatchFallbackNonIE()
+{
+	document.getElementById("downloadbutton").style.display = '';
+	try
+	{
+		var userActionRequired = 0;
+		if ( ! bIsUserAdmin )
+		{
+			userActionRequired = epaPlugin.isUserActionRequired(nsversion);
+		}
+
+		if (userActionRequired  == "1")
+		{
+			if(timerID) window.clearTimeout(timerID);
+			document.getElementById("downloadbutton").style.display = 'none';
+			return;
+		}
+		else if (userActionRequired  == "-1")
+		{ 	//user is admin, set cookie and never check isUserActionRequired again
+			document.cookie = "EPA_ADMIN_USER=1; path=/";
+		}
+		document.cookie = "EPA_VERMISMATCH=1; path=/";
+		location.reload(false);
+	}
+	catch (err)
+	{
+		document.cookie = "EPA_VERMISMATCH=1; path=/";
+		location.reload(false);
+	}
+}
+
+function versionMismatchFallback()
+{
+	document.getElementById("downloadbutton").style.display = '';
+	try
+	{
+		var userActionRequired = 0;
+		if ( ! bIsUserAdmin )
+		{
+			userActionRequired = epaActiveX.isUserActionRequired(nsversion);
+		}
+
+		if (userActionRequired  == "1")
+		{
+			if(timerID) window.clearTimeout(timerID);
+			document.getElementById("downloadbutton").style.display = 'none';
+			return;
+		}
+		else if (userActionRequired  == "-1")
+		{ //user is admin, set cookie and never check isUserActionRequired again
+			document.cookie = "EPA_ADMIN_USER=1; path=/";
+		}
+		document.cookie = "EPA_VERMISMATCH=1; path=/";
+		location.reload(false);
+	}
+	catch (err)
+	{
+		document.cookie = "EPA_VERMISMATCH=1; path=/";
+		location.reload(false);
+	}
+}
+
+function launchEPAPluginNonIE(pluginVersion)
+{
+	UnsetCookie("EPA_VERMISMATCH");
+	UnsetCookie("EPA_ADMIN_USER");
+	document.getElementById("downloadbutton").style.display = 'none';
+	epaPlugin.StartEpa(ns_getepacookie("NSC_EPAC"), window.location.href, nstrace, nsvip, pluginVersion, navigator.userAgent + ", " + navigator.platform, document.title);
+	timerID = window.setTimeout( "probeEPAResultPlugin()", 1000 );
+}
+
+function launchEPAPlugin(pluginVersion)
+{
+	UnsetCookie("EPA_VERMISMATCH");
+	UnsetCookie("EPA_ADMIN_USER");
+	document.getElementById("downloadbutton").style.display = 'none';
+	epaActiveX.StartEpa(ns_getepacookie("NSC_EPAC"), document.location.href, nstrace, nsvip, pluginVersion, navigator.userAgent + ", " + navigator.platform, document.title);
+	timerID = window.setTimeout( "probeEPAResult()", 1000 );
+}
+
+
+function detectActiveX()
+{
+	if(timerID) window.clearTimeout(timerID);
+	try
+	{
+		if( ns_getepacookie("EPA_VERMISMATCH") == 1 )
+		{
+			if( ns_getepacookie("EPA_ADMIN_USER") == 1 )
+			{
+				bIsUserAdmin = 1;
+			}
+			document.getElementById("downloadbutton").style.display = '';
+			UnsetCookie("EPA_VERMISMATCH");
+			setTimeout("detectActiveX()", 12000);
+			return;
+		}
+
+		epaActiveX = new ActiveXObject("nsepacom.nsepaclass");
+		if(epaActiveX)
+		{
+			var epaVersion = epaActiveX.getEPAVersion();
+			if( ! isUpgradeRequired(epaVersion))
+			{
+				launchEPAPlugin(epaVersion);
+				return;
+			}
+			else
+			{
+				versionMismatchFallback();
+				return;
+			}
+		}
+	}
+	catch (e)
+	{
+	}
+
+	document.getElementById("downloadbutton").style.display = '';
+	setTimeout("detectActiveX()", 1000);
+}
+
+function probeEPAResult()
+{
+	msg = epaActiveX.getEPAResult();
+
+	if(msg == "wait")
+	{
+		timerID = window.setTimeout( "probeEPAResult()", 1000 );
+	}
+	else if(msg=="passed")
+	{
+		window.location.replace( "/vpn/index.html" );
+	}
+	else
+	{
+		SetErrMsg(msg);
+		window.location.replace( "/epa/errorpage.html" );
+	}
+
+}
+
+
+
+function versionMismatchFallbackChrome()
+{
+	document.getElementById("downloadbutton").style.display = '';
+
+	function onFailure()
+	{
+		document.cookie = "EPA_VERMISMATCH=1; path=/";
+		location.reload(false);
+	}
+
+	function onSuccess()
+	{
+		var userActionRequired = this.height;
+		if(userActionRequired == 1)
+		{
+			if(timerID)
+				window.clearTimeout(timerID);
+			document.getElementById("downloadbutton").style.display = 'none';
+			return;
+		}
+		else if(userActionRequired == 2)
+		{
+			document.cookie = "EPA_ADMIN_USER=1; path=/";
+		}
+		document.cookie = "EPA_VERMISMATCH=1; path=/";
+		location.reload(false);
+	}
+
+	if (! bIsUserAdmin)
+	{
+		util.prob("isUserActionRequired&"+nsversion, onSuccess, onFailure);
+	}
+	else
+	{
+		onFailure();
+	}
+}
+
+var probErrors = 0;
+var maxProberrors = 5;
+
+function probeEPAResultChrome()
+{
+	function onSuccess(msg)
+	{
+		if(msg =="")
+		{
+			if(probErrors <maxProberrors)
+			{
+				probErrors++;
+				window.setTimeout( "probeEPAResultChrome()", 1000 );
+			}
+			else
+			{
+				location.reload(false);
+			}
+		}
+		else if(msg == "wait")
+		{
+			timerID = window.setTimeout( "probeEPAResultChrome()", 1000 );
+		}
+		else if(msg=="passed")
+		{
+			var sendExit = function () { return afterEPAExit("/vpn/index.html");};
+			util.prob("exit", sendExit, sendExit);
+		}
+		else
+		{
+			SetErrMsg(msg);
+			//First exit the EPA plugin then redirect to prevent hanging of EPA plugin in case its relaunched within short time.
+			var sendExit = function () { return afterEPAExit("/epa/errorpage.html");};
+			util.prob("exit", sendExit, sendExit);
+		}
+	}
+	util.getStringFromLauncher("getEPAResult", onSuccess);
+}
+
+
+function launchEPAPluginChrome(pluginVersion)
+{
+	function onFailure()
+	{
+		location.reload(false);
+	}
+
+	function onSuccess()
+	{
+		if( this.height == 2 )
+		{
+			setTimeout("probeEPAResultChrome()", 3000);
+		}
+		else
+		{
+			onFailure();
+		}
+	}
+
+	UnsetCookie("EPA_VERMISMATCH");
+	UnsetCookie("EPA_ADMIN_USER");
+	document.getElementById("downloadbutton").style.display = 'none';
+
+	util.prob("StartEpa&" +
+		encodeURIComponent(ns_getepacookie("NSC_EPAC") + '&' + document.location.href + "&" + nstrace +"&"+ nsvip +"&"+	pluginVersion  +"&"+ navigator.userAgent +  ", " + navigator.platform + "&" + document.title)  , onSuccess, onFailure);
+}
+
+function onChromeVersion(version)
+{
+	if(version == "")
+	{
+		//we didn't get correct version. try again.
+		setTimeout("detectPluginChrome()", 2000);
+		return;
+	}
+
+	if( ! isUpgradeRequired(version))
+	{
+		launchEPAPluginChrome(version);
+		return;
+	}
+	versionMismatchFallbackChrome();
+}
+
+var curTimerValue 		= util.winMaxTimerValue;
+var showTimerHandler;
+
+function showTimerDisplay(showTimer)
+{
+	if(showTimer)
+	{
+		document.getElementById("downloadbutton").style.display = "none";
+		document.getElementById("AppINFO").style.display 		= "";
+		document.getElementById("timer").style.display 			= "";
+	}
+	else
+	{
+		document.getElementById("downloadbutton").style.display = "";
+		document.getElementById("AppINFO").style.display 		= "none";
+		document.getElementById("timer").style.display 			= "none";
+	}
+}
+
+function noLauncher()
+{
+	showTimerDisplay(false);
+	curTimerValue = util.winMaxTimerValue;
+	setTimeout("probEPAPlugin()", 10000);
+}
+
+function showTimer()
+{
+	if(curTimerValue == 0)
+	{
+		noLauncher();
+		return;
+	}
+
+	showTimerDisplay(true);
+	document.getElementById("timer").innerHTML = curTimerValue + " " + _("secs");
+	curTimerValue -= 1;
+	showTimerHandler = setTimeout(showTimer, 1000);
+}
+
+function stopTimer()
+{
+	if(typeof showTimerHandler != "undefined")
+	{
+		document.getElementById("AppINFO").style.display 	= "none";
+		document.getElementById("timer").style.display 		= "none";
+		clearTimeout(showTimerHandler);
+	}
+}
+
+function launcherExist()
+{
+	stopTimer();
+	util.getStringFromLauncher("getEPAVersion", onChromeVersion);
+}
+
+var probFailCount = 0
+function onProbFailure()
+{
+	if(probFailCount < 25)
+	{
+		setTimeout("probEPAPlugin()", 2000);
+		probFailCount++;
+	}
+	else
+	{
+		location.reload(false);
+	}
+}
+
+function probEPAPlugin()
+{
+	util.prob("NOP", launcherExist, onProbFailure);
+}
+
+function detectPluginChrome()
+{
+	document.getElementById("AppINFO").style.display 	= "none";
+	document.getElementById("timer").style.display 		= "none";
+
+	if( ns_getepacookie("EPA_ADMIN_USER") == 1 )
+	{
+		bIsUserAdmin = 1;
+	}
+
+	if( ns_getepacookie("EPA_VERMISMATCH") == 1 )
+	{
+		function afterExit()
+		{
+			document.getElementById("downloadbutton").style.display = '';
+			UnsetCookie("EPA_VERMISMATCH");
+			setTimeout("probEPAPlugin()", 10000);
+			return;
+		}
+		util.prob("exit", afterExit, afterExit);
+		return;
+	}
+
+	util.launchPlugin(launcherExist, function () {} );
+	showTimer();
+}
+
+function afterEPAExit(msg){
+  window.location.replace(msg);
+}
+
+function detectLinuxPlugin()
+{
+    if(timerID) window.clearTimeout(timerID);
+    try
+    {
+        /*if( ns_getepacookie("EPA_VERMISMATCH") == 1 ) {
+         if( ns_getepacookie("EPA_ADMIN_USER") == 1 ) {
+         bIsUserAdmin = 1;
+         }
+         document.getElementById("downloadbutton").style.display = '';
+         UnsetCookie("EPA_VERMISMATCH");
+         setTimeout("detectPlugin()", 12000);
+         return;
+         }*/
+
+        navigator.plugins.refresh(false);
+        var npagee;
+        /*if ( require64bitPlugin )
+         npagee = navigator.mimeTypes["application/x-epa"];
+         else*/
+        npagee = navigator.mimeTypes["application/x-epa"];
+
+        if(npagee) {
+            var d = document.getElementById("nsepadiv");
+            /*if ( require64bitPlugin )
+             d.innerHTML = '<object id="npobj" type="application/citrix-npagee64" height="1" width="1"></OBJECT>' ;
+             else*/
+            d.innerHTML = '<object id="npobj" type="application/x-epa" height="1" width="1"></OBJECT>' ;
+
+            epaPlugin = document.getElementById("npobj");
+
+            //getvesion, do upgrade/downgrade if version mismatch
+            var url = document.location.host;
+            if(epaPlugin.checkEPAUpgrade(url) == "upgrade") { //getvesion, do upgrade/downgrade if version mismatch
+                document.getElementById("downloadbutton").style.display = '';
+                document.cookie = "EPA_VERMISMATCH=1; path=/";
+                setTimeout("detectLinuxPlugin()", 1000);
+            } else {
+                UnsetCookie("EPA_VERMISMATCH");
+                UnsetCookie("EPA_ADMIN_USER");
+                document.getElementById("downloadbutton").style.display = 'none';
+                url = document.location.protocol + "//" + document.location.host;
+                epaPlugin.StartEpa(ns_getepacookie("NSC_EPAC"),url,document.location.pathname);
+                timerID = window.setTimeout( "probeEPAResultPlugin()", 1000 );
+            }
+        } else {
+            document.getElementById("downloadbutton").style.display = '';
+            setTimeout("detectLinuxPlugin()", 1000);
+        }
+    }
+    catch(e)
+    {
+        document.getElementById("downloadbutton").style.display = '';
+        setTimeout("detectLinuxPlugin()", 1000);
+    }
+}
+
+function detectPlugin()
+{
+	if(timerID) window.clearTimeout(timerID);
+	try
+	{
+		if( ns_getepacookie("EPA_VERMISMATCH") == 1 )
+		{
+			if( ns_getepacookie("EPA_ADMIN_USER") == 1 )
+			{
+				bIsUserAdmin = 1;
+			}
+			document.getElementById("downloadbutton").style.display = '';
+			UnsetCookie("EPA_VERMISMATCH");
+			setTimeout("detectPlugin()", 12000);
+			return;
+		}
+
+		navigator.plugins.refresh(false);
+		var npagee;
+		if ( require64bitPlugin )
+			npagee = navigator.mimeTypes["application/citrix-npagee64"];
+		else
+			npagee = navigator.mimeTypes["application/citrix-npagee"];
+
+		if(npagee)
+		{
+  			var d = document.getElementById("nsepadiv");
+			if ( require64bitPlugin )
+  				d.innerHTML = '<object id="epaobj" type="application/citrix-npagee64" height="1" width="1"></OBJECT>' ;
+			else
+				d.innerHTML = '<object id="epaobj" type="application/citrix-npagee" height="1" width="1"></OBJECT>' ;
+
+			epaPlugin = document.getElementById("epaobj");
+
+			var epaVersion = epaPlugin.getEPAVersion();
+			if( ! isUpgradeRequired(epaVersion))
+			{
+				launchEPAPluginNonIE(epaVersion);
+				return;
+			}
+			else
+			{
+				versionMismatchFallbackNonIE();
+				return;
+			}
+		}
+	}
+	catch(e)
+	{
+	}
+
+	document.getElementById("downloadbutton").style.display = '';
+	setTimeout("detectPlugin()", 1000);
+}
+
+function certDetailsSubmited()
+{
+    var certPath = document.forms['certForm'].certPath.value;
+    var passwd = document.forms['certForm'].passwd.value;
+    if(certPath == "") {
+        window.alert("You need to enter certificate Path");
+        showCertForm();
+    }
+    else if(passwd == "") {
+        window.alert("You need to enter passwd");
+        showCertForm();
+    }
+    else
+    {
+        document.getElementById("certAuth").innerHTML='<DIV id=loginAgentCdaHeaderText class="CTX_ContentTitleHeader">Checking System Configuration on your Device</DIV><BR><p id="ctl08_scanInProgress" style="MARGIN: 0px auto; text-align: left"><span id="epa-msg">Before connecting to your organization\'s internal network, we need to check that your computer meets certain requirements.</span><br><br><span id="epa-check">Your device is checked automatically if the Citrix Endpoint Analysis Plug-in software is already installed.</span><br><br><br></p><br><div style="float: right" ><INPUT id="skipbutton" type="button" value="Skip Check" class="CTX_BlackButton" OnClick="javascript:ns_skipepa();" onmouseover="this.className=\'CTX_BlackButton_Hover\';" onmouseout="this.className=\'CTX_BlackButton\';"></div>';
+        url = document.location.protocol + "//" + document.location.host;
+        epaPlugin.StartEpa(ns_getepacookie("NSC_EPAC"),url,document.location.pathname,certPath,passwd);
+        if(timerID)
+        window.clearTimeout(timerID);
+        timerID = window.setTimeout( "probeEPAResultPlugin()", 1000 );
+    }
+}
+
+function showCertForm()
+{
+    document.getElementById("certAuth").innerHTML='<DIV id=certAuthHeaderText class="CTX_ContentTitleHeader"><center>Client Certificate Request from EPA Lib</center></DIV><table width=95% id="ctl08_inputTable" class="CTXMSAM_LogonFont" cellspacing="0" cellpadding="4" border="0" style="border-width:0px;border-collapse:collapse;"><tr><td colspan=3></td></tr><tr><td align="right" style="padding-right:10px;white-space:nowrap;"><span id="User_name" class="CTXMSAM_LogonFont"></span></td><td colspan=2 style="padding-right:8px;">Certificate&nbsp;Path:&nbsp;&nbsp;<input id="Enter cert path" class="CTXMSAM_ContentFont" style="font-size: 8pt" type="text" title="" name="certPath" size="40" maxlength="127" placeholder="Please enter complete path of certificate" onFocus="loginFieldCheck()"style="width:100%;"/></td></tr><tr><td align="right" style="padding-right:10px;white-space:nowrap;"><span id="User_name" class="CTXMSAM_LogonFont"></span></td><td colspan=2 style="padding-right:8px;">Password:&emsp;&emsp;&emsp;<input id="cert_Password" class="CTXMSAM_ContentFont" style="font-size: 8pt" type="Password" title="" name="passwd" size="40" maxlength="127" sty style="width:100%;"/></td></tr><tr><td></td><td></td><td align="right"><span style="display:none"><img src="/vpn/images/LoginButtonRolloverGlow.gif"/></span><input type="submit" style="font-size: 10pt" id="Log_On" value="Submit" class="CTX_CaxtonButton" onclick="certDetailsSubmited()"  onmouseover="this.className=\'CTX_CaxtonButton_Hover\';" onmouseout="this.className=\'CTX_CaxtonButton\';" /></td></tr></table>';
+}
+
+function probeEPAResultPlugin()
+{
+    try
+    {
+        msg = epaPlugin.getEPAResult();
+    } catch (err) {
+        location.reload();
+    }
+
+    if(msg == "wait") {
+        timerID = window.setTimeout( "probeEPAResultPlugin()", 1000 );
+    }
+    else if(msg=="passed") {
+        window.location.replace( "/vpn/index.html" );
+    }
+    else if(msg=="certRequired"){
+        showCertForm();
+    }
+    else{
+        SetErrMsg(msg);
+        window.location.replace( "/epa/errorpage.html" );
+    }
+
+}
+
+//Mac variables
+var agmac_cookie;
+
+var agmac_nConnectAttempts = 15;
+var agmac_count = 0;
+var agmac_totalAttempts = 80;
+var agmac_domainName_ws = "localhost";
+var agmac_portNo = 6256;
+var agmac_isVersionMatch = 1;
+var agmac_isAppInstalled = 1;
+var agmac_epa_iframe;
+var agmac_didShowDwnld = 0;
+var agmac_timeInterval = 1000;  //timer timeout in millis
+var agmac_nSecs = 20;
+var agmac_EpaMsg="";
+
+function agmac_showTimer()
+{
+	if( agmac_nSecs > 0 )
+	{
+		document.getElementById("timer").innerHTML = agmac_nSecs + " " + _("secs");
+		setTimeout( agmac_showTimer, agmac_timeInterval );
+		agmac_nSecs = agmac_nSecs-1;
+	}
+}
+
+function agmac_launchEpaApp()
+{
+	document.getElementById("AppINFO").innerHTML = _("Checking if the plug-in is installed");
+	agmac_showTimer();
+	//Open AGMacEpa app using custom url scheme
+	if( (navigator.userAgent.indexOf("Chrome") > -1) && (navigator.vendor == "Google Inc.") )
+	{
+		window.location = "com.citrix.agmacepa://";
+	}
+	else
+	{
+		agmac_epa_iframe = document.createElement("iframe");
+		document.body.appendChild(agmac_epa_iframe);
+
+		agmac_epa_iframe.setAttribute("width", "1");
+		agmac_epa_iframe.setAttribute("height", "1");
+
+		agmac_epa_iframe.hidden = true;
+
+		agmac_epa_iframe.src = "com.citrix.agmacepa://";
+	}
+
+	setTimeout("agmac_startChannel()", 2500);
+}
+function agmac_startChannel()
+{
+	if(agmac_count < agmac_nConnectAttempts)
+	{
+		agmac_cookie = "NSC_EPAC="+ns_getepacookie("NSC_EPAC");
+		var image = new Image();
+		image.onload = agmac_sepaHandler;
+		image.onerror = agmac_sepaError;
+		image.src = "http://localhost:"+agmac_portNo+"/sepa?"+agmac_cookie+"?"+window.location.host+"?PREAUTH";
+        //	timerID = window.setTimeout( "probeTimeout()", 3000 );
+  	}
+  	else
+  	{
+		agmac_showDownload(_("Endpoint Analysis plug-in is either not launched/installed. Please launch or click on the download link provided."));
+  	}
+}
+
+function agmac_sepaError()
+{
+	console.log("error : "+agmac_count);
+	agmac_count++;
+	agmac_portNo++;
+	if( agmac_portNo > 6260 )
+		agmac_portNo = 6256;
+	window.setTimeout("agmac_startChannel()", 1000);
+}
+
+function agmac_sepaHandler(evt)
+{
+	document.getElementById("timer").style.display = "none";
+	console.log("img height: "+this.height);
+	if( this.height == 2 )
+	{
+		agmac_sendrepa();
+	}
+	else
+	{
+		SetErrMsg(_("End point analysis failed"));
+      	window.location = "/epa/errorpage.html";
+	}
+}
+
+//firefox is caching image responses so need to make it unique hence adding counters
+//bad firefox
+
+var ff_count = 0;
+function agmac_sendrepa()
+{
+	var image = new Image();
+	image.onload = agmac_repaHandler;
+	image.onerror = agmac_repaError;
+	image.src = "http://localhost:"+agmac_portNo+"/repa?"+agmac_cookie+"?"+ff_count;
+}
+
+function agmac_repaHandler()
+{
+	if( this.height == 1 )
+	{
+        ff_count = ff_count+1;
+        setTimeout("agmac_sendrepa()", 3000);
+	}
+	else if( this.height == 2 )
+	{
+        agmac_showDownload(_("You do not have the latest version of Endpoint Analysis plug-in installed. Please download the updated plug-in from the link provided"));
+        window.setTimeout("agmac_startChannel()", 1000);
+	}
+	else if( this.height == 3 )
+	{
+        // SetErrMsg(_("End point analysis failed"));
+        // document.cookie='NSC_EPAC=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/';
+        // window.location = "/epa/errorpage.html";
+
+        agmac_sendEpaMsg();
+	}
+	else if( this.height == 4 )
+	{
+		window.location = "/vpn/index.html";
+	}
+}
+
+function agmac_repaError()
+{
+	agmac_epafailed();
+}
+
+function agmac_sendEpaMsg()
+{
+  console.log("agmac_sendEpaMsg");
+  var image = new Image();
+	image.onload = agmac_EpaMsgHandler;
+	image.onerror = agmac_EpaMsgError;
+	image.src = "http://localhost:"+agmac_portNo+"/epamsg?"+agmac_cookie+"?"+agmac_EpaMsg.length+"?"+ff_count;
+}
+
+function agmac_EpaMsgHandler()
+{
+  if (this.height != 2)
+  {
+    agmac_EpaMsg = agmac_EpaMsg+String.fromCharCode(this.height);
+    ff_count = ff_count+1;
+    var image = new Image();
+    image.onload = agmac_EpaMsgHandler;
+  	image.onerror = agmac_EpaMsgError;
+  	image.src = "http://localhost:"+agmac_portNo+"/epamsg?"+agmac_cookie+"?"+agmac_EpaMsg.length+"?"+ff_count;
+  }
+  else {
+    console.log("agmac_EpaMsg = ",agmac_EpaMsg);
+    agmac_epafailed();
+  }
+}
+
+function agmac_EpaMsgError()
+{
+  agmac_epafailed();
+}
+
+function agmac_epafailed()
+{
+  console.log("epa failed");
+  if(agmac_EpaMsg == "")
+  {
+    SetErrMsg(_("End point analysis failed"));
+  }
+  else {
+    SetErrMsg(agmac_EpaMsg);
+  }
+
+   window.location = "/epa/errorpage.html";
+}
+
+function agmac_showDownload(textinfo)
+{
+	if( !agmac_didShowDwnld )
+  		{
+  			agmac_didShowDwnld = 1;
+
+			document.getElementById("timer").style.display = "none";
+			document.getElementById("AppINFO").innerHTML = textinfo;
+			document.getElementById("AppINFO").style.display = '';
+			document.getElementById("downloadbutton").style.display = '';
+
+			agmac_nConnectAttempts = agmac_totalAttempts;
+			agmac_count = 0;
+			agmac_startChannel();
+			return;
+		}
+}
+
+
+function detectEpaComponent()
+{
+    if(navigator.userAgent.indexOf("Linux") != -1)
+    {
+        if(! ns_getepacookie("NSC_EPAC") ) {
+            window.location.replace("/");
+            return;
+        }
+
+	    if( (navigator.userAgent.indexOf("Chrome") > -1) && (navigator.vendor == "Google Inc.") )
+        {
+                linux_launchEpaApp();
+        }
+        else
+        {
+            detectLinuxPlugin();
+        }
+    }
+    else
+    {
+        if (navigator.userAgent.indexOf("Windows NT") == -1)    //not a windows machine
+        {
+            if (navigator.userAgent.indexOf("Mac OS X") == -1)  //not a Mac machine
+            {
+                displayBrowserTypeError();
+                return;
+            }
+            else
+            {
+                agmac_launchEpaApp();
+                return;
+            }
+        }
+
+        if(! ns_getepacookie("NSC_EPAC") )
+		{
+            window.location.replace("/");
+            return;
+        }
+
+		detectPluginBitness();
+
+        if(util.win.ACTIVEX_SUPPORTED)
+		{
+            detectActiveX();
+		}
+		else if(util.useLauncher)
+		{
+			detectPluginChrome();
+		}
+        else if( (navigator.userAgent.indexOf("Firefox") > -1) ||
+				(navigator.userAgent.indexOf("Gecko/2") > -1) ||
+				(navigator.userAgent.indexOf("AppleWebKit") > -1) )
+		{
+            detectPlugin();
+		}
+        else
+		{
+            displayBrowserTypeError();
+		}
+    }
+}
+
+//Linux variables
+var linux_cookie;
+
+var linux_nConnectAttempts = 15;
+var linux_count = 0;
+var linux_totalAttempts = 80;
+
+var linux_domainName_ws = "localhost";
+var linux_startportNo = 3118;
+var linux_portNo;
+
+var linux_isVersionMatch = 1;
+var linux_isAppInstalled = 1;
+
+var linux_epa_iframe;
+var linux_didShowDwnld = 0;
+
+
+var linux_timeInterval = 1000;  //timer timeout in millis
+var linux_nSecs = 50;
+var ff_count = 0;
+
+function linux_showTimer()
+{
+	if( linux_nSecs > 0 )
+	{
+		document.getElementById("timer").innerHTML = linux_nSecs + " " + _("secs");
+		setTimeout( linux_showTimer, linux_timeInterval );
+		linux_nSecs = linux_nSecs-1;
+	}
+}
+
+function linux_launchEpaApp()
+{
+	document.getElementById("AppINFO").innerHTML = _("Checking if the plug-in is installed");
+	linux_showTimer();
+	//Open AGMacEpa app using custom url scheme
+	if( (navigator.userAgent.indexOf("Chrome") > -1) && (navigator.vendor == "Google Inc.") )
+	{
+		window.location = "nsgcepa://nsgcepa";
+	}
+
+    linux_portNo = linux_startportNo;
+	setTimeout("linux_startChannel()", 2500);
+}
+function linux_startChannel()
+{
+	console.log("linux_startChannel: "+linux_count+linux_portNo);
+	if(linux_count < linux_nConnectAttempts)
+	{
+		linux_cookie = "NSC_EPAC="+ns_getepacookie("NSC_EPAC");
+		var image = new Image();
+		image.onload = linux_sepaHandler;
+		image.onerror = linux_sepaError;
+		image.src = "http://localhost:"+linux_portNo+"/sepa?"+linux_cookie+"?nsloc=https://"+window.location.hostname+"?PREAUTH"+"?"+ff_count;
+        //	timerID = window.setTimeout( "probeTimeout()", 3000 );
+  	}
+  	else
+  	{
+         linux_showDownload(_("Endpoint Analysis plug-in is either not launched/installed. Please launch or click on the download link provided."));
+  	}
+}
+
+function linux_sepaError()
+{
+	console.log("linux_sepaError: "+linux_count+linux_portNo);
+	linux_count++;
+	linux_portNo++;
+	if( linux_portNo > (linux_startportNo + 5) )
+		linux_portNo = linux_startportNo;
+	window.setTimeout("linux_startChannel()", 1000);
+}
+
+function linux_sepaHandler(evt)
+{
+	document.getElementById("timer").style.display = "none";
+	console.log("img height: "+this.height);
+	if( this.height == 2 )
+	{
+		linux_sendrepa();
+	}
+	else
+	{
+		SetErrMsg(_("End point analysis failed"));
+      	window.location = "/epa/errorpage.html";
+	}
+}
+
+//firefox is caching image responses so need to make it unique hence adding counters
+//bad firefox
+
+function linux_sendrepa()
+{
+    console.log("sending repa");
+	var image = new Image();
+	image.onload = linux_repaHandler;
+	image.onerror = linux_repaError;
+	image.src = "http://localhost:"+linux_portNo+"/repa?"+linux_cookie+"?"+ff_count;
+    ff_count = ff_count+1;
+}
+
+function linux_repaHandler()
+{
+	if( this.height == 1 )
+	{
+        console.log("height1");
+        ff_count = ff_count+1;
+        setTimeout("linux_sendrepa()", 2000);
+	}
+	else if( this.height == 2 )
+	{
+        console.log("upgrade EPA");
+        linux_showDownload(_("You do not have the latest version of Endpoint Analysis plug-in installed. Please download the updated plug-in from the link provided"));
+	}
+	else if( this.height == 3 )
+	{
+        console.log("EPA failed");
+        SetErrMsg(_("End point analysis failed"));
+        window.location = "/epa/errorpage.html";
+	}
+	else if( this.height == 4 )
+	{
+        console.log("EPA success");
+		window.location = "/vpn/index.html";
+	}
+}
+
+function linux_repaError()
+{
+	SetErrMsg(_("End point analysis failed"));
+   	window.location = "/epa/errorpage.html";
+}
+
+function linux_showDownload(textinfo)
+{
+	if( !linux_didShowDwnld )
+  		{
+  			linux_didShowDwnld = 1;
+
+			document.getElementById("timer").style.display = "none";
+			document.getElementById("AppINFO").innerHTML = textinfo;
+			document.getElementById("AppINFO").style.display = '';
+			document.getElementById("downloadbutton").style.display = '';
+
+			linux_nConnectAttempts = linux_totalAttempts;
+			linux_count = 0;
+			linux_startChannel();
+			return;
+		}
+}
+
+function downloadLinuxPlugin()
+{
+    if((navigator.userAgent.indexOf("Firefox") >= 0 && navigator.userAgent.indexOf("Ubuntu") >= 0) ||
+       (navigator.userAgent.indexOf("Chrome") >= 0)){
+        if(navigator.platform.indexOf("i686") >= 0){
+            window.location.assign('/epa/scripts/linux/nsepa32.deb');
+        } else{
+            window.location.assign('/epa/scripts/linux/nsepa.deb');
+        }
+       }
+       else
+       if(navigator.userAgent.indexOf("Firefox") >= 0){
+           if(navigator.platform.indexOf("i686") >= 0){
+               window.location.assign('/epa/scripts/linux/nsepa32.rpm');
+           } else	{
+               window.location.assign('/epa/scripts/linux/nsepa.rpm');
+           }
+       }
+}
+
+function onDownload()
+{
+    if(navigator.userAgent.indexOf("Linux") >= 0)
+    {
+        downloadLinuxPlugin();
+    }
+    else if( navigator.userAgent.indexOf("Mac OS X") != -1)
+	{
+		window.location.assign('/epa/scripts/mac/Citrix_Endpoint_Analysis.dmg');
+	}
+	else
+	{
+
+		if( navigator.userAgent.indexOf("Win64") > -1 ||  navigator.userAgent.indexOf("WOW64") > -1 ||	 require64bitPlugin )
+		{
+			util.redirectToPlugin("WIN", "EPA64");
+		}
+		else
+		{
+			util.redirectToPlugin("WIN", "EPA");
+		}
+
+	}
+}
+
+function detectPluginBitness()
+{
+	if( (navigator.userAgent.indexOf("Gecko/2") > -1 ||  navigator.userAgent.indexOf("AppleWebKit") > -1 )&&  navigator.platform=="Win64" )
+		require64bitPlugin = true;
+}
+
+</script>
+</head>
+<body class="ns_body"><!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+
+<NOSCRIPT>
+<BR><BR>
+<table style="WIDTH: 100%">
+<tr>
+ 	<td align="center">
+		<table class="CTXMSAM_LogonFont">
+			<tr id="errorMessageRow">
+				<td class="glowBoxLeft">&nbsp;</td>
+				<td class="loginTableMidWidth">
+					<div id="feedbackArea">
+					<div id="feedbackStyle" class="feedbackStyleError">
+					<span id="errorMessageLabel" class="messageStyle">
+					JavaScript is either disabled in or not supported by the Web browser.
+					To continue logon, use a Web browser that supports JavaScript or enable JavaScript in your current browser.
+					</span>
+					</div>
+					</div>
+				</td>
+				<td class="glowBoxRight">&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+<table style="display:none">
+</NOSCRIPT>
+<script>
+rdx.FRAMEWORK_BASE = "/vpn/js" ;
+rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(login, login.do_action_on_load));
+$(window).load(function(){resize();});
+$(window).resize(function(){ resize();});
+</script>
+
+</body>
+</html>

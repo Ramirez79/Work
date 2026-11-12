@@ -1,0 +1,44 @@
+BODY
+{
+    MARGIN: 0px 0px 0px 0px;
+    FONT-SIZE: 16px;
+    FONT-FAMILY: Sans-Serif;
+    COLOR: #000000;
+    BACKGROUND-COLOR: #FFFFFF
+}
+BODY.address
+{
+    MARGIN: 0px 0px 0px 0px;
+    FONT-SIZE: 16px;
+    FONT-FAMILY: Sans-Serif;
+    COLOR: #000000;
+    BACKGROUND-COLOR: #C7C7C7
+}
+TD
+{
+    FONT-SIZE: 12px;
+    FONT-FAMILY: Sans-Serif;
+    COLOR: #000000;
+    BACKGROUND-COLOR: #CCCCCC;
+}
+TD.title
+{
+    FONT-SIZE: 12px;
+    FONT-FAMILY: Sans-Serif;
+    COLOR: #FFFFFF;
+    BACKGROUND-COLOR: #000080;
+}
+INPUT
+{
+    FONT-SIZE: 12px;
+    FONT-FAMILY: Sans-Serif;
+    COLOR: #000000;
+    BACKGROUND-COLOR: #FFFFFF;
+}
+INPUT.button
+{
+    FONT-SIZE: 12px;
+    FONT-FAMILY: Sans-Serif;
+    COLOR: #000000;
+    BACKGROUND-COLOR: #CCCCCC;
+}

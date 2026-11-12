@@ -1,0 +1,52 @@
+<HTML><HEAD><TITLE></TITLE>
+<META content="text/html;charset=utf-8" http-equiv="Content-Type">
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "fsrmdir");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+<script language="javascript">
+var frmtitle=parent.frames["title"];
+var path=frmtitle.activepath+"/"+frmtitle.activemenu.items[frmtitle.hlitem].text;
+</script>
+</HEAD>
+<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+
+<BODY>
+<BR><div align="center">
+<TABLE BGCOLOR=#CCCCCC CELLPADDING=2 CELLSPACING=1 BORDER=2>
+<TR><TD COLSPAN=2 ALIGN=center class=title>
+<B><span id="Delete Directory"></span></B></TD></TR>
+<TR><TD ALIGN=center>
+<FORM ACTION="/fs/rmdir" METHOD="POST">
+<script language="javascript">
+	document.writeln('<INPUT TYPE=HIDDEN NAME=path VALUE="' + decodeURIComponent(path) +'">');
+	document.writeln('<INPUT TYPE=HIDDEN NAME=nsc_nonce VALUE="' + parent.parent.nsc_nonce +'">');
+</script>
+<TABLE BGCOLOR=#CCCCCC CELLPADDING=4 CELLSPACING=2 BORDER=0>
+<TR><TD ALIGN=right VALIGN=middle><span id="Directory:"></span></TD>
+<TD ALIGN=left VALIGN=top>
+<script language="javascript">
+	document.writeln(frmtitle.NS_url2html(path));
+</script>
+</TD></TR>
+<TR><TD ALIGN=middle colspan=2><span id="Are you sure ?"></span></TD></TR>
+<TR><TD ALIGN=middle colspan=2>
+<INPUT ID=Button_Delete TYPE=SUBMIT NAME=rmdir VALUE="" STYLE="width:100px;height:24px;" class=button>
+<INPUT ID=Button_Cancel TYPE=button VALUE="" onclick="frmtitle.NS_cancelAction();" STYLE="width:100px;height:24px;" class=button></TD></TR>
+</TABLE>
+</FORM>
+</TD></TR>
+</TABLE>
+</div>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</BODY>
+</HTML>
+

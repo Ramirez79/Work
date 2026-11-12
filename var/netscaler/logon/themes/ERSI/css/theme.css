@@ -1,0 +1,75 @@
+.web-screen{ 
+ background-image : url('../custom_media/Standard products.jpg'); 
+ background-size:cover; 
+} 
+
+
+.logon-logo-container { 
+background:transparent; 
+ }
+
+.logon-logo-container.NS-AAA { 
+background:transparent; 
+ }
+
+.credentialform h1{ 
+ font-size: 16px;
+}
+
+.web-screen .main-text{ 
+ font-size: 16px;
+}
+
+.credentialform h1{ 
+ color: #ffffff;
+}
+
+.web-screen .main-text{ 
+ color: #ffffff;
+}
+
+.credentialform .plain{ 
+ font-size: 14px;
+}
+
+.credentialform .field .checkbox label{ 
+ font-size: 14px;
+}
+
+.credentialform .standaloneText{ 
+ font-size: 14px;
+}
+
+.credentialform .error, .credentialform .warning, .credentialform .information, .credentialform .inprogress, .credentialform .confirmation{ 
+ font-size: 14px;
+}
+
+.credentialform .plain{ 
+ color: #ffffff;
+}
+
+.credentialform .field .checkbox label{ 
+ color: #ffffff;
+}
+
+.credentialform .standaloneText{ 
+ color: #ffffff;
+}
+
+.credentialform .error, .credentialform .warning, .credentialform .information, .credentialform .inprogress, .credentialform .confirmation{ 
+ color: #ffffff;
+}
+
+.button.default {
+ background-color : #115e67;
+}
+
+.button.default:hover {
+ background: rgb(0, 0, 0);
+}
+
+.web-screen .content-area {
+ background :#115e67; 
+}.box  {
+ background-color :#115e67; 
+}

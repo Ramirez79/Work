@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-es" xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Configuración de túnel dividido" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-change-settings-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-configuring-split-tunneling-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Configuración de túnel dividido</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-configuring-split-tunneling-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Cambio de parámetros en Access Gateway Plug-in\nConfiguración de túnel dividido");
+addButton("show",BTN_TEXT,"Mostrar","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Inicio", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-change-settings-wrapper-con.html\">Cambio de parámetros en Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Configuración de túnel dividido<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-configuring-split-tunneling-tsk" id="agee-plugin-configuring-split-tunneling-tsk"><!-- --></a>
+<h1 class="topictitle1">Configuración de túnel dividido</h1>
+<div>
+<div class="section">
+<p>Cuando el túnel dividido está activado, Access Gateway filtra el tráfico mediante la dirección IP de la red de destino. El tráfico dirigido a la red de la organización se envía a través de Access Gateway y el resto del tráfico se envía a la red de área local (LAN) o Internet. El túnel dividido limita el tráfico de red a través de Access Gateway de acuerdo con la dirección IP.</p>
+<p>Por ejemplo, si se conecta a un sitio Web de Intranet dentro de la red de su organización, la solicitud se dirige a Access Gateway. Si se conecta a un sitio Web externo, como cnn.com, el tráfico de red no pasa por Access Gateway.</p>
+<p>El túnel dividido presenta tres opciones:</p>
+<ul>
+<li><span class="uicontrol">Activado.</span> Cuando el túnel dividido está habilitado, Access Gateway Plug-in compara el puerto y la dirección IP de destino con los valores configurados por el administrador del sistema en Access Gateway. Si uno de los valores coincide, los paquetes se envían a la red remota a través de Access Gateway. Si no, los paquetes se desvían a su LAN.</li>
+<li><span class="uicontrol">Desactivado.</span> Al elegir la opción <span class="uicontrol">Desactivado</span>, se desactiva el túnel dividido y Access Gateway Plug-in envía todo el tráfico a la red remota a través de Access Gateway.</li>
+<li><span class="uicontrol">Inversa activada.</span> Cuando la opción <span class="uicontrol">Inversa activada</span> está habilitada, las conexiones a Internet y las solicitudes para su LAN se envían a través de Access Gateway. Las conexiones a los recursos internos de la red no se envían a través de Access Gateway. Esta configuración se utiliza comúnmente cuando Access Gateway reside en la red interna y el usuario se conecta desde su oficina.</li>
+</ul>
+<div class="p">
+<div class="important"><span class="importanttitle">Importante:</span> si el túnel dividido está desactivado en Access Gateway, se desactivan los controles correspondientes para el túnel dividido y la división DNS en Access Gateway Plug-in. Esta configuración no se puede cambiar. Todo el tráfico de red se envía a través de Access Gateway.</div>
+</div>
+</div>
+<ol>
+<li><span>Haga clic con el botón secundario del mouse en el icono de Access Gateway Plug-in en el área de notificación y, a continuación, haga clic en <span class="uicontrol">Configurar Access Gateway</span>.</span></li>
+<li><span>Haga clic en la ficha <span class="uicontrol">Perfil</span> y, a continuación, haga clic en <span class="uicontrol">Cambiar perfil</span>.</span></li>
+<li><span>En la ficha <span class="uicontrol">Conexiones</span>, en <span class="uicontrol">Túnel dividido</span>, seleccione la opción que desea y, a continuación, haga clic en <span class="uicontrol">Aceptar</span>.</span></li>
+</ol>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="クライアント証明書を使用したログオン" />
+<meta name="DC.Relation" scheme="URI" content="agee-plug-in-creating-connections-tsk.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="2011-01-12" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-client-certificate-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>クライアント証明書を使用したログオン</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-client-certificate-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Access Gateway Plug-inの概要\nクライアント証明書を使用したログオン");
+addButton("show",BTN_TEXT,"表示","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&gt;", "ホーム", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-getting-started-wrapper-con.html\">Access Gateway Plug-inの概要<\/a> &gt; クライアント証明書を使用したログオン<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-client-certificate-tsk" id="agee-plugin-client-certificate-tsk"><!-- --></a>
+<h1 class="topictitle1">クライアント証明書を使用したログオン</h1>
+<div>
+<div class="section">Access Gatewayへのログオンにクライアント証明書を使用する場合があります。 Access Gatewayにログオンするとき、証明書の詳細とシステム管理者がAccess Gatewayに構成した情報が照合されます。 詳細が一致する場合はログオンできます。 詳細が一致しない場合はログオンが拒否される可能性があります。
+<p>Access Gatewayでは、次のいずれかの場所にあるクライアント証明書を認証できます。</p>
+<div class="p">
+<ul>
+<li>デバイスのWindowsオペレーティングシステムの証明書ストア。 クライアント証明書は、Microsoft管理コンソール（Microsoft Management Console：MMC）を使って別にインストールします。</li>
+<li>スマートカードまたはハードウェアトークン。 スマートカードに組み込まれているクライアント証明書を、ネットワークに接続しているスマートカードリーダーで読み取ります。</li>
+<li>アメリカ合衆国国防総省で識別と認証に使用されている、共通アクセスカード。</li>
+</ul>
+</div>
+<p>デバイスにクライアント証明書をインストールするには、システム管理者またはヘルプデスク担当者の指示に従います。</p>
+<p>デバイスに複数のクライアント証明書をインストール済みである場合は、ログオンに使用する証明書を確認するメッセージがAccess Gateway Plug-inにより表示されます。</p>
+<p>Internet ExplorerまたはAccess Gateway Plug-inのダイアログボックスを使用してログオンする場合は、Windows証明書ストアのクライアント証明書が使用されます。 Firefox Webブラウザーを使用してログオンする場合は、証明書をFirefoxにインポートする必要があります。</p>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-import-cert-firefox"><a name="agee-plugin-import-cert-firefox" id="agee-plugin-import-cert-firefox"><!-- --></a>
+<h2 class="topictitle2">クライアント証明書をFirefoxにインポートするには</h2>
+<div>
+<ol>
+<li><span>Firefox Webブラウザーを開きます。</span></li>
+<li><span><span class="uicontrol">［ツール］</span>メニューの<span class="uicontrol">［オプション］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［詳細設定］</span>をクリックします。</span></li>
+<li><span><span class="uicontrol">［証明書マネージャ］</span>ダイアログボックスの<span class="uicontrol">［あなたの証明書］</span>タブをクリックし、<span class="uicontrol">［インポート］</span>をクリックします。</span></li>
+<li><span>コンピューター上の証明書に移動して<span class="uicontrol">［開く］</span>をクリックします。</span>
+<p>証明書のパスワードの入力を求められる可能性があります。 パスワードについては、システム管理者またはヘルプデスク担当者に問い合わせてください。</p>
+</li>
+<li><span><span class="uicontrol">［OK］</span>をクリックします。</span></li>
+</ol>
+<div class="section">
+<p>Firefoxへの証明書のインポートについて詳しくは、Firefoxのヘルプを参照してください。</p>
+</div>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

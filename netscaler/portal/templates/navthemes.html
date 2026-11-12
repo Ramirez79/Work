@@ -1,0 +1,150 @@
+[% META title='Customize Your Stylesheet' 
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER navwrapper.tmpl %]
+<style>
+#prevh2{
+  font-family: verdana;
+  font-size: 10px;
+  font-weight: bold;
+}
+#sample{
+  padding-left: 40px;
+}
+#preview{
+  width: 200px;
+}
+
+</style>
+<div id="selector" style="padding:20px; margin-top: 20px;">
+<h2>Themes</h2>
+[% IF message %]
+[% message %]
+[% ELSE %]
+<div class="theme" >
+  <div style="font:  bold 20px verdana;">Reset to Site Defaults</div>
+  	<div style="margin-left: 260px;">
+  		<form action="[% env.getvar('scriptLoc') %]picktheme.pl">
+	    	<input type="submit" name="submit" value="Reset"/>
+	    	<input type="hidden" name="name" value="reset"/>
+	    </form>
+	</div>
+  </div>
+ <div style="margin-bottom: 20px; border-bottom: 2px solid black; clear: both;"></div>
+[% END %]  
+[% IF themes.user.theme == "custom" %]
+<div class="theme" >
+  <div style="font:  bold 20px verdana;">Current Custom Colors</div>
+      <div id="sample" style="float: left; padding-bottom: 10px;">
+		<h2 id="prevh2">Preview</h2>
+		<div id="preview" style="[%- IF themes.user.font.family -%]font-family: [% themes.user.font.family %] ; [% END %]
+	  						  [%- IF themes.user.font.size -%]font-size: [% themes.user.font.size %] ;[% ELSE %]font-size: medium[% END %]">
+			<div id="block" style="[%- IF themes.user.block.border -%]border-color: [% themes.user.block.border %] ; border-style: solid; border-width: 1px;[%- END -%]
+								   [%- IF themes.user.block.background -%]background-color:  [% themes.user.block.background %] ;[%- END -%]">
+				<h2 id="h2" style="margin: 0; padding: 0; [%- IF themes.user.h2.color -%]color: [% themes.user.h2.color %] ; [%- END -%]
+								   [%- IF themes.user.h2.background -%]background-color:  [% themes.user.h2.background %] ;[%- END -%]">Main Head</h2>
+				<h3 id="h3" style="margin: 0; padding: 0; [%- IF themes.user.h3.color -%]color: [% themes.user.h3.color %] ; [%- END -%]
+								   [%- IF themes.user.h3.background -%]background-color:  [% themes.user.h3.background %] ;[%- END -%]">Sub Head</h3>
+				<div id="item" style="[%- IF themes.user.item.color -%]color: [% themes.user.item.color %] ; [%- END -%]">Text</div>
+			</div>
+		</div>
+	</div>
+	<div style="float: left;margin-top: 40px; margin-left: 20px;">
+    <form action="[% env.getvar('portalLoc') %]colorpicker.html" method="GET">
+    	<input type="submit" name="submit" value="customize"/>
+    	[%- IF themes.user.block.border -%]
+    		<input type="hidden" name="block-border" value="[% themes.user.block.border %]">
+    	[%- END %]
+    	[%- IF themes.user.block.background -%]
+		<input type="hidden" name="block-background" value="[% themes.user.block.background %]">
+		[%- END %]
+    	[%- IF themes.user.h2.color -%]
+		<input type="hidden" name="h2-color" value="[% themes.user.h2.color %]">
+		[%- END %]
+    	[%- IF themes.user.h2.background -%]
+		<input type="hidden" name="h2-background" value="[% themes.user.h2.background %]">
+		[%- END %]
+    	[%- IF themes.user.h3.color -%]
+		<input type="hidden" name="h3-color" value="[% themes.user.h3.color %]">
+		[%- END %]
+    	[%- IF themes.user.h3.background -%]
+		<input type="hidden" name="h3-background" value="[% themes.user.h3.background %]">
+		[%- END %]
+    	[%- IF themes.user.item.color -%]
+		<input type="hidden" name="item-color" value="[% themes.user.item.color %]">
+		[%- END %]
+    	[%- IF themes.user.font.family -%]
+		<input type="hidden" name="font-family" value="[% themes.user.font.family %]">
+		[%- END -%]
+    	[%- IF themes.user.font.size -%]
+		<input type="hidden" name="font-size" value="[% themes.user.font.size %]">  
+		[%- END -%]
+    </form>  
+  </div>
+</div>
+    <div style="margin-bottom: 20px; border-bottom: 2px solid black; clear: both;"></div>
+[% END %]
+[% FOREACH theme =  themes %]
+[% IF theme.key != "user" %]
+	<div class="theme" >
+	  <div style="font:  bold 20px verdana;">[% theme.key %]</div>
+	      <div id="sample" style="float: left; padding-bottom: 10px;">
+			<h2 id="prevh2">Preview</h2>
+			<div id="preview" style="[%- IF theme.value.font_family -%]font-family: [% theme.value.font_family %] ; [% END %]
+		  						  [%- IF theme.value.font_size -%]font-size: [% theme.value.font_size %] ;[% ELSE %]font-size: medium[% END %]">
+				<div id="block" style="[%- IF theme.value.block_border -%]border-color: [% theme.value.block_border %] ; border-style: solid; border-width: 1px;[%- END -%]
+									   [%- IF theme.value.block_background -%]background-color:  [% theme.value.block_background %] ;[%- END -%]">
+					<h2 id="h2" style="margin: 0; padding: 0; [%- IF theme.value.h2_color -%]color: [% theme.value.h2_color %] ; [%- END -%]
+									   [%- IF theme.value.h2_background -%]background-color:  [% theme.value.h2_background %] ;[%- END -%]">Main Head</h2>
+					<h3 id="h3" style="margin: 0; padding: 0; [%- IF theme.value.h3_color -%]color: [% theme.value.h3_color %] ; [%- END -%]
+									   [%- IF theme.value.h3_background -%]background-color:  [% theme.value.h3_background %] ;[%- END -%]">Sub Head</h3>
+					<div id="item" style="[%- IF theme.value.item_color -%]color: [% theme.value.item_color %] ; [%- END -%]">Text</div>
+				</div>
+			</div>
+		</div>
+	  
+	  <div style="float: left;margin-top: 40px; margin-left: 20px;">
+	    <form action="[% env.getvar('scriptLoc') %]picktheme.pl">
+	    	<input type="submit" name="submit" value="select"/>
+	    	<input type="hidden" name="name" value="[% theme.key %]"/>
+	    </form>
+	    <form action="[% env.getvar('portalLoc') %]colorpicker.html" method="GET">
+	    	<input type="submit" name="submit" value="customize"/>
+	    	[%- IF theme.value.block_border -%]
+	    		<input type="hidden" name="block-border" value="[% theme.value.block_border %]">
+	    	[%- END %]
+	    	[%- IF theme.value.block_background -%]
+			<input type="hidden" name="block-background" value="[% theme.value.block_background %]">
+			[%- END %]
+	    	[%- IF theme.value.h2_color -%]
+			<input type="hidden" name="h2-color" value="[% theme.value.h2_color %]">
+			[%- END %]
+	    	[%- IF theme.value.h2_background -%]
+			<input type="hidden" name="h2-background" value="[% theme.value.h2_background %]">
+			[%- END %]
+	    	[%- IF theme.value.h3_color -%]
+			<input type="hidden" name="h3-color" value="[% theme.value.h3_color %]">
+			[%- END %]
+	    	[%- IF theme.value.h3_background -%]
+			<input type="hidden" name="h3-background" value="[% theme.value.h3_background %]">
+			[%- END %]
+	    	[%- IF theme.value.item_color -%]
+			<input type="hidden" name="item-color" value="[% theme.value.item_color%]">
+			[%- END %]
+	    	[%- IF theme.value.font_family -%]
+			<input type="hidden" name="font-family" value="[% theme.value.font_family %]">
+			[%- END -%]
+	    	[%- IF theme.value.font_size -%]
+			<input type="hidden" name="font-size" value="[% theme.value.font_size %]">  
+			[%- END -%]
+	    </form>  
+	   </div>
+	    
+	 
+	  <div style="margin-bottom: 20px; border-bottom: 2px solid black; clear: both;"></div>
+</div>
+[% END %]
+[% END %]
+</div>
+[% END %]

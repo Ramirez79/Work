@@ -1,0 +1,255 @@
+/*hooey testing*/
+html>body, html>body #contents {
+	height: auto;
+}
+
+/*
+ * Without this, Moz1.0 adds a vertical scrollbar
+ */
+
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: [% font.family %];
+  font-size: [% font.size %];
+  background: white;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  background: [% footer.background %];
+  color: [% footer.color %];
+  width: 100%;
+/*  text-align: center;*/
+}
+
+#header{
+  background: [% header.background %];
+  color: red;
+  margin: 0px;
+}
+#logo{
+  background-image: url(/theme/[% theme.name %]/logo.gif);
+  height: 47px;
+  width: 204px;
+}
+#toolbar{
+  float: right;
+  width: 280px;
+  padding-top: .5em;
+  padding-right: 1em;
+  padding-bottom: .5em;
+}
+#content{
+  clear: left;
+  margin-top: .5em;
+  padding-top: .5em;
+  padding-left: 1em;
+  margin-right: 310px;
+	padding-bottom: .5em;
+}
+#services #content{
+  padding-left: 50px;
+  clear: both;
+  margin-left: 0;
+}
+.bmoptions{
+  display: inline;
+  float: right;
+  font-size: .8em;
+}
+
+.tipBody{
+  background-color: [% block.background %];
+  color: [% item.color %];
+}
+#tipiframe{
+  width: 270px;
+}
+#tip{
+  font-size: .8em;
+  padding-left: 1em;
+  padding-top: .5em;
+}
+#nexttip{
+  font-size: .6em;
+  float: right;
+}
+#nexttip a{
+  color: [% item.color %];
+}
+.block{
+  border: 1px solid [% block.border %];
+  margin-bottom: .8em;
+  background-color: [% block.background %];
+}
+.block h2{
+  background-color: [% h2.background %];
+  color: [% h2.color %];
+  padding: .2em;
+  margin: 0;
+  font-size: 1em;	
+}
+.block h3{
+  background-color: [% h3.background %];
+  color: [% h3.color %];
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;   
+  margin-bottom: .2em;
+}
+.block .item{
+  color: [% item.color %];
+  padding: 0;
+  padding-left: 1em;
+  padding-bottom: .2em;
+  font-size: .8em;
+}
+.block .item a {
+  color: [% item.color %];
+}
+/* Begin: Form element styles*/
+#newbm .labelbr{
+  display: none;
+}
+#newbm fieldset {
+  border: 0px solid white;
+}
+#newbm fieldset legend{
+  display: none;
+}
+#newbm fieldset .inlinelabel {
+  color: [% item.color %];
+  text-align:right;
+  width:70px;
+  float:left;
+  padding:0.2em;
+  margin:0;
+  margin-top:0.3em; 
+  font-size: .8em;
+}
+#newbm fieldset .textfield {
+  margin:3px;
+  height:20px;
+  width: 13em;
+}
+#newbm .button {
+  font: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin-right: 1em;
+}
+#newbm .buttonrow{
+  width: 20em;
+  text-align: center;
+}
+/* End: Form element styles*/
+/* Begin: Ping Form element styles*/
+#pingform label{
+  font-size: .7em;
+}
+#pingform input{
+  float: left;
+}
+#pingform fieldset{
+  border: 0px solid white;
+margin-bottom: 2px;
+padding-bottom: 0px;
+margin: 0;
+padding: 0;
+}
+#pingform .labelbr{
+  display: inline;
+  width: 0px;
+  float: none;
+}
+#ping #response{
+font-size: .7em;
+}
+#ping{
+  background-color: [% block.background %];
+  color: [% item.color %];
+}
+#ping form{
+margin: 0px;
+padding: 0px;
+
+}
+#pingiframe{
+ height: 65px;
+ width: 258px; 
+ border: 0px;
+margin-left: 12px;
+}
+/* End: Ping Form element styles*/
+/* Login page styles */
+#loginlogo{
+  margin-left: 260px;
+  margin-top: 20px;
+}
+#login-image{
+  display: none;
+}
+
+#loginForm{
+  position: absolute;
+  top: 170px;
+  left: 390px;
+}
+#loginPage{
+  min-width: 620px; 
+}
+#loginPage #contents {
+  
+}
+#loginPage #main {
+  height: 340px;
+}
+#vpnForm fieldset{
+  border: 0px solid white;
+}
+#vpnForm fieldset legend{
+  display: none;
+}
+#vpnForm .inlinelabel{
+  font-size: .7em;
+}
+#vpnForm fieldset .textfield {
+  margin-right:3px;
+  width: 10em;
+  font-family: monospace;
+  border: 1px solid grey;
+}
+#login-button{
+  color: black;
+  border: 1px solid grey;
+}
+.descr{
+  padding-left: .5em;
+}
+html{
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#fmBody #content{
+        margin: 0;
+        padding: 0;
+		clear: both;
+}
+#fmBody #contents{ 
+ 		background-image: none;
+}

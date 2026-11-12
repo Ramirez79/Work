@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<HTML><HEAD>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<TITLE>NetScaler Gateway</TITLE>
+<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+<link href="/logon/themes/Default/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<LINK href="/logon/themes/Default/css/custom.css" type=text/css rel=STYLESHEET>
+<script type="text/javascript" src="/vpn/js/rdx.js"></script>
+<script type="text/javascript" src="/vpn/js/views.js"></script>
+<script type="text/javascript" src="/vpns/clientchoices_view.js"></script>
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "choices");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+<script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<SCRIPT language=JavaScript>
+
+function changeImage(obj, newwidth, newheight)
+{
+	obj.setAttribute("width", newwidth);
+	obj.setAttribute("height", newheight);
+}
+
+// frame-busting script
+setTimeout ("changePage()", 0);
+function changePage()
+{
+	if (self.parent != self)
+		top.location=document.location;
+}
+</SCRIPT>
+</HEAD>
+<BODY class="ns_body"><!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+<script>
+rdx.FRAMEWORK_BASE = "/vpn/js" ;
+rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(choices, choices.do_action_on_load));
+$(window).load(function(){choice_resize();});
+$(window).resize(function(){choice_resize();});
+
+</script>
+
+</body>
+</HTML>

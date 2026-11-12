@@ -1,0 +1,98 @@
+[% META title='Customize Your Stylesheet' 
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+<script language="JavaScript" type="text/javascript">
+   function getRadioIndex(){
+     var radioGroup = document.forms['admintheme'].theme;  
+     if (!radioGroup.length){
+       radioGroup.checked = true;
+       return radioGroup.value;
+     } 
+     for (var i =0; i < radioGroup.length; i++){
+       if (radioGroup[i].checked){
+         return radioGroup[i].value;
+       }
+     }
+   }
+   function doesNameExist(name){
+     var radioGroup = document.forms['admintheme'].theme;  
+     for (var i =0; i < radioGroup.length; i++){
+       if (radioGroup[i].value == name){
+         return true;
+       }
+     }
+     return false;
+   }
+   function goDelete(){
+     var theme = getRadioIndex();
+     var defaultTheme = document.forms['admintheme'].defaultTheme.value;
+     if (!theme){
+       alert('You must select a theme to remove.');
+       return
+     } 	
+     if (theme == defaultTheme){
+       alert('You cannot remove the default theme.  Select another as default and try again.');
+     } else {
+       window.location='[% env.adminLoc %]admin-delete-themes.pl?theme=' + theme;
+     }
+   }
+
+   function goCopy(){
+     var theme = getRadioIndex();
+     if (!theme){
+       alert('You must select a theme to copy.');
+       return
+     } 		
+     var newTheme = prompt ("Please enter a name for your new theme.","");
+     if (newTheme.length < 1){
+       alert("You must provide a name.");
+       return;
+     }
+     if(doesNameExist(newTheme)){ 
+	     if (! confirm("Theme " + newTheme + " already exists.  Do you want to overwrite it?\n Click Ok to overwrite.")){
+	       return;  //user has selected to not overwrite
+	     }
+	 } 
+	 window.location='[% env.adminLoc %]admin-copy-theme.pl?theme=' + theme + '&new=' + newTheme;
+   }
+
+   function checkForm(){
+   	 var theme = getRadioIndex(); 
+   	 if (!theme){
+   	   alert('You must select a theme to edit.');
+   	   return false;
+   	 } else {
+   	   return true;
+   	 }
+   }
+
+</script>
+<div id="selector" style="padding:10px; clear: both;">
+
+<h2>Themes</h2>
+<form action="[% env.adminLoc %]admin-edit-themes.pl" method="get" name="admintheme" onSubmit="return checkForm()">
+<table border="1" width="100%">
+<tr><th></th><th>Name</th><th>Enabled for Users</th><th>Default</th></tr>
+[% FOREACH theme = themes%]
+<tr>
+<td align="center"><input type="radio" name="theme" value="[% theme.value.name %]" /></td>
+<td align="center">[% theme.value.name %]</td>
+<td align="center">[% IF theme.value.status %]Y[% ELSE %]N[% END %]</td>
+<td align="center">[% IF theme.value.default %]Y[% ELSE %]N[% END %]</td>
+
+</tr>
+[% IF theme.value.default %]
+<input type="hidden" name="defaultTheme" value="[% theme.value.name %]"/>
+  [% END %]
+[%- END -%]
+</table>
+<br>
+<input type="button" name="add" value="Add..." onclick="window.location='[% env.adminLoc %]admin-new-theme.pl'"/>
+<input type="submit" name="open" value="Open..." />
+<input type="button" name="copy" value="Copy..." onclick="goCopy();" class="button">
+<input type="button" name="remove" value="Remove..." onclick="goDelete();" class="button">
+</form>
+</div>
+[% END %]

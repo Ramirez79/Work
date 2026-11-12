@@ -1,0 +1,20 @@
+analytics_lang_en =
+{
+    "rdx.ext.analytics.by": "By ",
+    "rdx.ext.analytics.home": "Home",
+    "rdx.ext.analytics.top_n_objects": "Top {object_name}",
+    "rdx.ext.analytics.more": "More",
+    "rdx.ext.analytics.data_is_only_for": " report is generated only",
+    "rdx.ext.analytics.netscaler_with_platinum": " for NetScaler 10 appliances",
+    "rdx.ext.analytics.licenses": " with Platinum license",
+    "rdx.ext.analytics.learn_more": "Learn more",
+    "rdx.ext.analytics.click_learn_more_to_understand": "Click the Learn More button to understand",
+    "rdx.ext.analytics.netscaler_insight_center_licensing": "NetScaler Insight Center licensing.",
+    "rdx.ext.analytics.click_to_view_details": "Click here to view details",
+    "rdx.ext.analytics.percentage_sign": "%",
+    "rdx.ext.analytics.percentile_data": "Percentile data",
+    "rdx.ext.analytics.95th_percentile": "95th percentile",
+    "rdx.ext.analytics.check_correct_number_of_metrics": "Please select atleast 1 to maximum 3 metrics",
+    "rdx.ext.analytics.click_to_change_to_column_chart": "Please click to change to column chart",
+    "rdx.ext.analytics.click_to_change_to_line_chart": "Please click to change to line chart"
+}

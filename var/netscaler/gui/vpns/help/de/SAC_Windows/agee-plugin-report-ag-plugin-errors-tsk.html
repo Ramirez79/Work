@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Melden von Fehlern mit dem Access Gateway Plug-in" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-tshoot-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-report-ag-plugin-errors-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Melden von Fehlern mit dem Access Gateway Plug-in</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-report-ag-plugin-errors-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Problembehandlung beim Access Gateway Plug-in\nMelden von Fehlern mit dem Access Gateway Plug-in");
+addButton("show",BTN_TEXT,"Anzeigen","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Home", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-tshoot-wrapper-con.html\">Problembehandlung beim Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Melden von Fehlern mit dem Access Gateway Plug-in<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-report-ag-plugin-errors-tsk" id="agee-plugin-report-ag-plugin-errors-tsk"><!-- --></a>
+<h1 class="topictitle1">Melden von Fehlern mit dem Access Gateway Plug-in</h1>
+<div>
+<div class="section">
+<p>Sie können das Access Gateway Plug-in konfigurieren, um alle Fehler in einer Textdatei zu protokollieren. Das Access Gateway Plug-in protokolliert alle wichtigen Aktivitäten in einer Protokolldatei. Diese Dateien werden auf Ihrem Gerät gespeichert. Sie können diese Dateien an Ihren Helpdesk oder Systemadministrator senden.</p>
+<p>Unter Windows&#160;XP werden die Protokolldateien in den Verzeichnissen <var class="varname">%systemdrive%</var>\Dokumente und Einstellungen\All Users\Anwendungsdaten\Citrix\AGEE und <var class="varname">%systemdrive%</var>\Dokumente und Einstellungen\<var class="varname">%username%</var>\Lokale Einstellungen\Anwendungsdaten\Citrix\AGEE gespeichert.</p>
+<p>Unter Windows Vista und Windows&#160;7 werden die Protokolldateien in den Verzeichnissen <var class="varname">%systemdrive%</var>\ProgramData\Citrix\AGEE und <var class="varname">%systemdrive%</var>\Benutzer\<var class="varname">%username%</var>\AppData\Lokal\Citrix\AGEE gespeichert. Ihr Systemadministrator kann diese Protokolldateien bei der Behandlung von Problemen mit dem Access Gateway Plug-in verwenden.</p>
+<p>Sie können die Protokollstufe für das Access Gateway Plug-in einstellen. Es gibt die folgenden Protokollstufen:</p>
+<ul>
+<li>Debuggingmeldungen nicht aufzeichnen</li>
+<li>Ereignismeldungen aufzeichnen</li>
+<li>Nur Access Gateway Plug-in-Statistiken aufzeichnen</li>
+<li>Alle Fehler, Ereignismeldungen und Statistiken aufzeichnen</li>
+</ul>
+</div>
+<ol>
+<li><span>Klicken Sie im Infobereich mit der rechten Maustaste auf das Access Gateway Plug-in-Symbol und klicken Sie dann auf <span class="uicontrol">Access Gateway konfigurieren</span>.</span></li>
+<li><span>Klicken Sie auf die Registerkarte <span class="uicontrol">Tracing</span>, wählen Sie die Protokollstufe aus und klicken Sie auf <span class="uicontrol">OK</span>.</span></li>
+</ol>
+</div>
+<div class="nested1" id="agee-plugin-view-log-files"><a name="agee-plugin-view-log-files" id="agee-plugin-view-log-files"><!-- --></a>
+<h2 class="topictitle2">Anzeigen von Protokolldateien</h2>
+<div>
+<div class="section">
+<p>Die Protokolldateien enthalten Informationen über Probleme, die unter Umständen beim Ausführen des Access Gateway Plug-ins auftreten. Diese Informationen sind nützlich, wenn ein Problem auftritt und Sie gemeinsam mit dem technischen Support arbeiten.</p>
+</div>
+<ol>
+<li><span>Klicken Sie im Infobereich mit der rechten Maustaste auf das Access Gateway Plug-in-Symbol und klicken Sie dann auf <span class="uicontrol">Access Gateway konfigurieren</span>.</span></li>
+<li><span>Klicken Sie auf die Registerkarte <span class="uicontrol">Tracing</span>.</span></li>
+<li><span>Klicken Sie unter <span class="uicontrol">Clienttracingprotokoll</span> auf <span class="uicontrol">Protokolldatei anzeigen</span>.</span></li>
+</ol>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

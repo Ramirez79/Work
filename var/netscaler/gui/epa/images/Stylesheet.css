@@ -1,0 +1,225 @@
+BODY {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; OVERFLOW-Y: hidden; OVERFLOW-X: auto; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; BACKGROUND-COLOR: white
+}
+P {
+	MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px
+}
+TD {
+	MARGIN-TOP: 1px; FONT-SIZE: 10px; MARGIN-BOTTOM: 1px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; TEXT-DECORATION: none
+}
+A {
+	COLOR: black; TEXT-DECORATION: none
+}
+A.WEBFILEBROWSER {
+	COLOR: black; TEXT-DECORATION: underline
+}
+INPUT {
+	FONT-SIZE: 10px; BORDER-TOP-STYLE: groove; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BORDER-RIGHT-STYLE: groove; BORDER-LEFT-STYLE: groove; BACKGROUND-COLOR: window; BORDER-BOTTOM-STYLE: groove
+}
+INPUT.Radio {
+	FONT-SIZE: 10px; BORDER-TOP-STYLE: none; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BACKGROUND-COLOR: window; BORDER-BOTTOM-STYLE: none
+}
+TEXTAREA {
+	FONT-SIZE: 10px; BORDER-TOP-STYLE: groove; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BORDER-RIGHT-STYLE: groove; BORDER-LEFT-STYLE: groove; BACKGROUND-COLOR: window; BORDER-BOTTOM-STYLE: groove
+}
+.ContentBody {
+	BORDER-RIGHT: #969696 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #969696 1px solid; OVERFLOW-Y: auto; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; OVERFLOW: auto; BORDER-LEFT: #969696 1px solid; WIDTH: 100%; PADDING-TOP: 1px; BORDER-BOTTOM: #969696 1px solid; ; HEIGHT: expression(document.body.clientHeight-this.offsetTop); BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: left
+}
+.ContentBodyPreview {
+	OVERFLOW-Y: auto; OVERFLOW: auto; WIDTH: 100%; ; HEIGHT: expression(document.body.clientHeight-this.offsetTop)
+}
+.ContentIFrame {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; OVERFLOW-Y: auto; BORDER-LEFT: medium none; WIDTH: 100%; BORDER-BOTTOM: medium none; ; HEIGHT: expression(document.body.clientHeight-this.offsetTop)
+}
+.inputbutton {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-SIZE: 10px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BACKGROUND-COLOR: transparent
+}
+.box {
+	BORDER-RIGHT: #969696 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #969696 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 0px; BORDER-LEFT: #969696 1px solid; BORDER-BOTTOM: #969696 1px solid; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: left
+}
+.LoginBox {
+	BORDER-RIGHT: #969696 1px solid; PADDING-RIGHT: 8px; BORDER-TOP: #969696 1px solid; PADDING-LEFT: 8px; PADDING-BOTTOM: 8px; BORDER-LEFT: #969696 1px solid; PADDING-TOP: 8px; BORDER-BOTTOM: #969696 1px solid; BACKGROUND-COLOR: white; TEXT-ALIGN: left
+}
+.inboxbox {
+	BORDER-RIGHT: #969696 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #969696 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: #969696 1px solid; BORDER-BOTTOM: #969696 1px solid; BACKGROUND-COLOR: lightgrey; TEXT-ALIGN: left
+}
+.PageHeader {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 0px; BORDER-LEFT: medium none; WIDTH: 100%; COLOR: black; PADDING-TOP: 0px; BORDER-BOTTOM: white 1px solid; FONT-FAMILY: Verdana; HEIGHT: 41px; BACKGROUND-COLOR: #bac0ce
+}
+.PageTitle {
+	FONT-SIZE: medium
+}
+.DashboardHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; FONT-FAMILY: Verdana
+}
+.DashboardTitle {
+	
+}
+.DashboardFormItem {
+	MARGIN-TOP: 6pt; FONT-WEIGHT: normal; FONT-SIZE: 10px; BORDER-LEFT-COLOR: #6699ff; BORDER-BOTTOM-COLOR: #6699ff; MARGIN-LEFT: 0.5em; COLOR: black; BORDER-TOP-COLOR: #6699ff; FONT-FAMILY: Verdana; BACKGROUND-COLOR: white; BORDER-RIGHT-COLOR: #6699ff
+}
+.DashboardItem {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; BACKGROUND: white; CURSOR: hand; COLOR: black; FONT-FAMILY: Verdana; HEIGHT: 25px
+}
+.FrameTop {
+	
+}
+.FrameTree {
+	
+}
+.FrameContent {
+	
+}
+.Invisible {
+	DISPLAY: none
+}
+.SelectedItem {
+	CURSOR: hand; BACKGROUND-COLOR: #b6bdd2
+}
+.FileViewerEven {
+	CURSOR: hand; BACKGROUND-COLOR: white
+}
+.FileViewerOdd {
+	CURSOR: hand; BACKGROUND-COLOR: white
+}
+.InboxUnread {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; OVERFLOW: hidden; CURSOR: hand; COLOR: black; FONT-STYLE: normal; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.InboxRead {
+	FONT-SIZE: 10px; OVERFLOW: hidden; CURSOR: hand; COLOR: black; FONT-STYLE: normal; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.MessagePreviewRead {
+	FONT-SIZE: 9px; COLOR: navy; FONT-STYLE: normal; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.MessagePreviewUnread {
+	FONT-SIZE: 9px; COLOR: navy; FONT-STYLE: normal; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.TopToolbar {
+	BORDER-RIGHT: groove; BORDER-TOP: groove; FONT-SIZE: 20px; BORDER-LEFT: groove; BORDER-BOTTOM: groove; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BACKGROUND-COLOR: activeborder; TEXT-DECORATION: none
+}
+.ToolbarSubmitButton {
+	FONT-SIZE: 9px; CURSOR: hand; BORDER-TOP-STYLE: none; PADDING-TOP: 3px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BACKGROUND-COLOR: inactiveborder; BORDER-BOTTOM-STYLE: none
+}
+.AddressBar {
+	
+}
+.ToolbarTitle {
+	FONT-SIZE: 15pt; COLOR: white; FONT-FAMILY: Verdana
+}
+.AddressBarTitle {
+	PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 15px; COLOR: white; PADDING-TOP: 10px; FONT-FAMILY: Verdana
+}
+.AddressBarValue {
+	PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 15px; COLOR: white; PADDING-TOP: 10px; FONT-FAMILY: Verdana
+}
+.ContentHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.ContentHeaderItem {
+	BORDER-RIGHT: 1px groove; PADDING-LEFT: 2px; FONT-WEIGHT: normal; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; CURSOR: hand; PADDING-TOP: 2px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BACKGROUND-COLOR: lightgrey
+}
+.ContentHeaderItemNoSort {
+	PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.menuItem {
+	PADDING-RIGHT: 4px; DISPLAY: block; PADDING-LEFT: 4px; FONT-WEIGHT: normal; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; COLOR: #000000; PADDING-TOP: 2px; FONT-FAMILY: ms sans serif; TEXT-DECORATION: none
+}
+.highlightItem {
+	PADDING-RIGHT: 4px; DISPLAY: block; PADDING-LEFT: 4px; FONT-WEIGHT: normal; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; COLOR: #000000; PADDING-TOP: 2px; FONT-FAMILY: ms sans serif; BACKGROUND-COLOR: #d4d0c8; TEXT-DECORATION: none
+}
+.fileNameDisplay {
+	CURSOR: hand
+}
+.ToolbarRow {
+	BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: buttonhighlight 1px solid; PADDING-LEFT: 0px; BACKGROUND: buttonface; PADDING-BOTTOM: 0px; FONT: menu; BORDER-LEFT: buttonhighlight 1px solid; WIDTH: 100%; PADDING-TOP: 0px; BORDER-BOTTOM: buttonshadow 1px solid; HEIGHT: 25px
+}
+.ToolbarRowBottom {
+	HEIGHT: 25px; BACKGROUND-COLOR: buttonface
+}
+.NormalLink {
+	PADDING-LEFT: 4px; PADDING-BOTTOM: 5px; COLOR: #0808f4; PADDING-TOP: 5px
+}
+.TBOn {
+	PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.TBOff {
+	PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif
+}
+.Button {
+	FONT-SIZE: 10px; CURSOR: hand; BORDER-TOP-STYLE: outset; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BORDER-RIGHT-STYLE: outset; BORDER-LEFT-STYLE: outset; BACKGROUND-COLOR: lightgrey; BORDER-BOTTOM-STYLE: outset
+}
+.ContactHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BACKGROUND-COLOR: #bac0ce
+}
+.ContactBody {
+	FONT-SIZE: 12px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BACKGROUND-COLOR: lightgrey
+}
+.ContactBodyInfo {
+	FONT-SIZE: 12px; FONT-FAMILY: ms sans serif, verdana, arial, sans-serif; BACKGROUND-COLOR: lightgrey
+}
+.coolBar {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; FONT-FAMILY: verdana; BACKGROUND-COLOR: #bac0ce
+}
+.coolbar:hover {
+	BACKGROUND-COLOR: #d4d0c8
+}
+.coolButton {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 3px; CURSOR: hand; HEIGHT: 15px; TEXT-ALIGN: center
+}
+.coolDisabled {
+	
+}
+.TabBar {
+	BACKGROUND-COLOR: lightgrey
+}
+.TabRow {
+	HEIGHT: 36px
+}
+.TabFooter {
+	HEIGHT: 3px; BACKGROUND-COLOR: lightgrey
+}
+.SelectedTab {
+	BORDER-RIGHT: #ffc449 thin outset; PADDING-RIGHT: 5px; BORDER-TOP: #ffc449 thin outset; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; BORDER-LEFT: #ffc449 thin outset; CURSOR: hand; COLOR: white; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #d4d0c8
+}
+.UnselectedTab {
+	BORDER-RIGHT: white 1px solid; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; FONT-FAMILY: Verdana; BACKGROUND-COLOR: lightgrey
+}
+.UnselectedTab_Highlight {
+	BORDER-RIGHT: white 1px solid; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; CURSOR: hand; COLOR: black; FONT-FAMILY: Verdana; BACKGROUND-COLOR: lightgrey
+}
+.TabFiller {
+	
+}
+.TabLogout {
+	PADDING-RIGHT: 5px; WIDTH: 1px; TEXT-ALIGN: right
+}
+.TabLink {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 4px; FONT-WEIGHT: normal; CURSOR: hand; COLOR: black; TEXT-DECORATION: none
+}
+.TabLink:hover {
+	BACKGROUND-COLOR: #d4d0c8
+}
+.Hide {
+	DISPLAY: none
+}
+.Show {
+	DISPLAY: block
+}
+.DashboardHost {
+	OVERFLOW: hidden
+}
+.ContentDiv {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px
+}
+.ContentFrame {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; OVERFLOW-Y: auto; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: medium none; WIDTH: 100%; PADDING-TOP: 0px; BORDER-BOTTOM: medium none; ; HEIGHT: expression(document.body.clientHeight-this.offsetTop); BACKGROUND-COLOR: #ffffff
+}
+.ErrorMessage {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: Verdana
+}
+.BackButton {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #000000 1px solid; CURSOR: default; COLOR: #000000; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, Sans-Serif; HEIGHT: 18px; BACKGROUND-COLOR: #eeeeee
+}
+.BackButton_Hover {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #000000 1px solid; CURSOR: hand; COLOR: blue; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, Sans-Serif; HEIGHT: 18px; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: underline
+}

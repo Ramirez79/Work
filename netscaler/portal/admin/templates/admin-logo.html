@@ -1,0 +1,32 @@
+[% META id="services"
+%]
+[% USE env = EnvHash %]
+[% PROCESS boilerplate.tmpl %]
+[% WRAPPER wrapper.tmpl %]
+<h1>Logo for theme: [% name %]</h1>
+<script language="JavaScript" type="text/javascript">
+  function checkForm(){
+    var logo = document.getElementById('logoUpload');
+    if (!logo.value){
+      alert ("You must specify new logo file to upload.  Otherwise press 'Cancel'.")
+      return false;  
+    } else {
+      return true;
+    }
+  }
+</script>
+<h2>Current Logo</h2><a href="[% env.adminLoc %]admin-themes.pl">Keep this logo</a>
+[% IF logo.image %]
+<div style="background-image: [% logo.image %]; width: [% logo.width %]; height: [% logo.height %];"></div>
+[% ELSE %]
+<br>There is no logo specified for this theme.
+[% END %]
+<h2>Replace Logo</h2>
+<form action="[% env.adminLoc %]admin-logo.pl" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+<input type="file" name="logo" id="logoUpload" size="40">
+<input type="hidden" name="theme" value="[% name %]"/>
+<br><br>
+<input type="submit" name="name" value="Submit"/>
+<input type="button" value="Cancel" onclick="window.location='[% env.adminLoc %]admin-themes.pl'" class="button">    
+</form>
+[% END %]

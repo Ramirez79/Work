@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="theme/styles.css">
+    <title>
+      SSL VPN Portal
+    </title>
+  </head>
+  <body>
+    <div id="contents">
+      <div id="header">
+        <div id="logo">
+        </div>
+      </div>
+      <div id="navcontainer">
+        &nbsp;
+      </div>
+      <div id="toolbar">
+        <div class="block" id="tools">
+          <h2>
+            Notes
+          </h2>
+          <div class="item">
+            <ul>
+              <li>
+                For a website: add the full address from http://.
+                <br>
+                 For example: http://intranet.corp.com
+              </li>
+              <li>
+                For a Filesystem: add server and share folder starting from \\ in the
+                Address field.
+                <br>
+                 For example: \\fileserver\sharefolder
+              </li>
+              <li>
+                Length of Name and Address is limited to 256 characters.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+        <div id="content">
+          <div class="block" id="newbm-block">
+            <h2>
+              New Bookmark
+            </h2>
+            <form action="/fs/newbm" name="newbm" id="newbm" method="GET">
+              <fieldset>
+                <legend>Bookmark Details</legend> <label for="prompt" class=
+                "inlinelabel">Name:</label>
+                <br class="labelbr">
+                 <input type="text" maxlength="256" name="prompt" id="prompt" value=""
+                class="textfield">
+                <br>
+                 <label for="uri" class="inlinelabel">Address:</label>
+                <br class="labelbr">
+                 <input type="text" maxlength="256" name="uri" id="uri" value="" class=
+                "textfield">
+                <br>
+                 
+                <div class="buttonrow">
+                  <input type="SUBMIT" name="action" value="Add" class="button"> <input
+                  type="reset" value="Cancel" onclick="history.go(-1)" class="button">
+                </div>
+              </fieldset>
+            </form>
+          </div>
+  
+      </div>
+      <div id="footer">
+        Copyright &copy;2004 NetScaler, Inc. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>
+

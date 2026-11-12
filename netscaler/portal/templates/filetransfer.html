@@ -1,0 +1,10 @@
+[%- META title='Homepage' 
+ 		script='/js/filemanager.js'
+ 		onload='setHeight()'
+ 		id='fmBody'	-%]
+[% USE env = EnvHash %] 		
+[%- WRAPPER wrapper.tmpl -%]
+        <div id="content">
+	       <iframe src="/vpns/fslogin.html?[% env.getvar('QUERY_STRING') %]" frameborder="0" id="fm" scrolling="no" width="100%">File manager</iframe> 
+        </div>
+[%- END -%]        

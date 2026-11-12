@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="theme/styles.css">
+    <title>
+      SSL VPN Portal
+    </title>
+<script type="text/javascript" src="bookmarks.js">
+</script>
+<script type="text/javascript" src="/fs/lsbm">
+</script>
+  </head>
+  <body onload="populateRMBookmarks(bmprompt, bmuri)">
+    <div id="contents">
+      <div id="header">
+        <div id="logo">
+        </div>
+      </div>
+      <div id="navcontainer">
+        &nbsp;
+      </div>
+      <div id="toolbar">
+        <div class="block" id="tools">
+          <h2>
+            Notes
+          </h2>
+          <div class="item">
+            <ul>
+              <li>
+                Select bookmarks to remove and click Remove.
+              </li>
+              <li>
+                This action cannot be undone. Deleted bookmarks will have to be recreated
+                individually.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="block">
+          <h2>
+            Remove Bookmarks
+          </h2>
+          <form name="RMBM" action="/fs/rmbm">
+            <div id="rmbmlist">
+            </div>
+            <div class="buttonrow">
+              <input type="submit" value="Remove" class="button"> <input type="reset"
+              value="Cancel" onclick="history.go(-1)" class="button">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="footer">
+        Copyright &copy;2004 NetScaler, Inc. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>
+

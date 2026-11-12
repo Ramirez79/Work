@@ -1,0 +1,116 @@
+[% META title='Remove Bookmark' 
+	script='/js/newbookmark.js'
+%]
+[% USE env = EnvHash %]
+[% PROCESS boilerplate.tmpl %]
+[% USE env = EnvHash %]
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="min_width_800">
+  <head>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" rel="stylesheet" href="/logon/themes/Default/css/styles.css">
+  <LINK href="/logon/themes/Default/css/base.css" type=text/css rel=STYLESHEET>
+  <LINK href="/logon/themes/Default/css/custom.css" type=text/css rel=STYLESHEET>
+  [% INCLUDE resources.tmpl partition = 'rmbm' %]
+    <title>
+      NetScaler with Unified Gateway
+    </title>
+  [% IF template.script -%]
+  <script type="text/javascript" src="/vpns/prtl[% template.script %]"></script>
+  [% END -%]
+  <script type="text/javascript">
+	var text = new Array();
+	var link = new Array();
+	var bmcount = 1;
+  </script>
+  <body style="overflow: auto" class="min_width_800"
+  		[%- IF template.onload -%]onload="[% template.onload %]" 
+		[%- END -%]
+		[%- IF template.onunload -%] onunload="[% template.onunload %]" 
+		[%- ELSE -%]
+		onunload=ns_unload();
+		[%- END -%]
+  		[%- IF template.id -%]id="[% template.id %]" 
+		[%- END -%]>
+
+<!-- wrapper begin -->
+<table class="mainPane" width="100%" cellpadding="20px" cellspacing="0" style="height:100%;">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" style="text-align:left" width="100%" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <!-- content begin  -->
+	<div class="CTXMSAM_ContentFont" style="padding-top:20px;padding-bottom:20px;min-height:244px" >
+      <div style="padding-left:20px">
+      	<p class="messageTitle"><span id="Remove Bookmarks"></span></p>
+		<p class="bookmark_text"><span id="To remove a bookmark, select it and click Remove."></span><BR>
+		<span id="When a bookmark is removed, it cannot be retrieved."></span><BR><BR>
+		</p>
+		
+      </div>
+      <div id="content">
+          <form name="RMBM" action="[% env.getvar('scriptLoc') %]rmbm.pl" method="POST" style="margin:0">
+            <div id="tabularView">
+            <table>
+            [% FOREACH bm = escbk.bookmark -%]
+        	    <script type="text/javascript">
+				document.writeln('<tr class="row' + bmcount%2 + '">');
+				bmcount++;
+        	    </script>
+        	    <td>
+				<INPUT TYPE="checkbox" name="[% bm.url %]" value="[% bm.url %]">
+				<label class="username_text" for="[% bm.url %]">[% bm.title %]</label>
+				</td>
+				</tr>
+			[% END %]			
+					
+			[% IF !escbk.bookmark || escbk.bookmark.size == 0 %]
+            <div id="none" style="padding-left:20px"></div>
+			[% END %]
+			</table>
+            </div>
+            <div class="buttonrow" style="padding-left:20px">
+            <BR>
+              <input id="Button_Remove" type="submit" value="" class="Apply_Cancel_OK"> 
+              <input id="Button_Cancel" type="reset" value="" onclick="window.close()" class="Apply_Cancel_OK">
+	      <input type="hidden" name="nsc_nonce" id="nsc_nonce" value="[% env.getvar('HTTP_NSC_NONCE') %]" />
+            </div>
+          </form>
+      </div>
+      </div>
+            <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+[% INCLUDE loadresources.tmpl %]
+</body>
+</html>
+
+

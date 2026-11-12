@@ -1,0 +1,91 @@
+<html>
+  <head>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" rel="stylesheet" href="/logon/themes/Default/css/styles.css">
+  <LINK href="/logon/themes/Default/css/base.css" type=text/css rel=STYLESHEET>
+  <LINK href="/logon/themes/Default/css/custom.css" type=text/css rel=STYLESHEET>
+  [% INCLUDE resources.tmpl partition = 'chpwdsuccess' %]
+  <script language="javascript" type="text/javascript" sRc="/vpn/nsshare.js"></script>
+  <title>NetScaler with Unified Gateway</title>
+  </head>
+
+  <body>
+  <table class="full_width_height" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td valign="top" class="full_width">
+				<table class="full_width" cellspacing="0" cellpadding="0">
+					<tr id="row1">
+						<td class="header_left">
+						</td>
+					</tr>
+					<tr id="row2">
+						<td colspan="2" class="navbar">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	
+<!-- Main row -->
+<tr>
+	<td>
+	<table class="full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+		<tr>
+		<td>
+<!-- wrapper begin -->
+<table class="mainpane full_width" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <table align="center" class="CTX_LogonFont" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="glowBoxTop glowBoxLeft">
+                    </td>
+                    <td class="glowBoxTop loginTableMidWidth glowBoxHorizontalPadding">
+                    </td>
+                    <td class="glowBoxTop glowBoxRight">
+                    </td>
+                </tr>
+                <tr id="ctl07_feedbackAreaMid">
+			<td class="glowBoxLeft"></td>
+			<td>
+			<div id="feedbackStyle" class="feedbackStyleSuccess">
+				<table>
+    				<tr><td>
+						<span id="successMessage" class="messageStyle CTX_LogonFont"></span>
+					</td></tr>
+					<tr><td  align="center"><BR><BR>
+					<input id="Continue" type="submit"  value=""  onClick="window.location.replace('/vpns/services.html')" class="CTX_BlackButton" onmouseout="this.className='CTX_BlackButton';" onblur="this.className='CTX_BlackButton';" onmouseover="this.className='CTX_BlackButton_Hover';" onfocus="this.blur();" />		
+					</td></tr>
+				</table>
+			</div>
+    			</td>
+			<td class="glowBoxRight"></td>
+		</tr>
+                <tr>
+                    <td class="glowBoxFooter glowBoxLeft">
+                    </td>
+                    <td class="glowBoxFooter loginTableMidWidth glowBoxHorizontalPadding">
+                    </td>
+                    <td class="glowBoxFooter glowBoxRight">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- wrapper end -->
+			</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<!-- Footer -->
+<script language="javascript" type="text/javascript">
+AddFooter();
+</script>
+</table>
+[% INCLUDE loadresources.tmpl %]
+</body>
+</html>
+

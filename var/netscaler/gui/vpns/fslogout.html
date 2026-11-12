@@ -1,0 +1,38 @@
+<HTML><HEAD>
+<META content="text/html;charset=utf-8" http-equiv="Content-Type">
+<TITLE></TITLE>
+<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/vpn/resources/{lang}", "fslogout");
+var frmtitle=parent.frames["title"];
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+</HEAD><BODY>
+<BR><div align="center">
+<TABLE CELLPADDING=2 CELLSPACING=1 BORDER=2>
+<TR><TD COLSPAN=2 ALIGN=center class=title>
+<B><span id="Logoff"></span></B></TD></TR>
+<TR><TD ALIGN=center>
+<FORM id="fs_logout_form" ACTION="/fs/logout" METHOD="POST">
+<script language="javascript">
+	document.writeln('<INPUT TYPE=HIDDEN NAME=nsc_nonce VALUE="' + parent.parent.nsc_nonce +'">');
+</script>
+<TABLE CELLPADDING=4 CELLSPACING=2 BORDER=0>
+<TR><TD ALIGN=middle VALIGN=middle colspan=2><span id="Are you sure?"></span></TD></TR>
+<TR><TD ALIGN=middle colspan=2>
+<INPUT ID="Button_Logoff" TYPE=button onclick="frmtitle.fs_logout();" NAME="logout" VALUE="" STYLE="width:100px;height:24px;" class=button>
+<INPUT ID="Button_Cancel" TYPE=button VALUE="" onclick="frmtitle.NS_cancelAction();" STYLE="width:100px;height:24px;" class=button></TD></TR>
+</TABLE></FORM></TD></TR>
+</TABLE>
+</div>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</BODY></HTML>
+

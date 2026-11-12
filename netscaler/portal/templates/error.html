@@ -1,0 +1,25 @@
+[% META title='Error' 
+ 		id='services'
+%]
+[% WRAPPER wrapper.tmpl %]
+
+<div id="content">
+<h1>Server Error</h1>
+An error has occured.<br><br>
+<script>
+var debug = 0;
+if (debug)
+{
+var qs = decodeURIComponent(window.location.search.substring(1,window.location.search.length));
+qs = qs.replace(/&/g, '&amp;');
+qs = qs.replace(/</g, '&lt;');
+qs = qs.replace(/>/g, '&gt;');
+qs = qs.replace(/\"/g, '&#34;');
+qs = qs.replace(/\'/g, '&#39;');
+document.write(qs);
+}
+</script>
+[% msg %]
+<br><br>
+</div>
+[% END %]

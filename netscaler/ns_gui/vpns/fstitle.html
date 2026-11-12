@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+  <META content="text/html;charset=utf-8" http-equiv="Content-Type">
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "nscode");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+  <TITLE>Citrix Access Gateway</TITLE>
+</HEAD>
+
+<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+
+<script type="text/javascript" src="/vpns/images/nscode.js">
+</script>
+
+<BODY onload='NSStartMenu()' BGCOLOR="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<IMG SRC=images/citrix_logo.gif WIDTH="126" HEIGHT="46">
+
+<script language=JavaScript>
+function ns_disablerightclick(e){
+if ((event.button==2) || (event.button==3)) {return false; } 
+}
+if (document.all&&!document.getElementById){
+document.onmousedown=ns_disablerightclick;
+}
+document.oncontextmenu=new Function("return false")
+</script>
+
+</BODY>
+</HTML>

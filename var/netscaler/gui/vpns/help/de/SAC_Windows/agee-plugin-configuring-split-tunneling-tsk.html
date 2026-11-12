@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Konfigurieren von Split-Tunneling" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-change-settings-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-configuring-split-tunneling-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Konfigurieren von Split-Tunneling</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-configuring-split-tunneling-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Ändern der Einstellungen im Access Gateway Plug-in\nKonfigurieren von Split-Tunneling");
+addButton("show",BTN_TEXT,"Anzeigen","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Home", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-change-settings-wrapper-con.html\">Ändern der Einstellungen im Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Konfigurieren von Split-Tunneling<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-configuring-split-tunneling-tsk" id="agee-plugin-configuring-split-tunneling-tsk"><!-- --></a>
+<h1 class="topictitle1">Konfigurieren von Split-Tunneling</h1>
+<div>
+<div class="section">
+<p>Wenn Split-Tunneling aktiviert ist, filtert Access Gateway den Verkehr mit der IP-Adresse des Zielnetzwerks. Verkehr, der für das Unternehmensnetzwerk bestimmt ist, wird durch Access Gateway gesendet und der restliche Verkehr wird zum lokalen Netzwerk (LAN) oder zum Internet gesendet. Split-Tunneling beschränkt den Netzwerkverkehr durch Access Gateway basierend auf der IP-Adresse.</p>
+<p>Wenn Sie beispielsweise eine Verbindung zu einer Intranetwebsite im Netzwerk der Organisation herstellen, geht die Anfrage an Access Gateway. Wenn Sie eine Verbindung zu einer externen Website herstellen, z. B. cnn.com, wird der Netzwerkverkehr nicht durch das Access Gateway geleitet.</p>
+<p>Split-Tunneling hat drei Optionen:</p>
+<ul>
+<li><span class="uicontrol">Ein:</span> Wenn Split-Tunneling aktiviert ist, vergleicht das Access Gateway Plug-in die IP-Adresse und den Port des Ziels mit den Werten, die vom Systemadministrator auf dem Access Gateway konfiguriert wurden. Falls einer der Werte übereinstimmt, werden die Pakete durch das Access Gateway zum Remotenetzwerk gesendet. Wenn nicht, werden die Pakete an das LAN umgeleitet.</li>
+<li><span class="uicontrol">Aus:</span> Wenn Sie die Option <span class="uicontrol">Aus</span> wählen, wird Split-Tunneling deaktiviert und das Access Gateway Plug-in sendet den gesamten Verkehr durch das Access Gateway zum Remotenetzwerk.</li>
+<li><span class="uicontrol">Umkehren:</span> Wenn <span class="uicontrol">Umkehren</span> aktiviert ist, werden Internetverbindungen und Anfragen an Ihr LAN durch das Access Gateway gesendet. Verbindungen zu internen Netzwerkressourcen werden nicht durch das Access Gateway geleitet. Diese Einstellung wird normalerweise verwendet, wenn das Access Gateway im internen Netzwerk ist und Sie eine Verbindung von Ihrem Büro aus herstellen.</li>
+</ul>
+<div class="p">
+<div class="important"><span class="importanttitle">Wichtig:</span> Falls Split-Tunneling auf dem Access Gateway deaktiviert ist, werden die entsprechenden Steuerelemente für Split-Tunneling und Split-DNS im Access Gateway Plug-in deaktiviert und Sie können diese Einstellungen nicht ändern. Der gesamte Netzwerkverkehr wird durch das Access Gateway gesendet.</div>
+</div>
+</div>
+<ol>
+<li><span>Klicken Sie im Infobereich mit der rechten Maustaste auf das Access Gateway Plug-in-Symbol und klicken Sie dann auf <span class="uicontrol">Access Gateway konfigurieren</span>.</span></li>
+<li><span>Klicken Sie auf die Registerkarte <span class="uicontrol">Profil</span> und dann auf <span class="uicontrol">Profil ändern</span>.</span></li>
+<li><span>Wählen Sie auf der Registerkarte <span class="uicontrol">Verbindungen</span> unter <span class="uicontrol">Split-Tunneling</span> die gewünschte Option aus und klicken Sie dann auf <span class="uicontrol">OK</span>.</span></li>
+</ol>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<tocdata>
+<book name="Citrix Access Gateway Plug-in for Windows" url="Title-Page.htm" >
+  <item name="著作権および商標について" url="ag-copyright.html" />
+</book>
+<book name="ようこそ" url="agee-plugin-welcome-wrapper-con.html" >
+  <item name="表記規則" url="reusable-doc-conventions-c.html" />
+</book>
+<book name="Access Gateway Plug-inの概要" url="agee-plugin-getting-started-wrapper-con.html" >
+  <item name="Access Gatewayのしくみ" url="agee-plugin-how-access-gateway-works-con.html" />
+  <item name="Access Gateway Plug-inのシステム要件" url="agee-plugin-system-requirements-con.html" />
+  <item name="Access Gateway Plug-inによる接続の作成" url="agee-plug-in-creating-connections-tsk.html" />
+  <item name="コンピューター上のソフトウェアのスキャン" url="agee-plugin-epa-con.html" />
+  <item name="クライアント証明書を使用したログオン" url="agee-plugin-client-certificate-tsk.html" />
+  <item name="Access Gateway Plug-inセッションの完了" url="agee-plugin-end-sessions-con.html" />
+  <item name="セッション完了時のコンピューターのクリーンアップ" url="agee-plugin-cleanup-computer-session-ends-tsk.html" />
+  <item name="Access Gateway Plug-inのアップグレード" url="agee-plugin-upgrade-plugin.html" />
+</book>
+<book name="Access Gateway Plug-inでの設定変更" url="agee-plugin-change-settings-wrapper-con.html" >
+  <item name="［詳細オプション］ショートカットメニューを使用した設定変更" url="agee-plugin-change-settings-in-advanced-options-tsk.html" />
+  <item name="Access Gatewayメニューを使用した設定変更" url="agee-changing-settings-from-the-access-gateway-menu-tsk.html" />
+  <item name="分割トンネリングの設定" url="agee-plugin-configuring-split-tunneling-tsk.html" />
+  <item name="Access Gateway Plug-inのアンインストール" url="agee-plugin-uninstall-plugin-tsk.html" />
+</book>
+<book name="アクセスインターフェイスの使用方法" url="agee-plugin-working-with-access-interface-wrapper-con.html" >
+  <item name="アクセスインターフェイスへのログオン" url="agee-plugin-logging-on-to-access-interface-con.html" />
+  <item name="［ホーム］タブへのブックマークの追加" url="agee-plugin-adding-bookmarks-on-the-home-tab-tsk.html" />
+</book>
+<book name="Access Gateway Plug-inのトラブルシューティング" url="agee-plugin-tshoot-wrapper-con.html" >
+  <item name="接続ログの表示" url="agee-plugin-open-the-connection-log-tsk.html" />
+  <item name="Access Gateway Plug-inで発生したエラーの報告" url="agee-plugin-report-ag-plugin-errors-tsk.html" />
+  <item name="圧縮統計の表示" url="agee-viewing-compression-statistics-tsk.html" />
+</book>
+<book name="Access Gatewayセッションのエラーコード" url="agee-plugin-session-codes-wrapper-con.html" >
+  <item name="Access Gatewayセッションのエラーコード" url="agee-plugin-session-error-codes-con.html" />
+</book>
+
+</tocdata>

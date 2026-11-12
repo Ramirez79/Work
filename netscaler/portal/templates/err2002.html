@@ -1,0 +1,19 @@
+[% META title='Error' 
+ 		id='error'	%]
+[% WRAPPER wrapper.tmpl %]
+<script language="JavaScript" type="text/javascript">
+  function ns_doupdate(){
+	window.opener.ns_updateschannel();
+	window.open("/vpns/scripts/dsclient.exe", "_blank");
+	return false;
+  }
+</script>
+<div id="content">
+	<div id="msg">
+		Error 2002: Need to install dsclient.exe.
+	</div>
+	<div id="desc">          
+		NetScaler has detected that your computer has not installed dsclient.exe. This Microsoft software is required by the SSL VPN to provide encryption/decryption functionality. <A HREF="/" onclick="return ns_doupdate();">Click here</A> to install this software. Follow the instructions to complete the installation, reboot the computer, and then login again.';
+	</div>
+</div>
+[% END %]

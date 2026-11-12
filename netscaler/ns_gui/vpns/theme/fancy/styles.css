@@ -1,0 +1,293 @@
+#bookmarks{
+  background: white;
+  background-image: url(block-bottom.gif);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+#filesystems{
+  background: white;
+  background-image: url(block-bottom.gif);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+#bookmarks .item{
+margin-top: 8px;
+padding-left: 30px;
+height: 20px;
+background-image: url(bullet.gif);
+background-position: top left;
+background-repeat: no-repeat;
+}
+#filesystems .item{
+margin-top: 8px;
+padding-left: 30px;
+height: 20px;
+  background-image: url(folder.gif);
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+/* Main body blocks*/
+#contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #3366cc;
+  background-image: url(toolbar-background.gif);
+  background-repeat: repeat-y;
+}
+#header{
+  background: white;
+  height: 80px;
+  margin: 0px;
+}
+#logo{
+  background-image: url(logo.jpg);
+  background-repeat: no-repeat;
+  width: 780px;
+  height: 80px;
+}
+#footer {
+  clear: both;
+  position: absolute;
+  bottom: 0; 
+  background: #3366cc; 
+  color: white;
+  font-size: smaller;
+  width: 100%;
+}
+#content{
+  margin-left: 310px;
+  padding-right: .9em;
+
+}
+#navcontainer{
+ height: 20px;
+background: #3366cc;
+}
+/* BEGIN Toolbar STYLES*/
+#toolbar{
+  width:300px; 
+  float:left; 
+  position:relative; 
+
+}
+
+#toolbar h2{
+  background: #6699cc;
+  background-image: url(blue-right-edge.gif);
+  background-repeat: no-repeat;
+  background-position: top right;
+  padding: .4em;
+  margin: 0;
+  font-size: 1em;
+  height: 1%;
+
+}
+#toolbar h3{
+  color: black;
+  height: 1%;
+}
+#toolbar a{
+  color: blue;
+}
+#toolbar .item{
+ background-image: none;
+ margin-left: 0;
+}
+/* END Toolbar STYLES*/
+.block a{
+  color: #6699cc;
+  text-decoration: none;
+}
+.block h2{
+background: #6699cc;
+  background-image: url(h2-top.gif);
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: .4em;
+  margin: 0;
+  font-size: 1em;	
+}
+.block h3{
+background: #66cccc;
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;  
+  margin-bottom: .2em; 
+}
+.block .item{
+  padding: 0;
+  padding-left: 1em;
+  padding-bottom: .2em;
+  font-size: .8em;
+  margin-left: 15px;
+ 
+}
+.bmoptions{
+  display: inline;
+  float: right;
+  font-size: .8em;
+}
+.bmoptions a {
+ color: black;
+}
+/* Forms and new bookmark styles*/
+
+form .buttonrow{
+  padding-left: 5em;
+}
+#newbm-block{
+  background: white;
+}
+#newbm fieldset {
+  border: 0px solid white;
+}
+#newbm fieldset legend{
+  display: none;
+}
+#newbm fieldset .inlinelabel {
+  text-align:right;
+  width:70px;
+  float:left;
+  padding:0.2em;
+  margin:0;
+  margin-top:0.3em; 
+  font-size: .8em;
+}
+#newbm fieldset .textfield {
+  margin:3px;
+  width: 13em;
+}
+#newbm .labelbr{
+  display: none;
+}
+#newbm .button {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+
+/* Begin: Tips styles*/
+#tipiframe{
+  width: 270px;
+}
+.tipBody{
+
+  width: 270px;
+}
+#tip{
+  font-size: .8em;
+  padding-left: 1em;
+  padding-top: .5em;
+}
+#nexttip{
+  font-size: .6em;
+  float: right;
+}
+/* End: Tips styles*/
+
+/* Begin: Ping Form element styles*/
+#pingiframe{
+  height: 65px;
+  width: 258px; 
+  border: 0px;
+  margin-left: 12px;
+}
+#ping{
+  height: 100px;
+}
+#pingform{
+  margin: 0;
+  padding: 0;
+}
+#pingform fieldset{
+  border: 0px solid white;
+  margin: 0;
+  padding: 0;
+}
+#pingform label{
+  font-size: .7em;
+}
+#pingform input{
+/* Below is a fix for NS6.2 */
+/*  float: left; */
+}
+#ping #response{
+  font-size: .7em;
+}
+/* End: Ping Form element styles*/
+/* Login page styles */
+#loginPage{
+  background: #d1e3a3;
+}
+
+#loginPage #contents{
+  background-image: none;
+}
+
+#loginPage #footer{
+  display: none;
+}
+
+#login-logo{
+  background-image: url(br-logo.gif);
+  height: 80px;
+  width: 300px;
+  margin-left: 296px;
+  margin-top: 185px;
+}
+
+#loginForm{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+#loginForm fieldset {
+  border: 0px solid white;
+}
+
+#loginForm fieldset legend{
+  display: none;
+}
+
+#loginForm .inlinelabel{
+  color:#3e7a9e;
+  font-size: .7em;
+}
+
+#loginForm fieldset .textfield {
+  margin:3px;
+  height:18px;
+  width: 10em;
+}
+/* Structural Styles to get footer at bottom of page*/
+html, body, #contents {
+  min-height: 100%;
+  width: 780px;
+  height: 100%;
+}
+
+/*
+ * The "height" above is a hack for IE5+/Win.  Below we adjust
+ * it using the child selector to hide from IE5+/Win
+ */
+
+html>body, html>body #contents {
+  height: auto;
+}
+
+/*
+ * Without this, Moz1.0 adds a vertical scrollbar
+ */
+
+body {
+  margin: 0;
+  font-family: Tahoma, Helvetica, sans-serif;
+  padding: 0px;
+  background: white;
+
+}

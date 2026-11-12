@@ -1,0 +1,831 @@
+[% USE env = EnvHash %]
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>NetScaler with Unified Gateway</TITLE>
+<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK href="/vpn/images/styles.css" rel=stylesheet>
+<link type="text/css" id="mainCSS" rel="stylesheet" href="/vpns/theme/default/styles.css"> 
+<LINK href="/logon/themes/Default/css/base.css" type=text/css rel=STYLESHEET>
+<LINK href="/logon/themes/Default/css/custom.css" type=text/css rel=STYLESHEET>
+[% INCLUDE resources.tmpl partition = 'portal' %]
+<script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+<style type="text/css">
+.NUI_ContentFrameHeader
+{
+  clear: both;
+  float: top;
+  width: 100%;
+  height: 12px;
+  margin: 10px 0 0 0;
+  color: black;
+  background: #F0F6FB url(/vpns/images/TrailBackground.gif) repeat-x bottom left;
+  border-top: solid 1px #BBC6D6;
+  overflow: auto;
+  letter-spacing: 0;   
+}
+.NUI_ContentFrameContent {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; VERTICAL-ALIGN: top; PADDING-TOP: 0px;
+	font-size: 9pt; 
+	font-family: Arial;
+	color: Black;
+}
+</style>
+</HEAD>
+<BODY onload=OnPageLoad() MS_POSITIONING="GridLayout" id="homepage">
+<script src="/logon/themes/Greenbubble/js/vendor/jquery-1.11.1.min.js" type="text/javascript"></script>
+<SCRIPT language=javascript type=text/javascript>
+	var numWindowsOpen  = 0 ;
+	var numWindowsTotal = 0 ;
+	var applications    = new Array( 0 ) ;
+	
+	var popwin ;
+	function IsWindowOpen()
+	{
+		try
+		{
+			var obj = popwin.name ;
+			return true ;
+		} 
+		catch( e )
+		{
+			return false ;
+		}
+	}
+
+function resizeMe(name){
+  //if IE, set height with scrollHeight
+  return;
+  if(document.getElementById&&document.all||navigator.userAgent.indexOf("Safari") >-1){
+    docHeight = window.frames[name].document.body.scrollHeight;
+  } else { //netscape browser
+    //set iframe to a tiny height to force expansion
+    //otherwise iframe will remain at 150px
+     var item = name.substring(0,name.length-6);
+     docHeight = window.frames[name].document.getElementById(item).scrollHeight;
+     document.getElementById(name).style.height = '10px';
+  }
+  document.getElementById(name).style.height = docHeight + 'px';
+}
+
+</SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+window.onresize = HomeLayoutPageLoad ;
+var selectedTab  = null ;
+var defaultTabId = "firstTab" ;
+var showFirstTab = true;
+var showSecondTab = true;
+var showThirdTab = true;
+var nsc_nonce = "[% env.getvar('HTTP_NSC_NONCE') %]";
+var fs_bm = false;
+function BrowserCheck()
+{
+	var agent = navigator.userAgent.toLowerCase() ;
+
+	this.major = parseInt( navigator.appVersion ) ;
+	this.ie    = ( agent.indexOf( "msie" ) != -1 ) ;
+	
+	if ( this.ie )
+		this.iever = parseInt( agent.substring( agent.indexOf( "msie " ) + 5 ) ) ;
+	else
+		this.iever = 0 ;
+
+    this.win98 = ( ( agent.indexOf( "win98" ) != -1 ) || ( agent.indexOf( "windows 98" ) != -1 ) ) ;
+    this.win95 = ( ( agent.indexOf( "win95" ) != -1 ) || ( agent.indexOf( "windows 95" ) != -1 ) ) ;
+    this.winnt = ( ( agent.indexOf( "winnt" ) != -1 ) || ( agent.indexOf( "windows nt" ) != -1 ) ) ;
+	this.ie5up = this.ie && ( this.iever >= 5 ) ;
+    this.mac   = ( agent.indexOf( "mac" ) != -1 ) ;
+    this.win32 = this.win95 || this.winnt || this.win98 || 
+                 ( ( this.major >= 4 ) && ( navigator.platform == "Win32" ) ) ||
+                 ( agent.indexOf( "win32" ) != -1 ) ||
+                 ( agent.indexOf( "32bit" ) != -1 ) ;
+}
+
+function isSetFS(){
+	var url = window.location.href.toString();
+
+	if(url.indexOf('?') == -1)
+		return false;
+
+	var vars=url.slice(url.indexOf('?')+1).split('&');
+
+	for(x in vars){
+		var value=vars[x].split('=');
+		if(value[0]=='activetab'){
+			if(value[1]=='fs'){
+				fs_bm = true ;
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+	}
+	return false;
+}
+
+var browserType = new BrowserCheck() ;
+var getEmail    = true;
+var getFileShare    = true;
+var getThemes    = true;
+var getApps = new Array( 4 );
+getApps[ 0 ] = true;
+getApps[ 1 ] = true;
+getApps[ 2 ] = true;
+getApps[ 3 ] = true;
+
+function HomeLayoutPageLoad()
+{
+    var tabCount = 3 ;
+
+    if(isSetFS()==true)
+	 defaultTabId="thirdTab";
+	
+
+    if( !showFirstTab )
+    {
+        tabCount-- ;
+        defaultTabId = "secondTab" ;
+    }
+    
+    if( !showSecondTab )
+    {
+        tabCount-- ;
+        if( !showFirstTab )
+        {
+            defaultTabId = "tabApplications" ;
+        }
+    }
+    
+    if( !showThirdTab )
+    {
+        tabCount-- ;
+    }
+    
+    if( tabCount == 0 )
+    {
+        defaultTabId = "" ;
+        ShowHideAllTabs( false );
+    }
+    else if ( tabCount == 1 ) 
+    {
+        ShowHideAllTabs( false );
+    }
+    else
+    {
+        ShowHideAllTabs( true );
+        ShowHideTab( 'firstTab', showFirstTab );
+        ShowHideTab( 'secondTab', showSecondTab );
+        ShowHideTab( 'tabApplications', showThirdTab );        
+    }
+        
+ 	if ( selectedTab == null )
+	{
+		if ( defaultTabId != "" )
+		{
+			selectedTab = document.getElementById(defaultTabId);
+		    if ( selectedTab == null )
+		    {
+			    var tabStrip = null ; 
+			    tabStrip = document.getElementById( "tabstrip" ) ;
+			    if ( tabStrip != null )
+			    {
+			        selectedTab  = FirstTab( tabStrip ) ;
+			    }
+		    }
+		}
+	}
+	
+	if( selectedTab != null ){
+		
+		OnClickedTab(selectedTab);
+		if(fs_bm == true){
+		ShowHideTab( 'firstTab' , false );
+		ShowHideTab( 'secondTab' , false );	
+		}
+	}	
+}
+
+
+function getFrameWin( id )
+{
+	var elm = document.getElementById( id ) ;
+	var win = null ;
+
+	if ( window && window.frames && window.frames[id] ) // IE5, Konq, Safari
+		win = window.frames[id] ;
+	else if ( elm && elm.contentWindow ) // IE5.5+, Moz 1.0+, Opera
+		win = elm.contentWindow ;
+	else // Moz < 0.9 (Netscape 6.0)
+		win = elm ;
+
+	return win ;
+}
+
+function getFrameDoc( id )
+{
+	var win = getFrameWin( id ) ;
+	if ( win == null )
+		return null ;
+
+	// Moz 0.9+, Konq, Safari, IE, Opera
+	if ( win.document )
+		return win.document ;
+		
+	// Moz < 0.9 (NS 6.0)
+	return win.contentDocument ;
+}
+
+
+function PopulateAppFrame( index )
+{    
+
+	var theAppFrame = document.getElementById("applicationsFrame" + index) ;
+	var iFrameDoc   = getFrameDoc( "applicationsFrame" + index ) ;
+	var hasForm     = false ;
+	
+	if ( iFrameDoc != null )
+	{
+		var adCredentialForm = iFrameDoc.getElementById( "ADCredentialForm" ) ;
+		if ( adCredentialForm != null )
+			hasForm = true ;
+	}
+			
+
+	if ( hasForm || getApps[ index  ] )
+	{
+		if ( document.getElementById("hidAppUrl" + index ) != null )
+		{
+			getApps[ index ] = false;				
+			var frameWin = getFrameWin('applicationsFrame' + index ) ;						
+
+			if ( frameWin != null )
+				frameWin.location.href = document.getElementById("hidAppUrl" + index).value;				
+			else
+			{
+				// This should never be executed because the getFrameWin routine is
+				// supposed to work for all browsers.  However, in the case where the
+				// frame window returned is null we fall back to the original code
+				// that worked in IE, NS 7.2, and Mozilla.  Note that setting src in Safari
+				// does not refresh the page from the server instead it uses the cached
+				// document
+				theAppFrame.src = document.getElementById("hidAppUrl" + index).value;
+			}
+		}
+	}
+}
+
+
+function OnClickedTab( element )
+{
+	var isIE = ( !browserType.ie5up || !browserType.win32 ) ? false : true ;
+	
+	// Do not allow user to switch tabs until iframe is fully loaded
+	if ( isIE && element != selectedTab )
+	{
+		var appFrame = null ;
+		var pageId   = selectedTab.getAttribute( "pageId" ) ;
+		
+		if ( pageId == "homeTabContent" )
+		{
+			appFrame = document.getElementById( "applicationsFrame0" ) ;
+			if ( appFrame != null && appFrame.readyState != "complete" ) return;			
+		}
+		else if ( pageId == "emailTabContent" )
+		{
+			appFrame = document.getElementById( "emailFrame" ) ;
+			if ( appFrame != null && appFrame.readyState != "complete" ) return;			
+		}
+		else if ( pageId == "fileShareTabContent" )
+		{
+			appFrame = document.getElementById( "fileShareFrame" ) ;
+			if ( appFrame != null && appFrame.readyState != "complete" ) return;			
+		}
+		else if ( pageId == "themesTabContent" )
+		{
+			appFrame = document.getElementById( "themesFrame" ) ;
+			if ( appFrame != null && appFrame.readyState != "complete" ) return;			
+		}		
+	}
+
+	var origPageId = null ;
+	
+	if ( selectedTab != null )
+	{
+		selectedTab.className = "" ;
+		
+		var origPageId = selectedTab.getAttribute( "pageId" ) ;
+		if ( origPageId != null )
+		{
+			var origPage			  = document.getElementById( origPageId ) ;
+			origPage.style.visibility = 'hidden' ;
+			origPage.style.display = 'none' ;
+		}
+	}
+	
+	element.className = "currentLink" ;
+	
+	var newPageId = element.getAttribute( "pageId" ) ;
+	var tabStrip  = document.getElementById( "tabstrip" ) ;
+	var firstTab  = ( tabStrip != null ) ? FirstTab( tabStrip ) : null ;
+	
+	if ( newPageId != null && firstTab != null )
+	{
+		var newPage			     = document.getElementById( newPageId )        
+		newPage.style.visibility = 'visible' ;
+		newPage.style.display = 'block' ;
+		
+		if( navigator.appName.indexOf("Microsoft") == -1)
+		{
+		    newPage.style.height = (window.innerHeight - GetTabPosOffset( (document.getElementById("commonBox")), false ) - 25) +"px";
+		    newPage.style.width = (window.innerWidth - 40) + "px";
+		}
+
+		newPage.style.left       = GetTabPosOffset( (document.getElementById("commonBox")), true ) + "px" ;
+		newPage.style.top        = GetTabPosOffset( (document.getElementById("commonBox")), false ) + "px" ;
+
+		
+		if ( isIE )
+			newPage.style.width = "100%" ;
+
+	}
+	
+	selectedTab = element ;
+
+	// If email tab is selected and we still have not get emails, set the src attribute of
+	// the email frame.
+	if (newPageId == "emailTabContent")
+	{
+		var theEmailFrame = document.getElementById("emailFrame") ;
+		var iFrameDoc     = getFrameDoc( "emailFrame" ) ;
+		var hasForm       = false ;
+
+		if ( iFrameDoc != null )
+		{
+			var adCredentialForm = iFrameDoc.getElementById( "ADCredentialForm" ) ;
+			if ( adCredentialForm != null )
+				hasForm = true ;
+		}
+
+		if ( hasForm || getEmail )
+		{
+			if ( document.getElementById("hidEmailUrl") != null )
+			{
+				getEmail = false;
+				var frameWin = getFrameWin('emailFrame') ;
+				if ( frameWin != null )
+					frameWin.location.href = document.getElementById("hidEmailUrl").value ;			
+				else
+				{
+					// This should never be executed because the getFrameWin routine is
+					// supposed to work for all browsers.  However, in the case where the
+					// frame window returned is null we fall back to the original code
+					// that worked in IE, NS 7.2, and Mozilla.  Note that setting src in Safari
+					// does not refresh the page from the server instead it uses the cached
+					// document
+					theEmailFrame.src = document.getElementById("hidEmailUrl").value;					
+				}
+			}
+		}
+	}
+	else if (newPageId == "homeTabContent")
+	{
+        PopulateAppFrame( 0 );
+	}
+	else if (newPageId == "themesTabContent")
+	{    
+		var theThemesFrame = document.getElementById("themesFrame") ;
+		var iFrameDoc     = getFrameDoc( "themesFrame" ) ;
+		var hasForm       = false ;
+
+		if ( hasForm || getThemes )
+		{
+			if ( document.getElementById("themesUrl") != null )
+			{
+				getThemes = false;
+				var frameWin = getFrameWin('themesFrame') ;
+				if ( frameWin != null )
+					frameWin.location.href = document.getElementById("themesUrl").value ;			
+				else
+				{
+					// This should never be executed because the getFrameWin routine is
+					// supposed to work for all browsers.  However, in the case where the
+					// frame window returned is null we fall back to the original code
+					// that worked in IE, NS 7.2, and Mozilla.  Note that setting src in Safari
+					// does not refresh the page from the server instead it uses the cached
+					// document
+					theThemesFrame.src = document.getElementById("themesUrl").value;					
+				}
+			}
+		}
+	}
+	else if (newPageId == "fileShareTabContent")
+	{    
+		var theThemesFrame = document.getElementById("fileShareFrame") ;
+		var iFrameDoc     = getFrameDoc( "fileShareFrame" ) ;
+		var hasForm       = false ;
+		
+		if ( hasForm || getFileShare )
+		{
+			if ( document.getElementById("fileSharesUrl") != null )
+			{
+				getFileShare = false;
+				var frameWin = getFrameWin('fileShareFrame') ;
+				if ( frameWin != null )
+					frameWin.location.href = document.getElementById("fileSharesUrl").value ;			
+				else
+				{
+					// This should never be executed because the getFrameWin routine is
+					// supposed to work for all browsers.  However, in the case where the
+					// frame window returned is null we fall back to the original code
+					// that worked in IE, NS 7.2, and Mozilla.  Note that setting src in Safari
+					// does not refresh the page from the server instead it uses the cached
+					// document
+					theThemesFrame.src = document.getElementById("fileSharesUrl").value;					
+				}
+			}
+		}
+		
+	}	
+}
+
+function GetTabPosOffset( element, isLeft )
+{
+	var posOffset     = ( isLeft == true ) ? element.offsetLeft : element.offsetTop ;
+	var parentElement = element.offsetParent ;
+	
+	while ( parentElement != null )
+	{
+		posOffset     = ( isLeft == true ) ? posOffset + parentElement.offsetLeft : posOffset + parentElement.offsetTop ;
+		parentElement = parentElement.offsetParent ;
+	}
+	
+	return posOffset ;
+}
+
+function ShowHideTab( tabId, show )
+{
+	var tabElem = document.getElementById( tabId ) ;
+	if ( tabElem != null )
+	{
+		tabElem.style.visibility = ( show ) ? "visible" : "hidden" ;
+		if (!show)
+		{
+		   tabElem.parentNode.style.display = 'none';		
+		}
+	}
+}
+
+function ShowHideAllTabs( show )
+{
+	var tabStrip = document.getElementById( "tabstrip" ) ;
+	if ( tabStrip != null )
+		tabStrip.style.visibility = ( show ) ? "visible" : "hidden" ;
+}
+
+function FirstTab( node )
+{
+    if ( node.nodeType == 1 /*Node.ELEMENT_NODE*/ )
+    {
+		if ( node.getAttribute( "pageId" ) != null )
+			return node ;
+    }
+        
+    var children = node.childNodes ;
+    var tab      = null ;
+    
+    for ( var index = 0 ; index < children.length ; index++ )
+    {
+        tab = FirstTab( children[index] ) ;
+        if ( tab != null )
+			break ;
+    }
+
+    return tab ;
+}
+
+function LoadFileShare()
+{
+	if (selectedTab != null && selectedTab.getAttribute("pageId")=="fileShareTabContent") {
+		if(getFrameWin("fileShareFrame").frames["icon"] == null) {
+			//File share tab displays transparent image.  Display Home tab instead.
+			OnClickedTab(document.getElementById("firstTab"));
+			getFileShare = true;
+		}
+	}
+
+}
+
+var showLogout;
+var PassChangeEnabled;
+function ProcessHomeConfig(data){
+	$.ajax({
+		url:"/cgi/getHomepageConfig",
+		type: "get",
+		dataType: "json",
+		async : false,
+		success: function(data){
+			if (navigator.platform.indexOf("Win") != -1)
+				showLogout = (data.AlwaysOnClientControls == "Enabled")?true:false;
+			else
+				showLogout = true;
+			PassChangeEnabled = (data.PasswordChange == "Enabled") ? true :false;
+		},
+		error: function(){
+			console.log("Error getting Homepage config for Gateway");
+			showLogout = true;
+			PassChangeEnabled = false;
+		}	
+	})
+	
+	
+}
+function create_user_drop_down(){
+	ProcessHomeConfig();
+	if(PassChangeEnabled){
+		document.writeln("<input id=\"id_ChangePassword\" onclick=\"location.replace('changepwd.html')\" type=button value=\"\" class=\"CTX_CaxtonButtonLink\" onmouseover=\"this.className='CTX_CaxtonButtonLink_Hover';\" onmouseout=\"this.className='CTX_CaxtonButtonLink';\" /> |");
+	}
+	if(showLogout){
+		document.writeln("<input id=\"id_LogOff\" onclick=\"location.replace('/cgi/logout')\" type=button value=\"\" class=\"CTX_CaxtonButtonLink\"	onmouseover=\"this.className='CTX_CaxtonButtonLink_Hover';\" onmouseout=\"this.className='CTX_CaxtonButtonLink';\" />");
+	}
+
+}
+</SCRIPT>
+
+<!-- Header -->
+<table class="full_width_height" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td valign="top" class="full_width">
+			<table class="full_width">
+				<tr id="row1">
+					<td class="header_left"></td>
+				</tr>
+			</table>
+			<table class="full_width" cellspacing="0" cellpadding="0">
+				<tr>
+				<td colspan=2 class="CTXMSAM_ContentFont">
+				<div class="navBarDiv" >
+                <ul class="navBar">
+			<DIV id=tabstrip style="VISIBILITY: hidden; POSITION: relative">
+                    <li  class="currentLink" id=firstTab pageId="homeTabContent">
+                        <a href="javascript:OnClickedTab(document.getElementById('firstTab'))" id=id_Home></a> 
+                    </li>
+                    [% IF env.getvar('HTTP_EMAILHOME').length > 0 %]
+                    <li id=secondTab pageId="emailTabContent">
+          			<a href="javascript:OnClickedTab(document.getElementById('secondTab'))" id=id_Email></a>
+          			</li>
+          			[% END %]
+                    <li id=thirdTab pageId="fileShareTabContent">
+                        <a href="javascript:OnClickedTab(document.getElementById('thirdTab'))" id=id_FileTransfer></a>
+                    </li>
+                    <li id="navEtchFiller">&nbsp;
+                    </li>
+			</div>
+                </ul>
+           		</div>
+            </td>
+			</tr>
+				<tr style="height:20px; padding-right:20px" >    
+	<td colspan=2 class="CTX_CaxtonButtonBar" valign="middle" align="right" nowrap >
+		<script>create_user_drop_down();</script>
+	</td>
+</tr>
+			</table>
+		</td>
+	</tr>
+
+<!-- Main row -->
+<tr class="full_width_height" align="center">
+	<td>
+	<!-- wrapper begin -->
+<table class="mainPane full_width_height" cellpadding="20px" cellspacing="0">
+    <tr class="full_width_height">
+        <td>
+            <table class="full_width_height" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr class="full_width_height">
+                    <td id="commonBox" class="CTXMSAM_ContentFont" >
+                        <table class="CTXMSAM_ContentFont full_width_height" cellspacing="0">
+                            <tr>
+                                <td>
+<!-- content begin -->
+<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+
+  <!-- Table row -->
+  <TR>
+    <TD>
+    <!-- home tab -->
+      <DIV class=NUI_TabPage id=homeTabContent style="min-height:400px">
+      <TABLE class="NUI_TabPageContent full_width_height" cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+        <!-- ping/application columm -->
+          <TD id=ctl00_applicationsContainerCell 
+          style="BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid;  WIDTH: 33%; BORDER-BOTTOM: #999999 1px solid" 
+          align=middle width="33%">
+            <DIV class=NUI_ContentFrame id=ctl00_applications_mainDiv>
+            <TABLE style="WIDTH: 100%; HEIGHT: 100%" cellSpacing=0 cellPadding=4>
+              <TBODY>
+              <TR style="HEIGHT: 12px">
+	  [% IF env.getvar('HTTP_WI_SITE').length > 0 %]
+	  [% matches = env.getvar('HTTP_WI_SITE').split(';') %]
+	  [% END %]
+	  
+	  [% IF matches.0.length > 0 %]
+                <TD class=NUI_ContentFrameHeader><SPAN id=ctl00_applications_label></SPAN> </TD>
+                </TR>
+		<TR style="HEIGHT: 100%">
+		<TD class=NUI_ContentFrameContent>
+                <DIV id="tip" style="BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px; HEIGHT: 100%">
+                <input type="hidden" ID="hidAppUrl0" Value="[% matches.0 %]" />
+                <IFRAME id="applicationsFrame0" border=0 name="applicationsFrame0" src="../navui/images/Transparent.gif" frameBorder=no width="100%" height="100%" padding="0" margin="0"></IFRAME>
+		</DIV>
+		</TD>
+		</TR> 
+         [% ELSE %]             
+		<TD class=NUI_ContentFrameHeader><SPAN id=ctl00_ping_label></SPAN></TD>
+        </TR>
+		<TR style="HEIGHT: 100px">
+                <TD class=NUI_ContentFrameContent>
+                	<DIV id="tip">
+			<IFRAME id="pingframe" border=0 name="pingframe" src="/vpns/portal/ping.html" frameBorder=no width="100%" padding="0" margin="0" onload=resizeMe("pingframe")></IFRAME>
+      		</DIV>
+		</TD>
+		</TR> 
+              <TR style="HEIGHT: 12px">
+                <TD class=NUI_ContentFrameHeader><SPAN id=ctl00_tip_label></SPAN> </TD>
+                </TR>
+              <TR  style="HEIGHT: 100px">
+                <TD class=NUI_ContentFrameContent>
+                    <IFRAME id="tipframe" border=0 name="tipframe" src="/vpns/portal/scripts/tips.pl" frameBorder=no width="100%" padding="0" margin="0" onload=resizeMe("tipframe")></IFRAME> 
+                    </TD></TR>
+<SCRIPT language=javascript type=text/javascript>
+var clientType = '[% env.getvar('HTTP_NSC_CLIENTTYPE') %]'; // client type can be agnt, java, macc, plgn, or cvpn
+if (clientType == null) clientType='';
+if ( clientType.indexOf('java') > -1 ) {
+	document.write ('<TR style="HEIGHT: 12px"><TD class=NUI_ContentFrameHeader><SPAN id=ctl00_help_label></SPAN> </TD></TR>');
+	document.write ('<TR  style="HEIGHT: 100%"><TD class=NUI_ContentFrameContent><DIV id="tip">');
+	document.write ('<a href="/vpns/help/SAC_Java/Title-Page.html">' + _('id_UserGuide') + '</a></DIV></TD></TR>');
+} else if ( clientType.indexOf('agnt') > -1 || clientType.indexOf('plgn') > -1 ) {
+	document.write ('<TR style="HEIGHT: 12px"><TD class=NUI_ContentFrameHeader><SPAN id=ctl00_help_label></SPAN> </TD></TR>');
+	document.write ('<TR  style="HEIGHT: 100%"><TD class=NUI_ContentFrameContent><DIV id="tip">'); 
+	document.write ('<a id="id_UserGuide" href="/vpns/help/SAC_Windows/Title-Page.html"></a></DIV></TD></TR>');
+}
+</SCRIPT>
+		[% END %]
+	</TBODY></TABLE></DIV></TD>
+			<!-- website columm -->
+          <TD id=ctl00_webSitesContainerCell style="BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; WIDTH: 33%; BORDER-BOTTOM: #999999 1px solid" align=middle width="33%">
+            <DIV class=NUI_ContentFrame id=ctl00_webSites_mainDiv>
+            <TABLE style="WIDTH: 100%; HEIGHT: 100%" cellSpacing=0 cellPadding=4>
+              <TBODY>
+              <TR>
+                <TD class=NUI_ContentFrameHeader><SPAN 
+                  id=ctl00_webSites_label>Web Sites</SPAN> </TD>
+                </TR>
+              <TR style="HEIGHT: 100%">
+                <TD class=NUI_ContentFrameContent>
+                    <DIV style="BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px; HEIGHT: 100%">
+                    <IFRAME id=bmframe border=0 name="bmframe" src="/vpns/portal/bookmark.html" frameBorder=no width="100%" height="100%" padding="0" margin="0"></IFRAME> 
+                    </DIV></TD></TR></TBODY></TABLE></DIV></TD>
+				<!-- fileshare columm -->
+                 <TD id=ctl00_fileSharesContainerCell 
+          style="BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; WIDTH: 33%; BORDER-BOTTOM: #999999 1px solid" 
+          align=middle width="33%">
+            <DIV class=NUI_ContentFrame id=ctl00_fileShares_mainDiv>
+            <TABLE style="WIDTH: 100%; HEIGHT: 100%" cellSpacing=0 
+cellPadding=4>
+              <TBODY>
+              <TR>
+                <TD class=NUI_ContentFrameHeader><SPAN 
+                  id=ctl00_fileShares_label></SPAN> </TD>
+                </TR>
+              <TR style="HEIGHT: 100%">
+                <TD class=NUI_ContentFrameContent>
+                    <DIV style="BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px; HEIGHT: 100%">
+                    <IFRAME id=ftframe border=0 name="ftframe" src="/vpns/portal/ftlist.html" frameBorder=no width="100%" height="100%" padding="0" margin="0"></IFRAME> 
+                    </DIV></TD></TR></TBODY></TABLE></DIV></TD>
+                    </TR></TBODY></TABLE></DIV>
+
+	<!-- email tab -->
+	<DIV class=NUI_TabPage id=emailTabContent>
+      <TABLE class=NUI_TabPageContent cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD id=ctl00_emailContainerCell 
+          style="BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; WIDTH: 33%; BORDER-BOTTOM: #999999 1px solid" 
+          align=middle>
+            <DIV class=NUI_ContentFrame id=ctl00_emails_mainDiv>
+            <TABLE style="WIDTH: 100%; HEIGHT: 100%" cellSpacing=0 
+cellPadding=4>
+              <TBODY>
+              <TR style="HEIGHT: 100%">
+                <TD class=NUI_ContentFrameContent>
+                  <DIV class=NUI_EmailContainer><INPUT id=hidEmailUrl type=hidden value="[% env.getvar('HTTP_EMAILHOME') %]" name=ctl00$emails$ctl00$ctl00><IFRAME id=emailFrame border=0 name=emailFrame src="../navui/images/Transparent.gif" frameBorder=no width="100%" height="100%" padding="0" margin="0"></IFRAME> 
+        </DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+
+	<!-- File Transfer tab -->
+      <DIV class=NUI_TabPage id=fileShareTabContent>
+      <TABLE class=NUI_TabPageContent cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD id=ctl00_emailContainerCell 
+          style="BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; WIDTH: 33%; BORDER-BOTTOM: #999999 1px solid" 
+          align=middle>
+            <DIV class=NUI_ContentFrame id=ctl00_emails_mainDiv>
+            <TABLE style="WIDTH: 100%; HEIGHT: 100%" cellSpacing=0 
+cellPadding=4>
+              <TBODY>
+              <TR style="HEIGHT: 100%">
+                <TD class=NUI_ContentFrameContent>
+                  <DIV class=NUI_EmailContainer><INPUT id=fileSharesUrl type=hidden value=/vpns/fslogin.html name=ctl00$emails$ctl00$ctl00><IFRAME id=fileShareFrame onload="LoadFileShare()" src="../navui/images/Transparent.gif" border=0 name=fileShareFrame frameBorder=no width="100%" height="100%" padding="0" margin="0"></IFRAME> 
+        </DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+     
+      <DIV class=NUI_TabPage id=applicationsTabContent>
+      <TABLE class=NUI_TabPageContent cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR></TR></TBODY></TABLE></DIV>
+ 
+        
+       <!-- Theme tab - inactive -->
+      <DIV class=NUI_TabPage id=themesTabContent>
+      <TABLE class=NUI_TabPageContent cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD id=ctl00_themesContainerCell 
+          style="BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; WIDTH: 33%; BORDER-BOTTOM: #999999 1px solid" align=middle>
+            <DIV class=NUI_ContentFrame id=ctl00_emails_mainDiv>
+            <TABLE style="WIDTH: 100%; HEIGHT: 100%" cellSpacing=0 cellPadding=4>
+              <TBODY>
+              <TR style="HEIGHT: 100%">
+                <TD class=NUI_ContentFrameContent>
+                  <DIV class=NUI_EmailContainer><INPUT id=themesUrl type=hidden value=/vpns/portal/scripts/navthemes.pl name=ctl00$themes$ctl00$ctl00><IFRAME id=themesFrame src="../navui/images/Transparent.gif" border=0 name=themesFrame frameBorder=no width="100%" height="100%" padding="0" margin="0"></IFRAME> 
+        </DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+    
+</TD></TR></TBODY></TABLE>
+ <!-- content end -->
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+			
+	</td>
+</tr>
+<!-- Footer - Remove to save space on homepage-->
+ 
+<tr class="full_width" style="display:none">
+	<td valign="bottom">
+		<table class="full_width" cellspacing="0" cellpadding="0">
+		<tr>
+		<td class="watermark">
+		</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+	
+</table>
+
+<SCRIPT language=JavaScript>
+	function OnPageLoad()
+	{
+		//chrome book is an exception here, allow the page to
+		//show on iframe if it is called from chromebook
+
+		var isChromeBookReceiver =  (navigator.userAgent.search(/CrOS/i) != -1);
+
+		if( self == top || isChromeBookReceiver ) {
+			HomeLayoutPageLoad();
+		} else {
+   			top.location = self.location ;
+		}
+	}
+	</SCRIPT>
+[% INCLUDE loadresources.tmpl %]
+</BODY></HTML>
+

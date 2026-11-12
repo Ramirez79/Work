@@ -1,0 +1,236 @@
+[% USE env = EnvHash %]
+<html>
+  <head>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" rel="stylesheet" href="/logon/themes/Default/css/styles.css">
+  <LINK href="/logon/themes/Default/css/base.css" type=text/css rel=STYLESHEET>
+  <LINK href="/logon/themes/Default/css/custom.css" type=text/css rel=STYLESHEET>
+  [% INCLUDE resources.tmpl partition = 'changepwd' %]
+  <script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+  <title>NetScaler with Unified Gateway</title>
+  <script language="javascript" type="text/javascript">
+
+		
+	function inputCheck()
+	{
+		var oldpwd=document.forms['chpwd'].oldpwd.value;
+		var newpwd=document.forms['chpwd'].newpwd.value;
+		var confirmedpwd=document.forms['chpwd'].confirmedpwd.value;
+		if ( !oldpwd || oldpwd=='' || !newpwd || newpwd=='' || !confirmedpwd || confirmedpwd=='' ) {
+			displayError(3);
+			return false;
+		}
+		if ( newpwd != confirmedpwd) {
+			displayError(4);
+			return false;
+		}
+			
+		return true;
+	}
+
+	function displayError(errorCode)
+	{
+		var errorArray = new Array();
+		//errors sent by kernel(needs to be in synch with kernel)
+		errorArray[0] = _("Error0");
+		errorArray[1] = _("Error1");
+		errorArray[2] = _("Error2");
+		errorArray[3] = _("Error3");
+		errorArray[4] = _("Error4");
+		errorArray[5] = _("Error5");
+	
+		var errorMsg = _("The password change failed. Please try again.");
+		if (errorCode >= 0 && errorCode <= 5) //this is errorArray range, 0-5.
+			errorMsg = errorArray[errorCode];
+		
+  		var d = document.getElementById("feedbackArea");
+ 		d.innerHTML =  
+			'<div id="feedbackStyleTop" class="feedbackStyleError">' +
+			'<span id="errorMessage">' + errorMsg  + '<BR>' +
+			'</span></div>' ;
+
+	}
+  </script>
+  </head>
+
+  <body>
+  
+	<table class="full_width_height" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td valign="top" class="full_width">
+				<table class="full_width" cellspacing="0" cellpadding="0">
+					<tr id="row1">
+						<td class="header_left">
+						</td>
+					</tr>
+					<tr id="row2">
+						<td colspan="2" class="navbar">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	
+<!-- Main row -->
+<tr>
+	<td>
+	<table class="full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+		<tr>
+		<td>
+<!-- wrapper begin -->
+<table class="mainPane" width="100%" cellpadding="20px" cellspacing="0">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" >
+              	<tr align="left" style="width:100%;padding-bottom:20px">
+                    <td>	
+				<div id="feedbackArea">
+				<div id="feedbackStyleTop" class="feedbackStyleInfo">
+				<span id="infoMessage"></span>
+				</div>
+				</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" style="text-align:left" width="100%" cellpadding="20px" cellspacing="0">
+                            <tr>
+                                <td>
+
+      <!-- content begin  -->
+		<p style="MARGIN: 0px auto" class="messageTitle"><span id="Change Password"></span></p><br />
+		<p class="bookmark_text"><span id="For more information about changing your password, contact your help desk or system administrator."></span><BR><BR>
+		</p>
+            <div id="content">
+          	<div class="CTXMSAM_ContentFont">           
+            <form action="/cgi/chpwd" name="chpwd" id="chpwd" method="POST" onSubmit="return inputCheck();"  style="margin:0">
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="changePasswordPane CTXMSAM_ContentFont">
+                                        <tr>
+                                            <td class="topSolidBorder">
+                                                <table class="CTXMSAM_ContentFont">
+	                                                <tr>
+		                                                <td class="changePasswordNameColumn">
+		                                                    <span id="labelUsername"></span>
+		                                                </td>
+		                                                <td class="username_text">
+		                                                    [% env.getvar('HTTP_NSC_USER') %]
+		                                                </td>
+	                                                </tr>
+                                                </table>
+                                            </td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td class="topDottedBorder">
+                                                <table class="CTXMSAM_ContentFont">
+	                                                <tr>
+		                                                <td class="changePasswordNameColumn">
+		                                                    <span id="labelOldPassword"></span>
+		                                                </td>
+		                                                <td>
+		                                                    <input class="bookmark_input" type="password" maxlength="127" name="oldpwd" id="oldpwd" value="" tabindex="1" style="width:19em;" />
+		                                                </td>
+	                                                </tr>
+                                                </table>
+                                            </td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td class="topDottedBorder">
+                                                <table class="CTXMSAM_ContentFont">
+	                                                <tr>
+		                                                <td class="changePasswordNameColumn">
+		                                                    <span id="labelNewPassword"></span>
+		                                                </td>
+		                                                <td>
+		                                                    <input class="bookmark_input" type="password" maxlength="127" name="newpwd" id="newpwd" value="" tabindex="1" style="width:19em;" />
+		                                                </td>
+	                                                </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+										<tr>
+                                            <td class="topDottedBorder">
+                                                <table class="CTXMSAM_ContentFont">
+	                                                <tr>
+		                                                <td class="changePasswordNameColumn">
+		                                                    <span id="labelConfirmedPassword"></span>
+		                                                </td>
+		                                                <td>
+		                                                    <input class="bookmark_input" type="password" maxlength="127" name="confirmedpwd" id="confirmedpwd" value="" tabindex="1" style="width:19em;" />
+		                                                </td>
+	                                                </tr>
+                                                </table>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="fadeLineSeparator">
+                                            </td>
+                                        </tr>                                    
+                                    </table>
+                                    <table class="CTXMSAM_ContentFont">
+                                        <tr>
+                                            <td class="buttonPaddingTop changePasswordButtonPaddingLeft">
+                                            	<input id="Submit" type="SUBMIT" name="action" value="" tabindex="2" class="Apply_Cancel_OK" /> 
+                  					<input id="Cancel" type="reset" value="" onclick="window.location.replace('/vpns/services.html')" tabindex="3" class="Apply_Cancel_OK" />                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+				    <input type="hidden" name="nsc_nonce" id="nsc_nonce" value="[% env.getvar('HTTP_NSC_NONCE') %]" />
+				</form>
+          </div> 
+      </div>
+      <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+			</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<!-- Footer -->
+<script language="javascript" type="text/javascript">
+AddFooter();
+</script>
+</table>
+[% INCLUDE loadresources.tmpl %]
+</body>
+<script language="javascript" type="text/javascript">
+//Check to see if kernel returns errorcode
+var errcodeindex = window.location.href.indexOf('errorcode=');
+if (errcodeindex > -1) {
+	var errorcode = window.location.href.substring(errcodeindex+10);
+	displayError(errorcode);
+}
+
+try{
+//set focus
+var inputControl = document.getElementById( "oldpwd" );
+inputControl.focus();
+} catch(e) {
+}
+</script>
+</html>
+
+

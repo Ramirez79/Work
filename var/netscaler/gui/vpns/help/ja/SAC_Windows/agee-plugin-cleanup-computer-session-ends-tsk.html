@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="セッション完了時のコンピューターのクリーンアップ" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-getting-started-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-cleanup-computer-session-ends-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>セッション完了時のコンピューターのクリーンアップ</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-cleanup-computer-session-ends-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Access Gateway Plug-inの概要\nセッション完了時のコンピューターのクリーンアップ");
+addButton("show",BTN_TEXT,"表示","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&gt;", "ホーム", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-getting-started-wrapper-con.html\">Access Gateway Plug-inの概要<\/a> &gt; セッション完了時のコンピューターのクリーンアップ<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-cleanup-computer-session-ends-tsk" id="agee-plugin-cleanup-computer-session-ends-tsk"><!-- --></a>
+<h1 class="topictitle1">セッション完了時のコンピューターのクリーンアップ</h1>
+<div>
+<div class="section">
+<p>セッションの実行中、コンピューターに一時ファイルが作成されます。 Access Gatewayにはクリーンアップ機能があり、一時ファイルをコンピューターから削除できます。 システム管理者がこの機能を有効にします。</p>
+<p>次の項目を選択してコンピューターから削除できます。</p>
+<ul>
+<li>Access Gateway Plug-in</li>
+<li>認証に使用した証明書</li>
+<li>セッション中に使用したアプリケーション</li>
+<li>パスワードおよびオートコンプリートのデータ</li>
+<li>履歴およびアドレスバーに入力したWebアドレス</li>
+<li>Cookieおよび一時ファイル</li>
+</ul>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-summary-tab-info"><a name="agee-plugin-summary-tab-info" id="agee-plugin-summary-tab-info"><!-- --></a>
+<h2 class="topictitle2">［概要］タブで確認できる情報</h2>
+<div>
+<div class="section">
+<p><span class="uicontrol">［概要］</span>タブにはセッションについて次の情報が表示されます。</p>
+<ul>
+<li>変更されたレジストリエントリ数の合計</li>
+<li>インストールされたCookie数の合計</li>
+<li>使用されたアプリケーション数の合計</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-config-cleanup-level"><a name="agee-plugin-config-cleanup-level" id="agee-plugin-config-cleanup-level"><!-- --></a>
+<h2 class="topictitle2">クリーンアップレベルの構成</h2>
+<div>
+<div class="section">
+<p>ログオフ時にデータセットの一部またはすべてを削除するように、Access Gatewayを構成できます。 使用するコンピューターが個人のものである場合は特に、オートコンプリートのデータ、格納したパスワード、および履歴など、一部のデータは保持するとよいでしょう。 データは次の3つのグループに分類されているので、選択してデータを削除できます。</p>
+<p><span class="uicontrol">なし：</span> このレベルを選択すると、データセットは削除されません。</p>
+<p><span class="uicontrol">Webブラウザーのみ：</span> このレベルを選択すると、次のデータセットを1つまたはそれ以上削除するように設定されます。</p>
+<ul>
+<li>Webブラウザーにより格納されたパスワードおよびオートコンプリートのデータ</li>
+<li>履歴およびアドレスバーに入力したWebアドレス</li>
+<li>WebブラウザーキャッシュのCookieおよび一時ファイル</li>
+</ul>
+<p><span class="uicontrol">すべての項目：</span> このレベルを選択すると、コンピューターに生成されたすべての一時データを削除するように設定されます。</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-cleanup-process-config"><a name="agee-plugin-cleanup-process-config" id="agee-plugin-cleanup-process-config"><!-- --></a>
+<h2 class="topictitle2">クリーンアッププロセスの構成</h2>
+<div>
+<div class="section">
+<p>システム管理者がクリーンアッププロセスを制御します。 管理者がクリーンアップのダイアログボックスを開くようにAccess Gatewayを構成した場合にのみ、ダイアログボックスが開きます。 さらに管理者は、セッションの終了時にコンピューターから特定のデータセットを削除するように、Access Gatewayを構成することもできます。 これらのデータセットに対応するオプションは、<span class="uicontrol">［Citrix Windowsクリーンアップ］</span>ダイアログボックスの<span class="uicontrol">［一覧］</span>タブで選択できないようになっています。 残りのオプションは、選択したクリーンアップレベルに基づいて有効または無効になります。</p>
+</div>
+<ol>
+<li><span><span class="uicontrol">［Citrix Windowsクリーンアップ］</span>ダイアログボックスの<span class="uicontrol">［一覧］</span>タブをクリックします。</span></li>
+<li><span>データセットのチェックボックスをオンまたはオフにします。</span></li>
+</ol>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-view-cleanup-logs"><a name="agee-plugin-view-cleanup-logs" id="agee-plugin-view-cleanup-logs"><!-- --></a>
+<h2 class="topictitle2">クリーンアップログの表示</h2>
+<div>
+<div class="section">
+<p>Access Gateway Plug-inでは、ハードドライブ上に格納されたログファイルにすべてのクリーンアップ状況が記録されます。 このファイルには、実行された操作と削除されたファイルが記録されます。</p>
+</div>
+<ol>
+<li><span><span class="uicontrol">［概要］</span>タブで<span class="uicontrol">［ログを表示］</span>をクリックします。</span></li>
+</ol>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

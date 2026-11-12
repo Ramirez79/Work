@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Erstellen von Verbindungen mit dem Access Gateway Plug-in" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-getting-started-wrapper-con.html" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-epa-con.html" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-client-certificate-tsk.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plug-in-creating-connections-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Erstellen von Verbindungen mit dem Access Gateway Plug-in</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plug-in-creating-connections-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Erste Schritte mit dem Access Gateway Plug-in\nErstellen von Verbindungen mit dem Access Gateway Plug-in");
+addButton("show",BTN_TEXT,"Anzeigen","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Home", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-getting-started-wrapper-con.html\">Erste Schritte mit dem Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Erstellen von Verbindungen mit dem Access Gateway Plug-in<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plug-in-creating-connections-tsk" id="agee-plug-in-creating-connections-tsk"><!-- --></a>
+<h1 class="topictitle1">Erstellen von Verbindungen mit dem Access Gateway Plug-in</h1>
+<div>
+<div class="section">
+<p>Damit Sie eine Verbindung mit dem Access Gateway Plug-in herstellen und es verwenden können, muss der Systemadministrator Ihnen die folgenden Informationen geben:</p>
+<ul>
+<li>Access Gateway-Webadresse, z.&#160;B. <var class="varname">https://AccessGatewayFQDN/</var>.</li>
+<li>Alle vom Systemadministrator festgelegten Systemanforderungen zum Ausführen des Plug-ins. Systemanforderungen können eine auf Ihrem Computer installierte Antivirussoftware oder persönliche Firewall umfassen.</li>
+</ul>
+<p>Abhängig von der Konfiguration des Computers müssen Sie eventuell weitere Anforderungen erfüllen:</p>
+<ul>
+<li>Um das Access Gateway Plug-in zu installieren, müssen Sie ein lokaler Administrator oder ein Mitglied der Gruppe "Administratoren" sein, um Programme auf Ihrem Computer zu installieren.</li>
+<li>Falls Sie auf Ihrem Computer eine persönliche Firewall verwenden, werden Sie bei der ersten Verbindung mit dem Plug-in eventuell von der Firewall aufgefordert, die Verbindung zuzulassen. Falls Ihnen diese Aufforderung angezeigt wird, lassen Sie die Verbindung immer zu. Informationen über das Zulassen von Verbindungen finden Sie in der Dokumentation des Herstellers.</li>
+</ul>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-connect-web-address"><a name="agee-plugin-connect-web-address" id="agee-plugin-connect-web-address"><!-- --></a>
+<h2 class="topictitle2">Herstellen einer Verbindung mit einer Webadresse</h2>
+<div>
+<div class="section">
+<p>Wenn Sie eine Verbindung mit einer Webadresse herstellen, werden Sie entweder zur Anmeldung aufgefordert oder direkt zu einer Portalseite weitergeleitet, auf der Sie eine Verbindung mit dem Access Gateway Plug-in herstellen.</p>
+<p>Wenn Access Gateway so konfiguriert ist, das Sie sich anmelden müssen, bevor Sie eine Verbindung mit dem Plug-in herstellen können, geben Sie Ihren Benutzernamen und Ihr Kennwort ein und melden Sie sich an. Auf der angezeigten Webseite können Sie das Plug-in herunterladen und installieren. Nachdem das Access Gateway Plug-in installiert ist, bietet die Verbindung vollständigen Zugriff auf die Netzwerkressourcen, die Sie verwenden dürfen.</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-connect-using-plugin"><a name="agee-plugin-connect-using-plugin" id="agee-plugin-connect-using-plugin"><!-- --></a>
+<h2 class="topictitle2">Herunterladen und Installieren des Access Gateway Plug-ins</h2>
+<div>
+<div class="section">
+<p>Wenn Sie zum ersten Mal eine gesicherte Verbindung herstellen, melden Sie sich am Access Gateway mit einem Webbrowser an. Wenden Sie sich für die Webadresse und die Anmeldeinformationen an den Administrator. Das typische Format einer Webadresse ist <var class="varname">https://ag.Unternehmensname.com</var>.</p>
+</div>
+<ol>
+<li><span>Geben Sie in einem Webbrowser die Webadresse des Access Gateways ein.</span></li>
+<li><span>Geben Sie Ihren Benutzernamen und Ihr Kennwort ein und klicken Sie auf <span class="uicontrol">Anmelden</span>.</span></li>
+<li><span>Klicken Sie auf <span class="uicontrol">Netzwerkzugriff</span>, um das Plug-in zu installieren.</span></li>
+</ol>
+<div class="section">
+<p>Nach Abschluss des Downloads stellt das Plug-in eine Verbindung her und zeigt im Infobereich der Taskleiste eine Meldung an. Sie können sich auch mit dem Access Gateway-Symbol im Infobereich anmelden.</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-connect-dialog-box"><a name="agee-plugin-connect-dialog-box" id="agee-plugin-connect-dialog-box"><!-- --></a>
+<h2 class="topictitle2">Verbinden über das Dialogfeld "Access Gateway Plug-in"</h2>
+<div>
+<div class="section">
+<p>Wenn Sie mit dem Access Gateway Plug-in eine Verbindung ohne einen Webbrowser herstellen möchten, können Sie das Plug-in zur Anzeige des Anmeldedialogfelds konfigurieren, wenn Sie auf das Symbol im Infobereich klicken.</p>
+<div class="p">
+<div class="note"><span class="notetitle">Anmerkung:</span> Zum Konfigurieren der Einstellungen des Access Gateway Plug-ins müssen Sie angemeldet sein.</div>
+</div>
+</div>
+<ol>
+<li><span>Klicken Sie im Infobereich mit der rechten Maustaste auf das Access Gateway-Symbol und klicken Sie dann auf <span class="uicontrol">Access Gateway konfigurieren</span>.</span></li>
+<li><span>Klicken Sie auf die Registerkarte <span class="uicontrol">Profil</span> und dann auf <span class="uicontrol">Profil ändern</span>.</span></li>
+<li><span>Klicken Sie auf der Registerkarte <span class="uicontrol">Optionen</span> auf <span class="uicontrol">Access Gateway Plug-in für Anmeldung verwenden</span>.</span></li>
+</ol>
+<div class="section">
+<p>Sie können sich anmelden, indem Sie auf dem Desktop auf das Access-Gateway-Symbol doppelklicken oder im Infobereich der Taskleiste mit der rechten Maustaste auf das Access Gateway-Symbol klicken und dann auf <span class="uicontrol">Anmelden</span> klicken. Weitere Informationen zum Konfigurieren des Access Gateway Plug-ins finden Sie unter <a href="agee-plugin-change-settings-in-advanced-options-tsk.html">Ändern der Einstellungen im Dialogfeld "Erweiterte Optionen"</a>.</p>
+</div>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

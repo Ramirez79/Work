@@ -1,0 +1,23 @@
+[% META title='Customize Your Stylesheet' 
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+<div id="selector" style="padding:10px;clear: both;">
+<h2>Delete Themes Confirmation</h2>
+[% FOREACH theme = themes %]
+	[% IF theme.value.name %]
+		[% IF theme.value.default %]
+		You cannot delete the default theme.  Select another theme as default, then try again. 
+		[% ELSE %]
+		<form action="[% env.adminLoc %]admin-delete-themes.pl" method="post" name="admintheme">
+			<input type="checkbox" name="theme" value="[% theme.key %]" />[% theme.key %]<br><br>
+			<input type="submit" name="select" value="Ok" />
+			<input type="button" value="Cancel" onclick="history.go(-1)" class="button">
+		</form>	
+		[%- END -%]
+	[%- END -%]
+[%- END -%]
+
+</div>
+[% END %]

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Configuring Split Tunneling"/>
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-change-settings-wrapper-con.html"/>
+<meta name="prodname" content="ag"/>
+<meta name="version" content="9.1"/>
+<meta name="version" content="9.2"/>
+<meta name="DC.Date.Created" content=""/>
+<meta name="DC.Date.Modified" content="off"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="agee-plugin-configuring-split-tunneling-tsk"/>
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Configuring Split Tunneling</title>
+</head>
+<body id="agee-plugin-configuring-split-tunneling-tsk"><a name="agee-plugin-configuring-split-tunneling-tsk"><!-- --></a>
+
+<h1 class="topictitle1">Configuring Split Tunneling</h1>
+<div><div class="section"> <p>When split tunneling is enabled, Access Gateway filters traffic using the IP address of the destination network. Traffic meant for your organization’s network is sent through Access Gateway and the rest of the traffic is sent to your local area network (LAN) or the Internet. Split tunneling limits the network traffic through Access Gateway based on the IP address.</p>
+<p>For example, you connect to an intranet Web site within your organizations network and the request goes to Access Gateway. If you connect to a Web site that  is an external Web site, such as cnn.com, the network traffic does not go through Access Gateway.  </p>
+
+<p>Split tunneling has three options:</p>
+<ul><li>  <strong>On.</strong> When split tunneling is enabled,
+the Access Gateway Plug-in compares the destination IP address and
+port against the values that the system administrator configured on
+Access Gateway. If one of the values match, the packets are
+sent to the remote network through Access Gateway. If not,
+the packets are diverted to your LAN.</li>
+<li><span class="uicontrol">Off.</span> When you choose the <span class="uicontrol">Off</span> option,
+split tunneling is disabled and the Access Gateway Plug-in sends all
+traffic to the remote network through Access Gateway.</li>
+<li><span class="uicontrol">Reverse On.</span> When <span class="uicontrol">Reverse On</span> is
+enabled, Internet connections and requests to your LAN are sent
+through Access Gateway. Connections to internal network
+resources are not sent through Access Gateway. This setting is
+typically used when Access Gateway resides in the internal
+network and you are connecting from your office.</li>
+</ul>
+
+
+<p><strong>Important:</strong> If split tunneling is
+disabled on Access Gateway, the corresponding controls for
+split tunneling and split DNS are disabled in the Access Gateway
+Plug-in and you cannot change the settings. All network traffic is
+sent through Access Gateway.</p>
+
+</div>
+<ol><li><span>Right-click the Access Gateway Plug-in icon in the notification area and then click <span class="uicontrol">Configure Access Gateway</span>.</span></li>
+<li><span>Click the <span class="uicontrol">Profile</span> tab and then click <span class="uicontrol">Change Profile</span>.</span></li>
+<li><span>On the <span class="uicontrol">Connections</span> tab, under <span class="uicontrol">Split tunneling</span>, select the option you want and then click <span class="uicontrol">OK</span>.</span></li>
+</ol>
+</div>
+
+
+</body>
+</html>

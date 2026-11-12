@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Anmelden mit einem Clientzertifikat" />
+<meta name="DC.Relation" scheme="URI" content="agee-plug-in-creating-connections-tsk.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="2011-01-12" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-client-certificate-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Anmelden mit einem Clientzertifikat</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-client-certificate-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Erste Schritte mit dem Access Gateway Plug-in\nAnmelden mit einem Clientzertifikat");
+addButton("show",BTN_TEXT,"Anzeigen","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Home", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-getting-started-wrapper-con.html\">Erste Schritte mit dem Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Anmelden mit einem Clientzertifikat<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-client-certificate-tsk" id="agee-plugin-client-certificate-tsk"><!-- --></a>
+<h1 class="topictitle1">Anmelden mit einem Clientzertifikat</h1>
+<div>
+<div class="section">
+<p>Unter Umständen melden Sie sich am Access Gateway mit einem Clientzertifikat an. Bei Anmelden am Access Gateway werden Ihre Details im Zertifikat mit Informationen verglichen, die der Systemadministrator auf dem Access Gateway konfiguriert hat. Wenn die Details übereinstimmen, können Sie sich anmelden. Wenn die Details nicht übereinstimmen, wird die Anmeldung möglicherweise verweigert.</p>
+<p>Access Gateway kann ein Clientzertifikat authentifizieren, das an einem dieser Orte gespeichert ist:</p>
+<div class="p">
+<ul>
+<li>Im Zertifikatspeicher des Windows-Betriebssystems auf Ihrem Gerät. In diesem Fall wird das Clientzertifikat separat im Zertifikatspeicher mit der Microsoft Management Console installiert.</li>
+<li>Auf einer Smartcard oder einem Hardwaretoken. In diesem Fall wird das Zertifikat auf der Smartcard eingebettet und von einem mit dem Netzwerk verbundenen Smartcardleser gelesen.</li>
+<li>Auf einer Zugriffskarte, die das United States Department of Defense für die Identifizierung und Authentifizierung verwendet.</li>
+</ul>
+</div>
+<p>Um das Clientzertifikat auf Ihrem Gerät zu installieren, folgen Sie den Anweisungen, die Ihnen der Systemadministrator oder das Helpdesk-Personal zur Verfügung gestellt haben.</p>
+<p>Wenn Sie mehrere Clientzertifikate auf Ihrem Gerät installiert haben, werden Sie vom Access Gateway Plug-in aufgefordert, das richtige Zertifikat für die Anmeldung auszuwählen.</p>
+<p>Wenn Sie Internet Explorer oder das Dialogfeld <span class="uicontrol">Access Gateway Plug-in</span> für die Anmeldung verwenden, wird das Clientzertifikat aus dem Windows-Zertifikatspeicher verwendet. Wenn Sie den Firefox-Webbrowser für die Anmeldung verwenden, müssen Sie das Zertifikat in Firefox importieren.</p>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-import-cert-firefox"><a name="agee-plugin-import-cert-firefox" id="agee-plugin-import-cert-firefox"><!-- --></a>
+<h2 class="topictitle2">So importieren Sie ein Clientzertifikat in Firefox</h2>
+<div>
+<ol>
+<li><span>Öffnen Sie den Firefox-Webbrowser.</span></li>
+<li><span>Klicken Sie im Menü auf <span class="uicontrol">Extras</span> und dann auf <span class="uicontrol">Einstellungen</span>.</span></li>
+<li><span>Klicken Sie auf <span class="uicontrol">Erweitert</span>.</span></li>
+<li><span>Klicken Sie im Dialogfeld <span class="uicontrol">Zertifikate</span> auf <span class="uicontrol">Zertifikate anzeigen</span>. Klicken Sie dann auf <span class="uicontrol">Importieren</span>.</span></li>
+<li><span>Navigieren Sie zu dem auf Ihrem Computer gespeicherten Zertifikat und klicken Sie dann auf <span class="uicontrol">Öffnen</span>.</span>
+<p>Sie werden eventuell nach einem Kennwort für das Zertifikat gefragt. Wenden Sie sich für das Kennwort an Ihren Systemadministrator oder das Helpdesk-Personal.</p>
+</li>
+<li><span>Klicken Sie auf <span class="uicontrol">OK</span>.</span></li>
+</ol>
+<div class="section">
+<p>Weitere Informationen zum Importieren von Zertifikaten in Firefox finden Sie in der Firefox-Hilfe.</p>
+</div>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

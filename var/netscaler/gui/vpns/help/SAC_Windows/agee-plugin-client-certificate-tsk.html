@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Logging On with a Client Certificate"/>
+<meta name="DC.Relation" scheme="URI" content="agee-plug-in-creating-connections-tsk.html"/>
+<meta name="prodname" content="ag"/>
+<meta name="version" content="9.2"/>
+<meta name="DC.Date.Created" content=""/>
+<meta name="DC.Date.Modified" content="2011-01-12"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="agee-plugin-client-certificate-tsk"/>
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Logging On with a Client Certificate</title>
+</head>
+<body id="agee-plugin-client-certificate-tsk"><a name="agee-plugin-client-certificate-tsk"><!-- --></a>
+
+<h1 class="topictitle1">Logging On with a Client Certificate</h1>
+<div><div class="section"><p>You might log on to Access Gateway using a client certificate.   When you log on to Access Gateway, your details in the certificate are matched against information that your system administrator configured on Access Gateway. If the details match, you can log on. If the details do not match, log on might be denied.<p> Access Gateway can authenticate a client certificate that is
+stored in one of these locations:</p>
+
+
+<div class="p">
+<ul><li>
+
+In the certificate store of the
+Windows operating system on your device. In this case, the client certificate is installed
+separately in the certificate store using
+the Microsoft Management Console.
+</li>
+<li>
+
+In a smart card or a hardware token. In this
+case, the certificate is embedded
+within the smart card and read from a smart card reader attached to
+the network.
+</li>
+<li>In a common access card that the United States Department of
+Defense uses for identification and authentication.
+</li>
+</ul>
+
+</div>
+
+<p>To install the client certificate on your device, follow the instructions provided by your system administrator or Help desk personnel.</p>
+<p>If you have multiple client certificates installed on your device, the Access Gateway Plug-in prompts you to select the correct certificate to log on.</p>
+<p>If you log on using Internet Explorer or the <span class="uicontrol">Access Gateway Plug-in</span> dialog box, the client certificate is used from the Windows certificate store.  If you log on using the Firefox Web browser, you need to import the certificate to Firefox.</p>
+</div>
+</div>
+
+<div class="nested1" id="agee-plugin-import-cert-firefox"><a name="agee-plugin-import-cert-firefox"><!-- --></a><h2 class="topictitle2">To import a client certificate to Firefox</h2>
+<div><ol><li><span>Open the Firefox Web browser.</span></li>
+<li><span>On the menu, click <span class="uicontrol">Tools</span> and then click <span class="uicontrol">Options</span>.</span></li>
+<li><span>Click <span class="uicontrol">Advanced</span>.</span></li>
+<li><span>In the <span class="uicontrol">Certificate Manager</span> dialog box, click <span class="uicontrol">Your Certificates</span> and then click <span class="uicontrol">Import</span>.</span></li>
+<li><span>Navigate to the certificate stored on your computer and then click <span class="uicontrol">Open</span>.</span> <p>You might be asked for a password for the certificate.  Contact your system administrator or Help desk personnel for the password.</p>
+</li>
+<li><span>Click <span class="uicontrol">OK</span>.</span></li>
+</ol>
+<div class="section"><p>For more information about importing certificates to Firefox, see the Firefox Help.</p>
+</div>
+</div>
+</div>
+
+</body>
+</html>

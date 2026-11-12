@@ -1,0 +1,263 @@
+html, body, #contents {
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * The "height" above is a hack for IE5+/Win.  Below we adjust
+ * it using the child selector to hide from IE5+/Win
+ */
+
+html>body, html>body #contents {
+  height: auto;
+}
+
+/*
+ * Without this, Moz1.0 adds a vertical scrollbar
+ */
+
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: [% style.font.family %];
+  font-size: [% style.font.size %];
+  background: white;
+}
+
+#contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  font-family: MS San Serif;
+  width: 100%;
+/*  text-align: center;*/
+}
+
+#header{
+  border: 1px solid black;
+  background: black;
+  color: red;
+  margin: 0px;
+}
+#logo{
+  background-image: url(/vpns/themes/default/logo.gif);
+  height: 47px;
+  width: 204px;
+}
+#toolbar{
+  float: right;
+  width: 280px;
+  padding-top: .5em;
+  padding-right: 1em;
+}
+#fmBody #content{
+ padding-left: 0;
+ margin-right: 0;
+}
+#content{
+  clear: left;
+  margin-top: .5em;
+  padding-top: .5em;
+  padding-left: 1em;
+  margin-right: 310px;
+}
+#services #content{
+  padding-left: 50px;
+  clear: both;
+  margin-left: 0;
+}
+.bmoptions{
+  display: inline;
+  float: right;
+  font-size: .8em;
+}
+#footer{
+  clear: both;
+  background: black;
+  color: white;
+  font-size: 12px;
+  font-family: MS Sans Serif;
+  width: 100%;
+}
+.tipBody{
+  background-color: [% style.block.background %];
+	color: [% style.item.color %];
+}
+#tipiframe{
+  width: 270px;
+}
+#tip{
+  font-size: .8em;
+  padding-left: 1em;
+  padding-top: .5em;
+}
+#nexttip{
+  font-size: .6em;
+  float: right;
+}
+
+.block{
+  border: 1px solid [% style.block.border %];
+  margin-bottom: .8em;
+  background-color: [% style.block.background %];
+}
+.block h2{
+  background-color: [% style.h2.background %];
+  color: [% style.h2.color %];
+  padding: .2em;
+  margin: 0;
+  font-size: 1em;	
+}
+.block h3{
+  background-color: [% style.h3.background %];
+  color: [% style.h3.color %];
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;   
+  margin-bottom: .2em;
+}
+.block .item{
+  color: [% style.item.color %];
+  padding: 0;
+  padding-left: 1em;
+  padding-bottom: .2em;
+  font-size: .8em;
+}
+.block .item a {
+  color: [% style.item.color %];
+}
+/* Begin: Form element styles*/
+#newbm .labelbr{
+  display: none;
+}
+#newbm fieldset {
+  border: 0px solid white;
+}
+#newbm fieldset legend{
+  display: none;
+}
+#newbm fieldset .inlinelabel {
+  color: [% style.item.color %];
+  text-align:right;
+  width:70px;
+  float:left;
+  padding:0.2em;
+  margin:0;
+  margin-top:0.3em; 
+  font-size: .8em;
+}
+#newbm fieldset .textfield {
+  margin:3px;
+  height:20px;
+  width: 13em;
+}
+#newbm .button {
+  font: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin-right: 1em;
+}
+#newbm .buttonrow{
+  width: 20em;
+  text-align: center;
+}
+/* End: Form element styles*/
+/* Begin: Ping Form element styles*/
+#pingform label{
+  font-size: .7em;
+}
+#pingform input{
+  float: left;
+}
+#pingform fieldset{
+  border: 0px solid white;
+margin-bottom: 2px;
+padding-bottom: 0px;
+margin: 0;
+padding: 0;
+}
+#pingform .labelbr{
+  display: inline;
+  width: 0px;
+  float: none;
+}
+#ping #response{
+font-size: .7em;
+}
+#ping{
+  background-color: [% style.block.background %];
+}
+#ping form{
+margin: 0px;
+padding: 0px;
+
+}
+#pingiframe{
+ height: 65px;
+ width: 258px; 
+ border: 0px;
+margin-left: 12px;
+}
+/* End: Ping Form element styles*/
+/* Login page styles */
+#login-logo{
+  background-image: url(/theme/customizable/netscaler_logo.gif);
+  height: 88px;
+  width: 349px;
+  margin-left: 260px;
+  margin-top: 20px;
+}
+#login-image{
+  background-image: url(/theme/customizable/login-image.gif);
+  height: 205px;
+  width: 296px;
+  position: absolute;
+  top: 120px;
+}
+
+#loginForm{
+  position: absolute;
+  top: 170px;
+  left: 390px;
+}
+#loginPage{
+  min-width: 620px; 
+}
+#loginPage #contents {
+  background-image: url(/theme/customizable/login-background.gif);
+  background-repeat: repeat-x;
+}
+#loginPage #main {
+  height: 340px;
+}
+#loginForm fieldset{
+  border: 0px solid white;
+}
+#loginForm fieldset legend{
+  display: none;
+}
+#loginForm .inlinelabel{
+  color:white;
+  font-size: .7em;
+}
+#loginForm fieldset .textfield {
+  margin-right:3px;
+  width: 10em;
+  font-family: monospace;
+  border: 1px solid grey;
+}
+#login-button{
+  color: black;
+  border: 1px solid grey;
+}
+.descr{
+  padding-left: .5em;
+}

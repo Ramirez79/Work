@@ -1,0 +1,80 @@
+var ns = new Object();
+
+/*
+ * Default branding implementation - NS
+ * Other branding implementations will override this.
+ */
+ns.branding = new function()
+{
+    // Keep this in sync with branding constants in constants.php & tabs definition in header.php
+    this.NS = "NS";
+    this.AGEE = "AGEE";
+    this.OCB = "OCB";
+    this.OCC = "OCC";
+    this.BYTEMOBILE = "BYTEMOBILE";
+	this.XENMOBILE = "XENMOBILE";
+
+    this.is_ns = function()
+    {
+        return this.get_branding() == this.NS;
+    };
+
+    this.is_agee = function()
+    {
+        return this.get_branding() == this.AGEE;
+    };
+
+    this.is_ocb = function()
+    {
+        return this.get_branding() == this.OCB;
+    };
+
+    this.is_occ = function()
+    {
+        return this.get_branding() == this.OCC;
+    };
+
+    this.is_bytemobile = function()
+    {
+        return this.get_branding() == this.BYTEMOBILE;
+    };
+
+
+    this.get_branding = function()
+    {
+        return this.BRANDING;
+    };
+
+    // Following can be overriden
+    this.BRANDING = this.NS;
+    this.get_tabs = function()
+    {
+        var tabs = [];
+        tabs.push({title: "Dashboard", url: "/menu/st"});
+        tabs.push({title: "Configuration", url: "/menu/neo"});
+        tabs.push({title: "Reporting", url: "/menu/rep"});
+        tabs.push({title: "Documentation",url: "/menu/doc"});
+        tabs.push({title: "Downloads", url: "/menu/dw"});
+        return tabs;
+    };
+
+    this.get_app_links = function()
+    {
+       var app_links = [];
+       app_links.push({title: "Dashboard", url: "/menu/st"});
+       app_links.push({title: "Configuration", url: "/menu/neo"});
+	   app_links.push({title: "Reporting", url: "/menu/rep"});
+
+       app_links.push({title: "Documentation", url: "/menu/doc"});
+       app_links.push({title: "Downloads", url: "/menu/dw"});
+
+       return app_links;
+    };
+
+    this.get_info_links = function()
+    {
+       var info_links = [];
+
+       return info_links;
+    };
+};

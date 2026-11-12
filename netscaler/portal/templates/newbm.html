@@ -1,0 +1,180 @@
+[% META title='Add Bookmark' 
+        script='/js/newbookmark.js'
+%]
+[% USE env = EnvHash %]
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="min_width_800">
+  <head>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <LINK href="/logon/themes/Default/css/base.css" type=text/css rel=STYLESHEET>
+  <link type="text/css" rel="stylesheet" href="/logon/themes/Default/css/styles.css">
+  <LINK href="/logon/themes/Default/css/custom.css" type="text/css" rel=STYLESHEET>
+  <script src="/logon/themes/Greenbubble/js/vendor/jquery-1.11.1.min.js" type="text/javascript"></script>
+  [% INCLUDE resources.tmpl partition = 'newbm' %]
+  <title>
+      NetScaler with Unified Gateway
+    </title>
+  [% IF template.script -%]
+  <script type="text/javascript" src="/vpns/prtl[% template.script %]"></script>
+  [% END -%]
+  <script type="text/javascript">
+  var text = new Array();
+  var link = new Array();
+  var HomePageConfig = {};
+  $.ajax({
+    async: false,
+    url:"/cgi/getHomepageConfig",
+    type: "get",
+    dataType: "json",
+    success: function(responseData){
+          HomePageConfig = responseData;
+      },
+    error: function(responseData, textStatus, XMLHttpRequest) {
+        console.log("Error in getting HomePage Config");
+        },
+  });
+
+
+  </script>
+  <script type="text/javascript" src="/vpns/services.js"></script>
+  </head>
+  <body style="overflow: auto" class="min_width_800"
+      [%- IF template.onload -%]onload="[% template.onload %]" 
+    [%- END -%]
+    [%- IF template.onunload -%] onunload="[% template.onunload %]"
+    [%- ELSE -%]
+    onunload=ns_unload();
+    [%- END -%]
+      [%- IF template.id -%]id="[% template.id %]" 
+    [%- END -%]>
+
+    <!-- Main row -->
+<table class="full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+<tr>
+  <td>
+  <table class="full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+    <tr>
+    <td>
+<!-- wrapper begin -->
+<table class="mainPane" width="100%" cellpadding="20px" cellspacing="0">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" style="text-align:left" width="100%" cellpadding="20px" cellspacing="0">
+                            <tr>
+                                <td>
+
+      <!-- content begin  -->
+    <p style="MARGIN: 0px auto" class="messageTitle"><span id="Add a Bookmark"></span></p><br />
+    <p class="bookmark_text"><span id="To add a Web site, type in the full address"></span><BR> 
+           <span id="To add a file share, type in the server and folder name"></span><BR>
+           <span id="To add a RDP Link info"></span><BR><BR>
+           <span id="The maximum length of each field is 256 characters."></span><BR><BR>
+    </p>
+            <div id="content">
+            <div class="CTXMSAM_ContentFont" id="newbm-block">           
+            <form action="[% env.getvar('scriptLoc') %]newbm.pl" name="newbm" id="newbm" method="POST" onSubmit="return bmCheck();"  style="margin:0">
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="changePasswordPane CTXMSAM_ContentFont">
+                                        <tr>
+                                            <td class="topSolidBorder">
+                                                <table class="CTXMSAM_ContentFont">
+                                                  <tr>
+                                                    <td class="changePasswordNameColumn">
+                                                        <span id="ctl10_labelUsername"></span>
+                                                    </td>
+                                                    <td>
+                                                        <input class="bookmark_input" type="text" maxlength="256" name="title" id="prompt" value="" tabindex="1" style="width:30em;" onblur="this.value=removeSpaces(this.value);">
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                            </td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td class="topDottedBorder">
+                                                <table class="CTXMSAM_ContentFont">
+                                                  <tr>
+                                                    <td class="changePasswordNameColumn">
+                                                        <span id="ctl10_labelNewPassword"></span>
+                                                    </td>
+                                                    <td>
+                                                        <input class="bookmark_input" type="text" maxlength="256" name="url" id="url" value="" tabindex="1" style="width:30em;" onblur="this.value=removeSpaces(this.value);" />
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                            </td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td class="topDottedBorder">
+                                                <table class="CTXMSAM_ContentFont">
+                                                  <tr>
+                                                    <td class="changePasswordNameColumn">
+                                                        <span id="ctl10_labelConfirmNewPassword"></span>
+                                                    </td>
+                                                    <td>
+                                                        <input class="bookmark_input" type="text" maxlength="256" name="desc" id="desc" value="" tabindex="1" style="width:30em;" onblur="this.value=removeSpaces(this.value);" />
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                            </td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td class="fadeLineSeparator">
+                                            </td>
+                                        </tr>                                   
+                                    </table>
+                                    <table class="CTXMSAM_ContentFont">
+                                        <script language="javascript" type="text/javascript">
+                                          showRdpcheckbox();
+                                        </script> 
+                                        <tr>
+                                            <td class="buttonPaddingTop changePasswordButtonPaddingLeft">
+                                              <input id="Button_Add" type="SUBMIT" name="action" value="Add" tabindex="2" class="Apply_Cancel_OK" /> 
+                                  <input id="Button_Cancel" type="reset" value="Cancel" onclick="window.close();" tabindex="3" class="Apply_Cancel_OK" />                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+            <input type="hidden" name="nsc_nonce" id="nsc_nonce" value="[% env.getvar('HTTP_NSC_NONCE') %]" />
+        </form>
+          </div> 
+      </div>
+      <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+      </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+[% INCLUDE loadresources.tmpl %]
+  </body>
+</html>
+
+
+

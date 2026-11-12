@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-es" xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Inicio de sesión con un certificado de cliente" />
+<meta name="DC.Relation" scheme="URI" content="agee-plug-in-creating-connections-tsk.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="2011-01-12" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-client-certificate-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Inicio de sesión con un certificado de cliente</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-client-certificate-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Introducción a Access Gateway Plug-in\nInicio de sesión con un certificado de cliente");
+addButton("show",BTN_TEXT,"Mostrar","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Inicio", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-getting-started-wrapper-con.html\">Introducción a Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Inicio de sesión con un certificado de cliente<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-client-certificate-tsk" id="agee-plugin-client-certificate-tsk"><!-- --></a>
+<h1 class="topictitle1">Inicio de sesión con un certificado de cliente</h1>
+<div>
+<div class="section">
+<p>Es posible iniciar sesión en Access Gateway mediante un certificado de cliente. Al iniciar sesión en Access Gateway, los detalles que figuran en el certificado se comparan con la información configurada en Access Gateway por el administrador del sistema. Si los detalles coinciden, puede iniciar sesión. En caso contrario, no podrá iniciar sesión.</p>
+<p>Access Gateway puede autenticar un certificado de cliente almacenado en una de estas ubicaciones:</p>
+<div class="p">
+<ul>
+<li>En el almacén de certificados del sistema operativo de Windows en su dispositivo. En este caso, el certificado de cliente se instala por separado en el almacén de certificados mediante Microsoft Management Console.</li>
+<li>En una tarjeta inteligente o identificador de hardware. En este caso, el certificado está incrustado en la tarjeta inteligente y se lee desde el lector de tarjeta inteligente conectado a la red.</li>
+<li>En una tarjeta de acceso común utilizada por el Departamento de Defensa de los Estados Unidos para identificación y autenticación.</li>
+</ul>
+</div>
+<p>Para instalar el certificado de cliente en su dispositivo, siga las instrucciones suministradas por el administrador del sistema o el personal de asistencia técnica.</p>
+<p>Si tiene varios certificados de cliente en su dispositivo, Access Gateway Plug-in le pedirá que seleccione el certificado correcto para iniciar sesión.</p>
+<p>Si inicia sesión mediante Internet Explorer o el cuadro de diálogo <span class="uicontrol">Access Gateway Plug-in</span>, el certificado de cliente se utiliza desde el almacén de certificados de Windows. Si inicia sesión desde el explorador Web Firefox, deberá importar el certificado para Firefox.</p>
+</div>
+</div>
+<div class="nested1" id="agee-plugin-import-cert-firefox"><a name="agee-plugin-import-cert-firefox" id="agee-plugin-import-cert-firefox"><!-- --></a>
+<h2 class="topictitle2">Para importar un certificado de cliente a Firefox</h2>
+<div>
+<ol>
+<li><span>Abra el explorador Web Firefox.</span></li>
+<li><span>En el menú, haga clic en <span class="uicontrol">Herramientas</span> y, a continuación, haga clic en <span class="uicontrol">Opciones</span>.</span></li>
+<li><span>Haga clic en <span class="uicontrol">Avanzado</span>.</span></li>
+<li><span>En el cuadro de diálogo <span class="uicontrol">Administrador de certificados</span>, haga clic en <span class="uicontrol">Sus certificados</span> y, a continuación, haga clic en <span class="uicontrol">Importar</span>.</span></li>
+<li><span>Desplácese hasta el certificado almacenado en su equipo y haga clic en <span class="uicontrol">Abrir</span>.</span>
+<p>Se le solicitará una contraseña para el certificado. Comuníquese con el administrador del sistema o el personal de asistencia técnica para conocer la contraseña.</p>
+</li>
+<li><span>Haga clic en <span class="uicontrol">Aceptar</span>.</span></li>
+</ol>
+<div class="section">
+<p>Para obtener más información sobre la importación de certificados a Firefox, consulte la Ayuda de Firefox.</p>
+</div>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

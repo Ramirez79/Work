@@ -1,0 +1,173 @@
+[% META title='Homepage' 
+ 		script='/js/homepage.js'
+ 		onload='popHomePage(text,link)'
+ 		id='homepage'	%]
+[% USE env = EnvHash %]
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" id="mainCSS" rel="stylesheet" href="/logon/themes/Default/css/styles.css">
+  <link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+  <link href="/logon/themes/Default/css/custom.css" type="text/css" rel=stylesheet>
+  [% INCLUDE resources.tmpl partition = 'bookmark' %]
+  <title>
+      [% titleprefix %][% IF !template.title %][% titledefault %][% ELSE %][% template.title %][% END %][% titlepostfix %]
+    </title>
+	<script src="/logon/themes/Greenbubble/js/vendor/jquery-1.11.1.min.js" type="text/javascript"></script>
+  [% IF template.script -%]
+  <script type="text/javascript" src="/vpns/prtl[% template.script %]"></script>
+  [% END -%]
+  <script type="text/javascript">
+	var text = new Array();
+	var link = new Array();
+  </script>
+  <script type="text/javascript" src="/vpns/services.js"></script>
+  </head>
+  <body class="website_section" style="overflow-y: auto; background:transparent;" 
+		[%- IF template.onload -%]onload="[% template.onload %]" 
+		[%- END -%]
+		[%- IF template.onunload -%] onunload="[% template.onunload %]" 
+		[%- END -%]
+  		[%- IF template.id -%]id="[% template.id %]" 
+		[%- END -%]>
+<div class="enterprise_website_section" style="height:auto ;">		
+<B> <span id=id_EnterpriseWebSites></span> </B>
+<div class="NUI_Icon" id="globalbk">[%- INSERT globalBK.tmpl -%]</div>
+<div id="dummy" style="height:auto;"></div>
+</div>
+<BR>
+
+<div class="personal_websites_section" style="height:auto ;">
+<B> <span id=id_PersonalWebSites></span> </B>
+[% IF escbk.bookmark.size == 0 || !escbk.bookmark %]
+	<div class="NUI_Icon"><span class="none" id="none"></span></div>
+[% END %]    
+<script>
+var bookmark_List;	
+var HomePageConfig = {};
+
+$.ajax({
+	async: false,
+	url:"/cgi/getHomepageConfig",
+	type: "get",
+	dataType: "json",
+	success: function(responseData){
+	      HomePageConfig = responseData;
+	  },
+	error: function(responseData, textStatus, XMLHttpRequest) {
+	    console.log("Error in getting HomePage Config");
+	    }
+});
+
+$.ajax({
+		async: false,
+		url:"/cgi/Resources/List",
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+					bookmark_List = data;
+                    }	
+	})
+var gb_home = top.location.pathname.indexOf("homepage2.html");
+
+function showTooltip(element)
+{
+	if (gb_home != -1){
+			for (var i=0; element.childNodes.length; i++)
+			{
+				if(element.childNodes[i].className == "tooltip")
+					{
+						var tooltipdiv = element.childNodes[i];
+						tooltipdiv.style.display = 'block';
+						var height = tooltipdiv.offsetHeight + 7;
+						tooltipdiv.style.top = '-'+ height + "px";
+						break;
+					}
+			}
+	}
+}
+
+function hideTooltip(element)
+{
+	for (var i=0; element.childNodes.length; i++)
+	{
+		if(element.childNodes[i].className == "tooltip")
+		{var tooltipdiv = element.childNodes[i];
+		tooltipdiv.style.display = 'none';
+		break;}
+		
+	}
+}
+</script>
+[% FOREACH bm = escbk.bookmark -%]
+<script>
+	var obj={
+		title: '[% bm.title %]',
+		url: '[% bm.url %]'
+	}
+	
+	var first_letter = obj.title.split(';')[0]+';';
+	var first_letter_span = '<span class="hide_text">'+first_letter+"</span>";
+</script>
+	<div class="NUI_Icon" onmouseover="showTooltip(this)" onmouseout="hideTooltip(this)">
+    <table cellSpacing="0" cellPadding="0">
+    <tr>
+    <td class="cell3"><a class="bookmark_icon_anchor" href="[% bm.url %]" target="_blank">[% bm.title %]</a>
+	<a href="[% bm.url %]" TARGET="_BLANK" class="popup_icon" name="bm_linkname" style="padding-left:5px;" >
+	  <img src="/vpns/navui/images/bookmark_pop_icon.png" border="0">
+	</a>
+	[% IF bm.descr %]
+	<br/>
+	<span class="descr">[% bm.descr %]</span>
+	[% END %]
+	</td>
+    </tr>
+    </table>
+	<div class="tooltip">
+		<h3>[% bm.title %]</h3>
+		<p>[% bm.descr %]</p>
+		<span class="arrow"></span>
+	</div>
+    </div>
+	<script>
+	var query_param;
+	var slash = "/";
+	if(obj.url.indexOf("rdp://") == 0){
+			obj.url = window.location.origin + "/rdpproxy/" + obj.url.substring(6);
+			query_param = obj.url.split("?");
+
+			if(HomePageConfig && HomePageConfig.UserDefinedRDP.RDPListener != ""){
+				if(query_param[0].charAt(query_param[0].length -1) != slash.charAt(0)) //Modyfying code because slash is being cvpnized
+								query_param[0] += "/";
+				query_param[0] += HomePageConfig.UserDefinedRDP.RDPListener;			
+			}
+			if(query_param[1]){
+				obj.url =  query_param[0] + "?" + query_param[1];
+			} else {
+				obj.url = query_param[0];
+			}
+	}
+	
+	var anchor = document.getElementsByTagName("a");
+	var anchor_reqd = anchor[anchor.length-1];
+	anchor_reqd.href = obj.url;
+	anchor[anchor.length-2].href = obj.url;
+	var td = anchor_reqd.parentNode;
+	var anchor_html = td.innerHTML;
+	td.innerHTML = first_letter_span+anchor_html;
+	</script>
+[% END -%]
+<BR>
+
+<div class="button_container">
+<a id="id_Add" href="/vpns/empty.html" onclick="javascript:return ns_popupbookmarkoppage('newbm.html');" target="_blank"></a>
+<a class="button_separator">|</a>
+<a id="id_Remove" href="/vpns/empty.html" target="_blank" onclick="javascript:return ns_popupbookmarkoppage('rmbm.html');"></a>
+</div>
+</div>
+[% INCLUDE loadresources.tmpl %]
+  </body>
+</html>
+
+

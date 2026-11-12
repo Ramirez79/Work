@@ -1,0 +1,38 @@
+body       {  margin-top:0px; font-size:10pt;font-family:Helvetica, Arial, sans-serif;font-weight:normal; color:#000000 }
+
+a:link     {  color: #0000aa; font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+a:active   {  color: #0000aa; font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+a:visited  {  color: #0000aa; font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+a:hover    {  color: #cc0000; font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  } 
+
+h1         {  font-family:Helvetica, Arial, sans-serif; font-size: 14pt; font-weight: regular; margin-top:15px; margin-bottom:0px; }
+h2         {  font-family:Helvetica, Arial, sans-serif; font-size: 12pt; font-weight: bold; margin-top:10px; margin-bottom:0px; }
+h3         {  font-family:Helvetica, Arial, sans-serif; font-size: 11pt; font-weight: bold; margin-top:5px;  margin-bottom:0px; }
+h4         {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt; font-weight: bold; margin-top:5px;  margin-bottom:0px; }
+
+th         {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt; font-weight: bold;  }
+td         {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+p          {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+ol         {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+ul         {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+li         {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+p          {  font-family:Helvetica, Arial, sans-serif; font-size: 10pt;  }
+b          {  font-weight: bold; }
+i          {  font-style: italic;  }
+pre        {  font-family: Courier,sans-serif; font-size: 10pt;  }
+div        {  font-family: Courier,sans-serif;  }
+input      {  font-family: Courier,sans-serif; font-size: 10pt;  }
+select     {  font-size: 10px; font-family: Helvetica, Arial, sans-serif;  }
+strong     {  font-weight: bold; }
+textarea   {  font-size: 10px; font-family: Courier,sans-serif;  }
+option     {  font-size: 10px; font-family: Courier,sans-serif;  }
+
+.BookTitle  { color: #ffffff; font-size: 10pt; font-family:Helvetica, Arial, sans-serif; font-weight:bold; }
+.chapNumber { color: #666666; font-size: 14pt; font-family:Helvetica, Arial, sans-serif; font-weight:bold; }
+.chapTitle  { color: #000000; font-size: 14pt; font-family:Helvetica, Arial, sans-serif; font-weight:bold; }
+.monospace  { font-family:courier, couriernew, monospaced size; font-size: 10pt; white-space: pre }
+.codeline   { font-family:courier, couriernew, monospaced size; font-size: 10pt; white-space: pre }
+.navigation { color: #D12124; font-family:Helvetica, Arial, sans-serif; font-size: 10pt; font-weight:bold; }
+.footer     { font-family:Helvetica, Arial, sans-serif; font-size: 8pt; }
+.footnote   { font-family:Helvetica, Arial, sans-serif; font-size: 9pt; }
+

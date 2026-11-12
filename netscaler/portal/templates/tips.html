@@ -1,0 +1,26 @@
+[% PROCESS boilerplate.tmpl %]
+[% USE env = EnvHash %]
+<html>
+  <head>
+  [% IF style.theme %]
+    [% IF style.theme == 'custom' %]
+      <link type="text/css" rel="stylesheet" href="[% env.getvar('portalLoc') %]styles.css">
+    [% ELSE %]
+       <link type="text/css" rel="stylesheet" href="/vpns/themes/[% style.theme %]/styles.css">
+    [% END %]
+  [% ELSE %]
+	   <link type="text/css" rel="stylesheet" href="/vpns/themes/default/styles.css">  
+  [% END %]
+[% INCLUDE resources.tmpl partition = 'tips' %]
+    <title>
+		Tips
+    </title>
+  </head>
+  <body class="tipBody">
+  <div id="nexttip"><a id="id_NextTip" href="[% env.getvar('scriptLoc') %]tips.pl"></a></div>
+  <div id="tip">
+ [%- tip -%]
+  </div>
+[% INCLUDE loadresources.tmpl %]
+  </body>
+</html>

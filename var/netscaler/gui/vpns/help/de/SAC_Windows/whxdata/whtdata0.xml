@@ -1,0 +1,38 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<tocdata>
+<book name="Citrix Access Gateway Plug-in für Windows" url="Title-Page.htm" >
+  <item name="Copyright und Marken" url="ag-copyright.html" />
+</book>
+<book name="Willkommen" url="agee-plugin-welcome-wrapper-con.html" >
+  <item name="Typografische Konventionen" url="reusable-doc-conventions-c.html" />
+</book>
+<book name="Erste Schritte mit dem Access Gateway Plug-in" url="agee-plugin-getting-started-wrapper-con.html" >
+  <item name="Funktionsweise des Access Gateways" url="agee-plugin-how-access-gateway-works-con.html" />
+  <item name="Systemanforderungen für das Access Gateway Plug-in" url="agee-plugin-system-requirements-con.html" />
+  <item name="Erstellen von Verbindungen mit dem Access Gateway Plug-in" url="agee-plug-in-creating-connections-tsk.html" />
+  <item name="Durchsuchen Ihres Computers nach Software" url="agee-plugin-epa-con.html" />
+  <item name="Anmelden mit einem Clientzertifikat" url="agee-plugin-client-certificate-tsk.html" />
+  <item name="Beenden der Access Gateway Plug-in-Sitzungen" url="agee-plugin-end-sessions-con.html" />
+  <item name="Bereinigen Ihres Computers beim Beenden Ihrer Sitzung" url="agee-plugin-cleanup-computer-session-ends-tsk.html" />
+  <item name="Aktualisieren des Access Gateway Plug-ins" url="agee-plugin-upgrade-plugin.html" />
+</book>
+<book name="Ändern der Einstellungen im Access Gateway Plug-in" url="agee-plugin-change-settings-wrapper-con.html" >
+  <item name="Ändern der Einstellungen im Dialogfeld &quot;Erweiterte Optionen&quot;" url="agee-plugin-change-settings-in-advanced-options-tsk.html" />
+  <item name="Ändern der Einstellungen über das Access Gateway-Menü" url="agee-changing-settings-from-the-access-gateway-menu-tsk.html" />
+  <item name="Konfigurieren von Split-Tunneling" url="agee-plugin-configuring-split-tunneling-tsk.html" />
+  <item name="Deinstallieren des Access Gateway Plug-ins" url="agee-plugin-uninstall-plugin-tsk.html" />
+</book>
+<book name="Arbeiten mit dem Access Interface" url="agee-plugin-working-with-access-interface-wrapper-con.html" >
+  <item name="Anmelden am Access Interface" url="agee-plugin-logging-on-to-access-interface-con.html" />
+  <item name="Hinzufügen von Lesezeichen auf der Registerkarte &quot;Home&quot;" url="agee-plugin-adding-bookmarks-on-the-home-tab-tsk.html" />
+</book>
+<book name="Problembehandlung beim Access Gateway Plug-in" url="agee-plugin-tshoot-wrapper-con.html" >
+  <item name="Öffnen des Verbindungsprotokolls" url="agee-plugin-open-the-connection-log-tsk.html" />
+  <item name="Melden von Fehlern mit dem Access Gateway Plug-in" url="agee-plugin-report-ag-plugin-errors-tsk.html" />
+  <item name="Anzeigen von Komprimierungsstatistiken" url="agee-viewing-compression-statistics-tsk.html" />
+</book>
+<book name="Access Gateway-Sitzung: Fehlercodes" url="agee-plugin-session-codes-wrapper-con.html" >
+  <item name="Access Gateway-Sitzung: Fehlercodes" url="agee-plugin-session-error-codes-con.html" />
+</book>
+
+</tocdata>

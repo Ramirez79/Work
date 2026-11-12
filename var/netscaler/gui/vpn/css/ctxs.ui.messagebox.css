@@ -1,0 +1,136 @@
+
+.ctxsui-messagebox
+{
+    height: 142px;
+    min-width: 388px;
+	max-height: 300px;
+	width: 510px;
+    display: table;
+	color: white;
+}
+.ctxsui-messagebox>.messagebox-top,
+.ctxsui-messagebox>.messagebox-bottom,
+.ctxsui-messagebox>.messagebox-middle
+{
+    display: table-row;
+}
+.ctxsui-messagebox .messagebox-top>div, 
+.ctxsui-messagebox .messagebox-bottom>div, 
+.ctxsui-messagebox .messagebox-middle>div
+{
+    display: table-cell;
+}
+.ctxsui-messagebox .messagebox-topleft
+{
+    background: url("../media/messagebox/topleft.png") no-repeat;
+    width: 41px;
+	min-width: 41px;
+    height: 40px;
+}
+.ctxsui-messagebox .messagebox-topbody
+{
+    background: url("../media/messagebox/topbody.png") repeat-x;
+}
+.ctxsui-messagebox .messagebox-topright
+{
+    background: url("../media/messagebox/topright.png") no-repeat;
+    width: 41px;
+	min-width: 41px;
+    height: 40px;
+}
+.ctxsui-messagebox .messagebox-bottomleft
+{
+    background: url("../media/messagebox/bottomleft.png") no-repeat;
+    width: 41px;
+    height: 40px;
+}
+.ctxsui-messagebox .messagebox-bottombody
+{
+    background: url("../media/messagebox/bottombody.png") repeat-x;
+}
+.ctxsui-messagebox .messagebox-bottomright
+{
+    background: url("../media/messagebox/bottomright.png") no-repeat;
+    width: 41px;
+    height: 40px;
+}
+.ctxsui-messagebox .messagebox-middleleft
+{
+    background: url("../media/messagebox/middleleft.png") repeat-y;
+}
+.ctxsui-messagebox .messagebox-middleright
+{
+    background: url("../media/messagebox/middleright.png") repeat-y;
+}
+.ctxsui-messagebox .messagebox-middlebody
+{
+    background: url("../media/messagebox/middlebody.png") repeat;
+	position: relative;
+}
+
+
+.ctxsui-messagebox .headermessage
+{
+    font-size: 16px;
+    font-weight: normal;
+    margin: 30px auto 30px auto;
+    text-align: center;
+	height: 100%;
+    width: 100%;
+}
+
+.ctxsui-messagebox .ctxsAlert
+{
+	height: 100%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.ctxsui-messagebox .ctxsAlert>.messagebox-title
+{
+}
+.ctxsui-messagebox .ctxsAlert>.messagebox-body
+{
+	text-align: center;
+}
+.ctxsui-messagebox .ctxsAlert>.messagebox-buttons
+{
+	text-align: center;
+	margin-top: 30px;
+}
+
+.dialogBoxOverlay
+{
+	position: fixed;
+}
+
+.dialogBoxOverlay .ctxsui-messagebox
+{
+	z-index: 2000;
+}
+
+.dialogBoxOverlay .cloud
+{
+	background-image: url("../media/dialogBox_overlay.png");
+	background-repeat: no-repeat;
+	height: 370px;
+    width: 628px;
+    z-index: 1500;
+}
+
+#mask
+{
+	background-color: black;
+    display: block;
+    opacity: 0;
+    filter:Alpha(Opacity=0);
+    position: fixed;
+    top: 0;
+	left: 0;
+    z-index: 1000;
+}
+
+.messagetext
+{
+	text-align: center;
+	color: white;
+}

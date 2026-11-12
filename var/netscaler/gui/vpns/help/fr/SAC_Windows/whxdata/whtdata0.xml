@@ -1,0 +1,38 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<tocdata>
+<book name="Citrix Access Gateway Plug-in pour Windows" url="Title-Page.htm" >
+  <item name="Avis de copyright et de marques déposées" url="ag-copyright.html" />
+</book>
+<book name="Bienvenue" url="agee-plugin-welcome-wrapper-con.html" >
+  <item name="Conventions de la documentation" url="reusable-doc-conventions-c.html" />
+</book>
+<book name="Guide de démarrage d’Access Gateway Plug-in" url="agee-plugin-getting-started-wrapper-con.html" >
+  <item name="Fonctionnement d’Access Gateway" url="agee-plugin-how-access-gateway-works-con.html" />
+  <item name="Configuration requise pour Access Gateway Plug-in" url="agee-plugin-system-requirements-con.html" />
+  <item name="Création de connexions à l’aide d’Access Gateway Plug-in" url="agee-plug-in-creating-connections-tsk.html" />
+  <item name="Analyse de l'ordinateur pour détecter la présence des logiciels" url="agee-plugin-epa-con.html" />
+  <item name="Ouverture de session avec un certificat client" url="agee-plugin-client-certificate-tsk.html" />
+  <item name="Fin des sessions Access Gateway Plug-in" url="agee-plugin-end-sessions-con.html" />
+  <item name="Nettoyage de l'ordinateur à la fin de la session" url="agee-plugin-cleanup-computer-session-ends-tsk.html" />
+  <item name="Mise à niveau d’Access Gateway Plug-in" url="agee-plugin-upgrade-plugin.html" />
+</book>
+<book name="Modification des paramètres d’Access Gateway Plug-in" url="agee-plugin-change-settings-wrapper-con.html" >
+  <item name="Modification des paramètres de la boîte de dialogue Options avancées" url="agee-plugin-change-settings-in-advanced-options-tsk.html" />
+  <item name="Modification des paramètres à partir du menu Access Gateway" url="agee-changing-settings-from-the-access-gateway-menu-tsk.html" />
+  <item name="Configuration du split tunneling" url="agee-plugin-configuring-split-tunneling-tsk.html" />
+  <item name="Désinstallation d’Access Gateway Plug-in" url="agee-plugin-uninstall-plugin-tsk.html" />
+</book>
+<book name="Utilisation de l'interface d'accès" url="agee-plugin-working-with-access-interface-wrapper-con.html" >
+  <item name="Connexion à l'interface d'accès" url="agee-plugin-logging-on-to-access-interface-con.html" />
+  <item name="Ajout de signets dans l’onglet Accueil" url="agee-plugin-adding-bookmarks-on-the-home-tab-tsk.html" />
+</book>
+<book name="Résolution des problèmes d’Access Gateway Plug-in" url="agee-plugin-tshoot-wrapper-con.html" >
+  <item name="Ouverture du journal des connexions" url="agee-plugin-open-the-connection-log-tsk.html" />
+  <item name="Génération de rapports d’erreurs à l’aide d’Access Gateway Plug-in" url="agee-plugin-report-ag-plugin-errors-tsk.html" />
+  <item name="Affichage des statistiques de compression" url="agee-viewing-compression-statistics-tsk.html" />
+</book>
+<book name="Codes d’erreur de la session Gateway Access" url="agee-plugin-session-codes-wrapper-con.html" >
+  <item name="Codes d’erreur de la session Gateway Access" url="agee-plugin-session-error-codes-con.html" />
+</book>
+
+</tocdata>

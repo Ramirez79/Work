@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="fr-fr" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr-fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="Génération de rapports d’erreurs à l’aide d’Access&#160;Gateway&#160;Plug-in" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-tshoot-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-report-ag-plugin-errors-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>Génération de rapports d’erreurs à l’aide d’Access&#160;Gateway&#160;Plug-in</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-report-ag-plugin-errors-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Résolution des problèmes d’Access Gateway Plug-in\nGénération de rapports d’erreurs à l’aide d’Access Gateway Plug-in");
+addButton("show",BTN_TEXT,"Montrer","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&nbsp;&gt;&nbsp;", "Accueil", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-tshoot-wrapper-con.html\">Résolution des problèmes d’Access Gateway Plug-in<\/a> &nbsp;&gt;&nbsp; Génération de rapports d’erreurs à l’aide d’Access Gateway Plug-in<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-report-ag-plugin-errors-tsk" id="agee-plugin-report-ag-plugin-errors-tsk"><!-- --></a>
+<h1 class="topictitle1">Génération de rapports d’erreurs à l’aide d’Access&#160;Gateway&#160;Plug-in</h1>
+<div>
+<div class="section">
+<p>Vous pouvez configurer Access&#160;Gateway&#160;Plug-in pour consigner toutes les erreurs dans un fichier texte. Access&#160;Gateway&#160;Plug-in consigne l'ensemble de ses principales activités dans un fichier journal. Ces fichiers sont stockés sur votre ordinateur. Vous pouvez envoyer les fichiers journaux à votre service d’assistance ou à votre administrateur système.</p>
+<p>Sous Windows&#160;XP, les fichiers journaux se trouvent dans le répertoire <var class="varname">%systemdrive%</var>\Documents and Settings\All Users\Application Data\Citrix\AGEE et dans <var class="varname">%systemdrive%</var>\Documents and Settings\<var class="varname">%NomUtilisateur%</var>\Local Settings\Application Data\Citrix\AGEE.</p>
+<p>Sous Windows&#160;Vista et Windows&#160;7, les fichiers journaux se trouvent dans le répertoire <var class="varname">%systemdrive%</var>\ProgramData\Citrix\AGEE et dans <var class="varname">%systemdrive%</var>\Users\<var class="varname">%NomUtilisateur%</var>\AppData\Local\Citrix\AGEE. Votre administrateur système peut utiliser ces fichiers journaux pour résoudre les problèmes liés à Access Gateway Plug-in.</p>
+<p>Vous pouvez définir le niveau de journalisation d'Access&#160;Gateway&#160;Plug-in, comme suit&#160;:</p>
+<ul>
+<li>Ne pas enregistrer les messages de débogage.</li>
+<li>Enregistrer les messages de niveau d’événement.</li>
+<li>Enregistrer uniquement les statistiques du client.</li>
+<li>Enregistrer les messages de débogage détaillés.</li>
+</ul>
+</div>
+<ol>
+<li><span>Cliquez avec le bouton droit de la souris sur l’icône d'Access&#160;Gateway&#160;Plug-in dans la zone de notification et cliquez sur <span class="uicontrol">Configurer Access&#160;Gateway</span>.</span></li>
+<li><span>Cliquez sur l’onglet <span class="uicontrol">Suivi</span>, sélectionnez le niveau de journalisation et cliquez sur <span class="uicontrol">OK</span>.</span></li>
+</ol>
+</div>
+<div class="nested1" id="agee-plugin-view-log-files"><a name="agee-plugin-view-log-files" id="agee-plugin-view-log-files"><!-- --></a>
+<h2 class="topictitle2">Affichage des fichiers journaux</h2>
+<div>
+<div class="section">
+<p>Les fichiers journaux fournissent des informations sur les problèmes que vous pouvez rencontrer dans Access&#160;Gateway&#160;Plug-in. En cas de problème, ces informations peuvent s’avérer utiles pour le personnel d’assistance technique.</p>
+</div>
+<ol>
+<li><span>Cliquez avec le bouton droit de la souris sur l’icône d'Access&#160;Gateway&#160;Plug-in dans la zone de notification et cliquez sur <span class="uicontrol">Configurer Access&#160;Gateway</span>.</span></li>
+<li><span>Cliquez sur l’onglet <span class="uicontrol">Suivi</span>.</span></li>
+<li><span>Sous <span class="uicontrol">Journal de suivi du client</span>, cliquez sur <span class="uicontrol">Afficher le fichier journal</span>.</span></li>
+</ol>
+</div>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<html>
+  <head>
+      <title>Citrix Access Gateway</title>
+	  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+	<meta http-equiv="Expires" content="Sat, 1 Jan 2000 08:00:00 GMT" >
+	<style type="text/css">
+	#loading {
+		position:absolute;
+		left:50;
+		top:20;
+	}
+	</style>
+	
+<SCRIPT language="javascript" >
+// set showProxyConfigPrompt to "false" in the next line if you want to suppress the prompt to configure proxy
+var showProxyConfigPrompt = "true";
+
+var browserName = navigator.appName;
+var nscookies=document.cookie;
+var NameOfClientCookie = "NSC_PLUGINC";
+var AAACCookieName="NSC_AAAC";
+var loggedOut = 0;
+var duplicateApplet = false;
+var appletLoadSuccessful = false;
+
+//Check if JRE exists on the client machine
+function checkJREInstalled(){
+	var isJREInstalled = true;
+	//If the browser if MSIE
+	if(browserName.indexOf("Microsoft Internet Explorer") != -1)
+	{
+		var applet = document.NSApplet;
+		if(applet == null)
+		{
+			isJREInstalled = false;
+		}
+	}else{
+		//Non-IE browser
+		//MSIE always returns TRUE for navigator.javaEnabled() hence we need to separately check for it
+		isJREInstalled= window.navigator.javaEnabled();
+	}
+
+	if(isJREInstalled == false){
+		alert("JRE is not installed on your machine. Install JRE and retry.");
+		logoutClientSide();
+	}
+}
+
+function launchNewWindow(win){
+	newWindow = open(win,"", "toolbar=yes,scrollbars=true,resizable=yes,menubar=yes,titlebar=yes");
+}
+
+//Sets the 'appletLoadSuccessful' flag to indicate that the applet has been successfully initialized
+function setAppletLoadSuccessfulTrue(){
+	appletLoadSuccessful = true;
+}
+
+//Sets the 'duplicateApplet' flag to indicate that another instance of the applet is attempting to load
+function setDuplicateAppletTrue(){
+	duplicateApplet = true;
+}
+
+
+function logoutClientSide(){
+	//TODO: the following two lines are commented as they are not working correctly on Safari browser
+	ns_removeCookie();
+	document.cookie = NameOfClientCookie + '=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/';
+	self.close(); //will raise "onUnload" event
+}
+
+function showServicesPage() {
+	window.setTimeout( showServicesPageAfterDelay, 1000 );
+}
+
+function showServicesPageAfterDelay()
+{
+	var svcref = window.opener.location.href;
+	var indexColon = svcref.indexOf(':');
+	var indexJSvc = svcref.indexOf("/j_services.html");
+
+	if(indexColon == -1) return;
+	if((indexJSvc == -1) || (indexJSvc < indexColon)) return;
+	var httpUrl = "http" + svcref.substring(indexColon,indexJSvc) + "/services.html";
+	window.opener.location.replace(httpUrl);
+}
+
+
+function showServicesPageHTTPS()
+{
+	window.opener.location.replace("/vpns/services.html");
+}
+
+
+function ns_removeCookie()
+{
+   document.cookie = AAACCookieName + '=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/';
+}
+
+
+//Called on onUnload event i.e. when the applet window is being closed (or refershed or redirected)
+function onAppletWindowClose(){
+	//If duplicate applet then close window without doing anything
+	if (duplicateApplet == true){
+		return;
+	}
+	ns_removeCookie();
+	document.cookie = NameOfClientCookie + '=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/';
+	//Check if the user has clicked the 'Close' button on the applet window without logging out
+	//Logout method is called only if the applet has been loaded successfully. As the onAppletWindowClose() method is called whenever
+	//the applet window is being closed we need to make this check.
+	if(loggedOut == 0 && appletLoadSuccessful == true){
+		document.NSApplet.logout(false, false); //logout(boolean logoutDueToError, boolean askForConfirmation)
+	}
+	return;
+}
+
+
+//Called by applet when logging out.
+function closeAppletWindow(){
+	loggedOut = 1;
+	self.close(); //Will raise "onUnload" event
+}
+
+//This function is not supported only on Opera (Version lower than 11) 
+window.onbeforeunload = onAppletWindowClose;
+
+</SCRIPT>
+  </head>
+<body onload="checkJREInstalled()">
+  <!--onUnload="onAppletWindowClose()"> -->
+  <!--"CONVERTED_APPLET"-->
+<!-- HTML CONVERTER -->
+<SCRIPT LANGUAGE="JavaScript"><!--
+	var ie;
+	var macOS;
+	var Netscape;
+	var windowsOS;
+	var Netscape7;
+	var Firefox;
+
+	Netscape = navigator.appName == "Netscape";
+	ie = navigator.appName == "Microsoft Internet Explorer";
+	if(Netscape) {
+		if(navigator.userAgent.indexOf("Netscape/7.1") > -1)
+			Netscape7 = true;
+		else if(navigator.userAgent.indexOf("Firefox") > -1)
+			Firefox = true;
+	}
+	windowsOS = navigator.userAgent.indexOf("Win") > -1;
+	macOS = navigator.userAgent.indexOf("Mac") > -1;
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	document.cookie = NameOfClientCookie +"=1; path=/";
+	var nscookies = document.cookie;
+	var cookieName = "ls";
+	var cookieline = "<PARAM NAME="+ cookieName + " VALUE=" + nscookies + ">";
+	
+	if ((macOS) || (Netscape7)) {
+		document.writeln('<APPLET CODE = ns.gui.NSLoadApplet archive = "vpn.jar" name="NSApplet" WIDTH = 100% HEIGHT = 100% MAYSCRIPT=true>');
+		document.writeln("<param name=\"ls\" value='" + document.cookie.replace("'", "\'") + "'" + ">");
+		document.writeln("<param name=\"showProxyConfigPrompt\" value=\""+ showProxyConfigPrompt + "\">");
+		if (Firefox)
+			document.writeln("<param name=\"browser\" value=\"Firefox\"" + ">");
+		else
+			document.writeln("<param name=\"browser\" value=\"SafariNetscape\"" + ">");
+	} else if (ie == true) {
+		document.writeln('<div id="loading">');
+		document.writeln('<p>Applet could not load. It might be possible that the JRE may not be installed on your PC. Please install JRE from http://java.sun.com');
+		document.writeln('</p></div>');
+		document.writeln("<APPLET  CODE = ns/gui/NSLoadApplet.class name=NSApplet WIDTH = 100% HEIGHT = 100%>");
+		document.writeln("<PARAM NAME = CODE VALUE = ns/gui/NSLoadApplet.class >");
+		document.writeln('<PARAM NAME = "cache_archive" VALUE = "vpn.jar">');
+		document.writeln('<PARAM NAME = "cache_option"  VALUE = "Plugin">');
+		document.writeln("<param name=\"showProxyConfigPrompt\" value=\""+ showProxyConfigPrompt + "\">");
+		document.writeln('<PARAM NAME = "browser"  VALUE = "IE">');
+		document.writeln('<PARAM NAME = "MAYSCRIPT"  VALUE = "true">');
+		//document.writeln('<PARAM NAME="scriptable" VALUE="true">');
+		document.write(cookieline);
+		document.writeln("</APPLET>");
+	}
+    else if (Netscape) {
+    	document.writeln('<EMBED type="application/x-java-applet;version=1.3"  CODE = ns/gui/NSLoadApplet.class archive = "vpn.jar" name="NSApplet" WIDTH = 100% HEIGHT = 100% pluginspage="support/download_java.html" MAYSCRIPT=true');
+		document.write(" showProxyConfigPrompt = '" + showProxyConfigPrompt  +"'");
+		document.write(" browser = 'Netscape'");
+		document.write(" ls = '" + document.cookie.replace("'", "\'") + "'" + ">");
+		document.write(" <NOEMBED><XMP>");
+		document.writeln("</NOEMBED></EMBED>");
+    }
+
+//--></SCRIPT>
+<!--
+<APPLET CODE = ns/gui/NSLoadApplet.class archive = "vpn.jar" WIDTH = 100% HEIGHT = 100% MAYSCRIPT>
+alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason."
+	Your browser is completely ignoring the &lt;APPLET&gt; tag!
+
+</APPLET>
+-->
+<!--"END_CONVERTED_APPLET"-->
+  </body>
+</html>
+

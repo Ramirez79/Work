@@ -1,0 +1,457 @@
+/*=(===============================================================)*/
+
+/*=(===============================================================)*/
+/*=(Created with RoboEditor.)=======================================*/
+/*=(===============================================================)*/
+
+p.Footnote {
+	margin-left: 30.000pt;
+	margin-right: 18.000pt;
+	text-align: left;
+	text-indent: -12.000pt;
+	margin-top: 0.000pt;
+	margin-bottom: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: "Times New Roman";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10.0pt;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-p-CFootnote {
+	text-align: left;
+	text-indent: -12.000pt;
+	word-spacing: 0.250em;
+	font-family: "Times New Roman";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10.0pt;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+p.Note {
+	margin-left: 36.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: -36.000pt;
+	margin-top: 6.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-p-CNote {
+	text-align: left;
+	text-indent: -36.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+p.Figure {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 5.000pt;
+	margin-bottom: 5.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-p-CFigure {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+H1 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	margin-top: 4.5pt;
+	font-family: Verdana, sans-serif;
+	background-color: #e5e5e5;
+	color: #336699;
+	font-size: 12pt;
+	font-weight: bold;
+	font-style: normal;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-H1 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-family: Verdana, sans-serif;
+	color: #336699;
+	font-size: 12pt;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+h2 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 12.000pt;
+	margin-bottom: 3.000pt;
+	word-spacing: 0.250em;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12.0pt;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-family: Arial, sans-serif;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-h2 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12.0pt;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-family: Arial, sans-serif;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+h3 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 11.000pt;
+	margin-bottom: 4.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11.0pt;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-h3 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11.0pt;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+h4 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 10.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-h4 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 6.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Verdana;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-decoration: none none none;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+OL,
+UL {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 8pt;
+	font-family: Verdana, sans-serif;
+	margin-left: 0.25in;
+	margin-right: 0.25in;
+	font-weight: normal;
+	font-style: normal;
+}
+
+span.Emphasis {
+	font-family: Verdana;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	letter-spacing: 0.00em;
+	font-size: 8pt;
+	/*begin!kadov{{*/ text-decoration: none none none; /*}}end!kadov*/ 
+}
+
+BODY {
+	background-color: Transparent;
+}
+
+P.Number {
+	list-style: decimal;
+	margin-left: 0.3pt;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-CNumber {
+	list-style: decimal;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.Bullet {
+	list-style: disc;
+	margin-left: 0.3pt;
+	font-style: normal;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+	font-weight: normal;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-CBullet {
+	list-style: disc;
+	font-style: normal;
+	font-weight: normal;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.bullet2 {
+	list-style: disc;
+	margin-left: 0.3pt;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Cbullet2 {
+	list-style: disc;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+SPAN.expandtext {
+	font-size: 8pt;
+	font-family: Verdana, sans-serif;
+	color: #000000;
+}
+
+A:active {
+	font-size: 8pt;
+	font-family: Verdana, sans-serif;
+	color: #336699;
+}
+
+A:hover {
+	font-size: 8pt;
+	font-family: Verdana, sans-serif;
+	color: #336699;
+}
+
+A:link {
+	font-size: 8pt;
+	font-family: Verdana, sans-serif;
+	color: #336699;
+}
+
+A:visited {
+	font-size: 8pt;
+	font-family: Verdana, sans-serif;
+	color: #336699;
+}
+
+
+/*=(===============================================================)*/

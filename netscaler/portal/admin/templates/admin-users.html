@@ -1,0 +1,25 @@
+[% USE env = EnvHash %]
+
+<html>
+<head>
+<link type="text/css" id="mainCSS" rel="stylesheet" href="/vpns/prtl/admin/theme/styles.css">  
+</head>
+<body id="services">
+<div id="contents">
+<div id="selector" style="padding:10px;">
+<h2>Users</h2>
+<ul>
+
+[% IF users.size < 1 %]
+  There are no user data files to edit.<br>
+[% ELSE %]
+[% FOREACH user = users.sort %]
+<li><a href="[% env.adminLoc %]admin-user-details.pl?user=[% user %]" target="detail">[% user %]</a></li>
+[% END %]
+[% END %]
+
+</ul>
+</div>
+</div>
+</body>
+</html>

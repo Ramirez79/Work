@@ -1,0 +1,311 @@
+﻿/*Created with Adobe RoboHelp 8.*/
+p.Footnote {
+	margin-left: 30.000pt;
+	margin-right: 18.000pt;
+	text-align: left;
+	text-indent: -12.000pt;
+	margin-top: 0.000pt;
+	margin-bottom: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10.0pt;
+	color: #000000;
+	letter-spacing: 0.00em;text-decoration: none;
+}
+LI.p-Footnote {
+	text-align: left;
+	text-indent: -12.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10.0pt;
+	color: #000000;
+	letter-spacing: 0.00em;text-decoration: none;
+}
+p.Note {
+	margin-left: 36.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: -36.000pt;
+	margin-top: 6.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+LI.p-Note {
+	text-align: left;
+	text-indent: -36.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+p.Figure {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 5.000pt;
+	margin-bottom: 5.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+LI.p-Figure {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+H1 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-style: normal;
+	font-weight: bold;
+	letter-spacing: 0.00em;
+	font-family: Arial, "MS PGothic";
+	color: #ffffff;
+	font-size: 14pt;
+	background-color: #003460;
+	margin-top: 4.5pt;text-decoration: none;
+}
+LI.H1 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-style: normal;
+	font-weight: bold;
+	letter-spacing: 0.00em;
+	font-family: Arial, "MS PGothic";
+	color: #ffffff;
+	font-size: 14pt;text-decoration: none;
+}
+h2 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 12.000pt;
+	margin-bottom: 3.000pt;
+	word-spacing: 0.250em;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12.0pt;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-family: Arial, "MS PGothic";text-decoration: none;
+}
+LI.h2 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12.0pt;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-family: Arial, "MS PGothic";text-decoration: none;
+}
+h3 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 11.000pt;
+	margin-bottom: 4.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11.0pt;
+	color: #000000;
+	letter-spacing: 0.00em;text-decoration: none;
+}
+LI.h3 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11.0pt;
+	color: #000000;
+	letter-spacing: 0.00em;text-decoration: none;
+}
+h4 {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 10.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+LI.h4 {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+P {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 6.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	letter-spacing: 0.00em;
+	font-size: 9pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;text-decoration: none;
+}
+LI.P {
+	text-align: left;
+	text-indent: 0.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	letter-spacing: 0.00em;
+	font-size: 9pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;text-decoration: none;
+}
+OL,
+UL {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 9pt;
+	font-family: Arial, "MS PGothic";
+	margin-left: 0.25in;
+	margin-right: 0.25in;
+	font-weight: normal;
+	font-style: normal;
+}
+span.Emphasis {
+	font-family: Arial, "MS PGothic";
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	letter-spacing: 0.00em;
+	font-size: 9pt;text-decoration: none;
+}
+BODY {
+	background-color: Transparent;
+}
+P.Number {
+	list-style: decimal;
+	margin-left: 0.3pt;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+}
+LI.P-Number {
+	list-style: decimal;
+}
+P.Bullet {
+	list-style: disc;
+	margin-left: 0.3pt;
+	font-style: normal;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+	font-weight: normal;
+}
+LI.P-Bullet {
+	list-style: disc;
+	font-style: normal;
+	font-weight: normal;
+}
+P.bullet2 {
+	list-style: disc;
+	margin-left: 0.3pt;
+}
+LI.P-bullet2 {
+	list-style: disc;
+}
+SPAN.expandtext {
+	font-size: 9pt;
+	font-family: Arial, "MS PGothic";
+	color: #000000;
+}
+TABLE {
+	margin-left: 0.000pt;
+	margin-right: 0.000pt;
+	text-align: left;
+	text-indent: 0.000pt;
+	margin-top: 6.000pt;
+	margin-bottom: 6.000pt;
+	word-spacing: 0.250em;
+	font-family: Arial, "MS PGothic";
+	letter-spacing: 0.00em;
+	font-size: 9pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;text-decoration: none;
+}
+.uicontrol { font-weight: normal !important; }
+.note { 
+    	font-size: 9pt !important;
+	font-family: Arial, "MS PGothic" !important;
+ 	padding-left: 0.0% !important;
+	padding-right: 0.0% !important;
+	padding-top: 0.5% !important;
+	padding-bottom: 0.5% !important;}
+.notetitle { font-weight: bold }
+.section { 
+	font-size: 9pt !important;
+	font-family: Arial, "MS PGothic" !important;
+	font-weight: normal !important;
+	margin-bottom: 6.000pt; }
+SPAN.importanttitle { font-weight: bold }
+.term { 
+	font-weight: bold !important;
+	font-style: normal !important; }
+.figcap {
+	font-size: 9pt !important;
+	font-family: Arial, "MS PGothic" !important;
+	font-weight: bold;
+	font-style: normal!important; }
+.important { 
+    	font-size: 9pt !important;
+	font-family: Arial, "MS PGothic" !important;
+ 	padding-left: 0.0% !important;
+	padding-right: 0.0% !important;
+	padding-top: 0.5% !important;
+	padding-bottom: 0.5% !important;}

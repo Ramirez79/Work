@@ -1,0 +1,549 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>NetScaler Gateway</title>
+<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="noindex,nofollow,noarchive" name="robots" />
+<link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+<link href="/logon/themes/Default/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+<link href="/logon/themes/Default/css/custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/vpn/js/rdx.js"></script>
+<script type="text/javascript" src="/vpn/js/views.js"></script>
+<script type="text/javascript" src="/vpn/js/gateway_login_view.js"></script>
+<script type="text/javascript" src="/vpn/js/gateway_login_form_view.js"></script>
+<script type="text/javascript" src="/vpns/vpn_process_view.js"></script>
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" src="/vpn/nsshare.js"></script>
+<script type="text/javascript">
+  var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "f_ndisagent");
+</script>
+<style type="text/css">
+  body
+  {
+    visibility: hidden;
+  }
+  table
+  {
+    text-align: left;
+    text-align: start;
+  }
+</style>
+
+<script type="text/javascript">
+var nsloc=document.location.href;
+var cookie=document.cookie;
+var ns_aaac="";
+var aaacCookie="NSC_AAAC";
+var timerID=0;
+var probeErrors=0;
+var agentPort=3148;
+var image;
+var postEPACookie="NSC_EPAFALLBACK";
+var vpnErrCookie="NSC_VPNERR";
+var ns_postepa="";
+var nsVersion="11.1.47.14";
+var require64bitPlugin = false;
+
+if(cookie.length > 0) 
+{
+	begin=cookie.indexOf(aaacCookie+"=");
+	if(begin!=-1) 
+	{
+		begin+=aaacCookie.length+1;
+		end=cookie.indexOf(";", begin);
+		if(end==-1) end=cookie.length;
+		ns_aaac=decodeURIComponent(cookie.substring(begin, end));
+	}
+	begin=cookie.indexOf(postEPACookie+"=");
+	if(begin!=-1) {
+	  begin+=postEPACookie.length+1;
+	  end=cookie.indexOf(";", begin);
+	  if(end==-1) end=cookie.length;
+	  ns_postepa=decodeURIComponent(cookie.substring(begin, end));
+	  if(ns_postepa) nsloc = nsloc + "\/postepa.html";
+	}
+}
+  
+function ns_getcookie(NameOfCookie)
+{
+	var begin, end;
+
+	var cookie=document.cookie;
+	if(cookie.length > 0) 
+	{
+		begin=cookie.indexOf(NameOfCookie);
+		if(begin!=-1) 
+		{
+				begin+=NameOfCookie.length+1;
+				end=cookie.indexOf(";", begin);
+				if(end==-1) end=cookie.length;
+				return unescape(cookie.substring(begin, end));
+		}
+	}
+	return null;
+}
+
+function UnsetCookie(cookieName) 
+{
+	document.cookie=cookieName+"=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+}
+
+function loginSuccess(evt)
+{
+	UnsetCookie("START_PROBE_AGENT");
+	UnsetCookie("BROWSER_CONNECT");
+	UnsetCookie("NSC_EPAFALLBACK");  
+	UnsetCookie("NGLAUNCH_MISSING");  
+	
+	if(this.height==2) 
+	{
+		// ns_start_vpn returned false, could be due to EPA fallback and agent will launch new IE
+		// window to display choices page. If NSC_AAAC and NSC_VPNERR cookies exist, assume EPA
+		// fallback to choices page, so don't reset cookies because they are needed to display the
+		// choices page.  Note that NSC_VPNERR cookie is set by the agent using InternetSetCookie,
+		// therefore will only work for IE.  Non-IE browsers will simply redirect to the login page.
+		cookie=document.cookie;
+		ns_aaac = cookie.indexOf(aaacCookie+"=");
+		ns_vpnerrc = cookie.indexOf(vpnErrCookie+"=");
+		if( (ns_aaac != -1) && (ns_vpnerrc != -1) ) 
+		{
+			// close original IE window/tab
+			if( navigator.userAgent.indexOf("MSIE 6") > 0 )
+			window.opener = self;  // this avoids IE6 prompt
+			if( navigator.userAgent.indexOf("MSIE 7") > 0 )
+			window.open('','_self','');  // this avoids IE7 prompt
+			window.close();
+		}
+		else
+		{
+			UnsetCookie("NSC_AAAC");
+			UnsetCookie("NSC_USER");
+			UnsetCookie("NSC_EPAC");
+			UnsetCookie("NSC_VPNERR");
+
+			window.location="/";
+		}
+	}
+	else 
+	{
+		if(timerID) window.clearTimeout(timerID);
+		if (location.protocol == "http:") { 
+			document.cookie = "NSC_HTTPVSERVER=1; path=/";
+		}
+		window.location = "/vpns/services.html";
+	}
+}
+
+function nextAgentPort() 
+{
+	agentPort = agentPort + 1;
+	if(agentPort > 3150)
+		agentPort = 3148;
+}
+
+function probeAgent()
+{
+	if(ns_aaac=="") return;
+	if(timerID) 
+	{
+		window.clearTimeout(timerID);
+		timerID = 0;
+	}
+
+	image = new Image();
+	image.onload = loginSuccess;
+	image.onerror = probeError;
+	image.src = "http://localhost:"+agentPort+"/svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion="+nsVersion+"&nstrace=DEBUG&nsvip=255.255.255.255&nstdi=ON";
+	timerID = window.setTimeout( "probeError()", 3000 );
+}
+
+function probeError() 
+{
+	if(timerID) 
+	{
+		window.clearTimeout(timerID);
+		timerID = 0;
+	}
+	probeErrors++;
+	if( probeErrors > 21 ) 
+	{
+		window.location.href = "/vpns/f_ndisagent.html";
+		return;
+	}
+	nextAgentPort();
+	window.setTimeout( "probeAgent()", 500 );
+}
+
+
+var curTimerValue 		= util.winMaxTimerValue;
+var showTimerHandler;
+
+function showTimerDisplay(showTimer)
+{
+	if(showTimer)
+	{
+		document.getElementById("downloadArea").style.display 	= "none";
+		document.getElementById("AppINFO").style.display 		= "";
+		document.getElementById("timer").style.display 			= "";
+	}
+	else
+	{
+		document.getElementById("downloadArea").style.display = "";
+		document.getElementById("AppINFO").style.display 		= "none";
+		document.getElementById("timer").style.display 			= "none";
+	}
+}
+
+function noLauncher()
+{
+	var expTime = new Date();
+	expTime.setTime(expTime.getTime()+(3*60*1000));		//cookie with expiry of 3 minutes
+	document.cookie = "NGLAUNCH_MISSING=1;expires="+ expTime.toGMTString() + "; path=/"; 
+	window.location.href = "/vpns/f_ndisagent.html";
+}
+
+function showTimer()
+{
+	if(curTimerValue == 0)
+	{
+		noLauncher();
+		return;
+	}
+	
+	if(!document.getElementById("timer"))
+	{
+		var downloadArea = document.getElementById("downloadArea");
+		
+		var Appinfo = document.createElement("span");
+		Appinfo.setAttribute("id", "AppINFO");
+		downloadArea.parentNode.appendChild(Appinfo);
+		Appinfo.innerHTML = "<br />";
+		Appinfo.innerHTML += _("AppINFO") ? _("AppINFO") : "Checking if the plug-in is installed";
+		Appinfo.innerHTML += "<br />";
+		
+		var timer = document.createElement("span");
+		timer.setAttribute("id", "timer");
+		downloadArea.parentNode.appendChild(timer);
+	}
+	
+	showTimerDisplay(true);
+	document.getElementById("timer").innerHTML = curTimerValue + " " + _("secs");
+	curTimerValue -= 1;
+	showTimerHandler = setTimeout(showTimer, 1000);
+}
+
+function launcherExited()
+{
+	document.cookie = "START_PROBE_AGENT=1; path=/";
+	window.location.href = "/vpns/f_ndisagent.html";
+}
+ 
+function launcherPresent() 
+{
+	function onSuccess()
+	{
+		if(this.height == 2)
+		{
+			util.prob("exit", launcherExited, launcherExited);
+		}
+		else
+		{
+			document.cookie = "AGENT_NOT_INSTALLED=1; path=/";
+			window.location.href = "/vpns/f_ndisagent.html";
+		}
+	}
+	util.prob("isAgentReady", onSuccess, noLauncher);
+}
+
+function checkIfAgentReadyChrome() 
+{
+	if(timerID) 
+	{
+		window.clearTimeout(timerID);
+		timerID = 0;
+	}
+	
+	//launcher is missing. either user has old plugin or no plugin.
+	// so try NPAPI approach as fall-back. if by chance NPAPI flag is enabled, it will trigger plugin.
+	// else that function only will show download prompt as a fall-back
+	if(ns_getcookie("NGLAUNCH_MISSING") == 1) 
+	{
+		detectPluginVersion();
+		checkIfAgentReadyViaPlugin();
+		return;
+	}
+	
+	if(ns_getcookie("AGENT_NOT_INSTALLED") == 1) 
+	{
+		displayDownloadArea();
+		UnsetCookie("AGENT_NOT_INSTALLED");
+		timerID = setTimeout("checkIfAgentReadyChrome()", 12000);
+		return;
+	}
+	
+	if(ns_getcookie("START_PROBE_AGENT") == 1) 
+	{
+		probeAgent();
+		return;
+	}
+	util.launchPlugin(launcherPresent, function() {} );
+	showTimer();
+}
+
+function pluginWontUpgrade(installedPluginVersion)
+{
+	if(util.compareVersion(installedPluginVersion, "11,0,0,0") < 0)
+	{
+		return (util.compareVersion(installedPluginVersion, nsVersion) !=0); 
+	}
+	
+	var pluginInfo = util.getPluginInfo("WIN", "VPN");
+	if(pluginInfo.upgradeType == "Never")
+	{
+		return true;
+	}
+	else if(pluginInfo.upgradeType == "Essential")
+	{
+		// Most of the time "compatibleTill" will not be defined. So compare it only when it is defined
+		if(pluginInfo.compatibleTill && pluginInfo.compatibleTill !== "")
+		{
+			if(util.compareVersion(installedPluginVersion, pluginInfo.compatibleTill) > 0)
+				return false;
+		}
+		
+		return (util.compareVersion(installedPluginVersion, pluginInfo.compatibleFrom) >= 0)
+	}
+
+	return (util.compareVersion(pluginInfo.version, installedPluginVersion) == 0);
+}
+
+function checkIfAgentReady() 
+{
+	if(timerID) 
+	{
+		window.clearTimeout(timerID);
+		timerID = 0;
+	}
+
+	try 
+	{
+		if(ns_getcookie("AGENT_NOT_INSTALLED") == 1) 
+		{
+			displayDownloadArea();
+			UnsetCookie("AGENT_NOT_INSTALLED");
+			timerID = setTimeout("checkIfAgentReady()", 12000);
+			return;
+		}
+		
+		if(ns_getcookie("START_PROBE_AGENT") == 1) 
+		{
+			probeAgent();
+			return;
+		}
+    
+	    var nsObj = new ActiveXObject("nsepacom.nsepaclass");
+	    var ret = nsObj.isAgentReady();
+	    if(ret == 1) 
+		{
+			//getPluginVersion is as a flag which tells us if browserConnect is usable or not
+			// also browserConnect can take long time in case of auto-upgrade. so it should be never tried more than once
+			if( ("getPluginVersion" in nsObj) && pluginWontUpgrade(nsObj.getPluginVersion()) && (ns_getcookie("BROWSER_CONNECT") !=1) )	
+			{
+				document.cookie = "BROWSER_CONNECT=1; path=/";
+				ret = nsObj.browserConnect("GET /svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion="+nsVersion+"&nstrace=DEBUG&nsvip=255.255.255.255&nstdi=ON HTTP/1.1\r\n");
+				if (ret == 1)
+				{
+					loginSuccess();
+					return
+				}
+				else
+				{
+					UnsetCookie("BROWSER_CONNECT");
+					document.cookie = "START_PROBE_AGENT=1; path=/";
+					window.location.href = "/vpns/f_ndisagent.html";
+					return;
+				}
+			}
+			else
+			{
+				document.cookie = "START_PROBE_AGENT=1; path=/";
+			}
+        }
+	    else 
+		{
+    	    //VPN plugin is not yet installed, display download button and wait for  agent to be ready
+			document.cookie = "AGENT_NOT_INSTALLED=1; path=/";
+	    }
+		
+		window.location.href = "/vpns/f_ndisagent.html";
+		return;
+    }
+    catch (err) 
+	{
+        if(nsObj) 
+		{
+            // EPA server exists, but does not have new  isAgentReady interface, simply do a delayed
+            // probe agent and let it auto-upgrade. If agent is not running, isAgentReady() starts it.
+			window.location.href = "/vpns/f_ndisagent.html";
+			return;
+        }
+        else 
+		{
+			//Agent is not yet installed, display download button and wait for  agent to be ready
+			displayDownloadArea();
+			timerID=window.setTimeout( "checkIfAgentReady()", 3000 );
+	    }
+    }
+}
+
+function detectPluginVersion()
+{
+	if( (navigator.userAgent.indexOf("Gecko/2") > -1 || 	//Firefox browsers
+		navigator.userAgent.indexOf("AppleWebKit") > -1 )&& //Safari or Chrome browsers
+		navigator.platform=="Win64" )						//64-bit browser on 64-bit OS
+		require64bitPlugin = true;
+}
+
+function checkIfAgentReadyViaPlugin()
+{
+	if(timerID) 
+	{
+		window.clearTimeout(timerID);
+		timerID = 0;
+	}
+	
+	try 
+	{
+		if( ns_getcookie("AGENT_NOT_INSTALLED") == 1 ) {
+			displayDownloadArea();
+			UnsetCookie("AGENT_NOT_INSTALLED");
+			timerID = setTimeout("checkIfAgentReadyViaPlugin()", 12000);
+			return;
+		}
+
+		if( ns_getcookie("START_PROBE_AGENT") == 1 ) {
+			probeAgent();
+			return;
+		}
+		
+		navigator.plugins.refresh(false);
+		
+		var npagee;
+		var npageeobj;
+		
+		if ( require64bitPlugin )
+			npagee = navigator.mimeTypes["application/citrix-npagee64"];
+		else
+			npagee = navigator.mimeTypes["application/citrix-npagee"]; 
+
+		if(npagee) 
+		{
+			var d = document.getElementById("plugindiv");
+			if ( require64bitPlugin )
+			  d.innerHTML = '<object id="npageeobject" type="application/citrix-npagee64" height="1" width="1"></OBJECT>' ;
+			else
+			  d.innerHTML = '<object id="npageeobject" type="application/citrix-npagee" height="1" width="1"></OBJECT>' ;
+
+			npageeobj = document.getElementById("npageeobject");
+			var ret = npageeobj.isAgentReady();
+			if( ret == "1" ) 
+			{
+				//getPluginVersion is as a flag which tells us if browserConnect is usable or not
+				if( (getPluginVersion = "getPluginVersion" in npageeobj) && pluginWontUpgrade(npageeobj.getPluginVersion()) && (ns_getcookie("BROWSER_CONNECT") !=1) )	
+				{
+					document.cookie = "BROWSER_CONNECT=1; path=/";
+					ret = npageeobj.browserConnect("GET /svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion="+nsVersion+"&nstrace=DEBUG&nsvip=255.255.255.255&nstdi=ON HTTP/1.1\r\n");
+					if (ret == 1)
+					{
+						loginSuccess();
+						return
+					}
+					else
+					{
+						UnsetCookie("BROWSER_CONNECT");
+						document.cookie = "START_PROBE_AGENT=1; path=/";
+						window.location.href = "/vpns/f_ndisagent.html";
+						return;
+					}
+				}
+				else
+				{
+					document.cookie = "START_PROBE_AGENT=1; path=/";
+				}
+			}
+			else 
+			{
+			  //Agent is not yet installed, display download button and wait for  agent to be ready
+			  document.cookie = "AGENT_NOT_INSTALLED=1; path=/";
+			}
+			window.location.href = "/vpns/f_ndisagent.html";
+			return;
+		}
+		else 
+		{
+			displayDownloadArea();
+			probeAgent();
+		}
+	}
+	catch (err)
+	{
+		displayDownloadArea();
+		probeAgent();
+	}
+}
+
+function detectAgent() 
+{
+	if(util.win.ACTIVEX_SUPPORTED) 
+	{
+		checkIfAgentReady();
+	}
+	else if(util.useLauncher)
+	{
+		checkIfAgentReadyChrome();
+	}
+	else if( (navigator.userAgent.indexOf("Firefox") > -1) || (navigator.userAgent.indexOf("Gecko/2") > -1) || (navigator.userAgent.indexOf("AppleWebKit") > -1) )
+	{
+		detectPluginVersion();
+		checkIfAgentReadyViaPlugin();
+	}
+	else 
+	{
+		displayDownloadArea();
+		probeAgent();
+	}
+}
+
+function DonwloadlinkClick()
+{
+	util.redirectToPlugin("WIN", "VPN");
+}
+
+function displayDownloadArea()
+{
+	document.getElementById("waitingmsg").innerHTML = _("If_the_Access_Gateway_Plugin_is_not_installed");	
+	document.getElementById("downloadArea").style.display = '';
+}
+
+function nsexit(){
+}
+</script>
+
+
+</head>
+<body class="ns_body">
+<script>
+rdx.FRAMEWORK_BASE = "/vpn/js" ;
+rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(login, login.do_action_on_load));
+$(window).load(function(){resize();});
+$(window).resize(function(){ resize();});
+</script>
+</body>
+</html>
+  
+  
+  
+  

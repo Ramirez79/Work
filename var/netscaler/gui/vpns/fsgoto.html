@@ -1,0 +1,258 @@
+<HTML>
+	<HEAD>
+		<META content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<TITLE>
+		</TITLE>
+	</HEAD>
+	<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+	<script type="text/javascript" src="/vpn/resources.js"></script>
+    <script type="text/javascript" language="javascript">
+    var Resources = new ResourceManager("/vpn/resources/{lang}", "fsgoto");
+    </script>
+    <style type="text/css">
+    body
+    {
+      visibility: hidden;
+    }
+    </style>
+	<script language="javascript">
+		var frmtitle = parent.frames["title"];
+		var credentialsVisible = true;
+		var client;
+		function ajaxHandler()
+		{
+			var dirs, dir, i, msg;
+			if (client.readyState == 4) {
+				if (client.responseText.indexOf("[[") != -1) {
+					dirs = eval(client.responseText);
+					dirs.sort(frmtitle.SortDirectories);
+					for (i=0; i<dirs.length; i++) {
+						dir = dirs[i];
+						if (dir.length == 2) {
+							frmtitle.NSAddPath(dir[0], dir[1]);
+						}
+						if (dir.length == 4) {
+							frmtitle.NSAddPath(dir[0], dir[1], dir[2], dir[3]);
+						}
+					}
+					frmtitle.NSUpdateAllwithoutPath();
+					return;
+				}
+				document.getElementById("formDiv").style.display= '';
+                document.getElementById("loading").style.display = 'none';
+				if (client.responseText.indexOf("sso failed")!=-1) {
+					showCredentials();
+					document.getElementById("userBox").focus();	
+				} else {
+					if (client.responseText.indexOf("Error") == 0)
+					{
+				 		if (client.responseText.indexOf("Session has expired")!=-1){
+							parent.parent.document.location = "/vpns/index.html";		
+						} else {
+							document.getElementById("showLink").style.display = 'none';
+				 			msg = _('fsgotoerror::' + client.responseText);
+				 			if (msg.length == 0)
+					 		{
+					 			msg = client.responseText;
+							}
+							alert(msg);
+						}
+					} else {
+						var dom = document.createElement('div');
+						dom.innerHTML = client.responseText;
+						var spanTags = dom.getElementsByTagName("SPAN");
+						if (spanTags.length > 0)
+						{
+							msg = _('fsgotoerror::' + spanTags[0].id);
+						}
+						else
+						{
+							msg = client.responseText;
+							if (msg.indexOf('Error:') == 0)
+						 	{
+								msg = _('fsgotoerror::' + msg);
+								if (msg.length == 0)
+						 		{
+									msg = client.responseText;
+								}
+							}
+						}
+						var period = _('fsgotoerror::sentenceterminator');
+						var periodIndex = msg.lastIndexOf(period);
+						if (periodIndex + period.length == msg.length)
+						{
+							msg = msg.substr(0, periodIndex);
+						}
+						if (spanTags.length > 1 && spanTags[1])
+						{
+							var msg2 = _('fsgotoerror::' + spanTags[1].id);
+							if (msg2.length == 0)
+							{
+								msg2 = spanTags[1].innerText;
+							}
+							msg = msg + ' (' + msg2 + ')';
+						}
+						alert(msg);
+					}	
+				}
+			}
+		}
+
+		function loginHandler()
+		{
+			document.getElementById("formDiv").style.display = 'none'; 
+                        document.getElementById("loading").style.display = '';
+			if (!frmtitle.NSAddPath) {
+                                 setTimeout("loginHandler()",1000);
+                                 return false;
+                        }
+			frmtitle.fssso = 1;
+			server = encodeURIComponent(document.getElementById("addressBox").value);
+			login = encodeURIComponent(document.getElementById("userBox").value);
+			passwd = encodeURIComponent(document.getElementById("passwordBox").value);
+			domain = encodeURIComponent(document.getElementById("domainBox").value);
+			post_body = "server=" + server + "&login=" + login + "&password=" + passwd + "&domain=" + domain + "&nsc_nonce=" + parent.parent.nsc_nonce;
+			if (window.XMLHttpRequest) {
+				client = new XMLHttpRequest()
+			} else if (window.ActiveXObject) {
+				client = new ActiveXObject("Microsoft.XMLHTTP");
+			} else {
+				return false;
+			}
+			client.open("POST", "/fs/login");
+			client.onreadystatechange = ajaxHandler;
+			client.send(post_body);
+			return false;
+
+		}
+
+		function setCredentials(value)
+		{
+			document.getElementById("userRow").style.display = value;
+			document.getElementById("passwordRow").style.display = value;
+			document.getElementById("domainRow").style.display = value;
+		}
+
+		function hideCredentials()
+		{
+			setCredentials('none');
+			document.getElementById("showLink").style.display = '';
+			document.getElementById("hideLink").style.display = 'none';
+			credentialsVisible = false;
+			return false;
+		}
+
+		function showCredentials()
+		{
+			setCredentials('');
+			document.getElementById("showLink").style.display = 'none';
+			document.getElementById("hideLink").style.display = '';
+			credentialsVisible = true;
+			return false;
+		}
+
+		function checkNeighbor()
+		{
+			var loc = document.location.href;
+			var index = loc.indexOf("?neighbor=true");
+			if (index != -1) {
+				document.getElementById("addressRow").style.display = 'none';
+				document.getElementById("addressBox").value = "";
+				return true;
+			}
+			return false;
+		}
+
+		function getServerUrl()
+		{
+			var server ="";
+			var str = parent.parent.window.document.location.href;			
+			var index = str.indexOf("?s=");
+			var isSsoOn = false;
+			var isNeighbor;
+			var ssoCookieIndex = document.cookie.indexOf("FSSO=");
+
+			if ((ssoCookieIndex != -1) &&
+			    (document.cookie.charAt(ssoCookieIndex + 5) == "1")) {
+				isSsoOn = true;
+			}
+
+			document.getElementById("loading").style.display = 'none';	
+			if (frmtitle.enterurl != null) {
+				server = frmtitle.enterurl;
+				document.getElementById("addressBox").value = server;
+				frmtitle.enterurl = null;
+			}
+			if (index != -1 && frmtitle.fssso != 1 ) {							
+				document.getElementById("userBox").focus();
+				server = decodeURIComponent(str.substring(index+3));
+				document.getElementById("addressBox").value = server;
+			} else {
+				document.getElementById("addressBox").focus();
+			}
+			isNeighbor = checkNeighbor();
+			if (isSsoOn) {
+				if (server != "" || isNeighbor) {
+					return loginHandler();
+				}
+				hideCredentials();
+			} else { 
+				document.getElementById("showLink").style.display = 'none';
+				document.getElementById("hideLink").style.display = 'none';
+			}
+			return true;
+		}
+
+	</script>
+	<BODY onLoad="getServerUrl()">
+		<BR />
+		<div align="center" id="loading"></div>
+		<div align="center" id="formDiv">
+			<TABLE BGCOLOR=#CCCCCC CELLPADDING=2 CELLSPACING=1 BORDER=2>
+				<TR><TD COLSPAN=2 ALIGN=center class=title><B><span id=id_FileServer></span></B></TD></TR>
+				<TR><TD ALIGN=center>
+					<FORM ACTION="/fs/login" METHOD="POST" name="loginForm" autocomplete="off" onSubmit="return loginHandler();">
+						<TABLE CELLPADDING=4 CELLSPACING=2 BORDER=0>
+							<TR id="addressRow">
+								<TD ALIGN=right VALIGN=middle nowrap><span id=id_Address></span></TD>
+								<TD ALIGN=left VALIGN=top>
+									<INPUT TYPE="text" NAME="server" VALUE="" id="addressBox" />
+								</TD>
+							</TR>
+							<TR id="userRow">
+								<TD ALIGN=right VALIGN=middle><span id=id_Username></span></TD>
+								<TD ALIGN=left VALIGN=top>
+									<INPUT TYPE="text" NAME="login" id="userBox" />
+								</TD>
+							</TR>
+							<TR id="passwordRow">
+								<TD ALIGN=right VALIGN=middle><span id=id_Password></span></TD>
+								<TD ALIGN=left VALIGN=top>
+									<INPUT TYPE="password" NAME="password" id="passwordBox"/>
+								</TD>
+							</TR>
+							<TR id="domainRow">
+								<TD ALIGN=right VALIGN=middle><span id=id_Doamin></span></TD>
+								<TD ALIGN=left VALIGN=top>
+									<INPUT TYPE="text" NAME="domain" id="domainBox"/>
+								</TD>
+							</TR>
+							<TR>
+								<TD ALIGN=middle colspan=2>
+									<INPUT id=id_LogOnButton TYPE=SUBMIT NAME="action" VALUE="" STYLE="width:100px;height:24px" class=button />
+									<INPUT id=id_CancelButton TYPE=button VALUE="" onclick="frmtitle.NS_cancelAction();" STYLE="width:100px;height:24px" class=button />
+								</TD>
+							</TR>
+						</TABLE>
+					</FORM>
+				</TD></TR>
+			</TABLE>
+			<a href="#" onClick="showCredentials()" id="showLink"></a>
+			<a href="#" onClick="hideCredentials()" id="hideLink"></a>
+		</div>
+		<script type="text/javascript" language="javascript">
+		Resources.Load();
+		</script>
+	</BODY>
+</HTML>
+

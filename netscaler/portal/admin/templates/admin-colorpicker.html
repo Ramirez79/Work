@@ -1,0 +1,239 @@
+[% META id="services"
+  		script="/js/colorpicker.js"
+  		onload="javascript: updateAdmin();"
+%]
+[% USE env = EnvHash %]
+[% PROCESS boilerplate.tmpl %]
+[% WRAPPER wrapper.tmpl %]
+  
+<style>
+.color{
+	height: 20px;
+	width:20px;
+	border: 1px solid black;
+	margin: 1px;
+}
+.column{
+  float: left;
+}
+#block{
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+  margin-bottom: .8em;
+}
+#block #h2{
+  padding: .2em;
+  margin: 0;
+  font-size: 1em;	
+}
+#block #h3{
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;   
+  margin-bottom: .2em;
+}
+#block #item{
+  padding: 0;
+  padding-left: 1em;
+  padding-bottom: .2em;
+  font-size: .8em;
+}
+
+h2{
+  margin: 0;
+}
+h3{
+  margin: 0;
+}
+
+#selector{
+  font-family: verdana;
+  font-size: .8em;
+  padding: 10px;
+}
+#colors{
+}
+#items{
+  float: left;
+  padding: 10px;
+}
+#pallet{ 
+  width:200px;
+  float: left;
+  padding: 10px;
+}
+#fonts{
+  clear: both;
+}
+#family{
+ float: left;
+ width: 200px;
+ padding-top: 10px;
+ padding-left: 10px;
+}
+#size{
+ float: left;
+  padding-top: 10px;
+}
+#sample{
+
+}
+#preview{
+  float:left;
+  padding: 15px;
+  width: 200px;
+}
+form{
+  padding: 0;
+  margin: 0;
+}
+fieldset {
+  border: 0;
+}
+
+</style>
+<div id="selector">
+<div id="colors">
+<h1>Colors and Fonts for [% theme %]</h1>
+<h2>Colors</h2>
+	<div id="items">
+		<h3>Items</h3>
+		<form name="selectorform">
+			<select size="10" name="items">
+				<option value="prheader-background">Header Background</option>
+				<option value="prfooter-background">Footer Background</option>
+				<option value="prfooter-color">Footer Text Color</option>
+				<option value="block-border">Block Border</option>
+				<option value="h2-color">Main Head Text Color</option>
+				<option value="h2-background">Main Head Background</option>
+				<option value="h3-color">Sub Head Text Color</option>
+				<option value="h3-background">Sub Head Background</option>
+				<option value="item-color">Item Text Color</option>
+				<option value="block-background">Item Background</option>
+			</select>
+		</form>
+	</div>
+	<div id="pallet">
+		<h3>Pallet</h3>
+		<div class="column">
+			<div class="color" style="background: #610000" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #b00604" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #dd0000" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #f20884" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ff99cc" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ffd9eb" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #73401f" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #bf530a" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #f56200" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ff9900" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ffcc00" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ffeb96" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #524631" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #96773f" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #dbc17f" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #e0d600" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #fcf41e" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ffff99" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #00450c" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #056637" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #4f876c" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #1fb714" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #89e340" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ccffcc" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #0e5956" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #179490" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #1ec4ab" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #26b6d1" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #82e4f5" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ccffff" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #00006b" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #0039b2" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #0a51e5" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #0786ff" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #80c0ff" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #c7e3ff" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #4c0759" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #a800ab" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #cc51e0" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #7825c7" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ab54ff" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #d4a8ff" onclick="javascript:setBg(this)"></div>
+		</div>
+		<div class="column">
+			<div class="color" style="background: #000000" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #333333" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #666666" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #999999" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #cccccc" onclick="javascript:setBg(this)"></div>
+			<div class="color" style="background: #ffffff" onclick="javascript:setBg(this)"></div>
+		</div>
+	</div>
+	<div id="sample">
+		<h2>Preview</h2>
+		<div id="preview">
+		<div id="prheader">Header<div id="prlogo" style="height: 20px; width: 40px; background: black; color: white; text-align: center; border: 1px solid grey;">Logo</div></div>
+			Block<div id="block">
+				<h2 id="h2">Main Head</h2>
+				<h3 id="h3">Sub Head</h3>
+				<div id="item">Text</div>
+			</div>
+			<div id="prfooter">Footer</div>
+			<form name="values" action="[% env.adminLoc %]admin-savecolorprefs.pl" method="post">
+				<input type="submit" name="submit" value="Save Preferences">
+				<input type="hidden" name="theme" value="[% theme %]"/>
+				<input type="hidden" name="block-border"[%- IF style.block_border -%] value="[% style.block_border %]"[%- END %]>
+				<input type="hidden" name="block-background"[%- IF style.block_background -%] value="[% style.block_background %]"[%- END %]>
+				<input type="hidden" name="h2-color"[%- IF style.h2_color -%] value="[% style.h2_color %]"[%- END %]>
+				<input type="hidden" name="h2-background"[%- IF style.h2_background -%] value="[% style.h2_background %]"[%- END %]>
+				<input type="hidden" name="h3-color"[%- IF style.h3_color -%] value="[% style.h3_color %]"[%- END %]>
+				<input type="hidden" name="h3-background"[%- IF style.h3_background -%] value="[% style.h3_background %]"[%- END %]>
+				<input type="hidden" name="item-color"[%- IF style.item_color -%] value="[% style.item_color%]"[%- END %]>
+				<input type="hidden" name="font-family"[%- IF style.font_family -%] value="[% style.font_family %]"[%- END -%]>
+				<input type="hidden" name="font-size"[%- IF style.font_size -%] value="[% style.font_size %]"[%- END -%]>  
+				<input type="hidden" name="prheader-background"[%- IF style.header_background -%] value="[% style.header_background %]"[%- END -%]>
+				<input type="hidden" name="prfooter-color"[%- IF style.footer_color -%] value="[% style.footer_color %]"[%- END -%]>
+				<input type="hidden" name="prfooter-background"[%- IF style.footer_background -%] value="[% style.footer_background %]"[%- END -%]>
+			</form>
+		</div>
+    </div>
+</div>
+
+<div id="fonts">
+	<h2>Fonts</h2>
+	<div id="family">
+		<h3>Font Family</h3>
+		<form name="fontform">
+		  <fieldset id="fontfamily">
+				<input type="radio" name="family" id="arial"     value="Arial"     onClick="setfont()"><label for="arial" style="font-family: arial;">Arial</label><br>
+				<input type="radio" name="family" id="courier"   value="Courier"   onClick="setfont()"><label for="courier" style="font-family: courier;">Courier</label><br>
+				<input type="radio" name="family" id="helvetica" value="Helvetica" onClick="setfont()"><label for="helvetica" style="font-family: Helvetica;">Helvetica</label><br>
+				<input type="radio" name="family" id="times"     value="Times"     onClick="setfont()" checked><label for="times" style="font-family: Times;">Times</label><br>
+				<input type="radio" name="family" id="verdana"   value="Verdana"   onClick="setfont()"><label for="verdana" style="font-family: verdana;">Verdana</label><br>
+		  </fieldset>
+	</div>
+	<div id="size">
+		  <h3>Font Size</h3>
+		    <fieldset id="fontsize">
+				<input type="radio" name="size" id="small" value="small" onClick="setsize()"><label for="small" style="font-size: small;">Small</label><br>
+				<input type="radio" name="size" id="medium" value="medium" onClick="setsize()" checked><label for="medium" style="font-size: medium;">Medium</label><br>
+				<input type="radio" name="size" id="large" value="large" onClick="setsize()"><label for="large" style="font-size: large;">Large</label><br>
+		  </fieldset>
+		</form>
+	</div>
+</div>
+</div><!--end selector-->
+[% END %]

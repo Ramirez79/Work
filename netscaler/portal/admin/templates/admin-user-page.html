@@ -1,0 +1,26 @@
+[% META title='Administrator Tools' 
+ 		id='fmBody'
+ 		onload='setHeight();'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+  <script type="text/javascript">
+	var text = new Array();
+	var link = new Array();
+	
+	function setHeight(){
+	var x = document.getElementById('footer').offsetTop;
+	var y = document.getElementById('content').offsetTop;
+	var z = (x-y)-20;
+	document.getElementById('list').style.height = z + 'px';
+	document.getElementById('detail').style.height = z + 'px';
+}
+	
+  </script>
+
+<div id="content">
+<iframe id="list" name="list" width="20%" height="100%" border="2" src="admin-users.pl"></iframe>
+
+<iframe id="detail" name="detail" width="78%" height="100%" border="2" src="admin-user-details.pl"></iframe>	  
+</div>
+[% END %]

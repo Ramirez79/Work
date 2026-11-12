@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>NetScaler Gateway</TITLE>
+<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<LINK href="images/portal.css" type=text/css rel=STYLESHEET>
+<LINK href="/vpn/images/caxtonstyle.css" type=text/css rel=STYLESHEET>
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/vpn/resources/{lang}", "choices");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+<script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<SCRIPT language=JavaScript>
+
+function changeImage(obj, newwidth, newheight)
+{
+	obj.setAttribute("width", newwidth);
+	obj.setAttribute("height", newheight);
+}
+
+// frame-busting script
+setTimeout ("changePage()", 0);
+function changePage()
+{
+	if (self.parent != self)
+		top.location=document.location;
+}
+
+function ns_cleancookie()
+{
+document.cookie="NSC_VPNERR=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+return true;
+}
+
+function ns_getvpnerrcookie(NameOfCookie)
+{
+   var cookie=document.cookie;
+   if(cookie.length > 0) {
+        begin=cookie.indexOf(NameOfCookie);
+        if(begin!=-1) {
+                begin+=NameOfCookie.length+1;
+                end=cookie.indexOf(";", begin);
+                if(end==-1) end=cookie.length;
+                return decodeURIComponent(cookie.substring(begin, end));
+        }
+   }
+   return null;
+}
+
+function ns_fillchoices()
+{
+  var errcookie= ns_getvpnerrcookie("NSC_VPNERR");
+  var choicescount = 0;
+
+  if(errcookie.indexOf("plugin")!=-1) { 
+  document.writeln(
+  	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/AccessGatewayHover_icon.png"/></span>' +
+    '<a class="AccessGatewayLink" href="/cgi/setclient?plgn" onclick="ns_cleancookie();">' +
+    '<span class="linkH4">' + _('Network Access') + '</span>' + 
+	'<span class="linkP">' + _('Connect with the Access Gateway Plug-in for ActiveX.') + '</span></a>' +
+    '</td>');
+  choicescount++;
+  }
+  if(errcookie.indexOf("agent")!=-1) { 
+  document.writeln(
+  	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/AccessGatewayHover_icon.png"/></span>' +
+    '<a class="AccessGatewayLink" href="/cgi/setclient?agnt" onclick="ns_cleancookie();">' +
+    '<span class="linkH4">' + _('Network Access') + '</span>' + 
+	'<span class="linkP">' + _('Connect with the Access Gateway Plug-in.') + '</span></a>' +
+    '</td>');
+  choicescount++;
+  }
+  if(errcookie.indexOf("java")!=-1) {
+	document.writeln(
+	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/AccessGatewayHover_icon.png"/></span>' +
+    '<a class="AccessGatewayLink" href="/cgi/setclient?java">' +
+    '<span class="linkH4">' + _('Network Access') + '</span>' + 
+	'<span class="linkP">' + _('Connect with the Access Gateway Plug-in for Java.') + '</span></a>' +
+    '</td>');
+	choicescount++;
+}
+  if(errcookie.indexOf("mac")!=-1) {
+	document.writeln(
+	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/AccessGatewayHover_icon.png"/></span>' +
+    '<a class="AccessGatewayLink" href="/cgi/setclient?macc">' +
+    '<span class="linkH4">' + _('Network Access') + '</span>' + 
+	'<span class="linkP">' + _('Connect with the Access Gateway Plug-in for MAC.') + '</span></a>' +
+    '</td>');
+	choicescount++;
+  }
+  if(errcookie.indexOf("wicps")!=-1) { 
+  document.writeln(
+  	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/WebUIHover_icon.png"/></span>' +
+    '<a class="WebUILink" href="/cgi/setclient?wica" onclick="ns_cleancookie();">' +
+    '<span class="linkH4">' + _('Citrix XenApp') + '</span>' + 
+	'<span class="linkP">' + _('Connect with Citrix XenApp Plug-in for Hosted Apps.') + '</span></a>' +
+    '</td>');
+  choicescount++;
+  }
+  if(errcookie.indexOf("cvpn")!=-1) {
+  	if (++choicescount == 3){ document.writeln('</tr><tr>');}
+  	document.writeln(
+  	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/ClientlessHover_icon.png"/></span>' +
+    '<a class="ClientlessLink" href="/cgi/setclient?cvpn" onclick="ns_cleancookie();">' +
+    '<span class="linkH4">' + _('Clientless Access') + '</span>' + 
+	'<span class="linkP">' + _('Connect without the Access Gateway Plug-in.') + '</span></a>' +
+    '</td>');
+	}
+  
+	if (++choicescount == 3){document.writeln('</tr><tr>');}
+	document.writeln(
+  	'<td class="VPNcell" valign="top"><span style="display:none"><img src="/vpns/images/LogoffHover_icon.png"/></span>' +
+	'<a class="LogoffLink" href="/cgi/logout">' +
+	'<span class="linkH4">' + _('Log Off') + '</span>' +
+	'<span class="linkP">' + _('End your session.') + '</span></a>' +
+	'</td>');
+	if (choicescount == 3){document.writeln('<td></td>');}
+  
+// Don't remove cookie here. Otherwise it cannot do refresh
+}
+
+</SCRIPT>
+</HEAD>
+<BODY><!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+
+<!-- Header -->
+<script language="javascript" type="text/javascript">
+	CreateMainTable();
+    AddHeaderAndBar();
+</script>
+
+<!-- Main row -->
+<tr>
+	<td>
+	<table class="CTXMSAM_ContentFont full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+		<tr>
+		<td>
+<!-- wrapper begin -->
+<table class="mainPane CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+                            <tr>
+                                <td>
+                         
+ 									<!-- content begin -->
+									<p>
+                                        <span class="messageTitle" id="messageTitle"></span>
+                                    </p>
+
+                                    <table id="VPN" class="CTX_ContentFont" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+											<SCRIPT language=javascript>
+											ns_fillchoices();
+											</SCRIPT>
+                                            
+                                        </tr>
+                                    </table>
+									
+ 									
+                                    <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+			</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+
+<!-- Footer -->
+<script language="javascript" type="text/javascript">
+AddFooter();
+</script>
+</table>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</BODY></HTML>

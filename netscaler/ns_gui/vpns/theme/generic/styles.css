@@ -1,0 +1,402 @@
+/* Main body blocks*/
+#contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(d1e3a3.gif);
+  background-repeat: repeat-y;
+}
+#services #contents{ 
+  background-image: none;
+}
+#main {
+  margin-bottom: .5em
+  height: auto;
+}	
+#header{
+  background: #9fb16c;
+  height: 80px;
+  margin: 0px;
+}
+#logo{
+  float: right;
+  background-image: url(blonbr-logo.gif);
+  width: 300px;
+  height: 80px;
+}
+#footer {
+  clear: both;
+  position: absolute;
+  bottom: 0;
+  background-color: #3e7a9e; 
+  color: white;
+  font-size: smaller;
+
+  width: 100%;
+}
+#content{
+  position: relative;
+  margin-left: 310px;
+
+}
+#services #content{
+  padding-left: 50px;
+}
+#services #content ul{
+  list-style-type: none;
+}
+#services #content li{
+  padding: 1em;
+  font-size: .8em;
+}
+/* BEGIN Toolbar STYLES*/
+#toolbar{
+  background-image: url(d1e3a3.gif);
+  background-repeat: repeat-y;
+  width:300px; 
+  float:left; 
+  margin-right:1px; 
+}
+#toolbar h2{
+  background-color: #d1e3a3;
+  padding: .2em;
+  margin: 0;
+  font-size: 1em; 
+  /* Hides from IE-mac \*/
+  height: 1%;
+  /* End hide from IE-mac */
+}
+#toolbar h3{
+  background-color: white;
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;   
+  margin-bottom: .2em;
+  border-right: 10px solid #d1e3a3;
+  /* Hides from IE-mac \*/
+  height: 1%;
+  /* End hide from IE-mac */
+}
+/* END Toolbar STYLES*/
+.bmoptions{
+  display: inline;
+  float: right;
+  font-size: .8em;
+  padding-right: 10px;
+  height: 1em;
+  background: #dbdbdb;
+  margin: 0;
+}
+.block{
+  margin-bottom: .8em;
+}
+.block h2{
+  padding: .2em;
+  margin: 0;
+  font-size: 1em;	
+  color: #3e7a9e;
+}
+.block h3{
+  background-color: #dbdbdb;
+  padding: .1em;
+  padding-left:.5em;
+  margin: 0;  
+  font-size: .9em;  
+  margin-bottom: .2em; 
+  height: 1%;
+  padding-right: 0px;
+}
+.block .item{
+  padding: 0;
+  padding-left: 1em;
+  padding-bottom: .2em;
+  font-size: .8em;
+}
+/* BEGIN NAVIGATION STYLES*/
+#navcontainer{
+  clear: both;
+  background: #3e7a9e;
+}
+#services #navcontainer{
+  color: white;
+  padding-left: 50px;
+}
+ul#navlist {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 0;
+  white-space: nowrap;
+  margin-bottom: 0;
+  text-align: right;
+}
+#navlist li{
+  display: inline;
+  list-style-type: none;
+  padding: .03em;
+  padding-right: .3em;
+  padding-left: .3em;
+}
+#navlist a { 
+  padding: 0px; 
+}
+#navlist a:link, #navlist a:visited{
+  color: #fff;
+  text-decoration: none;
+}
+#navlist a:hover{
+  color: #fff;
+  background-color: #AA1002;
+  text-decoration: none;
+}
+/* END NAVIGATION STYLES*/
+/* Forms and new bookmark styles*/
+form .buttonrow{
+  padding-left: 5em;
+}
+#newbm .labelbr{
+/* Below is a fix for NS6.2 - delete comments if you don't support NS6.2*/
+/*  display: none;*/
+}
+#newbm fieldset {
+  border: 0px solid white;
+}
+#newbm fieldset legend{
+  display: none;
+}
+#newbm fieldset .inlinelabel {
+  text-align:right;
+  width:70px;
+/* Below is a fix for NS6.2 - delete comments if you don't support NS6.2*/
+/*  float:left; */
+  padding:0.2em;
+  margin:0;
+  margin-top:0.3em; 
+  font-size: .8em;
+
+}
+
+#newbm fieldset .textfield {
+  margin:3px;
+  height:20px;
+  width: 13em;
+}
+/* The following is only applicable in IE/Win*/
+* html #newbm fieldset .textfield {
+  margin-left: -310px;
+}
+#newbm .button {
+  font: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin-right: 1em;
+}
+/* End: Form element styles*/
+
+/* Begin: Tips styles*/
+#tipiframe{
+  width: 270px;
+}
+.tipBody{
+  background: #d1e3a3;
+}
+#tip{
+  font-size: .8em;
+  padding-left: 1em;
+  padding-top: .5em; 
+  padding-bottom: .5em;
+  background: #d1e3a3;
+  width: 260px;
+}
+#nexttip{
+  font-size: .6em;
+  float: right;
+}
+/* End: Tips styles*/
+
+/* Begin: Ping Form element styles*/
+#pingiframe{
+  height: 65px;
+  width: 258px; 
+  border: 0px;
+  margin-left: 12px;
+}
+#ping{
+  background: #d1e3a3;
+  height: 65px;
+}
+#pingform{
+  margin: 0;
+  padding: 0;
+}
+#pingform fieldset{
+  border: 0px solid white;
+  margin-bottom: 2px;
+  padding-bottom: 0px;
+  margin: 0;
+  padding: 0;
+}
+#pingform label{
+  font-size: .7em;
+}
+#pingform input{
+/* Below is a fix for NS6.2 */
+/*  float: left; */
+}
+
+#pingform .labelbr{
+/* Below is a fix for NS6.2 */
+/*  display: none; */
+  width: 0px;
+  float: none;
+}
+#ping form{
+ margin: 0px;
+ padding: 0px;
+}
+#ping #response{
+  font-size: .7em;
+  background: #d1e3a3;
+}
+/* End: Ping Form element styles*/
+
+/* Login page styles */
+#loginPage{
+  background: #d1e3a3;
+  min-width: 620px; 
+}
+#loginPage #contents{
+  background-image: none;
+
+}
+#loginPage #footer{
+  display: none;
+}
+#login-logo{
+  background-image: url(br-logo.gif);
+  height: 80px;
+  width: 300px;
+  margin-left: 296px;
+  margin-top: 185px;
+}
+
+
+
+
+
+
+
+#loginForm{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+#loginForm fieldset {
+  border: 0px solid white;
+}
+#loginForm fieldset legend{
+  display: none;
+}
+#loginForm .inlinelabel{
+  color:#3e7a9e;
+  font-size: .7em;
+}
+#loginForm fieldset .textfield {
+  margin:3px;
+  width: 10em;
+  font-family: monospace;
+  border: 1px solid grey;
+}
+#login-button{
+  color: black;
+  border: 1px solid grey;
+}
+/* error pages styles*/
+#error #navcontainer{
+	font-weight: bold;
+	color: white;
+}
+#error #contents{ 
+  background-image: none;
+}
+#error #content{
+  padding: 50px;
+}
+/* Plugin Pop-up Styles */
+#app{
+    MARGIN: 0px 0px 0px 0px;
+    FONT-SIZE: 12px;
+    COLOR: #000000;
+    FONT-FAMILY: Times New Roman;
+    BACKGROUND: URL("popup/popup_bg.gif");
+    BACKGROUND-REPEAT: no-repeat;
+    BACKGROUND-COLOR: #FFFFFF
+}
+#app #container{
+	width: 300px;
+}
+#app #logo{
+	position: absolute;
+	top: 12px;
+	left: 8px;
+	background-image: url("popup/netscaler_logo_w.gif");
+	BACKGROUND-REPEAT: no-repeat;
+	WIDTH: 151;
+	HEIGHT: 23;
+}
+#app .message{
+	color: black;
+	font-weight: bold;
+}
+#app #ready{
+	margin-top: 13px;
+    margin-bottom: 3px;
+	padding-top: 7px;
+	padding-bottom: 3px;
+	margin-left: 180px;
+
+}
+#app #ready .button{
+	height: 16px;
+	width: 109px;
+    VERTICAL-ALIGN: middle;
+    BACKGROUND-REPEAT: no-repeat;
+	background-image: url("popup/button_bg.gif");
+    BACKGROUND-COLOR: #FFFFFF;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10px;
+	font-weight: bold;
+    COLOR: #000000;
+	padding-top: 2px;
+	padding-left: 5px;
+	margin-bottom: 4px;
+}
+#app #ready .button A{
+    COLOR: #000000;
+    TEXT-DECORATION: none
+}
+/* Structural Styles to get footer at bottom of page*/
+html, body, #contents {
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * The "height" above is a hack for IE5+/Win.  Below we adjust
+ * it using the child selector to hide from IE5+/Win
+ */
+
+html>body, html>body #contents {
+  height: auto;
+}
+
+/*
+ * Without this, Moz1.0 adds a vertical scrollbar
+ */
+
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  background: white;
+
+}

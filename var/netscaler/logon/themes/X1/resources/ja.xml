@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <Partition id="locale">
+    <String id="ShortDateFormat">yyyy/MM/dd</String>
+    <String id="ShortTimeFormat">HH:mm</String>
+  </Partition>
+  <Partition id="epa">
+    <Title>NetScaler Gateway</Title>
+    <String id="Internal Error">内部エラー</String>
+    <String id="Err3006">プラグインの起動に失敗しました。&lt;BR&gt;ヘルプ デスクまたはシステム管理者に連絡してください。</String>
+    <String id="You are downgrading the Citrix Endpoint Analysis Client">Citrix Endpoint Analysis Client を古いバージョンにダウングレードしています。\nInternet Explorer ブラウザー ウィンドウは自動的に閉じられます。\nInternet Explorer をもう一度開いて、ログオンしてください。</String>
+    <String id="loginAgentCdaHeaderText">デバイスのチェック</String>
+    <String id="The Access Gateway must confirm that you have the minimum requirements on your device before you can log on.">組織の内部ネットワークに接続する前に、お使いのコンピューターが特定の要件を満たしているかチェックする必要があります。</String>
+    <String id="To begin the check, click the yellow bar on the top of the page and follow the instructions.">チェックを開始するには、ページ上部の黄色いバーをクリックして、表示される指示に従います。</String>
+    <String id="To install or upgrade the software, click Download."> &amp;nbsp; </String>
+    <String id="Your device is checked automatically if the Citrix Endpoint Analysis Plug-in software is already installed.">このチェックを処理するソフトウェアをダウンロードしてください。</String>
+    <String id="AppINFO">Endpoint Analysis Plug-in がインストールされているかチェックしています</String>
+    <String id="Checking if the plug-in is installed">Endpoint Analysis Plug-in がインストールされているかチェックしています</String>
+    <String id="secs">秒</String>
+    <String id="You do not have the latest version of Endpoint Analysis plug-in installed. Please download the updated plug-in from the link provided">Endpoint Analysis Plug-in の最新バージョンがインストールされていません。指定されたリンクからソフトウェアの更新プログラムをダウンロードしてください。</String>
+    <String id="Endpoint Analysis plug-in is either not launched/installed. Please launch or click on the download link provided.">Endpoint Analysis Plug-in が起動されていないかインストールされていません。起動するか、または指定のダウンロード用リンクをクリックしてください。</String>
+    <String id="End point analysis failed">エンドポイント解析に失敗しました</String>
+    <String id="If you do not want your device checked, click Skip Check."> &amp;nbsp;  </String>
+    <Property id="downloadbutton" property="value">ダウンロード</Property>
+    <Property id="skipbutton" property="value">チェックをスキップ</Property>
+    <String id="This client machine does not match the required security">このクライアント マシンは必須セキュリティを満たしていません</String>
+    <String id="Bad response from server for scan results">スキャン結果に対してサーバーから無効な応答が返されました</String>
+    <String id="Bad response from server for Post">Post に対してサーバーから無効な応答が返されました</String>
+    <String id="Failed to generate scan results">スキャン結果を生成できませんでした</String>
+    <String id="Failed to fetch scans from server">サーバーからスキャンを取得できませんでした</String>
+    <String id="Device certificate check failed">デバイス証明書チェックに失敗しました</String>
+    <String id="Bad response from Server for version check">バージョン チェックに対してサーバーから無効な応答が返されました</String>
+    <String id="ClassicEpa not supported from browser">ClassicEpa はブラウザーからサポートされていません</String>
+    <String id="Bad response from Server for Get /epatype">Get /epatype に対してサーバーから無効な応答が返されました</String>
+  </Partition>
+  <Partition id="epaerrorpage">
+    <Title>NetScaler Gateway: アプリケーション エラー</Title>
+    <String id="Access Denied">アクセスが拒否されました</String>
+    <String id="Your device does not meet the requirements for logging on.">お使いのデバイスはログオン要件を満たしていません。</String>
+    <String id="For more information, contact your help desk and provide the following information:">詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせて次の情報を連絡してください。</String>
+    <String id="Date:">日付:</String>
+    <String id="Time:">時間:</String>
+    <String id="Error:">エラー:</String>
+    <String id="To check your device again, click Back.">デバイスをもう一度チェックするには、[戻る] をクリックします。</String>
+    <Property id="Button1" property="value">戻る</Property>
+  </Partition>
+  <Partition id="postepa">
+    <Title>NetScaler Gateway</Title>
+    <String id="Internal Error">内部エラー</String>
+    <String id="Please ">デバイスのチェックを実行するには、 </String>
+    <String id="(Please) use the Access Gateway Plug-in to run the check of your device. ">&amp;nbsp;the&amp;nbsp;NetScaler&amp;nbsp;Gateway&amp;nbsp;Plug-in&lt;/A&gt; を使用してください。 </String>
+    <String id="For further help or information, contact your help desk or system administrator.">詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせてください。</String>
+    <String id="The Endpoint Analysis Plug-in failed to start. ">Endpoint Analysis Plug-in の起動に失敗しました。 </String>
+    <String id="You can ">デバイスのチェックは、 </String>
+    <String id="(You can) use the Access Gateway Plug-in to run the check of your device. ">&amp;nbsp;the&amp;nbsp;NetScaler&amp;nbsp;Gateway&amp;nbsp;Plug-in&lt;/A&gt; を使って実行できます。 </String>
+    <String id="The user skipped the scan">ユーザーがスキャンをスキップしました。</String>
+    <String iD="You are downgrading the Citrix Endpoint Analysis Client to an earlier version.">NetScaler Gateway</String>
+    <String id="Checking Your Device">デバイスのチェック</String>
+    <String id="The Access Gateway must confirm that you have the minimum requirements on your device before you can log on.">組織の内部ネットワークに接続する前に、お使いのコンピューターが特定の要件を満たしているかチェックする必要があります。</String>
+    <String id="To begin the check, click the yellow bar on the top of the page and follow the instructions.">チェックを開始するには、ページ上部の黄色いバーをクリックして、表示される指示に従います。</String>
+    <String id="To install or upgrade the software, click Download."> &amp;nbsp; </String>
+    <String id="Your device is checked automatically if the Citrix Endpoint Analysis Plug-in software is already installed.">このチェックを処理するソフトウェアをダウンロードしてください。</String>
+    <String id="AppINFO">Endpoint Analysis Plug-in がインストールされているかチェックしています</String>
+    <String id="secs">秒</String>
+    <String id="Checking if the plug-in is installed">プラグインがインストールされているかチェックしています</String>
+    <String id="You do not have the latest version of Endpoint Analysis plug-in installed. Please download the updated plug-in from the link provided">Endpoint Analysis Plug-in の最新バージョンがインストールされていません。指定されたリンクからソフトウェアの更新プログラムをダウンロードしてください。</String>
+    <String id="Manual start of the Endpoint Analysis plug-in failed as it is not installed. Please click Download to install the plug-in.">Endpoint Analysis Plug-in がインストールされていないため、手動起動できませんでした。[ダウンロード] をクリックして、Endpoint Analysis Plug-in をインストールしてください。</String>
+    <String id="Endpoint Analysis plug-in is either not launched/installed. Please launch or click on the download link provided.">Endpoint Analysis Plug-in が起動されていないかインストールされていません。起動するか、または指定のダウンロード用リンクをクリックしてください。</String>
+    <String id="Automatic start of the Endpoint Analysis plug-in failed. Please click Launch to manually start the plug-in.">Endpoint Analysis Plug-in の自動起動に失敗しました。[起動] をクリックして、Endpoint Analysis Plug-in を手動で起動してください。</String>
+    <String id="End point analysis failed">エンドポイント解析に失敗しました</String>
+    <String id="If you do not want your device checked, click Skip Check."> &amp;nbsp;  </String>
+    <Property id="downloadbutton" property="value">ダウンロード</Property>
+    <Property id="skipbutton" property="value">チェックをスキップ</Property>
+    <Property id="launchbutton" property="value">起動</Property>
+  </Partition>
+  <Partition id="logon">
+    <Title>NetScaler Gateway</Title>
+    <String id="Welcome">ようこそ</String>
+    <String id="ctl08_loginAgentCdaHeaderText2">ログオンしてください</String>
+    <String id="User_name">ユーザー名</String>
+    <Property id="Enter user name" property="title">ユーザー名の入力</Property>
+    <String id="Password">パスワード</String>
+    <String id="Password2">第 2 パスワード</String>
+    <String id="domain">ドメイン</String>^M
+    <String id="Enter password">パスワードを入力します</String>
+    <Property id="Log_On" property="value">ログオン</Property>
+    <String id="You need to enter login name">ログオン名を入力する必要があります</String>
+    <String id="You need to enter passwd">パスワードを入力する必要があります</String>
+	<String id="Enter_password2_Alert">第 2 パスワードを入力する必要があります</String>
+	<String id="eula_title">エンド ユーザー ライセンス契約</String>
+	<String id="eula_agreement">同意します&amp;nbsp;</String>
+	<String id="terms">使用条件を守ります</String>
+    <String id="errorMessageLabelBase">errorMessageLabel</String>
+    <String id="eulaback">戻る</String>
+    <String id="errorMessageLabel4001">ユーザー名かパスワードが間違っています。</String>
+    <String id="errorMessageLabel4002">ログオンするアクセス権限がありません。</String>
+    <String id="errorMessageLabel4003">サーバーに接続できません。数分後に再度接続してみてください。</String>
+    <String id="errorMessageLabel4004">接続できません。もう一度接続してみてください。 </String>
+    <String id="errorMessageLabel4005">接続できません。もう一度接続してみてください。 </String>
+    <String id="errorMessageLabel4006">ユーザー名が正しくありません。  </String>
+    <String id="errorMessageLabel4007">パスワードが正しくありません。</String>
+    <String id="errorMessageLabel4008">パスワードが一致しません。</String>
+    <String id="errorMessageLabel4009">ユーザーが見つかりません。</String>
+    <String id="errorMessageLabel4010">現在ログオンするアクセス権限がありません。</String>
+    <String id="errorMessageLabel4011">アカウントは無効になっています。</String>
+    <String id="errorMessageLabel4012">パスワードの有効期限が切れました。</String>
+    <String id="errorMessageLabel4013">ログオンするアクセス権限がありません。</String>
+    <String id="errorMessageLabel4014">パスワードを変更できません。</String>
+    <String id="errorMessageLabel4015">アカウントが一時的にロックされています。  </String>
+    <String id="errorMessageLabel4016">パスワードを更新できません。パスワードは、長さ、複雑さ、および履歴に関してドメインの要件を満たす必要があります。</String>
+    <String id="errorMessageLabelMax">4016</String>
+  </Partition>
+  <Partition id="loading">
+    <Title>NetScaler Gateway</Title>
+    <String id="One Moment Please">しばらくお待ちください</String>
+    <String id="Loading...">読み込んでいます...</String>
+  </Partition>
+  <Partition id="changepwd">
+    <Title>NetScaler Gateway</Title>
+    <String id="Error0">パスワードの変更に失敗しました。指定した現在のパスワードが正しいか確認し、もう一度実行してください。</String>
+    <String id="Error1">パスワードを変更しようとして、NetScaler Gateway でエラーが発生しました。もう一度実行してください。</String>
+    <String id="Error2">パスワードを変更を許可されていません。ヘルプ デスクまたはシステム管理者に連絡してください。</String>
+    <String id="Error3">パスワードを変更するには、すべてのフィールドを指定してください。&lt;BR&gt;</String>
+    <String id="Error4">新しいパスワードと確認用のパスワードが一致しません。もう一度入力してください。</String>
+    <String id="Error5">NetScaler Gateway が予期しない状態になりました。ヘルプ デスクまたはシステム管理者に連絡してください。</String>
+    <String id="The password change failed. Please try again.">パスワードの変更に失敗しました。もう一度実行してください。&lt;BR&gt;</String>
+    <String id="infoMessage">ここでパスワードを変更しない場合は、[キャンセル] をクリックしてホームページに戻ります。</String>
+    <String id="Change Password">パスワードを変更</String>
+    <String id="For more information about changing your password, contact your help desk or system administrator.">パスワードの変更について詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせてください。</String>
+    <String id="labelUsername">ユーザー名:</String>
+    <String id="labelOldPassword">古いパスワード:</String>
+    <String id="labelNewPassword">新しいパスワード:</String>
+    <String id="labelConfirmedPassword">確認用のパスワード:</String>
+    <Property id="Submit" property="value">送信</Property>
+    <Property id="Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="chpwdsuccess">
+    <Title>NetScaler Gateway</Title>
+    <String id="successMessage"> パスワードが変更されました。 </String>
+    <Property id="Continue" property="value">続行</Property>
+  </Partition>
+  <Partition id="logout">
+    <Title>NetScaler Gateway</Title>
+    <String id="ctl10_cdaHeaderText">ログオフ</String>
+    <String id="Logoff is successful.">正常にログオフしました。</String>
+	<Property id="Log_On" property="value">ログオン</Property>
+  </Partition>
+  <Partition id="VPN_ERRORS">
+    <String id="You are not allowed to login.">ログインが許可されていません。</String>
+    <String id="Please contact your administrator.">管理者に連絡してください。</String>
+    <String id="Target URL not found for redirect after successful login.">ログイン成功後のリダイレクト先の URL が見つかりません。</String>
+    <String id="SAML 2 Factor must always have an active policy in primary cascade.">SAML 2 要素を使用するにはプライマリ カスケードにアクティブなポリシーが必要です。</String>
+    <String id="You have exceeded the maximum login attempts.">許可されているログインの最大試行回数に達しました。</String>
+    <String id="No active policy is found in Primary authentication cascade">プライマリの認証カスケードにアクティブなポリシーがありません</String>
+    <String id="No active policy is found in Secondary authentication cascade">セカンダリの認証カスケードにアクティブなポリシーがありません</String>
+    <String id="No active policy is found in Tertiary authentication cascade">ターシャリの認証カスケードにアクティブなポリシーがありません</String>
+    <String id="You cannot have active authentication enabled policies on secondary or tertiary cascades for 401 vserver.">401 仮想サーバーでは、セカンダリおよびターシャリのカスケードでアクティブなポリシーを有効にすることはできません。</String>
+    <String id="No IntranetIP available. Please try login later.">IntranetIP がありません。後で再ログインしてください。</String>
+    <String id="Error: Access is Denied. Client SSL Certificate Required.">エラー: アクセスが拒否されました。クライアント SSL 証明書が必要です。</String>
+    <String id="Error: Access is Denied. Client SSL Certificate Invalid.">エラー: アクセスが拒否されました。クライアント SSL 証明書が無効です。</String>
+    <String id="Error: Access is Denied. Extraction from Client SSL Certificate Failed.">エラー: アクセスが拒否されました。クライアント SSL 証明書からの抽出に失敗しました。</String>
+  </Partition>
+  <Partition id="VPN_REDIRECT_2000K">
+    <String id="Login Successful. Please click">正常にログインしました。自動的にリダイレクトしない場合は</String>
+    <String id="here">ここを</String>
+    <String id="if you are not automatically redirected.">クリックしてください。</String>
+  </Partition>
+  <Partition id="AAATM_REDIRECT_FORM">
+    <String id="If you are not automatically redirected click ">自動的にリダイレクトしない場合は </String>
+    <Property id="Continue" property="value">続行</Property>
+    <String id="Trailing phrase after Continue button"/>
+  </Partition>
+  <Partition id="REDIRECTION_BODY">
+    <String id="This object may be found ">このオブジェクトは </String>
+    <String id="here">ここで</String>
+    <String id="Trailing phrase after here"/>
+  </Partition>
+  <Partition id="LOGOUT_OK_BODY">
+    <Title>ページは移動しました</Title>
+    <String id="Logout Succeeded">正常にログオフしました</String>
+  </Partition>
+  <Partition id="VPN_LICERR_BODY">
+    <String id="Error: Login exceeds maximum allowed users.">エラー: 許可された最大ログオン ユーザー数を超えました。</String>
+  </Partition>
+  <Partition id="FS_LOGIN_DNSERR_BODY">
+    <String id="Requested servername too long.">要求したサーバー名が長すぎます。</String>
+  </Partition>
+  <Partition id="NS_PING_DNS_ERR">
+    <Title>Ping フォーム</Title>
+    <String id="Server:">サーバー:</String>
+    <Property id="PingButton" property="value">Ping</Property>
+    <String id="Failed to resolve IP address">IP アドレス解決に失敗しました</String>
+  </Partition>
+  <Partition id="DIALOGUE_HTML">
+    <Title>NetScaler Gateway</Title>
+    <String id="dialogueHeader">追加情報が必要</String>
+    <String id="dialogueInfo">以下に返信を入力してください。</String>
+    <String id="dialoguePasswordChange">パスワードの有効期限が切れています。新しいパスワードを入力してください。</String>
+    <String id="dialogueConfirmPassword">パスワードを確認してください</String>
+    <Property id="SubmitButton" property="value">送信</Property>
+  </Partition>
+  <Partition id="TRANSFER_RSP">
+    <Title>NetScaler Gateway</Title>
+    <String id="heading">転送ログオン</String>
+    <String id="You are currently logged on to the Access Gateway on another device.">現在ほかのデバイス上の NetScaler Gateway にログオンしています。</String>
+    <String id="Would you like to end that session?">セッションを終了してもよろしいですか?</String>
+    <String id="You have reached the limit of the allowed Access Gateway sessions.">NetScaler Gateway セッションの限度数に達しました。</String>
+    <String id="Please select which session to release in order to continue with this session.">このセッションを続行するために開放するセッションを選択してください。</String>
+    <String id="Intranet IP Address">内部 IP アドレス</String>
+    <String id="Idle Time">アイドル時間 (H:MM:SS)</String>
+    <Property id="TransferButton" property="value">転送</Property>
+    <Property id="CancelButton" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="choices">
+    <Title>NetScaler Gateway</Title>
+    <String id="Network Access">ネットワーク アクセス</String>
+    <String id="Connect with the Access Gateway Plug-in for ActiveX.">NetScaler Gateway Plug-in for ActiveX を使って接続します。</String>
+    <String id="Connect with the Access Gateway Plug-in.">NetScaler Gateway Plug-in を使って接続します。</String>
+    <String id="Connect with the Access Gateway Plug-in for Java.">NetScaler Gateway Plug-in for Java を使って接続します。</String>
+    <String id="Connect with the Access Gateway Plug-in for MAC.">NetScaler Gateway Plug-in for MAC を使って接続します。</String>
+    <String id="Citrix XenApp">仮想アプリケーションおよびデスクトップ アクセス</String>
+    <String id="Connect with Citrix XenApp Plug-in for Hosted Apps.">Citrix Receiver によるエンタープライズ仮想アプリケーションおよびデスクトップへのアクセスを選択します。</String>
+    <String id="Clientless Access">クライアントレス アクセス</String>
+    <String id="Connect without the Access Gateway Plug-in.">NetScaler Gateway Plug-in を使わずに接続します。</String>
+    <String id="Log Off">ログオフ</String>
+    <String id="End your session.">セッションを終了します。</String>
+    <String id="messageTitle">次のいずれかを選択してください:</String>
+	<String id="hello">こんにちは&amp;nbsp;&amp;nbsp;</String>
+	<String id="agent_description">デバイスの完全な VPN クライアントを介して組織のリソースにアクセスします。プラグインをインストールしていない場合は、インストールを求められます。このオプションは、信頼されているデバイスを使用している場合にのみ使用します。</String>
+    <String id="cvpn_description">クライアントレス モードを選択して Web ブラウザーを使ってリソースにアクセスします。セキュリティで保護されたアクセスは VPN にログオンした Web ブラウザーのウィンドウに限定されます。このオプションは、信頼されていないデバイスを使っている場合にのみ使用します。</String>
+  </Partition>
+  <Partition id="f_services">
+    <Title>NetScaler Gateway</Title>
+    <String id="NetScaler Gateway">NetScaler Gateway</String>
+    <String id="waitingmsg">VPN セッションが確立するまでお待ちください。</String>
+    <String id="If the Access Gateway Plug-in is installed">NetScaler Gateway Plug-in がインストールされている場合、[スタート] &amp;gt; [すべてのプログラム] &amp;gt; [Citrix] &amp;gt; [NetScaler Gateway] の順に選択してこのアプリケーションを起動します。</String>
+    <String id="If the Access Gateway Plug-in is not installed">NetScaler Gateway Plug-in がインストールされていない場合は、[ダウンロード] をクリックしてソフトウェアをインストールし、自動的に接続します。</String>
+    <String id="If a proxy server is configured">プロキシ サーバーが設定されている場合は、Web ブラウザーのプロキシ例外に &quot;localhost&quot; を追加する必要があります。  </String>
+    <String id="For more information contact your help desk or system administrator.">詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせてください。</String>
+    <Property id="Button_Download" property="src">/vpns/images/Download_ja.png</Property>
+    <String id="/vpns/images/Download_Hover.png">/vpns/images/Download_Hover_ja.png</String>
+    <String id="/vpns/images/Download.png">/vpns/images/Download_ja.png</String>
+    <String id="To install the Access Gateway Plug-in for Windows">NetScaler Gateway Plug-in for Windows をインストールするには</String>
+    <String id="Click Download">1.  &lt;B&gt;[ダウンロード]&lt;/B&gt; をクリックします。</String>
+    <String id="In the File Download dialog box, click Run.">2.  [ファイルのダウンロード] ダイアログボックスで、&lt;B&gt;[実行]&lt;/B&gt; をクリックします。</String>
+    <String id="In the Internet Explorer dialog box, click Run to install the Access Gateway Plug-in for Windows.">3.  [ブラウザー] ダイアログボックスで、&lt;B&gt;[実行]&lt;/B&gt; をクリックして NetScaler Gateway Plug-in for Windows をインストールします。</String>
+    <String id="The Access Gateway Plug-in is not supported on your operating system.">NetScaler Gateway Plug-in はお使いのオペレーティング システムではサポートされていません。</String>
+    <String id="To connect to the Access Gateway Plug-in, you need to install some software.">NetScaler Gateway Plug-in に接続するには、あるソフトウェアをインストールする必要があります。</String>
+  </Partition>
+  <Partition id="f_ndisagent">
+    <Title>NetScaler Gateway</Title>
+    <String id="Citrix_Access_Gateway">NetScaler Gateway</String>
+    <String id="If_the_Access_Gateway_Plugin_is_installed">NetScaler Gateway Plug-in がインストールされていて、現在実行中でない場合は、[スタート] &amp;gt; [すべてのプログラム] &amp;gt; [Citrix] &amp;gt; [NetScaler Gateway] の順に選択し、アプリケーションを起動します。</String>
+    <String id="If_the_Access_Gateway_Plugin_is_not_installed">NetScaler Gateway Plug-in がインストールされていない場合は、[ダウンロード] をクリックするとソフトウェアがインストールされ、自動的に接続します。</String>
+    <String id="waitingmsg">VPN セッションが確立するまでお待ちください。</String>
+    <String id="If_a_proxy_server_is_configured">プロキシ サーバーが設定されている場合は、Web ブラウザーのプロキシ例外に &quot;localhost&quot; を追加する必要があります。</String>
+    <String id="For_more_information_contact_your_help_desk_or_system_administrator">詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせてください。</String>
+    <Property id="Download" property="value">ダウンロード</Property>
+	<Property id="Button_Download" property="src">/vpns/images/Download_ja.png</Property>
+    <String id="/vpns/images/Download_Hoverpng">/vpns/images/Download_Hover_ja.png</String>
+    <String id="/vpns/images/Downloadpng">/vpns/images/Download_ja.png</String>
+    <String id="To_install_the_Access_Gateway_Plugin_for_Windows">NetScaler Gateway Plug-in for Windows をインストールするには</String>
+    <String id="Click_Download">1.  &lt;B&gt;[ダウンロード]&lt;/B&gt; をクリックします。</String>
+    <String id="In_the_File_Download_dialog_box_click_Run">2.  [ファイルのダウンロード] ダイアログボックスで、&lt;B&gt;[実行]&lt;/B&gt; をクリックします。</String>
+    <String id="In_the_Internet_Explorer_dialog_box_click_Run_to_install_the_Access_Gateway_Plugin_for_Windows">3.  [ブラウザー] ダイアログボックスで、&lt;B&gt;[実行]&lt;/B&gt; をクリックして NetScaler Gateway Plug-in for Windows をインストールします。</String>
+	<String id="AppINFO">Endpoint Analysis Plug-in がインストールされているかチェックしています</String>
+    <String id="secs">秒</String>
+  </Partition>
+  <Partition id="m_services">
+    <Title>NetScaler Gateway</Title>
+    <String id="NetScaler Gateway">NetScaler Gateway</String>
+    <String id="Please wait for the VPN session to be established.">VPN セッションが確立するまでお待ちください。</String>
+    <String id="This is a beta version of Access Gateway Plug-in for Mac OS X.">これは、NetScaler Gateway Plug-in for Mac OS X のベータ バージョンです。</String>
+    <String id="If the Plug-in is installed">プラグインがインストールされている場合は、[アプリケーション] -&amp;gt; [NetScaler Gateway] の順にクリックしてログオンします。</String>
+	<String id="If the Linux-Plug-in is installed">NetScaler Gateway Client (nsgclient) がインストールされている場合は、[ダッシュボード] -&amp;gt; [nsgclient] の順に移動してログオンします。</String>
+    <String id="If the Access Gateway Plug-in is not installed">NetScaler Gateway Plug-in for Mac OS X がインストールされていないか、更新が必要です。このプラグインのインストーラーをダウンロードしてください。インストール後、プラグインが自動的に接続します。</String>
+	<String id="If the Access Gateway Linux-Plug-in is not installed">NetScaler Gateway クライアントがインストールされていない場合は、[ダウンロード] をクリックして Debian パッケージをインストールして自動的に接続します。</String>
+    <String id="If a proxy server is configured">プロキシ サーバーが構成されている場合は、Web ブラウザーのプロキシ例外に &quot;localhost&quot; を追加する必要があります。</String>
+	<String id="If a proxy server is configured Linux">プロキシ サーバーが構成されている場合は、自分の Web ブラウザーのプロキシ例外に &quot;localhost&quot; を追加する必要があります。</String>
+    <String id="For more information contact your help desk or system administrator.">詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせてください。</String>
+    <String id="Checking if the plug-in is installed">Endpoint Analysis Plug-in がインストールされているかチェックしています</String>
+    <String id="secs">秒</String>
+    <Property id="Download" property="value">ダウンロード</Property>
+	<Property id="Button_Download" property="src">/vpns/images/Download_ja.png</Property>
+    <String id="/vpns/images/Download_Hover.png">/vpns/images/Download_Hover_ja.png</String>
+    <String id="/vpns/images/Download.png">/vpns/images/Download_ja.png</String>
+    <String id="To install the Access Gateway Plug-in for Mac OS X">NetScaler Gateway Plug-in for Mac OS X をインストールするには</String>
+	<String id="To install the Netscaler Access Gateway Client for Linux">(現在 Ubuntu OS でサポートされている) NetScaler Gateway Client for Linux をインストールするには</String>
+    <String id="Click Download">1.  &lt;B&gt;[ダウンロード]&lt;/B&gt; をクリックします。</String>
+    <String id="In the File Download dialog box, click Run.">2.  [ファイルのダウンロード] ダイアログボックスで、&lt;B&gt;[実行]&lt;/B&gt; をクリックします。</String>
+	<String id="Linux install using software center">2.  Ubuntu ソフトウェア センターを使って、ダウンロードした Debian パッケージをインストールします。</String>
+    <String id="In the Web browser dialog box, click Run to start the installaTion.">3.  [Web ブラウザー] ダイアログボックスで、&lt;B&gt;[実行]&lt;/B&gt; をクリックしてインストールを開始します。</String>
+  </Partition>
+  <Partition id="f_services1">
+    <Title>NetScaler Gateway</Title>
+    <String id="NetScaler Gateway">NetScaler Gateway</String>
+    <String id="If the Access Gateway Plug-in for ActiveX does not start automatically">NetScaler Gateway Plug-in for ActiveX が自動的に起動しない場合は、&lt;A HREF=&quot;/vpns/app.html&quot; onclick=&quot;ns_loadsessionwindow(); return false;&quot;&gt;NetScaler Gateway セッション ウィンドウ&lt;/A&gt;を手動で開くことができます。</String>
+    <String id="Please click here to download Secure Access client to this Pocket PC">&lt;A HREF=&quot;/vpns/scripts/ARM/nsvpnc.exe&quot;&gt;ここをクリック&lt;/A&gt;してこの Pocket PC に Secure Access Client をダウンロードし、このクライアントを起動して Secure Access Web サイトにログオンします。</String>
+    <String id="The Access Gateway Plug-in is not supported on your operating system.">NetScaler Gateway Plug-in はお使いのオペレーティング システムではサポートされていません。</String>
+    <String id="For further help or information, contact your help desk or system administrator.">詳しくは、ヘルプ デスクまたはシステム管理者に問い合わせてください。</String>
+  </Partition>
+  <Partition id="app">
+    <Title>NetScaler Gateway</Title>
+    <String id="Err3001">既に NetScaler Gateway にログオンしています。</String>
+    <String id="Err3002">NetScaler Gateway にログオンしていません。</String>
+    <String id="Err3003">NetScaler Gateway は Internet Explorer 4 以降をサポートします。</String>
+    <String id="Err3004">プラグインのロードに失敗しました。NetScaler Gateway 管理者に連絡してください。</String>
+    <String id="Err3005">ActiveX のアクティブ化に失敗しました。NetScaler Gateway 管理者に連絡してください。</String>
+    <String id="Navigating away from this page ends your session.">このページから移動すると、セッションが終了します。</String>
+    <String id="Home">ホーム</String>
+    <String id="File Transfer">ファイル転送</String>
+    <String id="Configuration">構成</String>
+    <String id="Help">ヘルプ</String>
+    <String id="Logoff">ログオフ</String>
+  </Partition>
+  <Partition id="err2002">
+    <Title>SSL VPN ポータル</Title>
+    <String id="errortitle">エラー 2002: dsclient.exe をインストールする必要があります。</String>
+    <String id="info">NetScaler はコンピューターが dsclient.exe をインストールしていないことを検出しました。この Microsoft のソフトウェアは SSL VPN で暗号化/暗号化解除機能を実行するために必要です。&lt;A HREF=&quot;/&quot; onclick=&quot;return ns_doupdate();&quot;&gt;ここをクリックして&lt;/A&gt;このソフトウェアをインストールしてください。指示に従ってこのインストールを完了し、コンピューターを再起動して、もう一度ログオンします。</String>
+    <String id="footer">Copyright &amp;copy;2004 NetScaler, Inc. All rights reserved.</String>
+  </Partition>
+  <Partition id="err2004">
+    <Title>SSL VPN ポータル</Title>
+    <String id="errortitle">エラー 2004: 必要なエンドポイント セキュリティ ソフトウェアがインストールされていません。</String>
+    <String id="info">管理者は、SSL VPN にアクセスするためにエンドポイント セキュリティ ソフトウェアでコンピューターを保護する必要があります。NetScaler は、コンピューターがこのセキュリティ要件を満たしていないことを検出しました。必要なエンドポイント セキュリティ ソフトウェアは、個人用ファイヤウォール、アンチウィルス アプリケーション、アンチハッカー アプリケーション、またはカスタマイズされたアプリケーションです。&lt;P&gt;エラー &lt;I&gt;2004&lt;/I&gt;: エンドポイント セキュリティ ソフトウェアがこのコンピューターにインストールされていません。管理者に連絡して、ソフトウェアをインストールしてください。</String>
+    <String id="footer">Copyright &amp;copy;2004 NetScaler, Inc. All rights reserved.</String>
+  </Partition>
+  <Partition id="err2005">
+    <Title>SSL VPN ポータル</Title>
+    <String id="errortitle">エラー 2005: 必要なエンドポイント セキュリティ ソフトウェアをアップグレードする必要があります。</String>
+    <String id="info">管理者は、SSL VPN にアクセスするためにエンドポイント セキュリティ ソフトウェアでコンピューターを保護する必要があります。NetScaler は、コンピューターがこのセキュリティ要件を満たしていないことを検出しました。必要なエンドポイント セキュリティ ソフトウェアは、個人用ファイヤウォール、アンチウィルス アプリケーション、アンチハッカー アプリケーション、またはカスタマイズされたアプリケーションです。&lt;P&gt;エラー &lt;I&gt;2005&lt;/I&gt;: このコンピューターにインストールされている必要なエンドポイント セキュリティ ソフトウェアのバージョンが要件を満たしていません。管理者に連絡してソフトウェアを更新してください。</String>
+    <String id="footer">Copyright &amp;copy;2004 NetScaler, Inc. All rights reserved.</String>
+  </Partition>
+  <Partition id="err2006">
+    <Title>SSL VPN ポータル</Title>
+    <String id="errortitle">エラー 2006: 必要なエンドポイント セキュリティ ソフトウェアがアクティブになっていません。</String>
+    <String id="info">管理者は、SSL VPN にアクセスするためにエンドポイント セキュリティ ソフトウェアでコンピューターを保護する必要があります。NetScaler は、コンピューターがこのセキュリティ要件を満たしていないことを検出しました。必要なエンドポイント セキュリティ ソフトウェアは、個人用ファイヤウォール、アンチウィルス アプリケーション、アンチハッカー アプリケーション、またはカスタマイズされたアプリケーションです。&lt;P&gt;エラー &lt;I&gt;2006&lt;/I&gt;: このコンピューターにインストールされているエンドポイント セキュリティ ソフトウェアは現在アクティブになっていません。必要なエンドポイント セキュリティ ソフトウェアをアクティブ化してください。</String>
+    <String id="footer">Copyright &amp;copy;2004 NetScaler, Inc. All rights reserved.</String>
+  </Partition>
+  <Partition id="portal">
+    <Title>NetScaler Gateway</Title>
+    <String id="ctl00_applications_label">アプリケーション</String>
+    <String id="ctl00_ping_label">Ping</String>
+    <String id="ctl00_tip_label">ヒント</String>
+    <String id="ctl00_help_label">ヘルプ</String>
+    <String id="ctl00_webSites_label">Web アプリ </String>
+    <String id="ctl00_fileShares_label">ファイル共有</String>
+    <String id="id_Home">ホーム</String>
+    <String id="id_Email">電子メール</String>
+    <String id="id_FileTransfer">ファイル転送</String>
+    <String id="id_ChangePassword">パスワードの変更</String>
+    <String id="id_LogOff">ログオフ</String>
+    <String id="id_UserGuide">ユーザー ガイド</String>
+    <Property id="id_UserGuide" property="href">/vpns/help/ja/SAC_Windows/Title-Page.html</Property>
+	<String id="welcome_message">Citrix Unified Gateway Portal へようこそ</String>
+	<String id="hello">こんにちは,&amp;nbsp;&amp;nbsp;</String>
+  </Partition>
+  <Partition id="fsping">
+    <String id="ServerLabel">サーバー:</String>
+    <String id="Failed to resolve IP address for">次の IP アドレスを解決できませんでした:</String>
+    <String id="server">サーバー</String>
+    <String id="is alive">稼働中</String>
+    <String id="is not alive">非稼働</String>
+    <Property id="PingButton" property="value">Ping</Property>
+	<Property id="id_PingButton" property="value">送信</Property>
+  </Partition>
+  <Partition id="bookmark">
+    <String id="none">なし</String>
+    <String id="id_EnterpriseWebSites">企業 Web サイト</String>
+    <String id="id_PersonalWebSites">個人 Web サイト</String>
+    <String id="id_Add">追加</String>
+    <String id="id_Remove">削除</String>
+  </Partition>
+  <Partition id="newbm">
+    <Title>NetScaler Gateway</Title>
+    <String id="Add a Bookmark">ブックマークを追加</String>
+    <String id="To add a Web site, type in the full address">Web サイトを追加するには、次のような完全なアドレスを入力します: http://my.company.com/</String>
+    <String id="To add a file share, type in the server and folder name">ファイル共有を追加するには、\\fileserver\foldername のようにサーバーおよびフォルダー名を入力します。</String>
+    <String id="To add a RDP Link info">RDP リンクを追加するには、サーバー IP/サーバー名とポートを形式どおり (サーバーIP:ポート) に入力して、'RDP リンク'チェックボックスにチェックを入れます。</String>
+    <String id="The maximum length of each field is 256 characters.">各フィールドの最大文字数は 256 です。</String>
+    <String id="ctl10_labelUsername">名前:</String>
+    <String id="ctl10_labelNewPassword">アドレス:</String>
+    <String id="ctl10_labelConfirmNewPassword">説明:</String>
+    <String id="RDPLink">RDP リンク</String>
+    <Property id="Button_Add" property="value">追加</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+    <String id="You must provide a URL for your bookmark.">ブックマークの URL を指定する必要があります。</String>
+	<String id="Incorrect_FS_address">有効なファイル共有アドレスを指定する必要があります。</String>
+    <String id="The bookmark contains invalid URI characters. Please enter a valid Web address.">ブックマークに無効な URI 文字が含まれています。有効な Web アドレスを入力してください。</String>
+    <String id="The bookmark is using the script tag, which is not allowed. Please enter a valid name.">ブックマークは &lt;script&gt; タグを使用しており、これは許可されていません。有効な名前を入力してください。</String>
+    <String id="The bookmark is using the script tag, which is not allowed. Please enter a valid description.">ブックマークは &lt;script&gt; タグを使用しており、これは許可されていません。有効な説明を入力してください。</String>
+  </Partition>
+  <Partition id="rmbm">
+    <Title>NetScaler Gateway</Title>
+    <String id="Remove Bookmarks">ブックマークの削除</String>
+    <String id="To remove a bookmark, select it and click Remove.">ブックマークを削除するには、削除するブックマークを選択して[削除] をクリックします。</String>
+    <String id="When a bookmark is removed, it cannot be retrieved.">ブックマークを削除すると、それを再生できません。ブックマークを誤って削除した場合は、[ブックマークを追加] を使って再度作成します。</String>
+    <Property id="Button_Remove" property="value">削除</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+    <String id="none">なし</String>
+  </Partition>
+  <Partition id="ftlist">
+    <String id="none">なし</String>
+    <String id="id_EnterpriseFileShares">企業ファイル共有</String>
+    <String id="id_PersonalFileShares">個人ファイル共有</String>
+    <String id="id_Add">追加</String>
+    <String id="id_Remove">削除</String>
+  </Partition>
+  <Partition id="fslogin">
+    <Title>Citrix Secure Access: リモートのセキュアなファイル システム アクセス</Title>
+  </Partition>
+  <Partition id="fsicons">
+    <String id="id_LogOn">ログオン</String>
+    <Property id="id_LogOnLink" property="title">サーバーの検索</Property>
+    <String id="id_Up">上へ</String>
+    <Property id="id_UpLink" property="title">上のフォルダーに移動</Property>
+    <String id="id_Refresh">更新</String>
+    <Property id="id_RefreshLink" property="title">このフォルダーを更新</Property>
+    <String id="id_NewFolder">新規フォルダー(&amp;F)</String>
+    <Property id="id_NewFolderLink" property="title">フォルダーの作成</Property>
+    <String id="id_Download">ダウンロード</String>
+    <Property id="id_DownloadLink" property="title">ファイルのダウンロード</Property>
+    <String id="id_Upload">アップロード</String>
+    <Property id="id_UploadLink" property="title">現在のフォルダーにファイルをアップロード</Property>
+    <String id="id_Delete">削除</String>
+    <Property id="id_DeleteLink" property="title">ファイルまたは空のフォルダーの削除</Property>
+    <String id="id_Rename">名前の変更</String>
+    <Property id="id_RenameLink" property="title">ファイルまたはフォルダーの名前の変更</Property>
+    <String id="id_LogOff">ログオフ(&amp;O)</String>
+    <Property id="id_LogOffLink" property="title">ログアウト</Property>
+  </Partition>
+  <Partition id="fsaddress">
+    <String id="id_Address">アドレス:</String>
+  </Partition>
+  <Partition id="fsneighbor">
+    <String id="id_NetworkNeighborhood">ネットワーク コンピューター</String>
+    <String id="id_Login">ログオン:</String>
+    <String id="id_Password">パスワード:</String>
+    <String id="id_Domain">ドメイン:</String>
+  </Partition>
+  <Partition id="fsgoto">
+    <String id="loading">サイン インしています...</String>
+    <String id="id_FileServer">ファイル サーバー</String>
+    <String id="id_Address">アドレス:</String>
+    <String id="id_Username">ユーザー名(&amp;N):</String>
+    <String id="id_Password">パスワード:</String>
+    <String id="id_Doamin">ドメイン:</String>
+    <Property id="id_LogOnButton" property="value">ログオン</Property>
+    <Property id="id_CancelButton" property="value">キャンセル</Property>
+    <String id="showLink">アカウント情報を入力(&amp;C)</String>
+    <String id="hideLink">アカウント情報を非表示にする(&amp;C)</String>
+  </Partition>
+  <Partition id="fsgotoerror">
+    <String id="sentenceterminator">。</String>
+    <String id="Internal Error.">内部エラー。</String>
+    <String id="Wins IP is not configured.">Wins IP は設定されていません。</String>
+    <String id="Wins IP is not provided.">Wins IP は指定されていません。</String>
+    <String id="Wins IP is neither provided nor configured.">Wins IP が指定されていないか、設定されていません。</String>
+    <String id="Wins IP is provided in wrong format.">Wins IP が不適切な形式で指定されています。</String>
+    <String id="Need to login neighborhood first.">最初にコンピューターにログオンする必要があります。</String>
+    <String id="Failed to connect.">接続に失敗しました。</String>
+    <String id="Failed to change directory.">ディレクトリを変更できませんでした。</String>
+    <String id="Failed to make a directory.">ディレクトリを作成できませんでした。</String>
+    <String id="Failed to remove a directory.">ディレクトリを削除できませんでした。</String>
+    <String id="Failed to delete the file.">ファイルを削除できませんでした。</String>
+    <String id="Failed to rename the file.">ファイルの名前を変更できませんでした。</String>
+    <String id="Failed to login.">ログオンできませんでした。</String>
+    <String id="Last login session has been expired. Please login again.">最後にログオンしたセッションの有効期限が切れました。もう一度ログオンしてください。</String>
+    <String id="Logoff is successful.">ログオフに成功しました。</String>
+    <String id="Failed to open the file.">ファイルを開けませんでした。</String>
+    <String id="Need to login SSL VPN first.">最初に SSL VPN にログオンする必要があります。</String>
+    <String id="Failed to parse URL, invalid URL.">URL を解析できませんでした。無効な URL です。</String>
+    <String id="Incorrect login credential to this server.">このサーバーに対する不正なログオン アカウント情報です。</String>
+    <String id="Max length (512 bytes) of file system path is exceeded.">ファイル システム パスの最大長 (512 バイト) を超えています。</String>
+    <String id="Failed to make TCP connection to the server.">サーバーへの TCP 接続を作成できませんでした。</String>
+    <String id="Failed to establish NetBios session to the server.">サーバーへの NetBios セッションを確立できませんでした。</String>
+    <String id="Failed to negatiate a protocol to the server.">サーバーへのプロトコルをネゴシエートできませんでした。</String>
+    <String id="Failed to setup a session to the server.">サーバーへのセッションをセットアップできませんでした。</String>
+    <String id="Failed to setup the tree connection to the server.">サーバーへのツリー接続をセットアップできませんでした。</String>
+    <String id="This feature is not supported">この機能はサポートされていません。</String>
+    <String id="Failed to download shared folders list.">共有フォルダーの一覧をダウンロードできませんでした。</String>
+    <String id="Failed to create a file in the server due to existing file with the same name.">同じ名前の既存のファイルがあるため、サーバーでファイルを作成できませんでした。</String>
+    <String id="Failed to create file">ファイルを作成できませんでした</String>
+    <String id="Failed to list folder due to too many files in this directory.">このディレクトリ内のファイルが多すぎるため、フォルダーを一覧で表示できませんでした。</String>
+    <String id="Failed to list neighborhood servers due to too many servers in this network.">このネットワーク内のサーバーが多すぎるため、ネットワーク サーバーを一覧で表示できませんでした。</String>
+    <String id="Failed to list share folders due to too many share folders in this server.">このサーバー内の共有フォルダーが多すぎるため、共有フォルダーを一覧で表示できませんでした。</String>
+    <String id="There is no shared folder in this server">このサーバーには共有フォルダーがありません。</String>
+    <String id="Failed to download file">ファイルをダウンロードできませんでした。</String>
+    <String id="Failed to get attributes">属性を取得できませんでした。</String>
+    <String id="sso failed">SSO 失敗</String>
+    <String id="Error: Access is Denied.">エラー: アクセスが拒否されました。</String>
+    <String id="Error: Not a privileged User.">エラー: 特権ユーザーではありません。</String>
+    <String id="Error: File system authorization failed.">エラー: ファイル システム認証に失敗しました。</String>
+    <String id="Error:Session has expired">エラー: セッションの有効期限が切れました。</String>
+    <String id="Error: Login exceeds maximum allowed users.">エラー: 許可されたユーザーの最大ログオン数を超えました。</String>
+    <String id="Error: Access is Denied. Client SSL Certificate Required.">エラー: アクセスが拒否されました。クライアント SSL 証明書が必要です。</String>
+    <String id="Error: Access is Denied. Client SSL Certificate Invalid.">エラー: アクセスが拒否されました。クライアント SSL 証明書が無効です。</String>
+    <String id="Error: Access is Denied. Extraction from Client SSL Certificate Failed.">エラー: アクセスが拒否されました。クライアント SSL 証明書からの抽出に失敗しました。</String>
+    <String id="Error: AAA feature not enabled.">エラー: AAA 機能が有効ではありません。</String>
+  </Partition>
+  <Partition id="nscode">
+    <String id="Name">名前</String>
+    <String id="Size">サイズ</String>
+    <String id="Type">種類</String>
+    <String id="Modified">変更</String>
+    <String id="file">ファイル</String>
+    <String id="folder">フォルダー</String>
+    <String id="Loading...">読み込んでいます...</String>
+    <String id="There is no up folder">上のフォルダーはありません。</String>
+    <String id="Please choose a file to be downloaded first.">最初にダウンロードするファイルを選択してください。</String>
+    <String id="The feature to download a folder is not supported.">フォルダーをダウンロードする機能はサポートされていません。</String>
+    <String id="Cannot upload a file into root directory.">ルート ディレクトリにファイルをアップロードできません。</String>
+    <String id="Cannot create a directory in the root directory.">ルート ディレクトリにディレクトリを作成できません。</String>
+    <String id="Root share folder cannot be deleted.">ルート共有フォルダーを削除できません。</String>
+    <String id="Please choose a file to be deleted first.">最初に削除するファイルを選択してください。</String>
+    <String id="Root share folder cannot be renamed.">ルート共有フォルダー名を変更できません。</String>
+    <String id="Please choose a file to be renamed first.">最初に名前を変更するファイルを選択してください。</String>
+    <String id="Choose a directory to display usage first.">最初に使用量を表示するディレクトリを選択します。</String>
+    <String id="Support file system access only">サポート ファイル システム アクセスのみ</String>
+    <String id="Neighborhood">ネットワーク</String>
+  </Partition>
+  <Partition id="fsmkdir">
+    <String id="No folder name specified. Please enter a folder name.">フォルダー名が指定されていません。フォルダー名を入力してください。</String>
+    <String id="Create Directory">ディレクトリの作成</String>
+    <String id="Under Directory:">下のディレクトリ:</String>
+    <String id="New Folder:">新規フォルダー:</String>
+    <Property id="Button_Create" property="value">作成</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="fsrmdir">
+    <String id="Delete Directory">ディレクトリの削除</String>
+    <String id="Directory:">ディレクトリ:</String>
+    <String id="Are you sure ?">削除してもよろしいですか?</String>
+    <Property id="Button_Delete" property="value">削除</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="fsupload">
+    <String id="Upload File">ファイルのアップロード</String>
+    <String id="No file specified. Please enter a filename">ファイルが指定されていません。ファイル名を入力してください。</String>
+    <String id="Invalid file specified. Please try again.">無効なファイルが指定されています。もう一度指定してください。</String>
+    <String id="Upload File:">アップロード ファイル:</String>
+    <String id="Directory:">ディレクトリ:</String>
+    <Property id="Button_Upload" property="value">アップロード</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="fsdelfile">
+    <String id="Delete">削除</String>
+    <String id="Directory:">ディレクトリ:</String>
+    <String id="File:">ファイル:</String>
+    <String id="Are you sure ?">削除してもよろしいですか?</String>
+    <Property id="Button_Delete" property="value">削除</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="fsrename">
+    <String id="Rename">名前を変更</String>
+    <String id="No alternative name is specified. Please enter one.">代替名が指定されていません。名前を入力してください。</String>
+    <String id="Directory:">ディレクトリ:</String>
+    <String id="From:">元の名前:</String>
+    <String id="To:">新しい名前:</String>
+    <Property id="Button_Rename" property="value">名前の変更</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="fslogout">
+    <String id="Logoff">ログオフ</String>
+    <String id="Are you sure?">ログオフしてもよろしいですか?</String>
+    <Property id="Button_Logoff" property="value">ログオフ</Property>
+    <Property id="Button_Cancel" property="value">キャンセル</Property>
+  </Partition>
+  <Partition id="tips">
+    <String id="id_NextTip">次のヒント</String>
+    <String id="tip_0">ホテルや空港などの公共のコンピューターにログオンしている場合は、コンピューターから離れる時にログオフします。</String>
+    <String id="tip_1">NetScaler Gateway トンネルを通過するネットワーク トラフィックは暗号化されます。</String>
+    <String id="tip_2">この NetScaler Gateway ウィンドウから開始できるファイル転送アプリケーションを使って、内部ネットワークのファイル共有にアクセスできます。</String>
+    <String id="tip_3">お気に入りの Web サイトやファイル共有へのブックマークを作成できます。新しいブックマークを作成するには、[追加] をクリックしてブックマークに関する情報を入力します。</String>
+    <String id="tip_4">NetScaler Gateway Plug-in について詳しくは、『NetScaler Gateway Plug-in for Windows ユーザー ガイド』を参照してください。この NetScaler Gateway ウィンドウで[ユーザー ガイド] をクリックして、または通知領域で NetScaler Gateway アイコン メニューの [ヘルプ] をクリックして、このドキュメントを開くことができます。</String>
+    <String id="tip_5">セッションを終了する場合は、必ずログオフします。</String>
+    <String id="tip_6">セキュリティ上の理由のため、アプリケーションが指定の期間アイドル状態になっている場合、NetScaler Gatewayはそのアプリケーションを閉じます。</String>
+    <String id="tip_7">ブックマークを削除するには、[削除] をクリックします。</String>
+    <String id="tip_8">複数のファイル転送セッションを同時に開くことができます。[セキュア リモート セッション] ウィンドウで [ファイル転送] をクリックして、ファイル転送アプリケーションを開きます。</String>
+    <String id="tip_9">NetScaler Gateway セッションで使用されるログオン情報は、ファイル転送アプリケーションで使用されるものとは異なります。</String>
+    <String id="tip_10">ファイル転送アプリケーションで、左側のペインの [ネットワーク] をクリックしてリモート ファイル サーバーにアクセスできます。</String>
+    <String id="tip_11">ファイル転送アプリケーションを終了する場合、この NetScaler Gateway ウィンドウをただ閉じるのではなく、[ログオフ] をクリックすることをお勧めします。</String>
+    <String id="tip_12">内部ネットワークやインターネット、またはファイルサーバーで Web サイトへのブックマークを作成できます。ファイル サーバーのブックマークを作成するには、\\server\share という形式を使用します。</String>
+    <String id="tip_13">この NetScaler Gateway ウィンドウの Ping ツールを使って、内部ネットワーク内およびインターネット上のサーバーのアクセシビリティをチェックできます。</String>
+    <String id="tip_14">セッション ウィンドウにエラー コードまたはメッセージが表示されたら、トラブルシューティングのため『NetScaler Gateway Plug-in for Windows ユーザー ガイド』を参照してください。</String>
+    <String id="tip_15">NetScaler Gateway は Telnet、FTP、および SSH などの一般的なコンソール アプリケーションをサポートしています。</String>
+    <String id="tip_16">NetScaler Gateway に関する技術的な問題が発生した場合は、問題の原因を判別するのに役立てるためシステム管理者にクライアント側のトレースを提供します。トレースの抽出については、システム管理者に問い合わせてください。</String>
+    <String id="tip_17">NetScaler Gateway Plug-in がインストール済みでまだ開始されていない場合、Web サイトからダウンロードする代わりに [スタート] メニューからこのプラグインを開始できます。</String>
+    <String id="tip_18">NetScaler Gateway にログオンした際にアプリケーションへの接続が閉じられている場合は、セキュリティ上の理由で NetScaler Gateway がそのように設定されています。</String>
+    <String id="tip_19">セキュリティ セッション ウィンドウのサイズを小さくするには、通知領域にそれを最小化します。セッション ウィンドウを閉じると、Access Gatewa とのセッションが終了します。</String>
+    <String id="tip_20">NetScaler Gateway Plug-in のログオン レベルを設定して、NetScaler Gateway でどの接続を完了するかを表示できます。</String>
+    <String id="tip_21">Windows のすべての Web ブラウザーがサポートされています。</String>
+    <String id="tip_22">NetScaler Gateway Plug-in を使ってピア NetScaler Gateway に接続するには、次の形式でドメイン名を入力します。\\prefix_logonname</String>
+  </Partition>
+</Resources>

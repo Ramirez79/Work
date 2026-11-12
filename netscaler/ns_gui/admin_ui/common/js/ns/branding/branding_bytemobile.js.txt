@@ -1,0 +1,6 @@
+ns.branding_bytemobile= new function()
+{
+    this.BRANDING = ns.branding.BYTEMOBILE;
+};
+
+$.extend(ns.branding, ns.branding_bytemobile);

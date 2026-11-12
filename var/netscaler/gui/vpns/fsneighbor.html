@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<META content="text/html;charset=utf-8" http-equiv="Content-Type">
+<TITLE></TITLE>
+</HEAD>
+
+<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/vpn/resources/{lang}", "fsneighbor");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+
+<script language="javascript">
+function ns_focus()
+{
+document.loginForm.login.focus();
+}
+</script>
+<BODY onload=ns_focus();>
+
+<BR><div align="center">
+<TABLE BGCOLOR=#CCCCCC CELLPADDING=2 CELLSPACING=1 BORDER=2>
+
+<TR><TD COLSPAN=2 ALIGN=center class=title>
+<B><span id="id_NetworkNeighborhood"></span></B>
+</TD></TR>
+
+<TR><TD ALIGN=center>
+<FORM ACTION="/fs/neighbor" METHOD="POST" NAME="loginForm">
+<TABLE BGCOLOR=#CCCCCC CELLPADDING=4 CELLSPACING=2 BORDER=0>
+<TR><TD ALIGN=right VALIGN=middle><span id=id_Login></span></TD>
+<TD ALIGN=left VALIGN=top><INPUT TYPE="text" NAME="login"></TD>
+</TR>
+<TR><TD ALIGN=right VALIGN=middle><span id=id_Password></span></TD>
+<TD ALIGN=left VALIGN=top><INPUT TYPE="password" NAME="password"></TD>
+</TR>
+<TR><TD ALIGN=right VALIGN=middle><span id=id_Domain></span></TD>
+<TD ALIGN=left VALIGN=top><INPUT TYPE="text" NAME="domain"></TD>
+</TR>
+<TR><TD ALIGN=middle colspan=2>
+<INPUT TYPE=SUBMIT NAME="action" VALUE="" STYLE="width:100px;height:24px;" class=button>
+<INPUT TYPE=button VALUE="" onclick="history.go(-1)" STYLE="width:100px;height:24px;" class=button></TD></TR>
+</TABLE>
+</FORM>
+</TD></TR>
+</TABLE>
+</div>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</BODY></HTML>
+

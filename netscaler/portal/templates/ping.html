@@ -1,0 +1,32 @@
+[% PROCESS boilerplate.tmpl %]
+[% USE env = EnvHash %]
+<html>
+  <head>
+  [% IF style.theme %]
+    [% IF style.theme == 'custom' %]
+      <link type="text/css" rel="stylesheet" href="[% env.getvar('portalLoc') %]styles.css">
+    [% ELSE %]
+       <link type="text/css" rel="stylesheet" href="/vpns/themes/[% style.theme %]/styles.css">
+    [% END %]
+  [% ELSE %]
+	   <link type="text/css" rel="stylesheet" href="/vpns/themes/default/styles.css">  
+	   <link type="text/css" rel="stylesheet" href="/logon/themes/Default/css/custom.css"> 
+  [% END %]
+    [% INCLUDE resources.tmpl partition = 'fsping' %]
+    <title>
+      Ping Form
+    </title>
+ 
+ </head>
+  <body scroll="no" id="ping">
+  <form action="/fs/ping" method="POST" name="pingform" id="pingform">
+    <fieldset>
+      <label for="host" class="inlinelabel" id="id_Server"></label><br class="labelbr">
+       <input type="text" name="host"><input id="id_PingButton" type="SUBMIT" value="" class="Apply_Cancel_OK">
+    </fieldset>
+    <input type="hidden" name="nsc_nonce" id="nsc_nonce" value="[% env.getvar('HTTP_NSC_NONCE') %]" />
+    </form>
+    <div id="response">[%- response -%]</div>
+	[% INCLUDE loadresources.tmpl %]
+  </body>
+</html>

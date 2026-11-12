@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN" >
+
+
+
+<HTML>
+
+	<HEAD>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>NetScaler Gateway</title>
+		<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+		<meta http-equiv="Expires" content="Sat, 1 Jan 2000 08:00:00 GMT" />
+		<link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+		<link href="/logon/themes/Default/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+		<script type="text/javascript" src="/vpn/js/rdx.js"></script>
+		<script type="text/javascript" src="/vpn/login.js"></script>
+		<script type="text/javascript" src="/vpn/js/views.js"></script>
+		<script type="text/javascript" src="/vpn/js/logout_view.js"></script>
+        <script type="text/javascript" src="/vpn/resources.js"></script>
+        <script type="text/javascript" language="javascript">
+        var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "logout");
+        </script>
+        <style type="text/css">
+        body
+        {
+          visibility: hidden;
+        }
+        </style>
+		<script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+	</HEAD>
+
+	<body>
+	
+    <script type="text/javascript" language="javascript">
+	rdx.FRAMEWORK_BASE = "/vpn/js" ;
+	rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(logout, logout.do_action_on_load));
+	OnPageLoad();
+    </script>
+	</body>
+
+	<script language="JavaScript">
+	
+	function GoToLogonPage()
+	{
+	 	window.location = "https://" + window.location.hostname + "/vpn/tmindex.html";
+	}
+
+	function OnPageLoad()
+
+	{
+
+	    try
+
+	    {
+
+		document.execCommand("ClearAuthenticationCache","false");
+
+	    }
+
+	    catch(e)
+
+	    {
+
+	    }
+
+		
+
+	}
+
+	</script>
+
+</HTML>
+
+

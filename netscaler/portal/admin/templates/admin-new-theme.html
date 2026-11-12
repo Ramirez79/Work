@@ -1,0 +1,37 @@
+[% META title='Customize Your Stylesheet'
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+<script language="JavaScript" type="text/javascript">
+  function checkName(){
+  var name = document.admintheme.elements['name'].value;
+  var submit = false;
+  if (name == ""){
+    alert ("You must provide a new theme name");
+  } else {
+  	var re = /\s/g;
+ 	document.admintheme.elements['name'].value = name.replace(re,'-');
+ 	submit = true;
+  }
+  if (submit){
+    el = document.admintheme;   
+    if(el){ 
+    	el.submit();  
+    } else {
+    	alert("hey!!");
+    }
+  }
+}
+</script>
+<div id="selector" style="padding:10px; clear: both;">
+<h2>Create New Theme</h2>
+<form action="[% env.adminLoc %]admin-new-theme.pl" method="post" name="admintheme">
+Name  <input type="text" name="name" value="" size="40" maxlength="40"/>
+<br>
+<input type="button" name="select" value="Select" onClick="javascript:checkName();"/>
+<input type="button" value="Cancel" onclick="history.go(-1)" class="button">
+  
+</form>
+</div>
+[% END %]

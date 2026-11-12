@@ -1,0 +1,91 @@
+[% USE env = EnvHash %]
+<html>
+<head>
+<link type="text/css" id="mainCSS" rel="stylesheet" href="/vpns/prtl/admin/theme/styles.css">  
+</head>
+<body id="services">
+<div id="contents">
+<div id="selector" style="padding:10px;">
+
+<h2>Details for user: [% user.username %]</h2>
+<form action="[% env.adminLoc %]admin-user-details.pl" method="POST">
+<input type="hidden" name="user" value="[% user.username %]" size="40" maxlength="40"/>
+  
+<h3>Style</h3>
+[% IF user.style %]
+<input type="checkbox" name="style" value="reset"/>Reset to default
+[% ELSE %]
+No Style Preference recorded.
+[% END %]
+<H3>Bookmarks</h3>
+Bookmarks without a URL will be ignored.
+<table><tr><th> </th><th>Delete</th><th>Url</th><th>Title</th><th>Description</th></tr>
+[% FOREACH bm = user.bookmarks.bookmark -%]
+<tr>
+<td>
+	[% loop.count %]
+	</td><td>
+	<input type="checkbox" name="bm[% loop.count %]del" value="Y"/>
+  </td><td>
+	<input type="text" name="bm[% loop.count %]url" value="[% bm.url %]" size="20" maxlength="40"/>
+	</td><td>
+	<input type="text" name="bm[% loop.count %]title" value="[% bm.title %]" size="20" maxlength="40"/>
+	</td><td>
+	<input type="text" name="bm[% loop.count %]descr" value="[% bm.descr %]" size="20" maxlength="40"/>
+	</td>
+	</tr>
+  [% IF loop.last %]
+  
+  [% END %]
+  
+[% END -%]
+<tr><td>
+   New 
+   </td><td></td><td>
+    <input type="text" name="bm0url" value="" size="20" maxlength="40"/>
+	</td>
+	<td><input type="text" name="bm0title" value="" size="20" maxlength="40"/>
+	</td>
+	<td><input type="text" name="bm0descr" value="" size="20" maxlength="40"/>
+	</td></tr>
+</table>
+<H3>FileSystems</h3>
+Filesystems without a URL will be ignored.
+<table><tr><th> </th><th>Delete</th><th>Url</th><th>Title</th><th>Description</th></tr>
+[% FOREACH fs = user.filesystems.filesystem -%]
+<tr>
+<td>
+	[% loop.count %]
+	</td><td>
+	<input type="checkbox" name="fs[% loop.count%]del" value="Y"/>
+  </td><td>
+	<input type="text" name="fs[% loop.count %]url" value="[% fs.url %]" size="20" maxlength="40"/>
+	</td><td>
+	<input type="text" name="fs[% loop.count %]title" value="[% fs.title %]" size="20" maxlength="40"/>
+	</td><td>
+	<input type="text" name="fs[% loop.count %]descr" value="[% fs.descr %]" size="20" maxlength="40"/>
+	</td>
+	</tr>
+  [% IF loop.last %]
+  
+  [% END %]
+
+[% END -%]
+  <tr><td>
+   New 
+   </td><td></td><td>
+    <input type="text" name="fs0url" value="" size="20" maxlength="40"/>
+	</td>
+	
+	<td><input type="text" name="fs0title" value="" size="20" maxlength="40"/>
+	</td>
+	<td><input type="text" name="fs0descr" value="" size="20" maxlength="40"/>
+	</td></tr>
+</table>
+<input type="submit" name="Submit" value="Submit"/>
+<input type="button" value="Cancel" onclick="history.go(-1)" class="button">
+</form>
+</div>
+</div>
+</body>
+</html>

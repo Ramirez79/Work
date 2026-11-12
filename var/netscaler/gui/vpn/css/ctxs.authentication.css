@@ -1,0 +1,282 @@
+
+/* authentication stuff...*/
+#logonbox-logonform .field
+{
+    clear: both;
+    padding: 6px 0 10px;
+    color: #666666;
+}
+
+#logonbox-logonform .field .left
+{
+    float: left;
+    padding-top: 3px;
+}
+
+#logonbox-logonform .field .right
+{
+    float: right;
+}
+
+/* messages: errors, warnings, information etc...*/
+#logonbox-logonform .error,
+#logonbox-logonform .warning,
+#logonbox-logonform .information,
+#logonbox-logonform .confirmation,
+#logonbox-logonform .plain
+{
+    margin: 0 0 8px 0;
+    padding: 1px 0;
+    vertical-align:middle;
+    text-align:left;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
+#logonbox-logonform .error
+{
+    background-image: url('../media/error.png');
+}
+
+#logonbox-logonform .error, 
+#logonbox-logonform .warning,
+#logonbox-logonform .information,
+#logonbox-logonform .confirmation,
+#logonbox-logonform .plain
+{
+    color: white;
+}
+
+#logonbox-logonform .warning
+{
+    background-image: url('../media/warning.png');
+}
+
+#logonbox-logonform .information
+{     
+    background-image: url("../media/info.png");
+    background-position: 1px 50%;
+    display: list-item;
+    list-style: none outside none;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 0;
+    
+}
+
+#logonbox-logonform .error
+{
+    background-image: url("../media/error.png");
+    background-position: 1px 1px;
+    display: list-item;
+    list-style: none outside none;
+    margin-bottom: 11px;
+    padding-left: 20px;
+    padding-top: 0;
+}
+
+#logonbox-logonform .confirmation
+{
+    background-image: url('../media/tick.png');
+    padding-left: 20px;
+}
+
+#logonbox-logonform .plain
+{
+    background-image: none;
+    padding-left: 0;
+}
+
+#logonbox-logonform .assistiveText
+{
+    padding: 5px;
+    float: left;
+}
+
+#logonbox-logonform .assistiveText img
+{    
+    padding-top: 4px;
+}
+
+#logonbox-logonform .field .checkbox
+{
+    margin: 0 0 5px 0;
+}
+#logonbox-logonform .field .checkbox input
+{
+    margin:0;
+}
+#logonbox-logonform .field .checkbox label
+{
+    margin-left:2px;
+    vertical-align: baseline;
+}
+
+#logonbox-logonform .spinner
+{
+    text-align:right;
+    padding: 6px 0px;
+    padding-right: 20px;
+    position: absolute;
+} 
+/*
+#logonbox-logonform 
+.ctxsui-authentication-formTitle
+{
+    color: #79B9E7;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 55px 0 20px;
+}*/
+
+#logonbelt-topshadow {
+/*    background: url("../../../media/Screen_shadow_top.png") no-repeat transparent;*/       /*Image doesn't exist on server */
+	position: relative;
+	top: 205px;
+	margin: 0 auto;
+	width: 1009px;
+	height: 15px;
+}
+
+#logonbelt-bottomshadow {
+/*    background: url("../../../media/Screen_shadow_bottom.png") no-repeat transparent;*/    /*Image doesn't exist on server */
+	position: relative;
+	bottom: 0;
+	margin: 205px auto 0;
+	width: 1009px;
+	height: 15px;
+}
+
+/*Sign on Box*/
+#logonbox-container
+{
+	background: url("../media/VerticalGreenBarOnly.png") repeat-y scroll 0 0 transparent;
+    min-height: 230px;
+    margin: auto;
+    min-width: 654px;
+    position: relative;
+    top: 205px;
+}
+
+#logonbox-innerbox {
+    background: url("../media/Screen_SemiTranslucent.png");
+    display: table;
+    height:242px;
+    position: relative;
+    width: 100%;
+	margin-left: 9px;
+ }
+
+/*End of Authentication Box*/
+
+#authentication
+{   
+    /*    background: url("../media/Bg_WithLite.jpg") no-repeat fixed center top #08202C; */
+    /*    background-image: url('../../../media/bg_bubbles.png'); */
+    height: 100%;
+    width: 100%;
+} 
+
+#logonbox-logonform
+{
+    /* display: table-cell;*/
+    width: 312px;
+    padding: 74px 47px 74px 40px;
+}
+
+.fr #logonbox-logonform
+{
+    width: 330px;
+}
+
+.es #logonbox-logonform
+{
+    width: 310px;
+}
+
+.ru #logonbox-logonform
+{
+    width: 340px;
+}
+
+#logonbox-logoarea
+{
+    color: white;
+    display: table-cell;
+    font-size: 13px;
+    width: 38%;
+}
+
+#logonbox-logoimage
+{
+    background-image: url("../media/logo_notagline.png");
+    border: 0 none;
+    float: right;
+    height: 51px;
+    position: absolute;
+    right: 71%;
+    top: 80px;
+    width: 215px;
+} 
+
+#logonbox-logonform label
+{ 
+    color: white;
+    display: table-cell;
+    font-size: 12px;
+    height: 20px;
+    vertical-align: bottom;
+}  
+
+#logonbox-logonform input[type=text],
+#logonbox-logonform input[type=password]
+{
+    background-color: transparent;
+    background-image: url(../media/Chrome_field_normal.png);
+    background-repeat:no-repeat;
+    outline: none;
+    border: 0;
+    width: 197px;
+    height: 25px;
+    padding:2px 0px 2px 10px;
+    font-size:12px;
+    color: #888888;
+	line-height: 25px; /*this is necessary for IE to align the text correctly inside textbox*/
+}
+ 
+#logonbox-logonform input[type=text]:focus,
+#logonbox-logonform input[type=password]:focus
+{
+    background-image: url(../media/Chrome_field_hilight.png);
+    color: black;
+}
+
+#logonbox-logonform .buttons .right 
+{
+    width: 207px;
+}
+
+#logonbox-logonform .buttons .centeredButtons
+{
+    text-align: center;
+}
+
+#logonbox-logonform .buttons .centeredButtons .right
+{
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    display: inline;
+}
+
+.logofferrors
+{	
+    font-size: 12px;
+    margin: 30px auto;
+}
+
+.logoff-errormessage
+{
+    margin-top: 10px;
+    text-align: center;
+}

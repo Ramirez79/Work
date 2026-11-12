@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!-- saved from url=(0014)about:internet -->
+<tocdata>
+<book name="Access Gateway Plug-in for Java User Guide" url="Front.htm" >
+  <item name="Legal Notices" url="legal_notices.htm" />
+</book>
+<book name="Welcome" url="Welcome.htm" >
+  <item name="How to Use This Guide" url="How_to_Use_this_Guide.htm" />
+  <item name="Document Conventions" url="Document_Conventions.htm" />
+</book>
+<book name="Getting Started with the Access Gateway Plug-in for Java" url="Getting_Started_with_the_Access_Gateway_Plugin_for_Java.htm" >
+  <item name="How the Access Gateway Works" url="How_Access_Gateway_Works.htm" />
+  <item name="System Requirements" url="System_Requirements.htm" />
+  <item name="Creating Connections" url="Creating_Connections.htm" />
+</book>
+<book name="Working with the Access Gateway Plug-in for Java" url="Working_with_the_Access_Gateway_Plugin_for_Java.htm" >
+  <item name="Using the Secure Access Remote Session Dialog Box" url="Using_the_Secure_Access_Remote_Session_Dialog_Box.htm" />
+  <item name="Configuring Proxy Servers" url="Configuring_Proxy_Servers.htm" />
+  <item name="Connecting to File Shares in the Secure Network" url="Connecting_to_File_Shares_in_the_Secure_Network.htm" />
+  <item name="Accessing Web Sites" url="Accessing_Web_Sites.htm" />
+  <item name="Getting Help in the Access Interface" url="Getting_Help_in_the_Access_Interface.htm" />
+  <item name="Ending Your Session" url="Ending_Your_Session.htm" />
+</book>
+<book name="Troubleshooting the Access Gateway Plug-in for Java" url="Troubleshooting_the_Access_Gateway_Plugin_for_Java.htm" >
+  <item name="Opening Log Files" url="Opening_Log_Files.htm" />
+  <item name="Access Gateway Error Messages" url="Access_Gateway_Error_Messages.htm" />
+</book>
+
+</tocdata>

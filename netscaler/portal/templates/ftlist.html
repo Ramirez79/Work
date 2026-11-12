@@ -1,0 +1,147 @@
+[% META title='Homepage'
+
+ 		script='/js/homepage.js'
+
+ 		onload='popFSHomePage(text,link)'
+
+ 		id='homepage'	%]
+
+[% USE env = EnvHash %]
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+
+  <head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <link type="text/css" rel="stylesheet" href="/logon/themes/Default/css/styles.css">
+   <link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+  <link href="/logon/themes/Default/css/custom.css" type="text/css" rel=stylesheet>
+[% INCLUDE resources.tmpl partition = 'ftlist' %]
+
+  <title>
+
+      [% titleprefix %][% IF !template.title %][% titledefault %][% ELSE %][% template.title %][% END %][% titlepostfix %]
+
+    </title>
+
+  [% IF template.script -%]
+
+  <script type="text/javascript" src="/vpns/prtl[% template.script %]"></script>
+
+  [% END -%]
+
+  <script type="text/javascript">
+
+	var text = new Array();
+
+	var link = new Array();
+
+  </script>
+
+
+  <script type="text/javascript" src="/vpns/services.js"></script>
+  <script type="text/javascript">
+  //replace %username% token with login username
+  	var user= '[% env.getvar('HTTP_NSC_USER') %]';
+  	if (user.indexOf('@') != -1)
+  		user = user.substring(0,user.indexOf('@'))
+	for(i=0;i<link.length;i++) {
+		if(link[i].charAt(0)!='\\') continue;
+		link[i] = link[i].replace(/%username%/gi,user);
+		text[i] = text[i].replace(/%username%/gi,user);
+		}
+</script>
+
+  </head>
+
+  <body style="background:transparent; overflow: auto;  min-width: 205px;" 
+  		[%- IF template.onload -%]onload="[% template.onload %]" 
+
+		[%- END -%]
+
+		[%- IF template.onunload -%] onunload="[% template.onunload %]" 
+
+		[%- END -%]
+
+  		[%- IF template.id -%]id="[% template.id %]" 
+
+		[%- END -%]>
+<div class="enterprise_fileshare_section" style="height:auto;">
+<B> <span id=id_EnterpriseFileShares></span></B>
+<div class="NUI_Icon" id="globalFSbk">[%- INSERT globalFS.tmpl -%]</div> 
+<div class="separator_container">
+	<li class="separator"></li>
+</div>
+</div>
+<div class="personal_fileshare_section" style="height:auto;">
+<B> <span id=id_PersonalFileShares></span> </B>
+<script>
+var pathname = top.location.pathname.split('/');
+var homepage = pathname[pathname.length -1];
+</script>
+
+[% IF escbk.filesystem.size == 0 || !escbk.filesystem %]
+            <div class="NUI_Icon"><span class="none_fs" id="none"></span></div>
+[% END %]
+            
+[% FOREACH fs = escbk.filesystem -%]
+
+	<div class="NUI_Icon">
+	<script>
+	var homepage_path = "/vpns/portal/"+ homepage + "?activetab=fs&?s=\\[% fs.url %]";    //adding extra "\\" because one gets escaped because of being part of string
+	</script>
+    <table cellSpacing="0" cellPadding="0">
+
+    <tr>
+	
+	<td>
+	<a href="#" TARGET="_BLANK" name="fs_linkname">[% fs.title %]</a>
+	<a href="#" TARGET="_BLANK" name="fs_linkname" style="padding-left:5px;">
+	  <img src="/vpns/navui/images/bookmark_pop_icon.png" border="0">
+	</a>
+	[% IF fs.descr %]
+	<br/>
+	<span class="descr">[% fs.descr %]</span>
+	[% END %]
+	<script>
+	var a = document.getElementsByTagName("a");
+	a[a.length-1].setAttribute("href", homepage_path);
+	a[a.length-2].setAttribute("href", homepage_path);
+	</script>
+	</td>
+    </tr>
+
+    </table>
+
+    </div>
+
+[% END -%]
+
+<form id="loginForm" action="/vpns/fslogin.html"  METHOD="POST"  autocomplete="off" >    
+	<input type="hidden" id="url" value=""/>   
+	<input type="hidden" id="nsc_nonce" value=""/>       
+        </form>
+
+<div class="separator_container">
+	<li class="separator"></li>
+</div>
+<div class="button_container file_transfer_button">
+<a class="margin_left_15" id="id_Add" href="/vpns/empty.html" onclick="javascript:return ns_popupbookmarkoppage('newbm.html');" target="_blank"></a>
+<a class="button_separator">|</a>
+<a id="id_Remove" href="/vpns/empty.html" target="_blank" onclick="javascript:return ns_popupbookmarkoppage('rmft.html');"></a>
+</div>
+</div>
+ 
+[% INCLUDE loadresources.tmpl %]
+
+  </body>
+
+</html>
+
+
+
+
+

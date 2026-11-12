@@ -1,0 +1,122 @@
+H1 A:link
+{
+    COLOR: #000
+}
+H2 A:link
+{
+    COLOR: #000
+}
+H3 A:link
+{
+    COLOR: #000
+}
+H4 A:link
+{
+    COLOR: #000
+}
+H5 A:link
+{
+    COLOR: #000
+}
+H6 A:link
+{
+    COLOR: #000
+}
+H1 A:visited
+{
+    COLOR: #000
+}
+H2 A:visited
+{
+    COLOR: #000
+}
+H3 A:visited
+{
+    COLOR: #000
+}
+H4 A:visited
+{
+    COLOR: #000
+}
+H5 A:visited
+{
+    COLOR: #000
+}
+H6 A:visited
+{
+    COLOR: #000
+}
+A:link
+{
+    COLOR: #009
+}
+A:visited
+{
+    COLOR: #336
+}
+A:hover
+{
+    COLOR: #900
+}
+A:hover
+{
+    COLOR: #600
+}
+BODY
+{
+    MARGIN-LEFT: 2px;
+    font-size: 9pt; 
+	font-family: Arial;
+	color: Black;
+    COLOR: #000;
+    BACKGROUND-COLOR: #ffffff
+}
+TD.nsTitle
+{
+    BORDER-RIGHT: #333 1px solid;
+    BACKGROUND-POSITION: 50% top;
+    BORDER-TOP: #fff 1px solid;
+    VERTICAL-ALIGN: middle;
+    BORDER-LEFT: #fff 1px solid;
+    COLOR: #333;
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: Arial;
+    BORDER-BOTTOM: medium none;
+    BACKGROUND-REPEAT: repeat-x;
+    BACKGROUND-COLOR: #ccc;
+    text-shadow: #eee 1px 1px;
+}
+TD.nsTitle A:link
+{
+    COLOR: #333;
+    TEXT-DECORATION: none;
+}
+TD.nsTitle A:visited
+{
+    COLOR: #333;
+    TEXT-DECORATION: none;
+}
+TD.nsTitle A:hover
+{
+    COLOR: #c00;
+}
+TD.nsTitle A:hover
+{
+    COLOR: #c00;
+}
+TD.nsTree
+{
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: Arial;
+}
+TR.nsText
+{
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: Arial;
+}
+TR.nsTextHigh
+{
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: #c3d6e6;
+}

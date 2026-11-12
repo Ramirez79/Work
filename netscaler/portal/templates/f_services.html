@@ -1,0 +1,23 @@
+[% META title='Loading Plugin' 
+ 		script='/js/f_services.js'
+ 		id='services'
+ 		onload='nsprocess();'
+ 		onunload='nsexit();'
+%]
+[% WRAPPER wrapper.tmpl %]
+      <div id="content">
+      <strong>Downloading NetScaler Plugin ... </strong>
+      <ul>
+      <li>
+<SCRIPT language="javascript" >
+if(navigator.userAgent.indexOf("PPC")==-1) {
+document.write('Your system does not have the NetScaler agent installed and running on it. Please <A HREF=/vpns/scripts/nsvpnc_setup.exe>click here </A> to download and install the NetScaler agent. After launching the agent, <A HREF="javascript:nsprocess()">click here </A> to activate it.');
+}
+else {
+document.write('Please <A HREF="/vpns/scripts/ARM/nsvpnc.exe">click here</A> to download SSL VPN client to this Pocket PC, then launch this client to login SSL VPN website.');
+}
+</SCRIPT>
+      </li>
+      </ul>
+      </div>
+[% END %]

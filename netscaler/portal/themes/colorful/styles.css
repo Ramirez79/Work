@@ -1,0 +1,255 @@
+html>body #contents {
+	height: auto;
+}
+html>body {
+	height: auto;
+}
+html {
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+}
+body {
+	background: white;
+	font-family: Arial;
+	font-size: ;
+	margin: 0;
+	padding: 0px;
+}
+.tipBody {
+	background-color: ;
+	color: ;
+}
+.descr {
+	padding-left: .5em;
+}
+.bmoptions {
+	display: inline;
+	float: right;
+	font-size: .8em;
+}
+.block h3 {
+	background-color: #dbdbdb;
+	color: ;
+	font-size: .9em;
+	margin: 0;
+	margin-bottom: .2em;
+	padding: .1em;
+	padding-left: .5em;
+}
+.block h2 {
+	background-color: #339966;
+	color: white;
+	font-size: 1em;
+	margin: 0;
+	padding: .2em;
+}
+.block .item a {
+	color: ;
+}
+.block .item {
+	color: ;
+	font-size: .8em;
+	padding: 0;
+	padding-bottom: .2em;
+	padding-left: 1em;
+}
+.block {
+	background-color: ;
+	border: 1px solid #339966;
+	margin-bottom: .8em;
+}
+#toolbar {
+	float: right;
+	padding-right: 1em;
+	padding-top: .5em;
+	width: 280px;
+}
+#tipiframe {
+	width: 270px;
+}
+#tip {
+	font-size: .8em;
+	padding-left: 1em;
+	padding-top: .5em;
+}
+#services #content {
+	clear: both;
+	margin-left: 0;
+	padding-left: 50px;
+}
+#pingiframe {
+	border: 0px;
+	height: 65px;
+	margin-left: 12px;
+	width: 258px;
+}
+#pingform label {
+	font-size: .7em;
+}
+#pingform input {
+	float: left;
+}
+#pingform fieldset {
+	border: 0px solid white;
+	margin: 0;
+	margin-bottom: 2px;
+	padding: 0;
+	padding-bottom: 0px;
+}
+#pingform .labelbr {
+	display: inline;
+	float: none;
+	width: 0px;
+}
+#ping form {
+	margin: 0px;
+	padding: 0px;
+}
+#ping #response {
+	font-size: .7em;
+}
+#ping {
+	background-color: ;
+	color: ;
+}
+#nexttip a {
+	color: ;
+}
+#nexttip {
+	float: right;
+	font-size: .6em;
+}
+#newbm fieldset legend {
+	display: none;
+}
+#newbm fieldset .textfield {
+	height: 20px;
+	margin: 3px;
+	width: 13em;
+}
+#newbm fieldset .inlinelabel {
+	float: left;
+	font-size: .8em;
+	margin: 0;
+	margin-top: 0.3em;
+	padding: 0.2em;
+	text-align: right;
+	width: 70px;
+}
+#newbm fieldset {
+	border: 0px solid white;
+}
+#newbm .labelbr {
+	display: none;
+}
+#newbm .buttonrow {
+	text-align: center;
+	width: 20em;
+}
+#newbm .button {
+	font: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin-right: 1em;
+}
+#logo {
+	background-image: url(logo.gif);
+	height: 65px;
+	margin-left: 20px;
+	margin-top: 10px;
+	width: 175px;
+}
+#loginPage #main {
+	height: 340px;
+}
+#loginPage #contents {
+}
+#loginPage {
+	min-width: 620px;
+}
+
+#vpnForm fieldset legend {
+	display: none;
+}
+#vpnForm fieldset .textfield {
+	border: 1px solid grey;
+	font-family: monospace;
+	margin-right: 3px;
+	width: 10em;
+}
+#vpnForm fieldset {
+	border: 1px solid red;
+}
+#vpnForm .inlinelabel {
+	color: blue;
+	font-size: .7em;
+}
+#vpnForm {
+	left: 240px;
+	position: absolute;
+	top: 170px;
+}
+#login-logo {
+	background-image: url(logo.gif);
+	height: 65px;
+	margin-left: 140px;
+	margin-top: 80px;
+	width: 175px;
+
+}
+#login-image {
+	display: none;
+}
+#login-button {
+	border: 1px solid grey;
+	color: black;
+}
+#header {
+	background: white;
+	color: red;
+	margin: 0px;
+}
+#footer {
+	background: #336699;
+	bottom: 0;
+	color: white;
+	position: absolute;
+	width: 100%;
+}
+#contents {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+#content {
+  clear: left;
+	margin-right: 310px;
+	margin-top: .5em;
+	padding-left: 1em;
+	padding-top: .5em;
+}
+
+html, body, #contents {
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+#services #content{
+  padding-left: 50px;
+  margin-left: 0;
+  clear: both;
+}
+#services #content ul{
+  list-style-type: none;
+}
+#services #content li{
+  padding: 1em;
+  font-size: .8em;
+}
+#fmBody #content{
+        margin: 0;
+        padding: 0;
+		clear: both;
+}
+#fmBody #contents{ 
+ 		background-image: none;
+}

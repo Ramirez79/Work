@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="copyright" content="(C) Copyright 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2005" />
+<meta name="DC.Type" content="task" />
+<meta name="DC.Title" content="分割トンネリングの構成" />
+<meta name="DC.Relation" scheme="URI" content="agee-plugin-change-settings-wrapper-con.html" />
+<meta name="prodname" content="ag" />
+<meta name="version" content="9.1" />
+<meta name="version" content="9.2" />
+<meta name="DC.Date.Created" content="" />
+<meta name="DC.Date.Modified" content="off" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="agee-plugin-configuring-split-tunneling-tsk" />
+<link rel="stylesheet" type="text/css" href="Help.css" />
+<title>分割トンネリングの構成</title>
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+
+ <meta name="generator" content="Adobe RoboHelp 8" />
+</head>
+<body id="agee-plugin-configuring-split-tunneling-tsk"><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("Access Gateway Plug-inでの設定変更\n分割トンネリングの設定");
+addButton("show",BTN_TEXT,"表示","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("Title-Page.html", "", "&gt;", "ホーム", "Title-Page.htm");
+document.write("<a href=\"agee-plugin-change-settings-wrapper-con.html\">Access Gateway Plug-inでの設定変更<\/a> &gt; 分割トンネリングの設定<\/p>");
+
+
+	if (window.setRelStartPage)
+	{
+	setRelStartPage("Title-Page.html");
+
+		autoSync(1);
+		sendSyncInfo();
+		sendAveInfoOut();
+	}
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+//-->
+//]]></script>
+<a name="agee-plugin-configuring-split-tunneling-tsk" id="agee-plugin-configuring-split-tunneling-tsk"><!-- --></a>
+<h1 class="topictitle1">分割トンネリングの構成</h1>
+<div>
+<div class="section">
+<p>分割トンネリングを有効にすると、接続先ネットワークのIPアドレスを使用して、Access Gatewayによりトラフィックがフィルターされます。 組織のネットワークを宛先とするトラフィックはAccess Gatewayを介して送信され、そのほかのトラフィックはLANまたはインターネットに送信されます。 分割トンネリングにより、Access Gatewayを経由するネットワークトラフィックがIPアドレスに基づいて制限されます。</p>
+<p>たとえば、組織のネットワーク内のイントラネットWebサイトに接続すると、要求はAccess Gatewayに送信されます。 ニュースサイトなどの外部Webサイトに接続すると、ネットワークトラフィックはAccess Gatewayを経由して送信されません。</p>
+<p>分割トンネリングには3つのオプションがあります。</p>
+<ul>
+<li><span class="uicontrol">オン：</span> 分割トンネリングが有効なとき、接続先のIPアドレスおよびポートと、システム管理者がAccess Gatewayに構成した値がAccess Gateway Plug-inにより比較されます。 いずれかの値と一致した場合、パケットはAccess Gatewayを介してリモートネットワークに送信されます。 そうでなければ、パケットはLANに迂回されます。</li>
+<li><span class="uicontrol">オフ：</span> <span class="uicontrol">［オフ］</span>を選択すると分割トンネリングは無効になり、Access Gateway Plug-inによりすべてのトラフィックがAccess Gatewayを介してリモートネットワークに送信されます。</li>
+<li><span class="uicontrol">リバースオン：</span> <span class="uicontrol">［リバースオン］</span>を選択するとインターネット接続およびLANへの要求がAccess Gatewayを介して送信されます。 内部ネットワークリソースへの接続はAccess Gatewayを介して送信されません。 この設定は通常、Access Gatewayが内部ネットワーク内に存在し、ユーザーが組織内から接続する場合に使用されます。</li>
+</ul>
+<div class="p">
+<div class="important"><span class="importanttitle">重要：</span> Access Gateway上で分割トンネリングが無効な場合は、分割トンネリングと分割DNSに関するAccess Gateway Plug-in側の制御が無効になり、ユーザーが設定を変更することはできません。 すべてのネットワークトラフィックがAccess Gatewayを介して送信されます。</div>
+</div>
+</div>
+<ol>
+<li><span>通知領域のAccess Gatewayアイコンを右クリックして、<span class="uicontrol">［Access Gatewayを設定］</span>を選択します。</span></li>
+<li><span><span class="uicontrol">［プロファイル］</span>タブをクリックして<span class="uicontrol">［プロファイルを変更］</span>をクリックします。</span></li>
+<li><span><span class="uicontrol">［接続］</span>タブの<span class="uicontrol">［分割トンネリング］</span>で、望ましいオプションをクリックして<span class="uicontrol">［OK］</span>をクリックします。</span></li>
+</ol>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

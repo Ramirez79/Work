@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<META content="text/html;charset=utf-8" http-equiv="Content-Type">
+
+<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/vpn/resources/{lang}", "fsaddress");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+
+<script language="javascript">
+
+function getkey(e){ 
+if(window.event) return window.event.keyCode;
+if(e) return e.which;
+else return null; 
+}
+
+function keyPress(enterurl){ 
+if(getkey(event)!=13) return;  
+parent.frames["title"].enterurl=enterurl;  
+parent.frames["title"].ns_handleaddrbar();
+}
+
+function dispaddress()
+{
+var width=document.body.offsetWidth-80;
+document.writeln('<TABLE WIDTH=100% BGCOLOR=#C7C7C7><TR><TD nowrap>' + _('id_Address') + '</TD><TD WIDTH=100% class=button><LEFT>');
+document.writeln('<INPUT TYPE="text" STYLE="WIDTH:99%;HEIGHT:20px" OnKeyPress=keyPress(this.value)>');
+document.writeln('</LEFT></TD></TR></TABLE>');
+}
+</script>
+</HEAD>
+<BODY class=address>
+<script language="javascript">
+dispaddress();
+</script>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</BODY>
+</HTML>

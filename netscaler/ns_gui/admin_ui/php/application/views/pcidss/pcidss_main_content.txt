@@ -1,0 +1,228 @@
+# this is the text which will end up within readme.pdf, when processed
+# by readme.php.
+#
+# the syntax being used is fairly obvious:
+#
+# a line starting with '#' is a comment or a directive
+# 1<title>  is a first level heading (text is 'title')
+# 2<heading> is a second level heading (text is 'heading')
+#
+# the table of contents is automatically generated from the titles and headings.
+#
+# "#NP" starts a new page
+# "#C" starts a code section (put this on a line by itself
+# "#c" end the code section
+# "#X" and "#x" surround a block which will be executed as php code.
+#
+# <b></b> <i></i> can be used within the text with gleeful abandon
+#
+# a link can be added within the text using <c:alink:url_here>label</c:alink>
+
+
+1<<b>Description</b>>
+
+	The PCI-DSS Summary report lists each security measure required for PCI-DSS 3.2 compliance. It indicates which measures are relevant and which are not relevant to the NetScaler appliance. For relevant security measures, it indicates whether this NetScaler appliance is in compliance, and if it is not, explains what you must do to bring it into compliance.
+
+
+1<<b>Firewall License and Feature status</b>>
+
+#X
+$noLicenseTxt="Firewall module is not licensed. Firewall rules, protection for credit cards, and masking of PIN/PAN numbers cannot be enforced.";
+$noEnabledTxt="Firewall module is not enabled. Firewall rules, protection for credit cards, and masking of PIN/PAN numbers cannot be enforced.";
+$noProblemTxt="Firewall module is licensed and enabled. Firewall rules, protection for credit cards, and masking of PIN/PAN numbers can be enforced.";
+if (isset($_SESSION['licenseMap']) and $_SESSION['licenseMap']['appfw'])
+{
+     if (isset($appfw_feature_enabled) and $appfw_feature_enabled)
+     	$pdf->ezText($noProblemTxt,$fontSize, array('left'=>20));
+     else
+     	$pdf->ezText("<b><c:colorit:\$r=1;>".$noEnabledTxt."</c:colorit></b>",$fontSize, array('left'=>20));
+}
+else
+{
+     $pdf->ezText("<b><c:colorit:\$r=1;>".$noLicenseTxt."</c:colorit></b>",$fontSize, array('left'=>20));
+}
+
+#x
+
+
+1<<b>Executive Summary</b>>
+
+
+#X
+	displayEntity($appfwProfileExecutiveSummary, "appfwProfileExecutiveSummary");
+#x
+
+
+1<<b>Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters</b>>
+
+#X
+$pwdChangeHead = "<b>2.1 Have you changed the password for the nsroot account? NO </b>";
+$pwdNoChangeHead = "<b>2.1 Have you changed the password for the nsroot account? YES </b>";
+$pwdChange="To bring this appliance into compliance, change the password for the nsroot account.";
+
+if (isset($nsdefaultpasschanged) and $nsdefaultpasschanged == "0")
+{
+         $pdf->ezText($pwdChangeHead,$fontSize, array('left'=>20));
+         $pdf->ezText("<b><c:colorit:\$r=1;>".$pwdChange."</c:colorit></b>",$fontSize, array('left'=>20));
+}
+else
+{
+         $pdf->ezText($pwdNoChangeHead,$fontSize, array('left'=>20));
+}
+#x
+
+	<b>2.3 Encrypt all non-console administrative access. Use technologies such as SSH, VPN, or SSL/TLS (transport layer security) for web-based management and other non-console administrative access. </b>
+
+		<b>CLI configuration. YES </b>
+#X
+        if (isset($sshAccess) and $sshAccess == "ENABLED")
+        {
+                 $pdf->ezText("CLI accessed via SSH.",$fontSize, array('left'=>40));
+        }
+        if (isset($telnetAccess) and $telnetAccess == "ENABLED")
+        {
+                 $pdf->ezText("CLI accessed via Telnet",$fontSize, array('left'=>40));
+                 $pdf->ezText("<b><c:colorit:\$r=1;>"."Disable Telnet access, enable access only through SSH."."</c:colorit></b>",$fontSize, array('left'=>40));
+        }
+#x
+#X
+$Both="The GUI configuration tool can be accessed via both HTTP and via HTTPS (SSL).";
+$OnlyHTTPS="The GUI configuration tool can be accessed only via HTTPS (SSL).";
+$enableOnlyHTTPS="To bring this appliance into compliance, enable GUI access only through secure mode.";
+if (isset($guiAccess) and ($guiAccess == "ENABLED" or $guiAccess == "SECUREONLY"))
+{
+         $pdf->ezText("<b>GUI configuration. YES</b>",$fontSize, array('left'=>40));
+         if($guiAccess == "SECUREONLY")
+         {
+                $pdf->ezText($OnlyHTTPS,$fontSize, array('left'=>40));
+         }
+         else
+         {
+                $pdf->ezText($Both,$fontSize, array('left'=>40));
+                $pdf->ezText("<b><c:colorit:\$r=1;>".$enableOnlyHTTPS."</c:colorit></b>",$fontSize, array('left'=>40));
+         }
+}
+else
+{
+         $pdf->ezText("<b>GUI configuration. NO</b>",$fontSize, array('left'=>20));
+}
+#x
+
+1<<b>Requirement 3: Protect stored cardholder data</b>>
+
+	<b>3.2.1 Does the Application Switch or any protected application store full contents of any track from the magnetic stripe after authorization? </b>
+	To bring your Application Switch and protected web applications into compliance with this security measure, configure a rule that uses the Confidential Fields Logging feature for any form field in any web form on a protected application that stores full contents of any track from the magnetic stripe.
+
+	<b>3.2.2 Does the Application Switch or any protected application store credit card verification codes after authorization? </b>
+	To bring your Application Switch and protected web applications into compliance with this security measure, configure a rule that uses the Confidential Fields Logging feature for any form field in any web form on a protected application that accepts verification codes.
+
+	<b>3.2.3 Does the Application Switch or any protected application store Personal Identification Numbers (PINs) or PIN block after authorization? </b>
+	To bring your Application Switch and protected web applications into compliance with this security measure, configure a rule that uses the Confidential Fields Logging feature for any form field in any web form on a protected application that accepts PINs or PIN block.
+
+	<b>3.3 Are Primary Account Numbers (PANs) masked when displayed on-screen?</b>
+	<b>NOTE:</b> The PCI-DSS standard allows you to display only the first six and last four digits of the PAN on-screen.
+	The Application Switch will mask display of any credit card numbers that you have configured as "protected". See the Credit Card Protection Status table below to determine which credit card types are protected on your Application Switch. To mask display of any credit card type not included in the list, configure a Safe Object rule that uses the x-out feature for each form field that accepts the PAN for that type of credit card.
+
+	<b>3.4 Are Primary Account Numbers (PANs) stored in unreadable format?</b>
+	To bring your Application Switch and protected web applications into compliance with this security measure, configure a rule that uses the Confidential Fields Logging feature to prevent logging of PANs.
+	<b>NOTE:</b> The current credit card protection setting for each type of credit card in each of your profiles is displayed below. For each profile, determine which credit card type (if any) is accepted as a form of payment, and protect that credit card type.
+
+#X
+
+    displayEntity($creditcard, "creditcard");
+    if(!isset($appfwconfidfield))
+        $pdf->ezText("\n");
+
+    displayEntity($appfwconfidfield, "appfwconfidfield");
+
+#x
+
+
+1<<b>Requirement 6: Develop and maintain secure systems and applications</b>>
+
+	<b> 6.5 Were your web applications developed in accordance with guidelines commonly accepted in the security community, such as the Open Web Application Security Project group (www.owasp.org)? Check firewall configuration </b>
+	The Citrix Application Firewall helps prevent exploitation of programming errors in web applications by enforcing appropriate user behavior, whether the web application does so or not. You can therefore safely use legacy web applications that might otherwise be insecure. The following subsections of 6.5 will give details on where to configure protections for specific types of vulnerabilities.
+		<b> 6.5.1 Protecting from Injection flaws</b>
+		Injection flaws can be prevented by enabling HTML SQL Injection, Cookie Consistency, XML SQL Injection, XML Path Injection, XML Message Validation. Customization is also allowed to prevent any kind of injection by setting custom injection prevention patterns in the Signature's SQL Injection section.
+		<b> 6.5.2 Buffer overflow</b>
+		Maximum URL/Cookie/Header length can be configured as Buffer overflow parameters.
+		<b> 6.5.5 Improper error handling</b>
+		Data leaks can be prevented by configuring Safe Objects. Regular Expressions can be used to identify patterns in the response and can be blocked and/or removed.
+		<b> 6.5.7 Cross-site scripting</b>
+		Cross-site scripting can be prevented by enabling HTML Cross-site scripting and XML Cross-site scripting.
+		<b> 6.5.8 Improper Access Control</b>
+		Improper Access Control can be prevented by adding Start URLs which make sure only those URLs specified are allowed. A negative list can also be specified in the Deny URLs.
+		<b> 6.5.9 Cross-site Request Forgery</b>
+		Cross-site Request Forgery can be prevented by enabling CSRF Form Tagging.
+
+	<b> 6.6 Are your public web applications protected from latest threats and vulnerabilities on an ongoing basis to protect from known security attacks? Check firewall configuration </b>
+	The Citrix Application Firewall blocks both known and unknown(the positive security model) attacks. Known attacks can be blocked using Signatures. The latest Signatures can be downloaded from the Citrix website and can be applied to the Application Firewall. Also, if the applications are scanned for vulnerabilities, the identified vulnerabilities can be patched in the Application Firewall itself instead of modifying the applications or web servers.
+
+#X
+    $appfwCofigurationLinkTxt="Please review the section on details of Application Firewall Configuration.";
+    if(isset($creditcard))
+    {
+        $ip = getenv("HTTP_HOST");
+        if ($g_pargs['which_report'] == "main")
+        $pdf->ezText($g_pargs['tabChars'] ."<c:alink:http://$ip/pcidss/launch_report?type=fwconfig>".$appfwCofigurationLinkTxt."</c:alink>");
+     }
+#x
+
+
+1<<b>Requirement 8: Assign a unique ID to each person with computer access</b>>
+
+	<b>8.1 Are users required to use unique usernames and passwords to access the Application Switch? </b>
+	Create user accounts and passwords for each system administrator or other person who accesses the Application Switch.
+
+	<b>8.2 Does the Application Switch require users to authenticate using either a password or passphrase or a two-factor authentication? YES </b>
+	The Application Switch requires all users to use a password for authentication.
+
+	<b>8.4 Are all passwords on the Application Switch stored in unreadable format? YES </b>
+
+
+1<<b>Requirement 10: Track and monitor all access to network resources and cardholder data</b>>
+
+	<b>10.1 Does your Application Switch links all access to system components (especially access done with administrative privileges such as root) to each individual user? YES </b>
+	Netscaler links access to system components with individual user.
+
+	<b>10.2.2 Does your Application Switch log all activity by any individual logged on as root or with administrative privileges? YES </b>
+	Netscaler logs administration access.
+
+	<b>10.2.3 Does your Application Switch implement automated audit trails for access to audit trails? YES </b>
+	Netscaler provides audit trail for access to audit trails.
+
+	<b>10.2.4 Does your Application Switch log all invalid logon attempts? YES </b>
+	Netscaler logs all unsuccessful and successful user login attempts.
+
+	<b>10.2.5 Do all identification and authentication mechanisms have audit trails? YES </b>
+	Netscaler logs all user authentication mechanism.
+
+	<b>10.2.7 Are audit trails available for creation and deletion of system-level objects? YES </b>
+	Netscaler logs creation/deletion of system level objects.
+
+	<b>10.3 Does Netscaler record at least 1. Type of event, 2. Date and time 3. Success or failure indication 4. Origination of event 5. Identity or name of affected data, system component, or resource in the audit trail entries for all system components for each event? YES </b>
+	Netscaler logs the above mention attributes in audit entries for all objects.
+
+	<b>10.4 Are system clocks and times synchronized? </b>
+#X
+$ntpNoConfig="Please configure a known, stable NTP server to synchronize the system clock with the rest of your network.";
+$ntpConfiguredAndEnabled="NTP configuration is present and synchronization is enabled.";
+$ntpSyncDisabled="NTP configuration is present and synchronization is disabled.";
+if (isset($ntpServers) and intval($ntpServers) > 0)
+{
+    if (isset($ntpsync) and $ntpsync == "ENABLED")
+    {
+         $pdf->ezText($ntpConfiguredAndEnabled,$fontSize, array('left'=>40));
+    }
+    else
+    {
+         $pdf->ezText($ntpSyncDisabled,$fontSize, array('left'=>40));
+         $pdf->ezText("<b><c:colorit:\$r=1;>"."Enable NTP Synchronization"."</c:colorit></b>",$fontSize, array('left'=>40));
+    }
+}
+else
+{
+    $pdf->ezText("NTP configuration is not present",$fontSize, array('left'=>40));
+    $pdf->ezText("<b><c:colorit:\$r=1;>".$ntpNoConfig."</c:colorit></b>",$fontSize, array('left'=>40));
+}
+#x

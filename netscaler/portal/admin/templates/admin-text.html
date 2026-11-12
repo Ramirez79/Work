@@ -1,0 +1,23 @@
+[% META title='Edit Site Text' 
+ 		id='services'
+%]
+[% USE env = EnvHash %]
+[% WRAPPER wrapper.tmpl %]
+<div id="selector" style="padding:10px;">
+<h2>[% template.title %]</h2>
+<table>
+<form action="[% env.adminLoc %]admin-text.pl" method="post">
+[% FOREACH field = doc %]
+<tr>
+<td>[% name = field.key %] [% labels.$name %]</td>
+<td><input type="text" name="[% field.key %]" value="[% field.value %]" size="60"/></td>
+</tr>
+[%- END -%]<tr><td colspan="2">
+<input type="submit" name="select" value="Submit"/>
+<input type="button" value="Cancel" onclick="history.go(-1)" class="button">
+
+  </td></tr>
+</form>
+</table>
+</div>
+[% END %]

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NetScaler Gateway</title>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="noindex,nofollow,noarchive" name="robots">
+    <link href="/vpn/images/styles.css" type=text/css rel=STYLESHEET>
+  <link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+<link href="/logon/themes/Default/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+<link href="/logon/themes/Default/css/custom.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/vpn/js/rdx.js"></script>
+<script type="text/javascript" src="/vpn/js/views.js"></script>
+<script type="text/javascript" src="/vpn/js/gateway_login_view.js"></script>
+<script type="text/javascript" src="/vpns/services_view.js"></script>
+  <script type="text/javascript" src="/vpn/resources.js"></script>
+  <script type="text/javascript" language="javascript">
+  var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "f_services");
+  </script>
+  <style type="text/css">
+  body
+  {
+    visibility: hidden;
+  }
+  </style>
+  <script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+function isXpOrHigher() {
+	
+	var userAgentParts = navigator.userAgent.split("Windows NT ")
+	if(userAgentParts.length < 2)		// userAgent doesn't have "Windows NT "
+		return false
+
+	return (parseFloat(userAgentParts[1]) > 5.0 ) 	// XP's vesrion number is 5.1. So allow XP or any OS higher than XP
+}
+
+var nsloc=document.location.href;
+var cookie=document.cookie;
+var ns_aaac="";
+var NameOfCookie="NSC_AAAC";
+var timerID=0;
+var probeErrors=0;
+var agentPort=3148;
+var image;
+
+if(cookie.length > 0) {
+   begin=cookie.indexOf(NameOfCookie+"=");
+   if(begin!=-1) {
+        begin+=NameOfCookie.length+1;
+        end=cookie.indexOf(";", begin);
+        if(end==-1) end=cookie.length;
+        ns_aaac=decodeURIComponent(cookie.substring(begin, end));
+   }
+}
+
+function UnsetCookie(cookieName) {
+document.cookie=cookieName+"=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+}
+
+function loginSuccess(evt){
+	if(timerID) 
+		window.clearTimeout(timerID);
+		
+        window.location = "/vpns/services.html";
+}
+
+function nextAgentPort() {
+        agentPort = agentPort + 1;
+        if( agentPort > 3150 )
+            agentPort = 3148;
+}       
+
+function probeAgent() {
+	if(isXpOrHigher()) {
+		// auto redirect to f_ndisagent.html so that user doesn't need to click twice
+		window.location = "/vpns/f_ndisagent.html";		
+	}
+
+	if(navigator.userAgent.indexOf("PPC")==-1)
+		return;
+		
+	if(ns_aaac=="") 
+		return;
+	
+	if(timerID) 
+		window.clearTimeout(timerID);
+
+        image = new Image();
+        image.onload = loginSuccess;
+        image.onerror = probeError;
+        image.src = "http://localhost:"+agentPort+"/svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion=11,1,47,14&nstrace=DEBUG&nsvip=255.255.255.255&nstdi=ON";
+        timerID = window.setTimeout( "probeTimeout()", 3000 );
+}
+
+function probeError() {
+        if(timerID) window.clearTimeout(timerID);
+        probeErrors++;
+        if( probeErrors > 20 ) {
+            window.location.reload(true);
+            return;
+        }
+        nextAgentPort();
+        window.setTimeout( "probeAgent()", 500 );
+}
+
+function probeTimeout() {
+        if(timerID) {
+                window.clearTimeout(timerID);
+		if(navigator.userAgent.indexOf("Opera") > 0) 
+			window.location.reload (true);
+        }
+        nextAgentPort();
+        probeAgent();
+}
+
+function nsexit(){
+}
+</SCRIPT>
+
+</head>
+<body>
+
+<!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+
+<script language="javascript" type="text/javascript">
+rdx.FRAMEWORK_BASE = "/vpn/js" ;
+rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(login, login.do_action_on_load));
+$(window).load(function(){resize();});
+$(window).resize(function(){ resize();});
+</script>
+   
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</body>
+</html>

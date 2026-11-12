@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<HTML><HEAD>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<TITLE></TITLE>
+<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content=noindex,nofollow,noarchive name=robots>
+<LINK href="/epa/images/default.css" type=text/css rel=STYLESHEET>
+<LINK href="/epa/images/Stylesheet.css" type=text/css rel=StyleSheet>
+<link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+<link href="/logon/themes/Default/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+<link href="/logon/themes/Default/css/custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/vpn/js/rdx.js"></script>
+<script type="text/javascript" src="/vpn/js/views.js"></script>
+<script type="text/javascript" src="/vpn/js/gateway_login_view.js"></script>
+<script type="text/javascript" src="/vpn/js/epaerror_view.js"></script>
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "epaerrorpage");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+<script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+</HEAD>
+
+<script language="JavaScript">
+var errmsg="N/A";
+
+
+function makeJSsafe(text) {
+    
+    // First replacement in this array has to be '&', else we will encode same character multiple times
+    var replaceTable =[ 
+        {"original" :/&/g , "replacement": '&amp;' }, 
+        {"original" :/</g , "replacement": '&lt;' },
+        {"original" :/>/g , "replacement": '&gt;' },
+        {"original" :/"/g , "replacement": '&quot;' },
+        {"original" :/'/g , "replacement": '&apos;' }
+    ];
+        
+    for( i= 0; i<replaceTable.length; i++) {
+        text = text.replace(replaceTable[i]["original"], replaceTable[i]["replacement"]);
+  }
+    return text;
+}
+
+
+function GoNextPage()
+{
+	window.location.replace( "/" );
+}
+
+function ns_geterrmsg()
+{
+   var cookie=document.cookie;
+   var errmsg="NSC_ERRM=";
+   if(cookie.length > 0) {
+        begin=cookie.indexOf(errmsg);
+        if(begin!=-1) {
+                begin+=errmsg.length;
+                end=cookie.indexOf(";", begin);
+                if(end==-1) end=cookie.length;
+                //As we are assiging this cookie value to innerHTML, we should escape any unsafe character to avoid XSS attack
+                return formatError(makeJSsafe( decodeURIComponent(cookie.substring(begin, end)) ), true);
+        }
+   }
+   return "N/A";
+}
+
+function ns_cleanerrmsg() {
+document.cookie="NSC_ERRM=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+document.cookie="NSC_AAAC=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+}
+
+
+function ns_fillinfo()
+{
+  var currentTime = new Date()
+  var month = currentTime.getMonth() + 1
+  var day = currentTime.getDate()
+  var year = currentTime.getFullYear()
+  var hour = currentTime.getHours()
+  var minute = currentTime.getMinutes()
+
+  var d1 = document.getElementById("dayinfo");
+  d1.innerHTML = Resources.FormatShortDate(year, month, day);
+
+  var d2 = document.getElementById("timeinfo");
+  d2.innerHTML = Resources.FormatShortTime(hour, minute);
+
+  var d3 = document.getElementById("errmsg");
+  d3.innerHTML = ns_geterrmsg();
+}
+
+</script>
+
+</HEAD>
+<BODY id=bodyTag onunload="javascript:ns_cleanerrmsg();">
+<!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+<script>
+rdx.FRAMEWORK_BASE = "/vpn/js" ;
+rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(login, login.do_action_on_load));
+$(window).load(function(){resize();});
+$(window).resize(function(){ resize();});
+</script>
+</BODY>
+</HTML>

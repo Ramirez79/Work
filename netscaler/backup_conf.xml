@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<backup_config_xml>
+	<level value="BASIC">
+	  <data type="FILE">
+	    <location>/nsconfig</location>
+	    <file>ns.conf</file>
+	    <file>ZebOS.conf</file>
+	    <file>rc.netscaler</file>
+	    <file>snmpd.conf</file>
+	    <file>nsbefore.sh</file>
+	    <file>nsafter.sh</file>
+	    <file>inetd.conf</file>
+	    <file>ntp.conf</file>
+	    <file>syslog.conf</file>
+	    <file>newsyslog.conf</file>
+	    <file>crontab</file>
+	    <file>host.conf</file>
+	    <file>hosts</file>
+	    <file>ttys</file>
+	    <file>sshd_config</file>
+	    <file>httpd.conf</file>
+	    <file>monitrc</file>
+	    <file>rc.conf</file>
+	    <file>ssh_config</file>
+	    <file>localtime</file>
+	    <file>issue</file>
+	    <file>issue.net</file>
+	    <file>updated_signatures.xml</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/lib/likewise/db</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/download</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/log</location>
+	    <file>wicmd.log</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/wi/tomcat/webapps</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/wi/tomcat/logs</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/wi/tomcat/conf/catalina/localhost</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/netscaler/locdb</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/vpn/bookmark</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/vpn/vpn</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/vpn/vpns</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/nstemplates</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/learnt_data</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/netscaler</location>
+	    <file>custom.html</file>
+	    <file>vsr.htm</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/netscaler</location>
+	    <file>crl</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/learnt_data</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/nslog/asl</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/nsconfig/dns</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/nsconfig/monitors</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/partitions</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/nsconfig/partitions</location>
+	    <file>ALL</file>
+	  </data>
+	</level>
+	<level value="FULL">
+	  <data type="FILE">
+	    <location>/var/netscaler/ssl</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/wi/java_home/lib/security/cacerts</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/wi/java_home/jre/lib/security/cacerts</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/nsconfig</location>
+	    <file>ALL</file>
+	  </data>
+	  <data type="FILE">
+	    <location>/var/vpn</location>
+	    <file>ALL</file>
+	  </data>
+	</level>
+</backup_config_xml>

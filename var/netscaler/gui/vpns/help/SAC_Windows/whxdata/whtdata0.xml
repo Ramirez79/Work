@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<!-- saved from url=(0014)about:internet -->
+<tocdata>
+<book name="Citrix Access Gateway Plug-in for Windows" url="Title-Page.htm" >
+  <item name="Legal Notices" url="ag-copyright.html" />
+</book>
+<book name="Welcome" url="agee-plugin-welcome-wrapper-con.html" >
+  <item name="Document Conventions" url="reusable-doc-conventions-c.html" />
+</book>
+<book name="Getting Started with the Access Gateway Plug-in" url="agee-plugin-getting-started-wrapper-con.html" >
+  <item name="How the Access Gateway Works" url="agee-plugin-how-access-gateway-works-con.html" />
+  <item name="Access Gateway Plug-in System Requirements" url="agee-plugin-system-requirements-con.html" />
+  <item name="Creating Connections using the Access Gateway Plug-in" url="agee-plug-in-creating-connections-tsk.html" />
+  <item name="Scanning Your Computer for Software" url="agee-plugin-epa-con.html" />
+  <item name="Logging On with a Client Certificate" url="agee-plugin-client-certificate-tsk.html" />
+  <item name="Ending Access Gateway Plug-in Sessions" url="agee-plugin-end-sessions-con.html" />
+  <item name="Cleaning Up Your Computer when Your Session Ends" url="agee-plugin-cleanup-computer-session-ends-tsk.html" />
+  <item name="Upgrading the Access Gateway Plug-in" url="agee-plugin-upgrade-plugin.html" />
+</book>
+<book name="Changing Settings in the Access Gateway Plug-in" url="agee-plugin-change-settings-wrapper-con.html" >
+  <item name="Changing Settings in the Advanced Options Dialog Box" url="agee-plugin-change-settings-in-advanced-options-tsk.html" />
+  <item name="Changing Settings from the Access Gateway Menu" url="agee-changing-settings-from-the-access-gateway-menu-tsk.html" />
+  <item name="Configuring Split Tunneling" url="agee-plugin-configuring-split-tunneling-tsk.html" />
+  <item name="Uninstalling the Access Gateway Plug-in" url="agee-plugin-uninstall-plugin-tsk.html" />
+</book>
+<book name="Working with the Access Interface" url="agee-plugin-working-with-access-interface-wrapper-con.html" >
+  <item name="Logging on to the Access Interface" url="agee-plugin-logging-on-to-access-interface-con.html" />
+  <item name="Adding Bookmarks on the Home Tab" url="agee-plugin-adding-bookmarks-on-the-home-tab-tsk.html" />
+</book>
+<book name="Troubleshooting" url="agee-plugin-tshoot-wrapper-con.html" >
+  <item name="Opening the Connection Log" url="agee-plugin-open-the-connection-log-tsk.html" />
+  <item name="Reporting Errors with the Access Gateway Plug-in" url="agee-plugin-report-ag-plugin-errors-tsk.html" />
+  <item name="Viewing Compression Statistics" url="agee-viewing-compression-statistics-tsk.html" />
+</book>
+<book name="Access Gateway Session Error Codes" url="agee-plugin-session-codes-wrapper-con.html" >
+  <item name="Access Gateway Session Error Codes" url="agee-plugin-session-error-codes-con.html" />
+</book>
+
+</tocdata>

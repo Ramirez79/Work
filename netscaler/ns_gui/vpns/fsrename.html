@@ -1,0 +1,69 @@
+<HTML><HEAD><TITLE></TITLE><META content="text/html;charset=utf-8" http-equiv="Content-Type">
+<script type="text/javascript" src="/vpn/resources.js"></script>
+<script type="text/javascript" language="javascript">
+var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "fsrename");
+</script>
+<style type="text/css">
+body
+{
+  visibility: hidden;
+}
+</style>
+<script language="javascript">
+var frmtitle=parent.frames["title"];
+var path=frmtitle.activepath;
+var oldfilename=frmtitle.activemenu.items[frmtitle.hlitem].text;
+function ns_checkrename()
+{
+if(document.forms['renameForm'].n.value=="") {
+alert(_("No alternative name is specified. Please enter one."));
+return false;
+}
+return true;
+}
+</script>
+</HEAD>
+
+<link rel="stylesheet" type="text/css" href="/vpns/images/fs1.css" />
+
+<BODY>
+<BR><div align="center">
+<TABLE BGCOLOR=#CCCCCC CELLPADDING=2 CELLSPACING=1 BORDER=2>
+<TR><TD COLSPAN=2 ALIGN=center class=title>
+<B><span id="Rename"></span></B></TD></TR>
+<TR><TD ALIGN=center>
+<FORM ACTION="/fs/rename" METHOD="POST" NAME="renameForm">
+<script language="javascript">
+	document.writeln('<INPUT TYPE=HIDDEN NAME=path VALUE="' + decodeURIComponent(path) +'">');
+	document.writeln('<INPUT TYPE=HIDDEN NAME=o VALUE="' + decodeURIComponent(oldfilename) +'">');
+	document.writeln('<INPUT TYPE=HIDDEN NAME=nsc_nonce VALUE="' + parent.parent.nsc_nonce +'">');
+</script>
+<TABLE BGCOLOR=#CCCCCC CELLPADDING=4 CELLSPACING=2 BORDER=0>
+<TR><TD ALIGN=right VALIGN=middle><span id="Directory:"></span></TD>
+<TD ALIGN=left VALIGN=top>
+<script language="javascript">
+	document.writeln(frmtitle.NS_url2html(path));
+</script>
+</TD></TR>
+<TR><TD ALIGN=right VALIGN=middle><span id="From:"></span></TD>
+<TD ALIGN=left VALIGN=top>
+<script language="javascript">
+	document.writeln(frmtitle.NS_url2html(oldfilename));
+</script>
+</TD></TR>
+<TR><TD ALIGN=right VALIGN=middle><span id="To:"></span></TD>
+<TD ALIGN=left VALIGN=top>
+<INPUT TYPE="text" NAME=n>
+</TD></TR>
+<TR><TD ALIGN=middle colspan=2>
+<INPUT ID=Button_Rename TYPE=SUBMIT NAME="rename" onclick="javascript:return ns_checkrename();" VALUE="" STYLE="min-width:100px;height:24px;" class=button>
+<INPUT ID=Button_Cancel TYPE=button VALUE="" onclick="frmtitle.NS_cancelAction();" STYLE="min-width:100px;height:24px;" class=button></TD></TR>
+</TABLE>
+</FORM>
+</TD></TR>
+</TABLE>
+</div>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</BODY></HTML>

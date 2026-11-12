@@ -1,0 +1,154 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Citrix Access Gateway</title>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta content="noindex,nofollow,noarchive" name="robots">
+  <LINK href="/vpn/images/caxtonstyle.css" type=text/css rel=STYLESHEET>
+  <script type="text/javascript" src="/vpn/resources.js"></script>
+  <script type="text/javascript" language="javascript">
+  var Resources = new ResourceManager("/vpn/resources/{lang}", "f_services1");
+  </script>
+  <style type="text/css">
+  body
+  {
+    visibility: hidden;
+  }
+  </style>
+  <script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+var ispluginrunning=0;
+var NameOfClientCookie="NSC_PLUGINC";
+
+function ns_checksystem()
+{
+   if(document.cookie.length > 0) {
+	begin=document.cookie.indexOf(NameOfClientCookie+"=");
+	if(begin!=-1) {
+		ispluginrunning=1;
+		return; 
+	}
+   }
+}
+
+function ns_loadsessionwindow()
+{
+ns_checksystem();
+if(ispluginrunning!=0) return;
+if( (navigator.userAgent.indexOf("Windows NT 5.1")!=-1) || //XP
+	(navigator.userAgent.indexOf("Windows NT 5.2") != -1 && navigator.userAgent.indexOf("WOW64") == -1) || // Server 2003
+	(navigator.userAgent.indexOf("PPC")!=-1) ) {
+var winx=screen.width-300; 
+var winy=screen.height-160-60;
+window.open("/vpns/app.html", "ns_sslvpn", "toolbar=no,menubar=no,status=no,width=300,height=160,resizable=no,left="+winx+",top="+winy);
+}
+}
+
+function ns_closewindow()
+{
+if( (navigator.userAgent.indexOf("Windows NT 5.1")!=-1) || //XP
+	(navigator.userAgent.indexOf("Windows NT 5.2") != -1 && navigator.userAgent.indexOf("WOW64") == -1) ) {  // Server 2003
+	if (location.protocol == "http:") { 
+		document.cookie = "NSC_HTTPVSERVER=1; path=/";
+	}
+	//for XP, and Server 2003 use port 8080
+	window.location.reload("http://" + window.location.hostname + ":8080/vpns/services.html");
+}
+else {	
+	window.location.reload("/vpns/services.html");
+}
+}
+
+
+function ns_redirectlogin()
+{
+	window.location.reload("/vpn/index.html");
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="ns_loadsessionwindow();">
+<!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+<script language="javascript" type="text/javascript">
+	CreateMainTable();
+    AddHeaderAndBar();
+</script>
+
+<!-- Main row -->
+<tr>
+	<td>
+	<table class="CTXMSAM_ContentFont full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+		<tr>
+		<td>
+<!-- wrapper begin -->
+<table class="mainPane CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <!-- content begin -->
+                                    <p style="MARGIN: 0px auto" class="messageTitle"><span id="Citrix Access Gateway"></span></p>
+                                    <br>
+<SCRIPT language="javascript" >
+if( (navigator.userAgent.indexOf("Windows NT 5.1") != -1) || //XP
+	(navigator.userAgent.indexOf("Windows NT 5.2") != -1 && navigator.userAgent.indexOf("WOW64") == -1) ) { //Server 2003
+document.write('<p>' + _('If the Access Gateway Plug-in for ActiveX does not start automatically') + '</p>');
+}
+else if(navigator.userAgent.indexOf("PPC")!=-1) {
+document.write('<p>' + _('Please click here to download Secure Access client to this Pocket PC') + '</p>');
+}
+else {
+document.write('<p>' + _('The Access Gateway Plug-in is not supported on your operating system.') + '</p>');
+}
+</SCRIPT>
+<p><span id="For further help or information, contact your help desk or system administrator."></span></p>
+                                   
+                              <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+			</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+
+<!-- Footer -->
+<script language="javascript" type="text/javascript">
+AddFooter();
+</script>
+</table>
+<script type="text/javascript" language="javascript">
+Resources.Load();
+</script>
+</body>
+</html>
+

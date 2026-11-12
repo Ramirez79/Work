@@ -1,0 +1,729 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Example of logon UI incorporating custom forms and advance notification of password expiry</title>
+    <link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css"/>
+    <link href="css/LogonUIAdvanced.html.style.min.css" rel="stylesheet" type="text/css"/>
+    <link href="contrib/custom.style.css" rel="stylesheet" type="text/css"/>
+    <script src="scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery.jscrollpane.js" type="text/javascript"></script>
+    <script src="scripts/LogonUIAdvanced.html.script.min.js" type="text/javascript"></script>
+    <script src="contrib/custom.script.js" type="text/javascript"></script>
+</head>
+<body>
+
+        <!-- This HTML structure is used by the CSS to lay out the logon UI -->
+        <div id="authentication" class="mainpane">
+            <div id="logonbelt-topshadow"></div>
+            <div id="logonbox-container">
+                <div id="logonbox-innerbox">
+                    <div id="logonbox-logoarea">
+                        <div id="logonbox-logoimage"></div>
+                    </div>
+
+                    <!-- This element hosts the forms authentication widget -->
+                    <div id="logonbox-logonform"></div>
+                </div>
+            </div>
+            <div id="logonbelt-bottomshadow"></div>
+        </div>
+        
+        <!-- This HTML structure is used to lay out the password expiry notification UI -->
+        <div id="credentialupdate" class="mainpane">
+            <div id="credentialupdate-topshadow"></div>
+            <div id="credentialupdate-container">
+                <div id="credentialupdate-innerbox">
+                    <div id="credentialupdate-logoarea">
+                        <div id="credentialupdate-logoimage"></div>
+                    </div>
+                    
+                    <!-- This element hosts the password expiry notification widget -->
+                    <div id="credentialupdate-form"></div>
+                </div>
+            </div>
+            <div id="credentialupdate-bottomshadow">
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            // Form provider for demo purposes - loads form data from script elements within the page
+            var exampleFormProvider = function (url, formData, headers, callback) {
+                var scriptId = url.substring(url.indexOf('#'), url.length),
+                    $scriptElement = $(scriptId),
+                    formXml = $.parseXML($.trim($scriptElement.text())),
+                    formProtocolName = $scriptElement.data('protocolname');
+
+                callback(formXml, formProtocolName);
+            };
+
+            $(document).ready(function() {
+                // A real application may decide to display some progress UI here, while it initializes
+
+                showLogonUI();
+            });
+            
+            function showLogonUI() {
+                var initialUrl = '#initial-logon-form', // Fake URL of initial logon form, for the sake of example
+                    $authenticationPane = $('#authentication'),
+                    $widgetContainer = $('#logonbox-logonform'),
+                    logonboxContainerTop = parseFloat($("#logonbox-container").css("top")) || 0,
+                    logonbeltTopshadow = parseFloat($("#logonbelt-topshadow").css("paddingBottom")) || 0,
+                    logonbeltBottomshadow = parseFloat($("#logonbelt-bottomshadow").css("paddingBottom")) || 0;
+
+                // Create the forms authentication widget, attaching it to a page element
+                // See LogonUI.html for full description of all the parameters to this widget
+                $widgetContainer.ctxsFormsAuthentication({
+                    allowCancel: false,
+
+                    authenticationSuccess: function (event, authenticationInfo) {
+                        var isPasswordChangeAllowed = authenticationInfo.isPasswordChangeAllowed,
+                            isPasswordExpiryNotificationEnabled = authenticationInfo.isPasswordExpiryNotificationEnabled,
+                            timeUntilExpiry = authenticationInfo.passwordExpiryTime;
+
+                        // Transition to the password expiry notification if appropriate
+                        if (isPasswordChangeAllowed && isPasswordExpiryNotificationEnabled) {
+                            showPasswordExpiryNotification(timeUntilExpiry);
+                        }
+                    },
+
+                    beforeDisplayForm: function () {
+                        $authenticationPane.show();
+                    },
+
+                    formProvider: exampleFormProvider,
+
+                    // Reserved space is used to calculate space available for control, if space available is less than needed then scrollbar is presented on screen.
+                    reservedSpace: logonboxContainerTop + logonbeltTopshadow + logonbeltBottomshadow
+                });
+
+                // Start the logon process, passing the URL from which to obtain the initial form
+                $widgetContainer.ctxsFormsAuthentication('startAuthentication', initialUrl);
+
+                // On window resize event plug-in will fire its resize event to find out if it need scrollbar.
+                $(window).resize(function () {
+                    if ($widgetContainer.data('ctxsCtxsFormsAuthentication')) {
+                        $widgetContainer.ctxsFormsAuthentication('resize');
+                    }
+                });
+            }
+
+            function showPasswordExpiryNotification(timeUntilExpiry) {
+                var $authenticationPane = $('#authentication'),
+                    $credentialUpdatePane = $('#credentialupdate'),
+                    $widgetContainer = $('#credentialupdate-form');
+
+                // Create the password expiry notification widget in the credential update pane
+                $widgetContainer.ctxsPasswordExpiryNotification({
+                    // URL of image to use as spinner when a button is pressed
+                    formActionSpinnerImageUrl: 'media/Loader.gif',
+
+                    // A function which is responsible for providing localized strings for given string IDs
+                    // A real application would use this as an interface to its localization code
+                    // This simple implementation demonstrates the string IDs that the widget expects, with example text
+                    stringProvider: function(stringId) {
+                        var strings = {                            
+                            PasswordExpiryNotificationTitle: 'Do you want to change your password?',
+                            PasswordExpiryNotificationText: 'Your password will expire in {0} {1}.',
+                            PasswordExpiryNotificationTextForToday: 'Your password will expire today.',
+                            PasswordExpiryNotificationTextSuffixSingleDay: 'day',
+                            PasswordExpiryNotificationTextSuffixMultiDays: 'days',
+                            PasswordExpiryNotificationOkButtonText: 'Change Now',
+                            PasswordExpiryNotificationCancelButtonText: 'Not Now'
+                        };
+                        return strings[stringId];
+                    },
+                    
+                    // The action to complete if the user chooses to change their password
+                    notificationAccept: function () {
+                        showChangePasswordUI();
+                    },
+                    
+                    // The action to complete if the user chooses to dismiss the notification
+                    notificationCancel: function () {
+                        window.alert('User dismissed the notification.');
+                        $credentialUpdatePane.hide();
+                    }
+                });
+
+                // Prepare the UI
+                $authenticationPane.hide();
+                $credentialUpdatePane.show();
+                
+                // Display the notification
+                $widgetContainer.ctxsPasswordExpiryNotification('showPasswordExpiryNotification', timeUntilExpiry);
+            }
+            
+            function showChangePasswordUI() {
+                var initialUrl = '#change-password-form',
+                    $credentialUpdatePane = $('#credentialupdate'),
+                    $widgetContainer = $('#credentialupdate-form');
+                
+                // Create a second instance of the forms authentication widget to handle the user's request to change password.
+                // This widget is attached to the same UI element as the password expiry notification and will overwrite that UI.
+                $widgetContainer.ctxsFormsAuthentication({
+                    // Allow cancel this time since the password change is voluntary.
+                    allowCancel: true,
+                    
+                    authenticationSuccess: function () {
+                        $credentialUpdatePane.hide();
+                    },
+                    
+                    authenticationCancel: function (event, authResult) {
+                        var authenticationResponse = authResult.authenticationResponse;
+                        window.alert('User cancelled the change password operation.');
+                        $credentialUpdatePane.hide();
+                    },
+                    
+                    formProvider: exampleFormProvider
+                });
+
+                // Start the change password process, passing the URL from which to obtain the initial form
+                $widgetContainer.ctxsFormsAuthentication('startAuthentication', initialUrl);
+            }
+        </script>
+        
+        <!-- From here on, the page contains sample forms XML data for the sake of example only -->
+        <!-- In a real deployment this XML would be provided by a back end service -->
+        
+        <!-- Initial logon form - demonstration of a custom form using various UI controls -->
+        <script type="text/xml" id="initial-logon-form" data-protocolname="CustomForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>more-info</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#authentication-success</PostBack>
+                <CancelPostBack>#cancel-logon-form</CancelPostBack>
+                <CancelButtonText>Cancel</CancelButtonText>
+                <Requirements>
+				
+                  <Requirement>
+                    <Credential>
+                      <Id>image1</Id>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Binary>data:image/gif;base64,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</Binary>
+                      <Type>image</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+				
+                  <Requirement>
+                    <Credential>
+                      <ID>heading1</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Section 1</Text>
+                      <Type>heading</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>label1</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Plain label with <![CDATA[<b><i><u>styled</u></i></b>]]> text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>info1</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Information label</Text>
+                      <Type>information</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>text1a</ID>
+                      <Type>username</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Plain text:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <AssistiveText>Text input AssistiveText - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</AssistiveText>
+                      <Text>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>text1b</ID>
+                      <Type>username</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Read-only text:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+
+                        <ReadOnly>True</ReadOnly>
+                        <Constraint>.+</Constraint>
+                        <InitialValue>Initial value - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</InitialValue>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>text1c</ID>
+                      <Type>passcode</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Secret text:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <AssistiveText>Secret Text input AssistiveText - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</AssistiveText>
+                      <Text>
+                        <Secret>true</Secret>
+                      </Text>
+                    </Input>
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>combobox1</ID>
+                      <Type>domain</Type>
+                    </Credential>
+                    <Label>
+                      <Text>ComboBox:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <ComboBox>
+                        <InitialSelection>value2</InitialSelection>
+                        <DisplayValues>
+                          <DisplayValue>
+                            <Display>item 1</Display>
+                            <Value>value1</Value>
+                          </DisplayValue>
+                          <DisplayValue>
+                            <Display>item 2</Display>
+                            <Value>value2</Value>
+                          </DisplayValue>
+                          <DisplayValue>
+                            <Display>item 3</Display>
+                            <Value>value3</Value>
+                          </DisplayValue>
+                        </DisplayValues>
+                      </ComboBox>
+                      <AssistiveText>ComboBox AssistiveText - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</AssistiveText>
+                    </Input>
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>multicombobox1</ID>
+                      <Type>domain</Type>
+                    </Credential>
+                    <Label>
+                      <Text>ComboBox:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <MultiComboBox>
+                        <DisplayValues>
+                          <DisplayValue>
+                            <Display>item 1</Display>
+                            <Value>value1</Value>
+                            <Select>true</Select>
+                          </DisplayValue>
+                          <DisplayValue>
+                            <Display>item 2</Display>
+                            <Value>value2</Value>
+                          </DisplayValue>
+                          <DisplayValue>
+                            <Display>item 3</Display>
+                            <Value>value3</Value>
+                            <Select>true</Select>
+                          </DisplayValue>
+                        </DisplayValues>
+                      </MultiComboBox>
+                      <AssistiveText>MultiComboBox AssistiveText - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</AssistiveText>
+                    </Input>
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>radiobutton1</ID>
+                      <Type>domain</Type>
+                    </Credential>
+                    <Label>
+                      <Text>RadioButton:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <RadioButton>
+                        <InitialSelection>value1</InitialSelection>
+                        <DisplayValues>
+                          <DisplayValue>
+                            <Display>item 1</Display>
+                            <Value>value1</Value>
+                          </DisplayValue>
+                          <DisplayValue>
+                            <Display>item 2</Display>
+                            <Value>value2</Value>
+                          </DisplayValue>
+                          <DisplayValue>
+                            <Display>item 3</Display>
+                            <Value>value3</Value>
+                          </DisplayValue>
+                        </DisplayValues>
+                      </RadioButton>
+                      <AssistiveText>RadioButton AssistiveText - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</AssistiveText>
+                    </Input>
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>checkbox1</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>CheckBox</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <CheckBox />
+                      <AssistiveText>CheckBox AssistiveText - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</AssistiveText>
+                    </Input>
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>error1</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Error label</Text>
+                      <Type>error</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+
+                  <Requirement>
+                    <Credential>
+                      <ID>button1</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type/>
+                    </Label>
+                    <Input>
+                      <Button>OK</Button>
+                    </Input>
+                  </Requirement>
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Successful logon -->
+        <script type="text/xml" id="authentication-success" data-protocolname="CustomForms">
+            <AuthenticationStatus xmlns="http://citrix.com/authentication/response/1">
+              <Result>success</Result>
+              <AuthType>ExplicitForms</AuthType>
+              <IsChangePasswordEnabled>true</IsChangePasswordEnabled>
+              <IsExpiryNotificationEnabled>true</IsExpiryNotificationEnabled>
+              <TimeRemaining>9</TimeRemaining>
+            </AuthenticationStatus>
+        </script>
+        
+        <!-- Initial change password form -->
+        <script type="text/xml" id="change-password-form" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>update-credentials</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#password-complexity-error</PostBack>
+                <CancelPostBack>#cancel-change-password</CancelPostBack>
+                <CancelButtonText>Cancel</CancelButtonText>
+                <Requirements>
+                  <Requirement>
+                    <Credential>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Change Password</Text>
+                      <Type>heading</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <Type>username</Type>
+                    </Credential>
+                    <Label>
+                      <Text>User name:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>false</Secret>
+                        <ReadOnly>true</ReadOnly>
+                        <InitialValue>acmecorp\johnsmith</InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>oldPassword</ID>
+                      <Type>password</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Old password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>newPassword</ID>
+                      <SaveID>ExplicitForms-Password</SaveID>
+                      <Type>newpassword</Type>
+                    </Credential>
+                    <Label>
+                      <Text>New password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>confirmPassword</ID>
+                      <Type>newpassword</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Confirm password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>changePasswordBtn</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type>none</Type>
+                    </Label>
+                    <Input>
+                      <Button>OK</Button>
+                    </Input>
+                  </Requirement>
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Response to a cancellation request -->
+        <script type="text/xml" id="cancel-change-password" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>cancelled</Result>
+              <StateContext />
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Error explaining that the new password must meet complexity requirements -->
+        <script type="text/xml" id="password-complexity-error" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>update-credentials</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#change-password-confirmation</PostBack>
+                <CancelPostBack>#cancel-change-password</CancelPostBack>
+                <CancelButtonText>Cancel</CancelButtonText>
+                <Requirements>
+                  <Requirement>
+                    <Credential>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Change Password</Text>
+                      <Type>heading</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <Type>username</Type>
+                    </Credential>
+                    <Label>
+                      <Text>User name:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>false</Secret>
+                        <ReadOnly>true</ReadOnly>
+                        <InitialValue>acmecorp\johnsmith</InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>oldPassword</ID>
+                      <Type>password</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Old password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>newPassword</ID>
+                      <SaveID>ExplicitForms-Password</SaveID>
+                      <Type>newpassword</Type>
+                    </Credential>
+                    <Label>
+                      <Text>New password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>confirmPassword</ID>
+                      <Type>newpassword</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Confirm password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <HighlightFields>
+                        <CredentialID>newPassword</CredentialID>
+                        <CredentialID>confirmPassword</CredentialID>
+                      </HighlightFields>
+                      <Text>Your new password must meet complexity requirements</Text>
+                      <Type>error</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>changePasswordBtn</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type>none</Type>
+                    </Label>
+                    <Input>
+                      <Button>OK</Button>
+                    </Input>
+                  </Requirement>
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Confirmation of successful password change -->
+        <script type="text/xml" id="change-password-confirmation" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>more-info</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#authentication-success</PostBack>
+                <CancelPostBack>#cancel-change-password</CancelPostBack>
+                <Requirements>
+                  <Requirement>
+                    <Credential>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Your password has been changed successfully.</Text>
+                      <Type>confirmation</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>changePasswordConfirmBtn</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type>none</Type>
+                    </Label>
+                    <Input>
+                      <Button>OK</Button>
+                    </Input>
+                  </Requirement>
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<serverversion>
+    <component pkgname="nsgclient" currentversion="1.0.0.108" minversion="1.0.0.108" ostype="suse64" minkernelversion="3.12" maxkernelversion="4.0" updatetype="compatible" action="/vpn/scripts/linux/nsgclient64sled12.rpm" />
+    <component pkgname="nsepa" currentversion="1.0.0.31" minversion="1.0.0.31" ostype="ubuntu64" minkernelversion="0" maxkernelversion="100" updatetype="compatible" action="/epa/scripts/linux/nsepa.deb" />
+	<component pkgname="nsepa" currentversion="1.0.0.31" minversion="1.0.0.31" ostype="ubuntu32" minkernelversion="0" maxkernelversion="100" updatetype="compatible" action="/epa/scripts/linux/nsepa32.deb" />
+	<component pkgname="nsepa" currentversion="1.0.0.18" minversion="1.0.0.18" ostype="suse64" minkernelversion="0" maxkernelversion="100" updatetype="compatible" action="/epa/scripts/linux/nsepa.rpm" />
+	<component pkgname="nsepa" currentversion="1.0.0.18" minversion="1.0.0.18" ostype="suse32" minkernelversion="0" maxkernelversion="100" updatetype="compatible" action="/epa/scripts/linux/nsepa32.rpm" />
+	<component pkgname="nsgclient" currentversion="1.0.0.124" minversion="1.0.0.124" ostype="ubuntu64" minkernelversion="3.0" maxkernelversion="5.0" updatetype="compatible" action="/vpn/scripts/linux/nsgclient64.deb" />
+	<component pkgname="nsgclient" currentversion="1.0.0.124" minversion="1.0.0.124" ostype="ubuntu32" minkernelversion="3.0" maxkernelversion="5.0" updatetype="compatible" action="/vpn/scripts/linux/nsgclient32.deb" />
+	<component pkgname="nsgclient" currentversion="1.0.0.103" minversion="1.0.0.103" ostype="suse64" minkernelversion="2.6" maxkernelversion="2.7" updatetype="compatible" action="/vpn/scripts/linux/nsgclient64susesp1.rpm" />
+	<component pkgname="nsgclient" currentversion="1.0.0.103" minversion="1.0.0.103" ostype="suse32" minkernelversion="2.6" maxkernelversion="2.7" updatetype="compatible" action="/vpn/scripts/linux/nsgclient32susesp1.rpm" />
+	<component pkgname="nsgclient" currentversion="1.0.0.108" minversion="1.0.0.108" ostype="suse64" minkernelversion="3.0" maxkernelversion="3.1" updatetype="compatible" action="/vpn/scripts/linux/nsgclient64susesp3.rpm" />
+	<component pkgname="nsgclient" currentversion="1.0.0.108" minversion="1.0.0.108" ostype="suse32" minkernelversion="3.0" maxkernelversion="3.1" updatetype="compatible" action="/vpn/scripts/linux/nsgclient32susesp3.rpm" />
+<serverversion>

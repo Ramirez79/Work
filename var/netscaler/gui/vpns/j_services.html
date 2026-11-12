@@ -1,0 +1,133 @@
+<html>
+<head>
+  <title>Citrix Access Gateway</title>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta content="noindex,nofollow,noarchive" name="robots">
+  <LINK href="/vpn/images/caxtonstyle.css" type=text/css rel=STYLESHEET>
+  <script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+var ispluginrunning=0;
+var NameOfClientCookie="NSC_PLUGINC";
+var childAppletWindow = null;
+
+function ns_checksystem()
+{
+	if(document.cookie.length > 0) {
+		begin=document.cookie.indexOf(NameOfClientCookie+"=1");
+		if(begin!=-1) {
+			ispluginrunning=1;
+			return; 
+		}
+   }
+}
+
+function ns_loadsessionwindow(is_manual)
+{
+	ns_checksystem();
+
+	//for manual window opening don't respect cookie
+	if(is_manual) {
+		if( childAppletWindow!=null && !childAppletWindow.closed ) {
+			return;
+		}
+	}
+	else {
+		// if plugin is running and not closed, don't create another one
+		if( (ispluginrunning!=0) || (childAppletWindow!=null && !childAppletWindow.closed)) {
+			return;
+		}
+	}
+	
+	var winx = screen.width-400; 
+	var winy = screen.height-175-60;
+	
+	childAppletWindow = window.open("/vpns/vpn.html", "_blank", "toolbar=no,menubar=no,status=no,width=375,height=200,resizable=no,left="+winx+",top="+winy);
+	
+	//Check if the pop-up was blocked by some pop-up blocker
+	try{
+		if (childAppletWindow==null || typeof(childAppletWindow)=="undefined" || childAppletWindow.closed) {
+			return;
+		}
+	}
+	catch(ex){
+		return;
+	}
+	
+	childAppletWindow.opener = self;
+	ispluginrunning=1;
+}
+
+</SCRIPT>
+</head>
+
+
+<body bgcolor="#FFFFFF" text="#000000" onload="javascript:ns_loadsessionwindow(false);">
+
+<script language="javascript" type="text/javascript">
+	CreateMainTable();
+    AddHeaderAndBar();
+</script>
+
+<!-- Main row -->
+<tr>
+	<td>
+	<table class="CTXMSAM_ContentFont full_width" cellpadding="0" cellspacing="0" align="center" border="0">
+		<tr>
+		<td>
+<!-- wrapper begin -->
+<table class="mainPane CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              
+                <tr>
+                    <td>
+                        <div id="commonBoxTop">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+                <tr>
+                    <td id="commonBox" class="CTXMSAM_ContentFont">
+                        <table class="CTXMSAM_ContentFont" width="100%" cellpadding="20px" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <!-- content begin -->
+                                    <p style="MARGIN: 0px auto" class="messageTitle">Citrix Access Gateway</p>
+                                    <p>If the Access Gateway Plug-in for Java does not start automatically, you can open the  
+                                    <A HREF="/vpns/vpn.html" onclick="ns_loadsessionwindow(true); return false;">Access Gateway session window</A> manually.</p>
+									<p>For further help or information, contact your help desk or system administrator.</p>
+                                   
+                              <!-- content end -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="commonBoxFoot">
+                            <!-- -->
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </td>    
+    </tr>
+</table>
+<!-- wrapper end -->
+			</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+
+<!-- Footer -->
+<script language="javascript" type="text/javascript">
+AddFooter();
+</script>
+</table>
+</body>
+</html>

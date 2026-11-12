@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Example of logon UI using forms authentication widget</title>
+	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css"/>
+    <link href="css/LogonUI.html.style.min.css" rel="stylesheet" type="text/css"/>
+    <link href="contrib/custom.style.css" rel="stylesheet" type="text/css"/>
+    <script src="scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="scripts/jquery.jscrollpane.js" type="text/javascript"></script>
+    <script src="scripts/LogonUI.html.script.min.js" type="text/javascript"></script>
+    <script src="contrib/custom.script.js" type="text/javascript"></script>
+</head>
+<body>
+
+        <!-- This HTML structure is used by the CSS to lay out the logon UI -->
+        <div id="authentication" class="mainpane">
+            <div id="logonbelt-topshadow"></div>
+            <div id="logonbox-container">
+                <div id="logonbox-innerbox">
+                    <div id="logonbox-logoarea">
+                        <div id="logonbox-logoimage"></div>
+                    </div>
+
+                    <!-- This element hosts the forms authentication widget -->
+                    <div id="logonbox-logonform"></div>
+                </div>
+            </div>
+            <div id="logonbelt-bottomshadow"></div>
+        </div>
+
+        <script type="text/javascript">
+            // Fake URL of initial logon form, for the sake of example
+            //var initialUrl = '#initial-logon-form';
+
+            $(document).ready(function() {
+                var $authenticationPane = $('#authentication');
+                var initialRequest = true;
+
+                // A real application may decide to display some progress UI here, while it initializes
+
+                // Create the forms authentication widget, attaching it to a page element
+                var $widgetContainer = $('#logonbox-logonform'),
+					logonboxContainerTop = parseFloat($("#logonbox-container").css("top")) || 0,
+                    logonbeltTopshadow = parseFloat($("#logonbelt-topshadow").css("paddingBottom")) || 0,
+                    logonbeltBottomshadow = parseFloat($("#logonbelt-bottomshadow").css("paddingBottom")) || 0;
+					
+                $widgetContainer.ctxsFormsAuthentication({
+                    // Whether Cancel button should be displayed - not recommended for logon forms
+                    allowCancel: false,
+
+                    // Pre-populated credentials can be inserted into an initial logon form
+                    // If these are provided, they may overwrite assistive text within the text boxes
+                    prePopulatedCredentials: {
+                        username: 'johnsmith',
+                        password: 'letmein',
+                        domain: 'acmecorp'
+                    },
+
+                    // URL of image to use as spinner while a form is being submitted
+                    formActionSpinnerImageUrl: 'media/Loader.gif',
+                    
+                    // The action to complete once authentication has succeeded
+                    // The authenticationInfo object may provide useful details
+                    authenticationSuccess: function(event, authenticationInfo) {
+                        var authenticationMethod = authenticationInfo.authenticationType,
+                            isPasswordChangeAllowed = authenticationInfo.isPasswordChangeAllowed,
+                            isPasswordExpiryNotificationEnabled = authenticationInfo.isPasswordExpiryNotificationEnabled,
+                            timeUntilExpiry = authenticationInfo.passwordExpiryTime,
+                            authenticationResponse = authenticationInfo.authenticationResponse,
+							message = 'User has logged on via ' + authenticationMethod + ' and has ' +
+								timeUntilExpiry + ' days remaining until password expires.';
+
+                       
+			     	var RedirectUrl = '/cgi/setclient?' + $(authenticationResponse).find('ClientType').text();
+			    	window.open(RedirectUrl,'_parent');
+
+                        // Hide the logon UI and proceed with the rest of the application
+                        $authenticationPane.hide();
+                    },
+                    
+                    // The action to complete if authentication fails
+                    // The errorData object may provide an error ID with more details about the problem
+                    authenticationError: function (event, authResult) {
+                         var errorId = authResult.errorId,
+                         authenticationResponse = authResult.authenticationResponse;
+                         window.alert('Authentication failed with error ID ' + errorId);
+			    initialRequest = true ; //Resetting initialRequest to "true" so that login form may be loaded again
+			    getinitialUrl('/home/configuration');
+                    },
+                    
+                    // Code that should run immediately before the widget displays a form
+                    // Can be used to prepare the application UI for the display of a new form
+                    beforeDisplayForm: function() {
+                        // In this example, we make sure that the authentication pane is visible (it starts off hidden)
+                        // In a real application we might also hide some progress UI
+                        $authenticationPane.show();
+                    },
+                    
+                    // Code that should run immediately after the widget displays a form
+                    // Can be used to modify the form UI to suit the application
+                    displayForm: function() {},
+                    
+                    // Function that is responsible for sending and retrieving form data, for example by making AJAX
+                    // calls to a server.
+                    // This example loads form data from script elements within the page
+                    // formData: object containing form field names and values which should be submitted to the server, e.g. as the data attribute in a jQuery AJAX call.
+                    // headers: object containing the names and values of HTTP headers which should be included in the request to the server
+                    formProvider: function (url, formData, headers, callback) {
+                       		 if (initialRequest)
+						{
+						initialRequest = false;
+						$.ajax({
+                                			url:url,
+                               			 type: "get",
+                               			 dataType: "xml",
+                               			 data: formData,
+                                			success: function(xml){
+                                			callback(xml, "ExplicitForms");
+                                			}
+                               			     })
+						}
+    	 				 else
+						{$.ajax({
+                                			url:url,
+                                			type: "POST",
+                               			 dataType: "xml",
+                               			 data: formData,
+                               			 success: function(xml){
+                               		       callback(xml, "ExplicitForms");
+                               			 }
+                               			 })
+						}
+
+                        // All form providers are required to call back to the widget using the supplied function,
+                        // providing form XML and (optional) name of the forms protocol being used
+                        // The form XML should be a Document object, as obtained from XMLHttpRequest.responseXML, for example
+                        //callback(formXml, formProtocolName);
+                    },
+					
+					// Reserved space is used to calculate space available for control, if space available is less than needed then scrollbar is presented on screen.
+                    reservedSpace: logonboxContainerTop + logonbeltTopshadow + logonbeltBottomshadow
+				});
+				
+		function  getinitialUrl(url) {
+                        $.ajax({
+                                url:url,
+                                type: "get",
+                                dataType: "xml",
+                                success: function(xml){
+                               // var xml = $.parseXML(xml),
+                               // $xml = $( xml ),
+                                authManager = $(xml).find('authManager')[0];
+                                initialUrl = $(authManager).attr('loginURL');
+                              $widgetContainer.ctxsFormsAuthentication('startAuthentication', initialUrl);
+                                }
+                                })
+				}
+		getinitialUrl('/home/configuration');  // Start the logon process
+		
+		// On window resize event plug-in will fire its resize event to find out if it need scrollbar.
+		 $(window).resize(function () {
+                    if ($widgetContainer.data('ctxsCtxsFormsAuthentication')) {
+                        $widgetContainer.ctxsFormsAuthentication('resize');
+                    }
+                });
+
+                
+                
+            });
+        </script>
+        
+        <!-- From here on, the page contains sample forms XML data for the sake of example only -->
+        <!-- In a real deployment this XML would be provided by a back end service -->
+        
+        <!-- Initial logon form -->
+        <script type="text/xml" id="initial-logon-form" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>more-info</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#expired-password-form</PostBack>
+                <CancelPostBack>#cancel-logon-form</CancelPostBack>
+                <CancelButtonText>Cancel</CancelButtonText>
+                <Requirements>
+                  <Requirement>
+                    <Credential>
+                      <ID>username</ID>
+                      <SaveID>ExplicitForms-Username</SaveID>
+                      <Type>username</Type>
+                    </Credential>
+                    <Label>
+                      <Text>User name:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <AssistiveText>domain\user or user@domain.com</AssistiveText>
+                      <Text>
+                        <Secret>false</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>password</ID>
+                      <SaveID>ExplicitForms-Password</SaveID>
+                      <Type>password</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>saveCredentials</ID>
+                      <Type>savecredentials</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Remember my password</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <CheckBox>
+                        <InitialValue>false</InitialValue>
+                      </CheckBox>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>loginBtn</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type>none</Type>
+                    </Label>
+                    <Input>
+                      <Button>Log On</Button>
+                    </Input>
+                  </Requirement>
+
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Expired password -->
+        <script type="text/xml" id="expired-password-form" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>update-credentials</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#change-password-success-form</PostBack>
+                <CancelPostBack>#cancel-logon-form</CancelPostBack>
+                <CancelButtonText>Cancel</CancelButtonText>
+                <Requirements>
+                  <Requirement>
+                    <Credential>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Change Expired Password</Text>
+                      <Type>heading</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <Type>username</Type>
+                    </Credential>
+                    <Label>
+                      <Text>User name:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>false</Secret>
+                        <ReadOnly>true</ReadOnly>
+                        <InitialValue>acmecorp\johnsmith</InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>oldPassword</ID>
+                      <Type>password</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Old password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>newPassword</ID>
+                      <SaveID>ExplicitForms-Password</SaveID>
+                      <Type>newpassword</Type>
+                    </Credential>
+                    <Label>
+                      <Text>New password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>confirmPassword</ID>
+                      <Type>newpassword</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Confirm password:</Text>
+                      <Type>plain</Type>
+                    </Label>
+                    <Input>
+                      <Text>
+                        <Secret>true</Secret>
+                        <ReadOnly>false</ReadOnly>
+                        <InitialValue></InitialValue>
+                        <Constraint>.+</Constraint>
+                      </Text>
+                    </Input>
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>changePasswordBtn</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type>none</Type>
+                    </Label>
+                    <Input>
+                      <Button>OK</Button>
+                    </Input>
+                  </Requirement>
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Change password success -->
+        <script type="text/xml" id="change-password-success-form" data-protocolname="ExplicitForms">
+            <AuthenticateResponse xmlns="http://citrix.com/authentication/response/1">
+              <Status>success</Status>
+              <Result>more-info</Result>
+              <StateContext />
+              <AuthenticationRequirements>
+                <PostBack>#authentication-success</PostBack>
+                <CancelPostBack>#cancel-logon-form</CancelPostBack>
+                <Requirements>
+                  <Requirement>
+                    <Credential>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Text>Your password has been changed successfully.</Text>
+                      <Type>confirmation</Type>
+                    </Label>
+                    <Input />
+                  </Requirement>
+                  <Requirement>
+                    <Credential>
+                      <ID>changePasswordConfirmBtn</ID>
+                      <Type>none</Type>
+                    </Credential>
+                    <Label>
+                      <Type>none</Type>
+                    </Label>
+                    <Input>
+                      <Button>OK</Button>
+                    </Input>
+                  </Requirement>
+                </Requirements>
+              </AuthenticationRequirements>
+            </AuthenticateResponse>
+        </script>
+        
+        <!-- Final response for successful authentication -->
+        <script type="text/xml" id="authentication-success" data-protocolname="ExplicitForms">
+            <AuthenticationStatus xmlns="http://citrix.com/delivery-services/webAPI/2-6/authStatus">
+              <Result>success</Result>
+              <AuthType>ExplicitForms</AuthType>
+              <IsChangePasswordEnabled>true</IsChangePasswordEnabled>
+              <IsExpiryNotificationEnabled>true</IsExpiryNotificationEnabled>
+              <TimeRemaining>9</TimeRemaining>
+            </AuthenticationStatus>
+        </script>
+    </body>
+</html>

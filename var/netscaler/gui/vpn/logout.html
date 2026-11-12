@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<HTML>
+
+	<HEAD>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>NetScaler Gateway</title>
+		<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+		<link href="/vpn/css/ctxs.mainstyle.css" rel="stylesheet" type="text/css" media="screen" />
+		<link href="/vpn/css/ctxs.ui.messagebox.css" rel="stylesheet" type="text/css" media="screen" />
+        <script type="text/javascript" src="/vpn/resources.js"></script>
+        <script type="text/javascript" language="javascript">
+        var Resources = new ResourceManager("/vpn/resources/{lang}", "logout");
+        </script>
+        <style type="text/css">
+        body
+        {
+        visibility: hidden;
+        }
+        </style>
+	<script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+	<script language="JavaScript">
+	
+	function GoToLogonPage()
+	{
+	 	window.location = "https://" + window.location.hostname + "/vpn/index.html";
+	}
+
+	function OnPageLoad()
+	{
+	    try
+	    {		
+			document.execCommand("ClearAuthenticationCache","false");			
+	    }
+	    catch(e)
+	    {
+	    }	
+	}
+
+	</script>
+	</HEAD>
+
+	<body onLoad="OnPageLoad()">
+	<div id="popupBlockerMessage" class="NUI_PopupBlockerMessage" style="DISPLAY:none;HEIGHT:auto;"></div>
+ 	<form name="pageForm" method="post" action="/" id="pageForm">
+
+    <div class="topBar"><div class="left_logo"></div></div>
+        
+	<div id="messagebox"  >
+	<div id="messagebox" class="mainpane" style="top: 205px; position: relative; display: block; "><div class="ctxsui-messagebox" style="margin-left: auto; margin-right: auto; "><div class="messagebox-top"><div class="messagebox-topleft"></div><div class="messagebox-topbody"></div><div class="messagebox-topright"></div></div><div class="messagebox-middle"><div class="messagebox-middleleft"></div><div class="messagebox-middlebody">
+            <div><h1 class="headermessage">
+            <span id="Logoff is successful."></span></h1></div>
+            
+            <CENTER><div><input type="button" id="Log_On" value="" class="custombutton" onclick="javascript:GoToLogonPage();" /></div></CENTER>
+            
+            </div>
+            <div class="messagebox-middleright"></div></div><div class="messagebox-bottom"><div class="messagebox-bottomleft"></div><div class="messagebox-bottombody"></div><div class="messagebox-bottomright"></div></div></div></div>
+    </div>
+    </form>
+    <script type="text/javascript" language="javascript">
+    Resources.Load();
+    </script>
+	</body>
+
+
+</HTML>
+
+

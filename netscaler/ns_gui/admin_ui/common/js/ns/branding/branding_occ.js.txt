@@ -1,0 +1,6 @@
+ns.branding_occ = new function()
+{
+    this.BRANDING = ns.branding.OCC;
+};
+
+$.extend(ns.branding, ns.branding_occ);

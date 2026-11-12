@@ -1,0 +1,706 @@
+html, body, #withscript
+{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: no-scroll;
+	background-color: #08202C;
+	font-family: Segoe UI ,Helvetica Neue, Helvetica, Segoe UI;
+	font-size: 12px;
+	color: #333333;
+}
+body{
+background-image: url('../media/bg_bubbles.jpg');
+}
+div {
+	padding: 0px;
+}
+.loaderimage
+{
+	left: 920px;
+	top: 284px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	background-image: url("../media/Loader.gif");
+	background-repeat: no-repeat;
+	width: 55px;
+	height: 54px;
+}
+
+div.custombutton
+{
+	padding-top: 4px;
+}
+
+.custombutton
+{	
+    background-color: transparent;
+    background-image: url("../media/Button_LogOn_idle.png");
+    background-repeat: no-repeat;
+    border: 0 none;
+    font-family: Helvetica;
+    font-size: 11px;
+    height: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 72px;
+}
+
+.epabutton
+{	
+    float:right;
+}
+
+.fr .custombutton
+{	
+    width: 110px;
+}
+
+.es .custombutton
+{	
+    width: 90px;
+}
+
+.custombutton:hover
+{
+    background-image:url(../media/Button_LogOn_hover.png);
+}
+
+.custombutton:pressed
+{
+    background-image:url(../media/Button_LogOn_pressed.png);
+}
+
+.custombutton.disabled, .custombutton.disabled:hover
+{
+	background-image:url(../media/Button_LogOn_disabled.png);
+	color: #666666;
+}
+
+.CTX_ContentTitleHeader
+{
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+
+.topBar{
+	background-color:#024136;
+	width: 100%;
+	height: 60px;	
+}
+
+.left_logo{
+	background-image: url(../media/logo_CR.png);	
+	background-repeat: no-repeat; 
+	background-position: center left;
+	height: 60px;
+	width: 154px;
+	margin-left:20px;
+}
+
+.mainPane
+{
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+    left:0;
+    right:0;
+    border-top: 2px #999999 solid;
+    border-bottom: 2px #999999 solid;
+}
+
+#commonBox
+{
+    border: solid 1px #999999;
+    background-color: #FFF;
+    color: black;
+    padding: 0;
+}
+
+#commonBox a,
+#commonBox a:link,
+#commonBox a:visited
+{
+    color: #3F3F3F;
+    text-decoration:underline;
+}
+
+#commonBox a:hover
+{
+    color: #3F3F3F;
+    text-decoration: underline;
+}
+
+.messageTitle
+{
+    font-size: 12pt;
+    font-weight: bold;
+    color: #000000;
+}
+
+/*
+begin: for VPN choices page
+*/
+#VPN
+{
+    /*
+    width: 710px;
+	*/
+    width: 60em;
+}
+
+.VPNcell
+{
+    /*
+    float: left;
+	*/
+    /*
+    width: 329px;
+	*/
+    width: 28em;
+    min-height: 176px;
+    height: auto !important;
+    /*
+    height: 176px;
+	*/
+    height: 16em;
+    padding: 0px;
+}
+
+#VPN a
+{
+    color: #000000;
+    text-decoration: none;
+    padding: 20px 20px 20px 120px;
+    display: block;
+    border: 1px solid white;
+    /*
+    width: 190px;
+	*/
+    min-height: 176px;
+    height: auto !important;
+    /*
+    height: 176px;
+	*/
+    height: 16em;
+}
+
+#VPN a:link,
+#VPN a:visited,
+#VPN a:hover
+{
+    text-decoration: none;
+}
+
+#VPN a:hover
+{
+    border: 1px dotted silver;
+}
+
+#VPN a.AccessGatewayLink,
+#VPN a.AccessGatewayLink:link,
+#VPN a.AccessGatewayLink:visited
+{
+    background: url(/vpns/images/AccessGateway_icon.png) no-repeat top left;
+}
+
+#VPN a.AccessGatewayLink:hover
+{
+    background: url(/vpns/images/AccessGatewayHover_icon.png) no-repeat top left;
+}
+
+
+#VPN a.ActiveXLink,
+#VPN a.ActiveXLink:link,
+#VPN a.ActiveXLink:visited
+{
+    background: url(/vpns/images/ActiveX_icon.png) no-repeat top left;
+}
+
+#VPN a.ActiveXLink:hover
+{
+    background: url(/vpns/images/ActiveXHover_icon.png) no-repeat top left;
+}
+
+#VPN a.JAVALink,
+#VPN a.JAVALink:link,
+#VPN a.JAVALink:visited
+{
+    background: url(/vpns/images/JAVA_icon.png) no-repeat top left;
+}
+
+#VPN a.JavaLink:hover
+{
+    background: url(/vpns/images/JAVAHover_icon.png) no-repeat top left;
+}
+
+#VPN a.WebUILink,
+#VPN a.WebUILink:link,
+#VPN a.WebUILink:visited
+{
+    background: url(/vpns/images/WebUI_icon.png) no-repeat top left;
+}
+
+#VPN a.WebUILink:hover
+{
+    background: url(/vpns/images/WebUIHover_icon.png) no-repeat top left;
+}
+
+#VPN a.ClientlessLink,
+#VPN a.ClientlessLink:link,
+#VPN a.ClientlessLink:visited
+{
+    background: url(/vpns/images/Clientless_icon.png) no-repeat top left;
+}
+
+#VPN a.ClientlessLink:hover
+{
+    background: url(/vpns/images/ClientlessHover_icon.png) no-repeat top left;
+}
+
+#VPN a.LogoffLink,
+#VPN a.LogoffLink:link,
+#VPN a.LogoffLink:visited
+{
+    background: url(/vpns/images/Logoff_icon.png) no-repeat top left;
+}
+
+#VPN a.LogoffLink:hover
+{
+    background: url(/vpns/images/LogoffHover_icon.png) no-repeat top left;
+}
+
+.linkH4,
+.linkP,
+.linkBullet
+{
+    display: block;
+}
+
+.linkH4
+{
+    font-size: 120%;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.linkP
+{
+    padding-bottom: 5px;
+}
+
+.linkBullet
+{
+    background: transparent url(/vpn/images/BulletArrow.gif) no-repeat center left;
+    padding: 0 0 5px 15px;
+
+}
+/*
+end: for VPN choices page
+*/
+
+/*
+begin: for homepage
+*/
+.full_width
+{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+ 
+.full_width_height
+{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li
+{
+    margin: 0;
+    padding: 0;
+}
+
+.navBarDiv
+{
+  padding: 0;
+  background: #3D3D3D url(/vpn/images/NavBarLink.gif) repeat-x top left;
+  overflow:auto;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  height: auto;
+}
+
+
+.navbar
+{
+	height: 26px;
+	background-image: url(/vpn/images/NavBarLink.gif);
+	background-repeat: repeat-x;	
+}
+
+.navBar li
+{
+    display: inline;
+}
+
+.navBar a
+{
+    float: left;
+    border-left:1px solid #646464;
+    border-right:1px solid black;
+    margin: 0;
+    padding: 6px 6px;
+	width:87px;
+    text-align:center;
+    white-space: nowrap;
+    color: #FFFFFF;
+	text-decoration: none;
+}
+
+.navBar #navEtchFiller
+{
+    float: left;
+    width: 0px;
+    border-left: 1px solid #646464;
+    margin: 0;
+    padding: 6px 0pt;
+}
+
+.navBar a:link,
+.navBar a:visited,
+{
+  color: #FFFFFF;
+  background: #3D3D3D url(/vpn/images/NavBarLink.gif) repeat-x top left;
+  text-decoration: none;
+}
+
+.navBar a:hover,
+.currentLink a:link,
+.currentLink a:visited,
+.currentLink a:hover
+{
+    color: #FFFFFF;
+    background: #52ACEE url(/vpn/images/NavCurrentBarLink.gif) top left repeat-x;
+    text-decoration: none;
+}
+
+.currentLink a:link,
+.currentLink a:visited,
+.currentLink a:hover
+{
+  font-weight: bold;
+}
+
+.CTX_CaxtonButtonBar
+{
+	height: 20px;
+	background-color: #d4d4d4;
+}
+
+.CTX_CaxtonButtonLink
+{
+	height: 18px;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 11px;
+	color: black;
+	background-color: #d4d4d4; 
+	cursor: default;
+	border: 0px;
+}
+
+.CTX_CaxtonButtonLink_Hover
+{
+	height: 18px;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 11px;
+	color: black;
+	background-color: #d4d4d4;
+	cursor: hand;
+	border: 0px;
+	text-decoration:underline;
+}
+/*
+end: for homepage
+*/
+.changePasswordNameColumn
+{
+	width: 24ex;
+}
+
+.changePasswordPane
+{
+  padding: 0;
+  background: url(/vpn/images/GreyGradient.gif) repeat-y;
+  background-position: 24ex 0;
+}
+
+.changePasswordButtonPaddingLeft
+{
+	padding-left: 24ex;
+}
+
+.buttonPaddingTop
+{
+	padding-top: 10px;
+}
+
+.topSolidBorder
+{
+   border-top: 1px solid #9baac0;
+}
+
+.topDottedBorder
+{
+   border-top: 1px dotted #9baac0;
+}
+
+.fadeLineSeparator
+{
+    clear: both;
+    width: 100%;
+    height: 1px;
+    background: #FFF url(/vpn/images/FadeLine.gif) no-repeat top left;
+}
+
+#tabularView
+{
+    clear:both;
+    float:left;
+    width:100%;
+    margin: 0;
+    padding: 0;
+	margin-bottom: 10px;
+    border-top: 1px #BBC6D6 solid;
+    border-bottom: 1px #BBC6D6 solid;
+}
+#tabularView table
+{
+   width:100%;
+   border-collapse: collapse;
+}
+
+#tabularView .leftColumn {
+  width: 40%;
+  padding: 2px 0px 2px 20px;
+  vertical-align: top;
+}
+
+#tabularView .descriptionColumn {
+  width: 55%;
+  padding: 2px 20px 2px 0;
+}
+
+#tabularView .noLeftBorder {
+    padding-left:0px;
+}
+
+#tabularView th
+{
+    padding: 5px 25px;
+    color: #1C5492;
+    text-align: left;
+    background-color: #efefef;
+}
+
+#tabularView table td
+{
+   padding: 2px 20px;
+   vertical-align: top;
+}
+
+#tabularView tr.row1 td
+{
+   background-color: #F7F7F7;
+   color: black;
+}
+
+#tabularView img
+{
+    float: left;
+    padding-right: 5px;
+}
+
+#tabularView p
+{
+   margin: 0 10px 0 20px;
+}
+
+#tabularView tr
+{
+    padding-left: 20px;
+}
+
+/*  For kernel dialogue*/
+.dialogueForm
+{
+	margin:0;
+}
+
+.dialogueChallengeCell
+{
+	text-align:left;
+}
+
+.dialogueResponseCell
+{
+	text-align:right;
+}
+
+.dialogueSubmitCell
+{
+	padding-top:10px;
+	text-align:right;
+}
+
+.transferLogonButtonRow
+{
+	text-align:center;
+	padding-left:20px;
+}
+
+.buttonRow
+{
+	padding-top: 20px;
+	padding-left: 20px; 
+}
+
+/* for changepwd page */
+#feedbackArea
+{
+    margin:0;
+    left:0;
+    right:0;
+    text-align:center;
+}
+#feedbackArea.feedback
+{
+    display: inline;
+    width: 33.5em;
+}
+#feedbackArea.noFeedback
+{
+    display: none;
+}
+
+div.feedbackStyleSuccess, 
+div.feedbackStyleInfo, 
+div.feedbackStyleWarning, 
+div.feedbackStyleError
+{
+    margin:0;
+    left:0;
+    right:0;
+    max-width:none;
+    text-align:left;
+
+    width: 33.5em;
+}
+
+div.feedbackStyleSuccess,
+div.feedbackStyleInfo,
+div.feedbackStyleWarning,
+div.feedbackStyleError
+{
+    color: black;
+    padding-top: 8px;
+    padding-right: 11px;
+    padding-bottom: 8px;
+    padding-left: 64px;
+    font-size: 100%;
+    max-width: 600px;
+}
+
+
+div.feedbackStyleSuccess a,
+div.feedbackStyleInfo a,
+div.feedbackStyleWarning a,
+div.feedbackStyleError a,
+div.feedbackStyleSuccess a:link,
+div.feedbackStyleInfo a:link,
+div.feedbackStyleWarning a:link,
+div.feedbackStyleError a:link,
+div.feedbackStyleSuccess a:visited,
+div.feedbackStyleInfo a:visited,
+div.feedbackStyleWarning a:visited,
+div.feedbackStyleError a:visited,
+div.feedbackStyleSuccess a:hover,
+div.feedbackStyleInfo a:hover,
+div.feedbackStyleWarning a:hover,
+div.feedbackStyleError a:hover
+{
+    color: #1260D4;
+}
+
+
+div.feedbackStyleSuccess
+{
+    background: #121212 url(/vpn/images/Tick32.gif) no-repeat 21px 8px;
+    border: solid 1px #005707;
+    float: left;
+    color: #C5C5C5;
+}
+
+div.feedbackStyleInfo
+{
+    background: #121212 url(/vpn/images/Info32.gif) no-repeat 21px 8px;
+    border: solid 1px #999999;
+    float: left;
+    color: #C5C5C5;
+}
+
+div.feedbackStyleWarning
+{
+    background: #121212 url(/vpn/images/WarningAlert32.gif) no-repeat 21px 8px;
+    border: solid 1px #9C371A;
+    float: left;
+    color: #C5C5C5;
+}
+
+div.feedbackStyleError
+{
+    background: #121212 url(/vpn/images/Error32.gif) no-repeat 21px 8px;
+    border: solid 1px #820A0A;
+    float: left;
+    color: #C5C5C5;
+}
+
+.messageStyle
+{
+	display: block;
+	width: 33.5em;
+	min-height: 32px;
+	height: auto !important;
+	height: 32px;
+}
+
+.changePwdSuccess
+{
+    background-image: url('../media/tick.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+    padding-left: 20px;
+}
+
+.warning
+{
+	background-image: url('/vpn/images/WarningAlert32.gif');
+	background-repeat: no-repeat;
+	background-position: left top;
+    padding-left: 40px;
+}

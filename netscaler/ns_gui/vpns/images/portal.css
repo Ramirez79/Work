@@ -1,0 +1,30 @@
+.CTX_Divider0 {
+	HEIGHT: 8px; BACKGROUND-COLOR: red
+}
+.CTX_Divider1 {
+	HEIGHT: 8px
+}
+.CTX_Divider2 {
+	HEIGHT: 8px; BACKGROUND-COLOR: #dfdfdf
+}
+.CTX_Divider3 {
+	HEIGHT: 4px
+}
+.CTX_Divider4 {
+	HEIGHT: 4px; BACKGROUND-COLOR: #ffd149
+}
+.CTX_ContentTitleHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; COLOR: black; FONT-FAMILY: Arial; HEIGHT: 8px; BACKGROUND-COLOR: #a9a9a9
+}
+.CTX_ContentArea {
+	BORDER-RIGHT: black 1pt solid; BORDER-TOP: black 1pt solid; BORDER-LEFT: black 1pt solid; BORDER-BOTTOM: black 1pt solid
+}
+.CTX_ContentFont {
+	FONT-SIZE: 9pt; FONT-FAMILY: Arial
+}
+.CTX_ErrorFont {
+	FONT-SIZE: 9pt; COLOR: red; FONT-FAMILY: Arial
+}
+.CTX_Footer {
+	FONT-SIZE: 8pt; COLOR: #666666; FONT-FAMILY: Arial
+}

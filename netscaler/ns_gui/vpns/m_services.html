@@ -1,0 +1,262 @@
+<html>
+<head>
+  <title>NetScaler Gateway</title>
+  <link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="noindex,nofollow,noarchive" name="robots">
+  <link href="/vpn/js/rdx/core/css/rdx.css" rel="stylesheet" type="text/css"/>
+  <LINK href="/logon/themes/Default/css/base.css" type=text/css rel=STYLESHEET>
+  <link rel="stylesheet" href="/logon/fonts/citrix-fonts.css" type="text/css">
+  <LINK href="/logon/themes/Default/css/custom.css" type=text/css rel=STYLESHEET>
+  <script type="text/javascript" src="/vpn/js/rdx.js"></script>
+  <script type="text/javascript" src="/vpn/js/views.js"></script>
+  <script type="text/javascript" src="/vpn/js/gateway_login_view.js"></script>
+  <script type="text/javascript" src="/vpns/m_services_view.js"></script>
+  <script type="text/javascript" src="/vpn/resources.js"></script>
+  <script type="text/javascript" language="javascript">
+  var Resources = new ResourceManager("/logon/themes/Default/resources/{lang}", "m_services");
+  </script>
+  <style type="text/css">
+  body
+  {
+    visibility: hidden;
+  }
+  </style>
+  <script language="javascript" type="text/javascript" src="/vpn/nsshare.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+  var nsloc=document.location.href;
+  var cookie=document.cookie;
+  var ns_aaac="";
+  var NameOfCookie="NSC_AAAC";
+  var timerID=0;
+  var probeErrors=0;
+  var agentPort=3148;
+  var image;
+  var postEPACookie="NSC_EPAFALLBACK";
+  var ns_postepa="";
+  var curTimerValue = 10;
+
+  if(cookie.length > 0) {
+  begin=cookie.indexOf(NameOfCookie+"=");
+  if(begin!=-1) {
+  begin+=NameOfCookie.length+1;
+  end=cookie.indexOf(";", begin);
+  if(end==-1) end=cookie.length;
+  ns_aaac=decodeURIComponent(cookie.substring(begin, end));
+  }
+  begin=cookie.indexOf(postEPACookie+"=");
+  if(begin!=-1) {
+  begin+=postEPACookie.length+1;
+  end=cookie.indexOf(";", begin);
+  if(end==-1) end=cookie.length;
+  ns_postepa=decodeURIComponent(cookie.substring(begin, end));
+  if(ns_postepa) nsloc = nsloc + "\/postepa.html";
+  }
+  }
+
+  function UnsetCookie(cookieName) {
+  document.cookie=cookieName+"=nothing;expires=Thursday, 1 Jan 1970 00:00:00 GMT; path=/";
+  }
+
+  function loginSuccess(evt){
+
+    document.getElementById("Checking if the plug-in is installed").style.display = 'none';
+    document.getElementById("timerValue").style.display = 'none';
+
+  if(this.height==2) {
+  UnsetCookie("NSC_AAAC");
+  UnsetCookie("NSC_USER");
+  UnsetCookie("NSC_EPAC");
+  UnsetCookie("NSC_VPNERR");
+  UnsetCookie("NSC_EPAFALLBACK");
+  window.location="/";
+  }
+  else {
+    setChoicesCookiesMac();
+	window.location = "/vpns/services.html";
+  }
+
+  }
+
+  function nextAgentPort() {
+  agentPort = agentPort + 1;
+  if( agentPort > 3150 )
+  agentPort = 3148;
+  }
+
+  function setChoicesCookiesMac()
+{
+     var npagee;
+     npagee = navigator.mimeTypes["application/citrix-agmacplugin"];
+     if(npagee) {
+        var d = document.getElementById("scriptArea");
+        d.innerHTML = '<OBJECT id="npobj" type="application/citrix-agmacplugin" height="1" width="1"></OBJECT>' ;
+        var npobj = document.getElementById("npobj");
+        var choicescookies = npobj.nsCookies;
+        var cookieArray = choicescookies.split(";");
+        for(i=0; i<cookieArray.length; i++) {
+        	document.cookie = cookieArray[i] + ";path=/; secure";
+        }
+    }
+}
+  function checkIfAgentReady(){
+    try{
+      if(timerID) window.clearTimeout(timerID);
+      navigator.plugins.refresh(false);
+      var npagee;
+      npagee = navigator.mimeTypes["application/citrix-agmacplugin"];
+      if(npagee){
+        var d = document.getElementById("scriptArea");
+        d.innerHTML = '<OBJECT id="npobj" type="application/citrix-agmacplugin" height="1" width="1"></OBJECT>' ;
+        var npobj = document.getElementById("npobj");
+        var ret = npobj.IsAgentReady();
+        if( ret == 1 ){
+          probeAgent();
+        }
+        else{
+          //Agent is installed but not ready, display download button and wait for  agent to be ready
+          displayDownloadArea();
+          timerID = window.setTimeout( "checkIfAgentReady()", 10000 );
+        }
+        return;
+      }
+      else{
+          if((navigator.userAgent.indexOf("Chrome") > -1) && (navigator.vendor == "Google Inc."))
+          {
+              console.log("Handling without using NPAPI");
+              setTimeout("checkIfInstalledAndDoLogin()",1000);
+              document.getElementById("Checking if the plug-in is installed").style.display = '';
+              document.getElementById("timerValue").innerHTML = curTimerValue + " " + _("secs");
+              setTimeout("updateTimer()",1000);
+              return;
+          }
+          else
+          {
+              //Agent is not yet installed (or not available with plugin), display download button and wait user to install it.
+              //AG will automatically be launched after install
+              displayDownloadArea();
+              probeAgent();
+          }
+      }
+    }
+    catch (err){
+      if( npobj ){
+        // AG plugin exists, but does not have new IsAgentReady interface, simply do a delayed
+        // probe agent and let it auto-upgrade. If agent is not running, user must start it.
+        displayDownloadArea();
+        probeAgent();
+      }
+      else{
+          //Agent is not yet installed, display download button and wait for  agent to be ready
+            if(timerID) window.clearTimeout(timerID);
+            displayDownloadArea();
+            timerID = window.setTimeout( "checkIfAgentReady()", 10000 );
+      }
+    }
+  }
+
+function updateTimer()
+{
+  curTimerValue = curTimerValue - 1;
+  if(curTimerValue >= 0)
+  {
+    document.getElementById("timerValue").innerHTML = curTimerValue + " " + _("secs");
+    setTimeout("updateTimer()",1000);
+  }
+  else {
+    document.getElementById("timerValue").style.display = 'none';
+    displayDownloadArea();
+  }
+
+}
+
+function displayDownloadArea() {
+  document.getElementById("Please wait for the VPN session to be established.").style.display = 'none';
+  document.getElementById("Checking if the plug-in is installed").style.display = 'none';
+  document.getElementById("timerValue").style.display = 'none';
+  document.getElementById("If the Access Gateway Plug-in is not installed").style.display = '';
+	document.getElementById("downloadArea").style.display = '';
+}
+
+  function probeAgent() {
+  if(ns_aaac=="") return;
+  if(timerID) window.clearTimeout(timerID);
+  image = new Image();
+  image.onload = loginSuccess;
+  image.onerror = probeError;
+  image.src = "http://localhost:"+agentPort+"/svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion=11,1,47,14&nstrace=DEBUG&nsvip=255.255.255.255";
+        timerID = window.setTimeout( "probeTimeout()", 3000 );
+}
+
+function probeError() {
+        if(timerID) window.clearTimeout(timerID);
+        probeErrors++;
+        if( probeErrors > 20 ) {
+            window.location.reload(true);
+            return;
+        }
+        nextAgentPort();
+        window.setTimeout( "probeAgent()", 1000 );
+}
+
+function probeTimeout() {
+        if(timerID) {
+                window.clearTimeout(timerID);
+                if(navigator.userAgent.indexOf("Opera") > 0) window.location.reload (true);
+        }
+        nextAgentPort();
+        probeAgent();
+}
+
+function nsexit(){
+}
+
+function checkIfInstalledAndDoLogin()
+{
+    if(ns_aaac=="")
+        return;
+    if(timerID)
+        window.clearTimeout(timerID);
+
+    image = new Image();
+    image.onload = loginSuccess;
+    image.onerror = checkIfInstalledAndDoLoginFail;
+    image.src = "http://localhost:"+agentPort+"/svc?NSC_AAAC="+ns_aaac+"&nsloc="+nsloc+"&nsversion=11,1,47,14&nstrace=DEBUG&nsvip=255.255.255.255";
+    timerID = window.setTimeout( "checkIfInstalledAndDoLoginTimeout()", 3000 );
+}
+
+function checkIfInstalledAndDoLoginFail() {
+
+    if(timerID) window.clearTimeout(timerID);
+    probeErrors++;
+    if( probeErrors > 10 ) {
+        displayDownloadArea();
+    }
+    else if (probeErrors == 4) {
+      //Open NG-VPN app using custom url scheme after trying first rally of ports
+      window.location = "com.citrix.nsgclient://";
+    }
+    nextAgentPort();
+    window.setTimeout( "checkIfInstalledAndDoLogin()", 1000 );
+}
+
+function checkIfInstalledAndDoLoginTimeout() {
+    nextAgentPort();
+    checkIfInstalledAndDoLogin();
+}
+</SCRIPT>
+
+</head>
+
+<body class="ns_body" onunload="javascript:nsexit();">
+<!-- Copyright 2001-2005 Citrix Systems, Inc. All Rights Reserved -->
+<script>
+rdx.FRAMEWORK_BASE = "/vpn/js" ;
+rdx.page.add_event_handler(rdx.events.PAGE_LOADED, new rdx.callback(login, login.do_action_on_load));
+$(window).load(function(){resize();});
+$(window).resize(function(){ resize();});
+</script>
+
+</body>
+</html>
